@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_05112v1",
+    "title": "Evaluating Large Language Models in Dynamic Clinical Decision-Making with Standardized Patient Cases",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.05112v1",
+    "type": "paper",
+    "raw_text": "Large language models (LLMs) are increasingly proposed as clinical agents, yet static, single-turn benchmarks cannot capture how a model dynamically delivers care across an encounter: gathering information, planning treatment, and adapting longitudinal management across successive patient states. Medical education has long addressed an analogous challenge through standardized patients (SPs): trained actors who consistently portray clinical cases, enabling realistic practice and objective, scripted assessment. Here we introduce MedSP1000, an SP-derived interactive benchmark for clinical-agent evaluation, including 1,638 SP cases with 24,602 trajectory-level peer-reviewed rubrics. MedSP1000 converts peer-reviewed SP teaching cases into executable scenarios with defined SP case scripts, clinical environment contexts, and human-validated structured rubric. In each simulation evaluation run, a clinical agent interacts in closed loop with a patient agent and an environment controller, and its behaviour is scored throughout the encounter against expert criteria specified in the original materials. Applying MedSP1000 to a range of general-purpose and medically specialized LLMs, we find that performance on static benchmarks does not reliably translate to such educational scenarios. The best-performing model, GPT-5.5, completes only 60.4% of expert-defined rubric items, whereas the strongest medically specialized model reaches 40.0%; increasing test-time compute produces no measurable gain. These results suggest that current LLMs, including agentic systems tuned for medicine, are not yet reliable enough to be safely integrated into actual clinical practice. More broadly, MedSP1000 shows how process-level, SP-style evaluation can reveal clinically relevant failure modes that single-turn benchmarks miss.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_25273v1",
+    "title": "LLM-as-a-Judge in Healthcare: A Scoping Analysis of Applications, Methods, and Human Alignment",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.25273v1",
+    "type": "paper",
+    "raw_text": "Large language models (LLMs) are increasingly deployed across healthcare applications, including clinical documentation, diagnostic reasoning, medicine recommendation, and medical education. Their outputs are largely unstructured clinical text, which is difficult to reliably evaluate at scale. LLM-as-a-Judge, in which an LLM evaluates another system's output against task-specific criteria, offers a scalable alternative and is increasingly used in clinical evaluation, yet its validity in healthcare remains underexamined. Existing reviews focus on general-purpose LLM evaluation or on risk framework, rather than systematically characterizing how LLM-as-a-Judge is applied in healthcare and how well their judgments align with human experts. We therefore conduct a PRISMA-guided comprehensive review of LLM-as-a-Judge applications in healthcare, searching five databases for studies published between January 2023 and February 2026. After screening 541 records, 134 studies meet the eligibility and are coded by health scenario, judge configuration, technical approach, and validation design. LLM-as-a-Judge is concentrated in clinical decision support, clinical natural language processing (NLP), medical knowledge and question answering (QA), and medical communication. OpenAI models are the most frequently used judges, and prompt engineering appears in nearly all studies, with ensemble, multi-agent, and retrieval-augmented designs as common extensions. Among studies reporting human validation, LLM judges often show moderate to strong alignment with expert judgments, although reliability varies substantially across tasks. Overall, this review positions LLM-as-a-Judge as a promising framework for scalable healthcare AI evaluation, while emphasizing that its clinical value depends on model design and rigorous validation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_21963v1",
+    "title": "ChronoMedicalWorld: A Medical World Model for Learning Patient Trajectories from Longitudinal Care Data",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.21963v1",
+    "type": "paper",
+    "raw_text": "Long-horizon clinical simulation -- predicting how a patient's physiology evolves over years under specified interventions -- is central to chronic-disease care, yet existing electronic health record (EHR) models are predominantly discriminative, and general-purpose large language models drift under repeated interventions. We propose the \\textbf{ChronoMedicalWorld Model (CMWM)}, an action-conditioned latent world-model framework for learning patient trajectories from longitudinal care data. CMWM couples a joint-embedding state encoder with a wide action encoder that admits both structured intervention indicators and free-text communication embeddings, and trains a recurrent latent transition module under a six-term objective: next-observation supervision, next-latent prediction, SIGReg latent regularisation, and three physiology-aware shape priors (slope, continuity, large-jump penalty). A closed-loop rollout-prefix protocol matches training to deployment, so the model is optimised against the same multi-step error it exhibits at inference. As a concrete case study, we instantiate CMWM for annual estimated glomerular filtration rate (eGFR) trajectory forecasting in chronic kidney disease (CKD). On a 2{,}232-patient nephrology cohort, the CKD instantiation achieves a dynamic-50\\% history rollout test mean absolute error (MAE) of 7.384 and root-mean-square error (RMSE) of 10.256, against 7.964 and 11.069 for a tuned GPT-5.5 structured-prompting baseline ($-7.28\\%$ MAE, $-7.35\\%$ RMSE), with the gain dominated by the dialogue portion of patient--health-coach communication. The framework is not CKD-specific: its architecture, loss design, and training protocol apply to any chronic condition that can be cast as periodic clinical state interleaved with structured and conversational interventions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_20233v1",
+    "title": "AI-Assisted Competency Assessment from Egocentric Video in Simulation-Based Nursing Education",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.20233v1",
+    "type": "paper",
+    "raw_text": "Assessing learner competency in clinical simulation requires expert observation that is time-intensive, difficult to scale, and subject to inter-rater variability. Vision-language models have emerged as a promising tool for understanding complex visual behavior. In this work, we investigate whether visual observations can provide educationally meaningful signals for competency assessment through a three-stage framework that (1) extracts action timelines from egocentric nursing simulation video using frozen visual encoders and few-shot learning, (2) derives sequence-level features and per-session recognition metrics, and (3) relates these to instructor-rated competency. Across 22 densely annotated sessions (3.8 hours, 493 actions), a frozen DINOv2 backbone with HMM Viterbi decoding achieves 57.4% MOF in leave-one-out 1-shot recognition. Surprisingly, we observe a negative trend between recognition accuracy and competency (rho = -0.524, p = 0.012 for mIoU), robust to six confound controls: more competent students produce diverse, harder-to-classify workflows, while simple sequence features show no such relationship. Per-item analysis identifies patient safety protocols and team communication as the expected behaviors most reflected in this pattern, and process model comparisons reveal that higher-competency students exhibit more protocol-consistent action transitions. These findings suggest that recognition accuracy may complement predicted action timelines as a pedagogically informative signal in automated competency assessment.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_04772v1",
+    "title": "MIRAGE: Retrieval and Generation of Multimodal Images and Texts for Medical Education",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.04772v1",
+    "type": "paper",
+    "raw_text": "Access to diverse, well-annotated medical images with interactive learning tools is fundamental for training practitioners in medicine and related fields to improve their diagnostic skills and understanding of anatomical structures. While medical atlases are valuable, they are often impractical due to their size and lack of interactivity, whereas online image search may provide mislabeled or incomplete material. To address this, we propose MIRAGE, a multimodal medical text and image retrieval and generation system that allows users to find and generate clinically relevant images from trustworthy sources by mapping both text and images to a shared latent space, enabling semantically meaningful queries. The system is based on a fine-tuned medical version of CLIP (MedICaT-ROCO), trained with the ROCO dataset, obtained from PubMed Central. MIRAGE allows users to give prompts to retrieve images, generate synthetic ones through a medical diffusion model (Prompt2MedImage) and receive enriched descriptions from a large language model (Dolly-v2-3b). It also supports a dual search option, enabling the visual comparison of different medical conditions. A key advantage of the system is that it relies entirely on publicly available pretrained models, ensuring reproducibility and accessibility. Our goal is to provide a free, transparent and easy-to-use didactic tool for medical students, especially those without programming skills. The system features an interface that enables interactive and personalized visual learning through medical image retrieval and generation. The system is accessible to medical students worldwide without requiring local computational resources or technical expertise, and is currently deployed on Kaggle: http://www-vpu.eps.uam.es/mirage",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_17186v1",
+    "title": "Persona-Based Requirements Engineering for Explainable Multi-Agent Educational Systems: A Scenario Simulator for Clinical Reasoning Training",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.17186v1",
+    "type": "paper",
+    "raw_text": "As Artificial Intelligence (AI) and Agentic AI become increasingly integrated across sectors such as education and healthcare, it is critical to ensure that Multi-Agent Education System (MAES) is explainable from the early stages of requirements engineering (RE) within the AI software development lifecycle. Explainability is essential to build trust, promote transparency, and enable effective human-AI collaboration. Although personas are well-established in human-computer interaction to represent users and capture their needs and behaviors, their role in RE for explainable MAES remains underexplored. This paper proposes a human-first, persona-driven, explainable MAES RE framework and demonstrates the framework through a MAES for clinical reasoning training. The framework integrates personas and user stories throughout the RE process to capture the needs, goals, and interactions of various stakeholders, including medical educators, medical students, AI patient agent, and clinical agents (physical exam agent, diagnostic agent, clinical intervention agent, supervisor agent, evaluation agent). The goals, underlying models, and knowledge base shape agent interactions and inform explainability requirements that guided the clinical reasoning training of medical students. A post-usage survey found that more than 78\\% of medical students reported that MAES improved their clinical reasoning skills. These findings demonstrate that RE based on persona effectively connects technical requirements with non-technical medical students from a human-centered approach, ensuring that explainable MAES are trustworthy, interpretable, and aligned with authentic clinical scenarios from the early stages of the AI system engineering. The partial MAES for the clinical scenario simulator is~\\href{https://github.com/2sigmaEdTech/MAS/}{open sourced here}.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_08126v1",
+    "title": "LLM-Based Data Generation and Clinical Skills Evaluation for Low-Resource French OSCEs",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.08126v1",
+    "type": "paper",
+    "raw_text": "Objective Structured Clinical Examinations (OSCEs) are the standard method for assessing medical students' clinical and communication skills through structured patient interviews. In France, however, the organization of training sessions is limited by human and logistical constraints, restricting students' access to repeated practice and structured feedback. Recent advances in Natural Language Processing (NLP) and Large Language Models (LLMs) now offer the opportunity to automatically evaluate such medical interviews, thereby alleviating the need for human examiners during training. Yet, real French OSCE annotated transcripts remain extremely scarce, limiting reproducible research and reliable benchmarking. To address these challenges, we investigate the use of LLMs for both generating and evaluating French OSCE dialogues in a low-resource context. We introduce a controlled pipeline that produces synthetic doctor-patient interview transcripts guided by scenario-specific evaluation criteria, combining ideal and perturbed performances to simulate varying student skill levels. The resulting dialogues are automatically silver-labeled through an LLM-assisted framework supporting adjustable evaluation strictness. Benchmarking multiple open-source and proprietary LLMs shows that mid-size models ($\\le$32B parameters) achieve accuracies comparable to GPT-4o ($\\sim$90\\%) on synthetic data, highlighting the feasibility of locally deployable, privacy-preserving evaluation systems for medical education.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_08555v1",
+    "title": "SynDocDis: A Metadata-Driven Framework for Generating Synthetic Physician Discussions Using Large Language Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.08555v1",
+    "type": "paper",
+    "raw_text": "Physician-physician discussions of patient cases represent a rich source of clinical knowledge and reasoning that could feed AI agents to enrich and even participate in subsequent interactions. However, privacy regulations and ethical considerations severely restrict access to such data. While synthetic data generation using Large Language Models offers a promising alternative, existing approaches primarily focus on patient-physician interactions or structured medical records, leaving a significant gap in physician-to-physician communication synthesis. We present SynDocDis, a novel framework that combines structured prompting techniques with privacy-preserving de-identified case metadata to generate clinically accurate physician-to-physician dialogues. Evaluation by five practicing physicians in nine oncology and hepatology scenarios demonstrated exceptional communication effectiveness (mean 4.4/5) and strong medical content quality (mean 4.1/5), with substantial interrater reliability (kappa = 0.70, 95% CI: 0.67-0.73). The framework achieved 91% clinical relevance ratings while maintaining doctors' and patients' privacy. These results place SynDocDis as a promising framework for advancing medical AI research ethically and responsibly through privacy-compliant synthetic physician dialogue generation with direct applications in medical education and clinical decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_15677v1",
+    "title": "MedArena: Comparing LLMs for Medicine-in-the-Wild Clinician Preferences",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.15677v1",
+    "type": "paper",
+    "raw_text": "Large language models (LLMs) are increasingly central to clinician workflows, spanning clinical decision support, medical education, and patient communication. However, current evaluation methods for medical LLMs rely heavily on static, templated benchmarks that fail to capture the complexity and dynamics of real-world clinical practice, creating a dissonance between benchmark performance and clinical utility. To address these limitations, we present MedArena, an interactive evaluation platform that enables clinicians to directly test and compare leading LLMs using their own medical queries. Given a clinician-provided query, MedArena presents responses from two randomly selected models and asks the user to select the preferred response. Out of 1571 preferences collected across 12 LLMs up to November 1, 2025, Gemini 2.0 Flash Thinking, Gemini 2.5 Pro, and GPT-4o were the top three models by Bradley-Terry rating. Only one-third of clinician-submitted questions resembled factual recall tasks (e.g., MedQA), whereas the majority addressed topics such as treatment selection, clinical documentation, or patient communication, with ~20% involving multi-turn conversations. Additionally, clinicians cited depth and detail and clarity of presentation more often than raw factual accuracy when explaining their preferences, highlighting the importance of readability and clinical nuance. We also confirm that the model rankings remain stable even after controlling for style-related factors like response length and formatting. By grounding evaluation in real-world clinical questions and preferences, MedArena offers a scalable platform for measuring and improving the utility and efficacy of medical LLMs.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_19299v1",
+    "title": "PRIME-CVD: A Parametrically Rendered Informatics Medical Environment for Education in Cardiovascular Risk Modelling",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.19299v1",
+    "type": "paper",
+    "raw_text": "In recent years, progress in medical informatics and machine learning has been accelerated by the availability of openly accessible benchmark datasets. However, patient-level electronic medical record (EMR) data are rarely available for teaching or methodological development due to privacy, governance, and re-identification risks. This has limited reproducibility, transparency, and hands-on training in cardiovascular risk modelling. Here we introduce PRIME-CVD, a parametrically rendered informatics medical environment designed explicitly for medical education. PRIME-CVD comprises two openly accessible synthetic data assets representing a cohort of 50,000 adults undergoing primary prevention for cardiovascular disease. The datasets are generated entirely from a user-specified causal directed acyclic graph parameterised using publicly available Australian population statistics and published epidemiologic effect estimates, rather than from patient-level EMR data or trained generative models. Data Asset 1 provides a clean, analysis-ready cohort suitable for exploratory analysis, stratification, and survival modelling, while Data Asset 2 restructures the same cohort into a relational, EMR-style database with realistic structural and lexical heterogeneity. Together, these assets enable instruction in data cleaning, harmonisation, causal reasoning, and policy-relevant risk modelling without exposing sensitive information. Because all individuals and events are generated de novo, PRIME-CVD preserves realistic subgroup imbalance and risk gradients while ensuring negligible disclosure risk. PRIME-CVD is released under a Creative Commons Attribution 4.0 licence to support reproducible research and scalable medical education.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

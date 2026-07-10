@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_10866v1",
+    "title": "Adressing Separation: A Firth-corrected Joint Model for Longitudinal and Time-to-event Data with an Application on Dropout from Vocational Training",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10866v1",
+    "type": "paper",
+    "raw_text": "Joint Models for longitudinal and time-to-event data are frequently used to model endogenous longitudinal covariates alongside a time-to-event outcome. However, the model class borrows some limitations of the survival submodels, including the necessity for non-separation for each category of categorical covariates. We therefore incorporate Firth's correction into the frequentist estimation procedure of joint models in order to make the model class applicable in settings with separation cases. We derive the needed quantities for the correction term and implement it in the Expectation-Maximization Algorithm for the parameter estimation in joint models. Our simulation study shows, that in data situations with separation issues, the Firth-corrected estimation procedure yields less biased estimates and the respective coefficients approach the estimated values observed in the non-separation cases. The application on a data set on satisfaction with and dropouts from vocational training demonstrates the advantages of the Firth-corrected joint model in a real world data set with separation. The results add to the literature on dropout from vocational training in Germany by explicitly modeling direct effects of socioeconomic and training-specific factors on the risk of dropout as well as their indirect contribution via satisfaction with the training.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_01127v1",
+    "title": "How Proposal Novelty, Topical Diversity, and Theory-Practice Balance Shape Scholarly Outcomes in Funded Education Research",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.01127v1",
+    "type": "paper",
+    "raw_text": "Education research occupies a distinctive position in public science because it is expected to advance scholarly knowledge while also informing learning, teaching, participation, and workforce development. This study examines how the intellectual characteristics of NSF-funded education proposals are associated with the subsequent academic performance of funded scholars. Linking 8,715 NSF education awards from 1990 to 2020 with 84,519 publications by principal investigators, the analysis focuses on four major NSF education divisions that collectively span undergraduate and graduate levels, formal and informal learning environments, and inclusive educational initiatives. Proposal novelty is measured as semantic distance from prior funded projects within the same division, topical diversity as breadth across latent research themes, and intellectual orientation as theoretical, practical, or balanced. The results show that NSF education funding is consistently associated with higher publication output across divisions. However, this increase is not accompanied by stronger citation performance or higher journal-level visibility; citation and CiteScore estimates are often negative, particularly in later decades. Proposal novelty shows limited and uneven associations with post-award outcomes, whereas topical diversity is more clearly related to publication growth in some divisions but weaker citation-based performance in others. Balanced proposals that integrate theoretical and practical aims display the most favourable overall profile, combining positive publication associations with fewer negative citation-based patterns. These findings highlight the importance of evaluating education research funding through multiple academic outcomes and division-specific research contexts.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_24332v1",
+    "title": "Tacit Signal Infrastructure: Towards AI Systems that Model Expert Sensing Over Time",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.24332v1",
+    "type": "paper",
+    "raw_text": "Current generative AI systems are increasingly effective at processing explicit knowledge, including retrieving information, summarising documents, generating explanations, and supporting codified workflows. However, high-level expertise also depends on tacit sensing: perceiving weak signals, recognising emerging tensions, detecting coherence degradation, and anticipating instability before formal indicators appear. Existing AI education, AI literacy, and human-AI collaboration frameworks remain centred on prompting, task execution, and productivity support and are poorly equipped to address this tacit layer of expert cognition. This vision paper argues that next-generation AI systems should move beyond explicit knowledge processing toward the longitudinal modelling of expert tacit sensing. It introduces Tacit Signal Infrastructure as a layer for capturing, structuring, modelling, interpreting, and validating expert tacit signals over time. It further defines Long-term Cognitive Operations as the practices required to maintain and govern such systems, including memory curation, semantic organisation, tacit signal modelling, reasoning calibration, and cognitive governance. Building on this framing, the paper proposes the Cognitive Operations Manager as a prototype AI-native professional role for coordinating tacit signal modelling, semantic modelling, AI system calibration, expert validation, and ethical governance. It also introduces the Cognitive Operations Research and Training Framework (CORTF) to support research, education, and workforce development. The paper contributes a conceptual foundation for designing AI systems that model expert sensing over time, positioning cognition as an infrastructural, operational, and professional domain in persistent human-AI systems.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_16296v1",
+    "title": "Artificial Intelligence in Lifelong Learning: Opportunities and Challenges in Adult Education Policy",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.16296v1",
+    "type": "paper",
+    "raw_text": "Artificial intelligence (AI) is increasingly reshaping lifelong learning by introducing new possibilities for personalized, flexible, and data-informed educational practices. In the field of adult education, AI has gained particular importance as learners are expected to continuously update their knowledge and skills in response to rapid technological, economic, and social change. This paper examines the role of AI in adult education policy, with a focus on both its opportunities and its challenges. It discusses how AI can support personalized learning, intelligent tutoring, learning analytics, and workforce development, while also contributing to greater accessibility, scalability, and policy responsiveness. At the same time, the paper highlights significant concerns related to the digital divide, data privacy, algorithmic bias, over-reliance on technology, and the readiness of educators and institutions to integrate AI effectively. Drawing on contemporary literature and international policy frameworks, the paper argues that AI should not be approached simply as a technological solution, but as a socio-technical and ethical issue that requires careful governance. It concludes that the successful integration of AI into lifelong learning depends on balanced adult education policies that promote inclusion, transparency, human-centered pedagogy, and responsible innovation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_13317v1",
+    "title": "Lessons from Skill Development Programs -- Livelihood College of Dhamtari",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.13317v1",
+    "type": "paper",
+    "raw_text": "Skill training is crucial for enabling dignified livelihood opportunities. In India, various schemes and initiatives aim to provide skill training in different domains, with ICT and digital technologies playing a vital role. However, there is limited research on understanding on-ground capacities \\& constraints and the use of digital tools in these programs. In this study, we look into the mobilization, counseling, and training stages of the 5-stage skill development process that also includes placement and tracking, adopted in Dhamtari's Livelihood College in Chhattisgarh, India, and other programs nationwide. Through the immersion/crystallization approach and mixed-method analysis including GIS mapping, video analysis of CCTV streams, quantitative analysis, and unstructured conversations with administrators, trainers, mobilizers, counselors, and nearby industry personnel for over a year, we identified three major challenges. A lack of inclusive and gendered access to skilling; a tedious manual counseling process with insufficient support staff; and inconsistent trainee attendance alongside sub-standard utilization of digital assets. Finally, we discuss, ways to improve access to skill training by leveraging Vocational Training Partners(VTPs), ways to improve the utilization of existing digital assets, and considerations for improving the counseling process. We conclude by summarizing that skill development programs currently lack institutional elements that enable effective information exchange between stakeholders, thereby creating information bottlenecks that result in inefficiencies, hindering the service delivery. In sum, our study informs the HCI and ICTD literature on the on-ground challenges and constraints faced by stakeholders and the role of technology in supporting such initiatives.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_27497v1",
+    "title": "AI Civilization and the Transformation of Work",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.27497v1",
+    "type": "paper",
+    "raw_text": "The emergence of artificial intelligence and robotics is catalyzing a profound transformation in the nature of human labor, fueling a contentious debate about the future of employment. While prominent studies predict substantial job displacement due to automation, historical precedents from past technological revolutions suggest that innovation tends to expand, rather than shrink, the scope of economic activity and employment in the long run. This paper advances the thesis that the transition to an AI-civilization will fundamentally restructure the mechanisms of employment creation. We argue for a paradigm shift from a centralized model, where a limited number of organizations create jobs for the mass to a decentralized ecosystem where individuals are empowered to generate their own employment opportunities. This shift is enabled by AI-driven productivity augmentation, which dramatically lowers the barriers to creating economic value. Drawing on an analysis of economic history, contemporary data on labor market dynamics, and the growth of digital platforms, this paper posits that human-AI co-evolution will significantly increase individual productivity and open new frontiers of economic activity. We explore the implications of this structural transformation for education and workforce development, concluding that the focus must shift from rote knowledge accumulation to cultivating skills in human AI collaboration, creative problem-solving, and the design of novel economic domains. This paper contributes to the literature by offering a forward-looking framework that emphasizes the decentralizing potential of AI on labor markets, moving beyond the traditional displacement-versus-creation dichotomy.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_05225v1",
+    "title": "AI+HW 2035: Shaping the Next Decade",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.05225v1",
+    "type": "paper",
+    "raw_text": "Artificial intelligence (AI) and hardware (HW) are advancing at unprecedented rates, yet their trajectories have become inseparably intertwined. The global research community lacks a cohesive, long-term vision to strategically coordinate the development of AI and HW. This fragmentation constrains progress toward holistic, sustainable, and adaptive AI systems capable of learning, reasoning, and operating efficiently across cloud, edge, and physical environments. The future of AI depends not only on scaling intelligence, but on scaling efficiency, achieving exponential gains in intelligence per joule, rather than unbounded compute consumption. Addressing this grand challenge requires rethinking the entire computing stack. This vision paper lays out a 10-year roadmap for AI+HW co-design and co-development, spanning algorithms, architectures, systems, and sustainability. We articulate key insights that redefine scaling around energy efficiency, system-level integration, and cross-layer optimization. We identify key challenges and opportunities, candidly assess potential obstacles and pitfalls, and propose integrated solutions grounded in algorithmic innovation, hardware advances, and software abstraction. Looking ahead, we define what success means in 10 years: achieving a 1000x improvement in efficiency for AI training and inference; enabling energy-aware, self-optimizing systems that seamlessly span cloud, edge, and physical AI; democratizing access to advanced AI infrastructure; and embedding human-centric principles into the design of intelligent systems. Finally, we outline concrete action items for academia, industry, government, and the broader community, calling for coordinated national initiatives, shared infrastructure, workforce development, cross-agency collaboration, and sustained public-private partnerships to ensure that AI+HW co-design becomes a unifying long-term mission.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_00222v2",
+    "title": "Empowering Future Cybersecurity Leaders: Advancing Students through FINDS Education for Digital Forensic Excellence",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.00222v2",
+    "type": "paper",
+    "raw_text": "The Forensics Investigations Network in Digital Sciences (FINDS) Research Center of Excellence (CoE), funded by the U.S. Army Research Laboratory, advances Digital Forensic Engineering Education (DFEE) through an integrated research education framework for AI enabled cybersecurity workforce development. FINDS combines high performance computing (HPC), secure software engineering, adversarial analytics, and experiential learning to address emerging cyber and synthetic media threats. This paper introduces the Multidependency Capacity Building Skills Graph (MCBSG), a directed acyclic graph based model that encodes hierarchical and cross domain dependencies among competencies in AI-driven forensic programming, statistical inference, digital evidence processing, and threat detection. The MCBSG enables structured modeling of skill acquisition pathways and quantitative capacity assessment. Supervised machine learning methods, including entropy-based Decision Tree Classifiers and regression modeling, are applied to longitudinal multi cohort datasets capturing mentoring interactions, laboratory performance metrics, curriculum artifacts, and workshop participation. Feature importance analysis and cross validation identify key predictors of technical proficiency and research readiness. Three year statistical evaluation demonstrates significant gains in forensic programming accuracy, adversarial reasoning, and HPC-enabled investigative workflows. Results validate the MCBSG as a scalable, interpretable framework for data-driven, inclusive cybersecurity education aligned with national defense workforce priorities.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2602_22388v2",
+    "title": "Assessing student learning in quantum computing: The challenging case of phase kickback",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2602.22388v2",
+    "type": "paper",
+    "raw_text": "A major challenge for quantum workforce development is the need to both understand and reliably assess student learning of quantum information science (QIS) fundamentals. Yet student thinking is notoriously difficult to probe, even for seasoned education researchers. This article presents the story of Item 15 on the Quantum Computing Conceptual Survey (QCCS). This assessment item underwent more revision and discussion within the team than the remaining 19 assessment questions combined. This paper provides a behind-the-scenes look at the development of this assessment question: a story that both reveals interesting findings about student reasoning in quantum computing and illustrates why quantum education researchers insist on triangulating diverse quantitative and qualitative data sources when developing and refining assessment items, with implications for any researcher looking to understand and measure student conceptual reasoning in quantum computing, as well as for QIS curriculum and workforce development more broadly.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2602_22077v2",
+    "title": "ViSTAR: Virtual Skill Training with Augmented Reality with 3D Avatars and LLM coaching agent",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2602.22077v2",
+    "type": "paper",
+    "raw_text": "We present ViSTAR, a Virtual Skill Training system in AR that supports self-guided basketball skill practice, with feedback on balance, posture, and timing. From a formative study with basketball players and coaches, the system addresses three challenges: understanding skills, identifying errors, and correcting mistakes. ViSTAR follows the Behavioral Skills Training (BST) framework-instruction, modeling, rehearsal, and feedback. It provides feedback through visual overlays, rhythm and timing cues, and an AI-powered coaching agent using 3D motion reconstruction. We generate verbal feedback by analyzing spatio-temporal joint data and mapping features to natural-language coaching cues via a Large Language Model (LLM). A key novelty is this feedback generation: motion features become concise coaching insights. In two studies (N=16), participants generally preferred our AI-generated feedback to coach feedback and reported that ViSTAR helped them notice posture and balance issues and refine movements beyond self-observation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_01028v1",
+    "title": "MedGym:A Unified Continuous-Time Benchmark for Dynamic Medical Treatment Reinforcement Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.01028v1",
+    "type": "paper",
+    "raw_text": "Medical treatment recommendation poses several challenges to reinforcement learning (RL): patient physiology evolves in continuous time, measurements and interventions are performed at irregular intervals, and treatment effects vary substantially across individuals. Existing RL formulations and simulated environments, however, are based on discrete-time MDP or POMDP abstractions with fixed or pre-specified decision intervals. Thus, it remains difficult to evaluate whether RL methods can handle time-interval-dependent disease progression, personalized treatment response, and safety between consecutive measurement points. To address this gap, we introduce MedGym, a benchmark environment for dynamic treatment recommendation. MedGym models longitudinal patient evolution in a continuous-time framework and constructs a configurable medical RL benchmark from clinical data by using Physics-Informed Neural Networks. The resulting benchmark supports both offline and online RL, and enables direct comparison between discrete-time and continuous-time methods under irregular treatment timing and patient-specific dynamics. Besides, MedGym supports evaluation from clinically important perspectives, including personalization, trajectory-level safety, and the performance gap between model-based offline learning and online deployment. By providing a standardized and configurable benchmark for continuous-time dynamic treatment, MedGym aims to facilitate more realistic and informative evaluation of medical RL methods.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_30226v2",
+    "title": "BORA: Bridging Offline Reinforcement Learning and Online Residual Adaptation for Real-World Dexterous VLA Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.30226v2",
+    "type": "paper",
+    "raw_text": "Vision-Language-Action (VLA) models have emerged as a promising paradigm for grounding visual-language understanding into real-world robotic manipulation. However, dexterous manipulation remains challenging for VLA policies due to high-dimensional hand control and compounding execution errors, which makes real-world RL post-training essential for bridging the gap between visually grounded action generation and physically reliable dexterous execution. However, high-dimensional dexterous exploration often triggers temporal inconsistency, sample inefficiency and hardware risks in the real world. To address these challenges, we propose BORA, an offline-to-online RL post-training framework designed for real-world dexterous VLA models. In the offline phase, BORA constructs a critic that takes both the VLM's cognition tokens and action chunks as inputs. This design enables action-conditioned value guidance, allowing the critic to evaluate dexterous hand motions beyond visual context alone. During the subsequent online phase, BORA freezes the VLA base and introduces a lightweight, Human-in-the-Loop (HiL) chunk-wise residual adaptation mechanism to mitigate real-world execution errors and further correct the offline-learned intents within the actual physical environment. By inheriting the offline critic and employing intervention-driven rewards, BORA effectively corrects execution discrepancies and adapts to real-world physical variances while preserving the pretrained policy as a stable prior. Extensive evaluations across five complex real-world dexterous tasks demonstrate that BORA significantly outperforms pure imitation learning and traditional decoupled RL baselines, achieving a 33% absolute increase in average success rate under standard settings and up to a 43% improvement in unseen object generalization.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_26178v1",
+    "title": "ATOM: Instantiating Budget-Controllable Multi-Agent Collaboration via Nucleus-Electron Hierarchy",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.26178v1",
+    "type": "paper",
+    "raw_text": "Large Language Model (LLM)-based multi-agent systems rely on optimized collaboration topologies to balance performance and communication costs. However, current methods struggle with the inherent stability-extensibility trade-off and often misalign computational budgets with query difficulty. We propose \\textsc{ATOM}, an adaptive framework that generates budget-controllable collaboration graphs via a novel task-driven reinforcement learning paradigm. Inspired by atomic structures, \\textsc{ATOM} employs a nucleus-electron hierarchy: it maintains a stable, offline-learned collaboration backbone (the nucleus) while dynamically activating query-conditioned agents (electrons) during inference. Crucially, a complexity-aware budgeting strategy aligns resource consumption with task demands by estimating query difficulty to strictly regulate electron instantiation. Extensive experiments across six diverse benchmarks demonstrate that \\textsc{ATOM} achieves state-of-the-art performance while improving token efficiency by up to $30\\%$ compared to strong baselines.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_25414v1",
+    "title": "How to Mitigate the Distribution Shift Problem in Robotics Control: A Robust and Adaptive Approach Based on Offline to Online Imitation Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.25414v1",
+    "type": "paper",
+    "raw_text": "Distribution shift in imitation learning refers to the problem that the agent cannot plan proper actions for a state that has not been visited during the training. This problem can be largely attributed to the inherently narrow state-action coverage provided by expert demonstrations over the full environment. In this paper, we propose a robust offline to adaptive online imitation learning framework that handles the distribution shift problem in a lifelong, multi-phase scheme. In the offline learning phase, we leverage supplementary demonstrations to broaden the state-action coverage of the policy by utilizing a discriminator to effectively train the policy with supplementary demonstrations, thereby enhancing the robustness of the policy to distribution shift. In the subsequent online inference phase, our framework detects the occurrence of distribution shift and conducts self-supervised imitation learning from online experiences to adapt the policy to the online environments. Through extensive evaluations in MuJoCo environments, we demonstrate that our method exhibits better robustness to distribution shift and better adaptation performance to online environments than the baseline algorithms, which indicates superior performance of our framework against the distribution shift.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_14805v1",
+    "title": "Learning Cross-Coupled and Regime Dependent Dynamics for Aerial Manipulation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.14805v1",
+    "type": "paper",
+    "raw_text": "Accurate dynamics models are critical for aerial manipulators operating under complex tasks such as payload transport. However, modeling these systems remains fundamentally challenging due to strong quadrotor-manipulator coupling, delayed aerodynamic interactions, and regime-dependent dynamics variations arising from payload changes and manipulator reconfiguration. These effects produce residual dynamics that are simultaneously cross-coupled, history-dependent, and nonstationary, causing both analytical models and purely offline learned models to degrade during deployment. To address these challenges, we propose a structured encoder-decoder framework for adaptive residual dynamics learning in aerial manipulators. The proposed nonlinear latent encoder captures cross-variable coupling and temporal dependencies from state-input histories, while a lightweight linear latent decoder enables online adaptation under regime-dependent nonstationary dynamics. The linear-in-parameter decoder structure permits closed-form Bayesian adaptation together with consistency-driven covariance inflation, enabling rapid and stable adaptation to both transient and slowly varying dynamics changes while remaining compatible with real-time model predictive control (MPC). Experimental results on a real aerial manipulation platform demonstrate improved residual prediction accuracy, faster adaptation under changing operating conditions, and enhanced MPC-based trajectory tracking performance. These results highlight the importance of jointly modeling coupled temporal dynamics and deployment-time nonstationarity for reliable aerial manipulation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_13435v1",
+    "title": "Q-Flow: Stable and Expressive Reinforcement Learning with Flow-Based Policy",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.13435v1",
+    "type": "paper",
+    "raw_text": "There is growing interest in utilizing flow-based models as decision-making policies in reinforcement learning due to their high expressive capacity. However, effectively leveraging this expressivity for value maximization remains challenging, as naive gradient-based optimization requires backpropagating through numerical solvers and often leads to instability. Existing approaches typically address this issue by restricting the expressive capacity of flow-based policies, resulting in a trade-off between optimization stability and representational flexibility. To resolve this, we introduce Q-Flow, a framework that leverages the deterministic nature of flow dynamics to explicitly propagate terminal trajectory value to intermediate latent states along the policy-induced flow. This formulation enables stable policy optimization using intermediate value gradients without unrolling the numerical solver, effectively bridging the gap between stability and expressivity. We evaluate Q-Flow in the offline learning setting on the challenging OGBench suite, where it consistently outperforms state-of-the-art baselines by an average of 10.6 percentage points, while also enabling stable online adaptation within the same framework.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_10801v2",
+    "title": "Algorithmic Advantage on a Gate-Based Photonic Quantum Neural Network",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.10801v2",
+    "type": "paper",
+    "raw_text": "We report on a gate-based variational quantum classifier implemented with single photons and probabilistic gates, to emulate the standard quantum circuit model framework. We evaluate the expressive power of two deployable quantum neural networks (QNNs) by computing their effective dimension, a capacity measure grounded in a proven generalization-error bound, and compare them with classical artificial neural networks (ANNs) of equivalent trainable-parameter count. Supervised binary classification tasks are used to benchmark performance across photonic and superconducting QNNs, both of which exhibit superior converged (lower) cross-entropy loss and (higher) prediction accuracy relative to matched-parameter ANNs. For a nonlinearly separable task, our photonic QNN with a single pair of trainable parameters successfully converged (loss 0.04 and accuracy 100%), whereas the equivalent ANN failed to learn the decision boundary, saturating at random-guessing performance. We simulate photonic quantum circuits, training them on the XOR problem and a two-class Iris subset using gradient-free optimization, and assess their robustness to sampling errors under realistic noise processes including photon loss and phase-shifter imperfections. Circuits with comparatively high effective dimension were deployed remotely on a six-qubit photonic quantum processor, achieving classification accuracies of up to 100% in both online and offline learning settings. Notably, even the simplest QNN deployed, with just two trainable parameters, successfully solved tasks that classically require ANNs with at least quadruple the number of parameters, suggesting an emergent algorithmic advantage. Overall, these results demonstrate a clear proof-of-principle that gate-based QNNs can be realized and trained effectively on current photonic hardware, providing proof of algorithmic advantage on a gate-based photonic QNN.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_07886v1",
+    "title": "Characterizing and Correcting Effective Target Shift in Online Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.07886v1",
+    "type": "paper",
+    "raw_text": "Online learning from a stream of data is a defining feature of intelligence, yet modern machine learning systems often struggle in this setting, especially under distributional shift. To understand its basic properties, we study the relationship between online and offline learning in the context of kernel regression. We derive a closed-form expression for the function learned by online kernel regression, revealing that online kernel regression is equivalent to offline regression with shifted, inaccurate target outputs. Conversely, we show that by compensating for this effective shift in the teaching signal through target correction, online kernel-based learning can provably learn the same predictor as its offline counterpart. We derive both a closed-form expression for this target correction and an iterative form that can be applied sequentially. Applying this framework to image classification tasks on CIFAR-10 and CORe50, we show that online stochastic gradient descent with iteratively corrected targets outperforms learning with the true targets in continual learning settings. This work therefore provides a basic framework for analyzing and improving online learning in non-stationary environments.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_07401v1",
+    "title": "Learning myopic mixed-integer nonlinear model predictive control from expert demonstrations",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.07401v1",
+    "type": "paper",
+    "raw_text": "Applying nonlinear model predictive control (NMPC) to systems with hybrid dynamics or discrete actions typically yields mixed-integer nonlinear programs (MINLPs), whose real-time solution remains a major challenge and limits the applicability of mixed-integer NMPC (MINMPC). This paper proposes a myopic MINMPC framework that incorporates value-function approximation to substantially reduce the online computational burden. Using Bellman's principle of optimality, we shorten the prediction horizon and append a value function learned offline from expert state-action demonstrations via inverse optimization with optimality residual minimization. A central feature is the dual treatment of discrete decisions, whereby integer constraints are relaxed during offline learning to enable KKT-residual-based value function synthesis, while the online controller enforces the true integer constraints to ensure feasibility. The learned value function induces a policy that is approximately policy-consistent with the expert demonstrations. The resulting controller achieves high closed-loop performance with a significantly shorter horizon, enabling real-time MINMPC. The effectiveness of the approach is demonstrated on the Lotka-Volterra fishing problem and a satellite attitude control system with discrete actuators.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_05055v1",
+    "title": "Adaptive Learning Strategies for AoA-Based Outdoor Localization: A Comprehensive Framework",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.05055v1",
+    "type": "paper",
+    "raw_text": "Localization in 5G and 6G networks is essential for important use cases such as intelligent transportation, smart factories, and smart cities. Although deep learning has enabled improving localization accuracy, depending on the deployment scenario and the effort required for dataset collection campaigns on a given infrastructure, the training process for localization models can vary significantly. Furthermore, with respect to feature selection, recent works have demonstrated the robustness of angle-of-arrival (AoA) based localization. In view of these two points, we propose an adaptive framework for AoA-based localization that consists of two alternative learning strategies, each suited either for large or small training datasets. The proposed framework is evaluated on a real, massive multiple input multiple output (mMIMO) orthogonal frequency division multiplexing (OFDM) outdoor channel state information (CSI) dataset. First, we investigate offline learning when large training datasets are available; we propose a hierarchical framework that first distinguishes between line of sight (LoS) and non line of sight (NLoS) regions and then moves to more fine grained localization in the respective region. This approach provides high-performance localization through accumulated batch retraining and an integrated hyperparameter optimization mechanism. Second, when only a small training dataset is available, an online learning framework is proposed, using incremental tree-based and ensemble-based models for handling streaming data and continuously updating mode, as well as an online few-shot learning model for rapidly initializing new classes from a limited labeled support set. These results showcase that highly accurate robust localization can be achieved incrementally during network operation by exploiting online learning, alleviating the need for large dataset collection campaigns.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

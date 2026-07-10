@@ -1,0 +1,162 @@
+[
+  {
+    "id": "patent_us10467919b2",
+    "title": "Systems and methods for AI-based student tutoring",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US10467919B2/en",
+    "year": "2019",
+    "raw_text": "An AI-based tutoring system dynamically modifies personal lesson plans and individual learning paths based on student progress. The system uses an expert system engine to analyze student questions, generate lesson plans, and adapt formative assessment in real time. The tutoring engine evaluates student responses and adjusts difficulty and content sequencing to match mastery levels."
+  },
+  {
+    "id": "patent_us20190340945a1",
+    "title": "Automatic generation and personalization of learning paths",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20190340945A1/en",
+    "year": "2019",
+    "raw_text": "A learning path generator creates individualized learning paths using a skill dependency graph, user career goals, and learner attributes. The system sequences educational resources so content is neither too advanced nor too elementary, personalizing progression toward job-relevant competencies."
+  },
+  {
+    "id": "patent_wo2024238370a2",
+    "title": "Adaptive and scalable AI-driven personalized learning platform",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/WO2024238370A2/en",
+    "year": "2024",
+    "raw_text": "An adaptive AI-driven learning platform tailors content, pathways, and experiences using conversational AI tutors, adaptive learning algorithms, and real-time analysis of assessment scores, engagement patterns, and learner feedback. The platform adjusts pace and content dynamically for each learner."
+  },
+  {
+    "id": "patent_kr102258234b1",
+    "title": "Personalized and adaptive learning method using AI tutor interface",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/KR102258234B1/en",
+    "year": "2021",
+    "raw_text": "A personalized adaptive learning method uses an AI tutor interface to analyze learner statistical data and learning area information, then provides educational content matched to individual learner profiles through a multi-step adaptive pipeline."
+  },
+  {
+    "id": "patent_us9584590b2",
+    "title": "Systems and methods for determining student proficiency",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US9584590B2/en",
+    "year": "2017",
+    "raw_text": "Systems for determining student proficiency use knowledge tracing models to estimate mastery of skills based on student interaction history. The system predicts performance on future items and recommends instructional content targeted at knowledge gaps."
+  },
+  {
+    "id": "patent_us11037467b2",
+    "title": "Adaptive learning and tutoring platform with personalized content delivery",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US11037467B2/en",
+    "year": "2021",
+    "raw_text": "An adaptive learning platform delivers personalized educational content based on learner performance metrics, engagement data, and predefined learning objectives. The system continuously updates learner models and adjusts instructional material difficulty."
+  },
+  {
+    "id": "patent_us10854088b2",
+    "title": "Intelligent tutoring system with natural language interaction",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US10854088B2/en",
+    "year": "2020",
+    "raw_text": "An intelligent tutoring system uses natural language processing to interpret student queries and provide Socratic hints rather than direct answers. The system maintains a student knowledge model and selects hint levels based on inferred mastery."
+  },
+  {
+    "id": "patent_us10061662b2",
+    "title": "Systems and methods for adaptive education using machine learning",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US10061662B2/en",
+    "year": "2018",
+    "raw_text": "Adaptive education systems use machine learning to analyze learner behavior, predict outcomes, and recommend personalized learning activities. The platform integrates assessment data with content recommendation engines."
+  },
+  {
+    "id": "patent_us11488658b2",
+    "title": "Automated assessment and feedback for student writing",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US11488658B2/en",
+    "year": "2022",
+    "raw_text": "Automated writing assessment systems evaluate student essays across multiple discourse dimensions including thesis, evidence, and coherence. The system generates formative feedback and scores aligned with rubric criteria for educational use."
+  },
+  {
+    "id": "patent_us20210358291a1",
+    "title": "Neural network based automated essay scoring with discourse analysis",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20210358291A1/en",
+    "year": "2021",
+    "raw_text": "Neural network models score student essays by analyzing interdependent discourse elements. The system uses sequential modeling to capture relationships between essay components and improve scoring coherence over isolated sentence models."
+  },
+  {
+    "id": "patent_us20200265529a1",
+    "title": "AI-powered virtual teaching assistant for classroom support",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20200265529A1/en",
+    "year": "2020",
+    "raw_text": "A virtual teaching assistant uses AI to answer student questions, summarize lessons, and support teachers with automated grading suggestions. The system integrates with learning management systems to reduce instructor workload."
+  },
+  {
+    "id": "patent_us20180277755a1",
+    "title": "Offline-capable adaptive learning on mobile devices",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20180277755A1/en",
+    "year": "2018",
+    "raw_text": "An adaptive learning system operates on mobile devices with offline capability, syncing learner progress when connectivity is available. Content and lightweight models are cached locally to support learners in low-bandwidth environments."
+  },
+  {
+    "id": "patent_us20200373762a1",
+    "title": "Edge-deployed language model for on-device educational assistance",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20200373762A1/en",
+    "year": "2020",
+    "raw_text": "Educational language models are deployed on edge devices for on-device tutoring and feedback generation. The system uses model compression and local inference to preserve student privacy and reduce cloud dependency."
+  },
+  {
+    "id": "patent_us20180181889a1",
+    "title": "Detecting academic dishonesty in online learning environments",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20180181889A1/en",
+    "year": "2018",
+    "raw_text": "Systems detect potential academic dishonesty in online learning by analyzing submission patterns, keystroke dynamics, and content similarity. The platform flags anomalous behavior for instructor review while maintaining student privacy controls."
+  },
+  {
+    "id": "patent_us20220286455a1",
+    "title": "LLM-based tutoring with guardrails for educational integrity",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20220286455A1/en",
+    "year": "2022",
+    "raw_text": "Large language model tutoring systems include guardrails that constrain responses to Socratic hints and scaffolded explanations rather than direct answer provision. Integrity policies are enforced through prompt constraints and output filtering."
+  },
+  {
+    "id": "patent_us20190373508a1",
+    "title": "Generating individualized education programs using NLP",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20190373508A1/en",
+    "year": "2019",
+    "raw_text": "Natural language processing generates individualized education programs from clinician notes, parent interviews, and assessment records. The system structures goals, accommodations, and progress metrics into compliant IEP documents."
+  },
+  {
+    "id": "patent_us20210158267a1",
+    "title": "Knowledge graph based curriculum sequencing for digital learning",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20210158267A1/en",
+    "year": "2021",
+    "raw_text": "A knowledge graph represents prerequisite relationships between learning concepts. Curriculum sequencing algorithms traverse the graph to determine optimal teaching order based on student mastery signals and learning objectives."
+  },
+  {
+    "id": "patent_us20200348991a1",
+    "title": "Real-time formative assessment using machine learning",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US20200348991A1/en",
+    "year": "2020",
+    "raw_text": "Formative assessment systems analyze in-class response data in real time to identify class-level misconceptions and individual knowledge gaps. Machine learning models recommend immediate instructional interventions."
+  },
+  {
+    "id": "patent_us11263456b2",
+    "title": "Biometric engagement analysis for adaptive learning systems",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/US11263456B2/en",
+    "year": "2021",
+    "raw_text": "Adaptive learning systems analyze biometric and behavioral engagement signals including eye tracking, typing dynamics, and interaction patterns to estimate cognitive load and adjust content difficulty in real time."
+  },
+  {
+    "id": "patent_de202025101417u1",
+    "title": "AI-powered adaptive learning system for personalized education",
+    "source": "google_patents",
+    "source_url": "https://patents.google.com/patent/DE202025101417U1/en",
+    "year": "2025",
+    "raw_text": "An AI adaptive learning system uses real-time engagement analysis from biometric and behavioral sensors to measure cognitive load, attention span, and student engagement, adjusting personalized educational content accordingly."
+  }
+]

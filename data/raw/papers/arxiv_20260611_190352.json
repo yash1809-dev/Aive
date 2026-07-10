@@ -1,0 +1,202 @@
+[
+  {
+    "id": "paper_2606_12214v1",
+    "title": "Identifying cybersickness causes in virtual reality games using symbolic machine learning algorithms",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.12214v1",
+    "type": "paper",
+    "raw_text": "Virtual reality (VR) and head-mounted displays are constantly gaining popularity in various fields such as education, military, entertainment, and health. Although such technologies provide a high sense of immersion, they can also trigger symptoms of discomfort. This condition is called cybersickness (CS) and is quite popular in recent virtual reality publications. This work proposes a novel experimental analysis using symbolic machine learning to rank potential causes of CS in VR games. We estimate CS causes and rank them according to their impact using classical machine learning. Experiments are performed using two virtual reality games and 6 experimental protocols along with 37 valid samples from a total of 88 volunteers. Our results show that rotation and acceleration triggered cybersickness more frequently in a flight game in contrast to a race game. We could also observe that subjects that are less experienced with VR are more prone to feel discomfort. Former experience plays a more important role on the race game, as this game provides more liberty to the user in terms of controllers, more displacement alternatives and a more user-controlled acceleration. Furthermore, different causes that trigger discomfort arise based on short or long term VR exposures. We suggest strategies for mitigating CS for these two scenarios: short and long term exposure experiences and compare the two highlighted scenarios (race and flight).",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_12086v1",
+    "title": "IntElicit: Eliciting and Assessing Contextualized Creativity via Dialogue Policy Optimization",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.12086v1",
+    "type": "paper",
+    "raw_text": "Contextualized assessment offers high ecological validity for evaluating creativity but introduces a critical challenge: observed performance may be confounded with cognitive proficiency (domain knowledge) and agency (willingness to engage). Meanwhile, in the age of generative AI, creative problem solving increasingly occurs in tool-mediated and human--AI interactive environments, making fully static assessment less aligned with contemporary creative practice. To address these issues, this paper proposes IntElicit, a framework for eliciting and assessing contextualized creativity via dialogue policy optimization. IntElicit functions as a constrained adaptive AI Interviewer: it provides non-directive knowledge and agency scaffolds in multi-turn interaction to reduce non-creative confounders, while preserving participants' responsibility for generating the creative content being evaluated. Specifically, to tackle sparse rewards and potential reward hacking (e.g., answer dictation) in open-ended educational dialogue, IntElicit introduces a decomposed process reward mechanism. This mechanism aligns the policy with pedagogical elicitation, rewarding prompts that draw out participant reasoning rather than producing optimal answers on their behalf. Extensive experiments, including participant simulation and a human subject study (N=64), show that IntElicit improves elicited creative outcomes over expert-designed baselines. Together, the results suggest that interactive elicitation can reveal creative potential that static FPSP-style assessment may miss, providing a formative and diagnostic lens for contextualized creativity assessment in AI-mediated learning contexts.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11744v1",
+    "title": "Hey Chat, Can You Teach Me? Structuring Socratic Dialogue for Human Learning in the Wild",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11744v1",
+    "type": "paper",
+    "raw_text": "Large language models are now widely used for everyday learning, but the underlying interactions are typically unstructured chats rather than following a curriculum. Unlike formal online learning systems, these interactions carry no prior record of the student, so any estimate of what the student already knows must be inferred from the dialogue itself. We show that this gap is not closed by scaling models alone. Frontier and education-tuned LLMs perform poorly when asked to tutor a student over an extended session, because doing so requires three things at once. The tutor must sequence a curriculum, conduct Socratic dialogue, and infer the student's knowledge state from that dialogue. We propose separating these responsibilities. Given a student query, our system constructs a prerequisite knowledge graph in which subtopics are nodes and dependencies are edges, and frames tutoring as deciding which node to teach next and how many dialogue turns to spend on it before moving on. A lightweight PPO policy handles this sequencing decision, while an LLM conducts the Socratic exchange at the chosen node and returns a signal of student progress. Across held-out STEM and non-STEM topics, our PPO-paired tutor outperforms heuristic baselines, frontier general-purpose models, and a model specialised for Socratic dialogue: on both the rate at which students reach full curriculum mastery and the number of turns required. Explicit curriculum structure delivers gains that scaling the underlying model does not.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11678v1",
+    "title": "Can AI Reason Like an Urban Planner? Benchmarking Large Language Models Against Professional Judgment",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11678v1",
+    "type": "paper",
+    "raw_text": "Problem, Research Strategy, and Findings: The rise of large language models (LLMs) raises a key question for urban planning: which forms of professional planning knowledge can AI replicate, and which still require human judgment? Although AI tools are increasingly used in planning practice, there is still no systematic framework for testing whether they can reason with the contextual sensitivity, value awareness, and institutional literacy central to planning expertise. This paper introduces Urban Planning Bench (UPBench), a domain-specific evaluation framework that assesses LLM reasoning through a 4x5 matrix of four knowledge pillars and five cognitive levels adapted from Bloom's revised taxonomy. Evaluating 25 LLMs with automated scoring and expert review, we find a non-monotonic cognitive curve: models perform better on higher-order analytical tasks than on factual recall and integrative judgment. This suggests that planning knowledge often treated as lower-order is deeply shaped by institutional, jurisdictional, and temporal context, making it hard for LLMs to generalize. We summarize these limits as four epistemic diagnostics: regulatory hallucination, conceptual conflation, wickedness paralysis, and phronetic deficit.\n  Takeaway for Practice: The findings support differential delegation in planning. LLMs can assist with cross-disciplinary synthesis, literature review, scenario generation, and preliminary policy analysis. However, they remain unreliable for jurisdiction-specific regulation, normative conflict resolution, and context-sensitive procedure. Agencies should require verification for AI-assisted regulatory analysis, while planning education should emphasize institutional literacy, normative judgment, and contextual sensitivity.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11058v1",
+    "title": "The social consequences of AI delegation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11058v1",
+    "type": "paper",
+    "raw_text": "A substantial body of recent work has debated whether large language models (LLMs) can serve as substitutes for human participants in behavioural research. This debate, however, captures only one direction of a rapidly changing relationship. The more consequential question is not simply whether researchers should use LLMs as human surrogates, but whether - and under what conditions - humans are beginning to use LLMs as surrogates for their own deliberation. Across domains including health, law, finance, education, and personal guidance, increasing numbers of people consult generative AI systems before, alongside, or instead of human experts, peers, or independent judgment. Although evidence for actual delegation remains uneven, this uncertainty makes the phenomenon an urgent social-scientific object of study. We argue for a research programme that treats LLMs as consequential social actors in a functional sense: systems whose outputs shape human decisions, social norms, and collective dynamics.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11004v1",
+    "title": "A Case Study Reexamining the Cold-Start Problem in Knowledge Tracing Models and Implications for SafeInsights, an Education Research Infrastructure",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11004v1",
+    "type": "paper",
+    "raw_text": "Knowledge tracing (KT) models are widely used to predict students' evolving knowledge states from their learning history. However, many KT models are evaluated using specific datasets, platforms, and learning contexts, raising questions about whether reported model performance replicates and generalizes across newer datasets that vary in context. This paper replicates and extends Zhang et al. (2021), which examined the cold-start problem in KT models and found that deep-learning-based KT models performed better, partly because of stronger predictions when students began practicing a skill. Using a more recent ASSISTments dataset, FoundationalASSIST, we replicate the previous analysis by evaluating model performance across opportunities to practice and extend the analysis by examining performance across problem types, including fill-in-the-blank, multiple-choice select-one, multiple-choice select-all, and order/sort problems. Results show that KT model performance varies across both student practice trajectories and problem types. Beyond the empirical replication, this study identifies practical challenges in reproducing educational data mining studies and serves as a proof of concept, showing how privacy-preserving research infrastructures such as SafeInsights can be leveraged to facilitate educational research and support replication analyses.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_10881v1",
+    "title": "Large-scale semantic mapping of learner agency and autonomy reveals what measurement and generative AI research overlook",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10881v1",
+    "type": "paper",
+    "raw_text": "Learner agency and autonomy are foundational to personal development, yet a pervasive \"jingle-jangle\" fallacy (i.e. identical terms denoting different constructs, distinct terms denoting identical ones) has substantially hindered cumulative knowledge. Treating meaning as a phenomenon constituted through use in linguistic practice, we extracted 8,954 definitions and 2,700 scale items from over 14,000 publications, to investigate how researchers actually used learner agency and autonomy with a semantic analysis pipeline. The definitional landscape of two constructs resolves into three dimensions: regulation and control of learning (task), intrinsic motivation and internal decision-making (person), and social-relational action (sociocultural), thereby empirically quantifying the jingle-jangle fallacy. Existing scales, however, systematically underrepresent the sociocultural dimension. Critically, current generative AI research in education concentrates on learning regulation and control, narrowing the behavioral repertoire that AI-mediated learning environments are designed to cultivate. Beyond conceptual clarification, this work carries direct implications for conceptualization, measurement, and practice towards supporting the multidimensional learner agency and autonomy.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_10833v1",
+    "title": "Do VLMs Reason Like Engineers? A Benchmark and a Stage-wise Evaluation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10833v1",
+    "type": "paper",
+    "raw_text": "Vision-Language Models (VLMs) demonstrate strong performance on general multimodal reasoning benchmarks, yet their ability to perform engineering reasoning remains largely unexplored. Unlike general visual question answering, engineering problem solving requires interpreting technical diagrams, selecting governing physical principles, and maintaining physically consistent multi-step reasoning. These capabilities are increasingly important for AI systems used in engineering education, scientific assistance, and technical decision-making, where reasoning failures may produce physically invalid yet superficially plausible solutions. Existing benchmarks primarily evaluate final answers and provide limited assessment of intermediate reasoning processes. We introduce EngVQA, a multimodal benchmark for evaluating engineering reasoning across 5 engineering subjects containing 696 problems. We introduce an 8-stage automatic evaluation framework for assessing VLM-generated solutions. The framework independently evaluates each stage of the solution, enabling fine-grained analysis of reasoning failures. We benchmark multiple state-of-the-art open and closed source VLMs on our evaluation framework and demonstrate substantial limitations in current engineering reasoning capabilities. Human evaluation shows strong agreement with our automated framework, achieving a Pearson correlation of 0.975 and a mean absolute error of 0.67 on a 10-point grading scale. Our results highlight the importance of process-oriented evaluation for reliable assessment of multimodal engineering reasoning systems.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_10358v1",
+    "title": "KG-SoftMAP: Soft Knowledge-Graph Priors for Bayesian Network Structure Learning from Sparse Discrete Data",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10358v1",
+    "type": "paper",
+    "raw_text": "Learning Bayesian network (BN) structure from sparse discrete data is hard: when each instance records only a few variables, most variable pairs lack the joint observations needed for reliable scoring, and data-only methods recover little structure. Imperfect domain knowledge, expressible as a weighted directed knowledge graph (KG), is often available. We propose KG-SoftMAP, which encodes such a KG as a soft, confidence-weighted, data-overridable edge prior and maximizes a MAP objective combining the BDeu score with a logit-form prior; the KG may be expert-curated or LLM-extracted. On controlled synthetic benchmarks, the only setting with ground-truth DAGs, KG-SoftMAP recovers partial directed structure at $\u03c1=0.05$ (DF1 $0.14$ to $0.29$, versus near-zero baselines) and substantially more once $\u03c1\\geq0.2$ (DF1 $0.46$ to $0.96$), when paired with an informative but imperfect KG; recovery degrades gracefully as KG quality drops. On real sparse educational data, which has no ground-truth DAG, we evaluate deployment-facing measures only: prediction, calibration, and KG-consistency. The learned BN is best read as a diagnostic model: on SAF it trails logistic regression by $0.03$ F1_FAIL while providing KG-consistent edges, calibrated joint probabilities, and inference from arbitrary observed concept subsets; when no meaningful KG exists, discriminative logistic regression is preferable.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_10327v1",
+    "title": "The Order Matters: Sequential Fine-Tuning of LLaMA for Coherent Automated Essay Scoring",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10327v1",
+    "type": "paper",
+    "raw_text": "Automated Essay Scoring (AES) systems must judge interdependent discourse elements (e.g., lead, claim, evidence, conclusion), yet most approaches treat these in isolation, harming coherence and generalization. We investigate task-aware fine-tuning of LLaMA-3.1-8B for AES using parameter-efficient LoRA with 4-bit quantization and compare three training curricula: (i) Sequential (progressively fine-tuning on lead, then position, then claim, then evidence, then conclusion), (ii) Independent (task-specific models), and (iii) Randomized (shuffled multi-task). Experiments on the PERSUADE~2.0 corpus show that modeling task dependencies matters: Sequential fine-tuning yields the strongest overall results, including F1 scores of 65% (evidence) and 87% (conclusion) and corresponding accuracies of 63% and 85%, surpassing Independent training and outperforming a general-purpose LLaMA-70B baseline on conclusion despite its far larger capacity. Randomized training improves position scoring (57% F1) but is less consistent elsewhere. These findings indicate that (1) curriculum design aligned with discourse structure can materially improve AES, and (2) small, task-optimized models can be competitive with substantially larger Large Language Models (LLM), offering a practical path to scalable, cost-effective assessment. We release templates and implementation details to facilitate reproduction and future work on curriculum design for educational NLP.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09632v1",
+    "title": "Civil Court Simulation with Large Language Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09632v1",
+    "type": "paper",
+    "raw_text": "Court simulation bridges legal education and judicial practice, yet human-based simulations are costly and difficult to scale. Large language models (LLMs) offer a scalable alternative, but existing court-simulation research mainly focuses on criminal cases. Civil litigation is more common in practice and harder to simulate because its claims, liability, and remedies are more flexible. We present a multi-agent court simulation framework for Chinese civil cases. The framework organizes role-based interaction through a five-stage civil trial procedure and integrates memory module and statute retrieval to support long-process adjudication. Experiments show that the framework produces reliable civil judgments, with clear strengths in liability allocation and multi-item adjudication. Further experiments show that memory quality substantially affects downstream simulation quality. Through a five-layer factor framework, we analyze how legal grounding, information conditions, judicial capability and role orientation, organizational pressure, and social context affect the framework's reliability and behavior. These results support the effectiveness of the proposed framework for civil court simulation. The dataset and code are available at: https://github.com/foggpoy/Civil-Court.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09603v1",
+    "title": "Automated IEP Generation from Traditional Chinese Parent-Teacher Interviews via Corpus-Grounded Feature Diffusion",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09603v1",
+    "type": "paper",
+    "raw_text": "Writing Individualized Education Programs (IEPs) is a high-labor, knowledge-intensive document burden; English-language research has demonstrated that generative AI can significantly reduce drafting time, yet automated IEP generation in Traditional Chinese remains virtually unexplored due to domain data scarcity, strict privacy regulations, and the absence of local evaluation benchmarks. We propose a low-resource fine-tuning pipeline centered on Corpus-Grounded Feature Diffusion (CGFD): (1) 25 dual-expert high-score seed transcripts are selected via a tau threshold with flag-aware score caps; (2) a FeatureProfile (sentence length, structure, quantification templates) is extracted from seeds and injected into LLM prompts alongside Verbalized-Sampling-style diversity control to drive diffusion; (3) 15 expert gold seeds are used as diffusion anchors, targeting 585 samples; 567 valid diffusion samples are obtained, yielding a 582-sample training set used to fine-tune Breeze-7B with QLoRA; (4) schema-constrained inference via Grammar-Constrained Decoding (GCD) enforces a hierarchical SMART Goal Ladder schema at inference time. Ablation results on a 55-sample schema stress set reveal an unexpected finding: GCD is counterproductive under Traditional Chinese token budgets -- the no-GCD path achieves 100% schema pass rate at 34% lower median latency, outperforming GCD on both reliability and speed. On the n=10 formal hold-out, the no-GCD inference path achieves BERTScore F1 = 0.779, exceeding GPT-5.4 (0.726), DeepSeek-V3.2 (0.703), Gemini-3-Flash-Preview (0.703), and Llama-4-Maverick (0.700) zero-shot baselines while maintaining fully local, air-gapped inference. This system addresses a gap in Traditional Chinese special-education NLP and offers a scalable, privacy-preserving local inference solution under an industrial engineering paradigm.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09598v1",
+    "title": "Awareness of Technological Isomorphism: Integrating AI into Elementary Mathematics Teaching on Data and Prediction,A Case Study of the Compound Line Graph",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09598v1",
+    "type": "paper",
+    "raw_text": "The deep integration of Artificial Intelligence (AI) into elementary mathematics education necessitates a conceptual tool capable of explaining students' cognitive transition from disciplinary knowledge to AI understanding. This study proposes a novel core concept, \"Awareness of Technological Isomorphism, \" defined as a student's metacognitive realization that their own mathematical cognitive operations (e.g., observing trends, inducing patterns, and making predictions) share an underlying logical structure with AI technical operations (e.g., pattern recognition and predictive modeling). This awareness, in turn, facilitates cognitive transfer from disciplinary mathematics to AI comprehension. Underpinned by transfer learning and metacognitive theories, this study clarifies the distinct essence of this concept from traditional \"computational thinking.\" We demonstrate the explanatory power of this framework in two ways: elucidating the mechanism of students' cognitive leap from mathematics to AI, and guiding instructors to identify \"isomorphic interfaces\" within disciplinary curricula. On this basis, a three-stage pedagogical pathway--spanning \"Perception, Comprehension, and Creation\"--is constructed alongside a corresponding evaluation rubric. This framework is empirically validated through a case study based on the \"Compound Line Graph\" lesson from a fifth-grade mathematics textbook in China, offering a highly replicable operational framework for the deep convergence of disciplinary instruction and AI literacy education.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09239v1",
+    "title": "Orange Lab: Lowering Barriers to Data Mining through Embedded Interactive Workflows",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09239v1",
+    "type": "paper",
+    "raw_text": "While visual programming of data analysis workflows has become an important vehicle for the democratization of data science, such systems remain largely confined to standalone applications and offer limited support for transitioning their visual analytics solutions into interactive web environments. As a result, data analysis pipelines are difficult to share, embed, and adapt into user-facing analytical tools. We present Orange Lab, a web-based collaborative environment for visual data analytics. At its core, Orange Lab enables users to visually construct machine learning workflows from modular components, where interactions in any component propagate seamlessly through the workflow, turning static pipelines into dynamic, reactive systems that support exploration and data-driven storytelling. Our key contribution is component exposition, a paradigm that allows authors to embed selected workflow components, or parts of their interfaces, into arbitrary web contexts, creating synchronized, interactive interfaces while hiding underlying workflow complexity. This enables the development of tailored analytical views and narrative-driven experiences that integrate data analysis directly into online materials. We demonstrate the approach through deployments in data literacy education, where embedded components guide students in hands-on exploration of machine learning concepts without requiring knowledge of the underlying system, showing that Orange Lab effectively lowers barriers to entry and supports the democratization of data science.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09041v1",
+    "title": "Culturally-Aware AI for Cross-Boundary Community Learning: Undergraduate Innovation at the Intersection of Computation and Design",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09041v1",
+    "type": "paper",
+    "raw_text": "Research on artificial intelligence in education (AIED) is rapidly expanding, yet technical progress often lacks human-centered grounding and adequate attention to cultural context. Community-Based Learning, a pedagogy rooted in social work, remains underrepresented in AIED research, particularly within Asia-Pacific contexts. This paper reports on cross-boundary Community-Based Learning where undergraduate students develop AI-enabled solutions for cultural heritage preservation and sustainable development. We examine how community-engaged computing operationalizes human-centered AIED across three dimensions: education, technology, and culture. We contribute a collaborative framework for culturally-aware AIED that fosters multi-stakeholder collaboration while widening participation by dissolving disciplinary silos between social work and computational science.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_08988v1",
+    "title": "Structure-Aware Modeling of Multiple-Choice Questions Improves Automatic Difficulty Estimation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.08988v1",
+    "type": "paper",
+    "raw_text": "Automatic Question Difficulty Estimation (AQDE) holds growing promise for educational assessment because it has the potential to yield difficulty estimates that are competitive with expert judgment, while helping reduce the time and financial burden associated with pilot administrations and scaling to digital testing contexts. Prior AQDE studies report mixed evidence on whether adding distractors as additional text to the question stem and the correct key consistently improves difficulty prediction. We hypothesize that the effectiveness of distractor information depends on its structural representation, and that explicitly modeling distractors as separate components improves difficulty estimation over baselines that omit this information. To address this, we designed controlled architectures that model MCQ components as distinct inputs to isolate the contribution of distractor content and order. Specifically, we represented distractors by encoding each distractor as its own text input and aggregating their representations either with order-aware concatenation (with positional tags) or with an order-invariant summation. We evaluated these architectures using two Chilean datasets (Natural and Social Sciences, 2016-2020; 4,114 multiple-choice questions). Compared to a simpler model that only used the question stem and the key, our best distractor-aware architecture achieved higher predictive performance, reaching R^2 = 0.83 for Natural Sciences and R^2 = 0.71 for Social Sciences items. An order-invariant variant achieved nearly the same accuracy with approximately half as many parameters, offering a favorable accuracy-efficiency trade-off. These results show that structural information (especially distractor content) drives gains in predictive accuracy, supporting the development of efficient, structure-aware models that are computationally viable for large-scale educational applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_08986v1",
+    "title": "Discovering Misconceptions and Misunderstandings From Administrations of Research-Designed Multiple Choice Instruments",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.08986v1",
+    "type": "paper",
+    "raw_text": "Misconceptions are \"alternate hypotheses\" that are incorrect according to established theories of how the world works. Often held with confidence by students, they are relatively context-insensitive, can seem like common-sense views, and are noted for being resistant to remediation using traditional instruction. To find misconceptions in Newtonian mechanics, we analyze ~34,000 administrations of the pioneering Force Concept Inventory using a flexible multidimensional item-response model for multiple-choice data. In contrast to most earlier work, we allow answer choices within each question to have different directions in the multidimensional space of student knowledge, essential for concept inventories in which distractors often codify distinct misconceptions.\n  We uncover 22 robust, partly-overlapping dimensions whose distractors share a coherent theme identifiable with a misconception or misunderstanding. Motivated by the realization that many mirror previously-accepted theories of mechanics, we broadly sort these by historical era: Ancient (learned by infants but codified by Greeks), Medieval (reactions and extensions of Aristotelian ideas), and Post-Newtonian (including known modern misconceptions as well as two which appear novel).\n  We also present a simple approach for computing \"misconception scores\" for students and classes. Examining these scores before and after instruction reveals surprisingly varied patterns of remediation in our sample: some misconceptions persist largely unchanged by instruction, while others are better remediated in below- or above-average students. In general, we find that many misconceptions are poorly remediated for students of average or lower ability. We hope our work will serve as a guide for developing, evaluating, and improving interventions for these while providing physics instructors with a valuable tool for class-level formative assessment.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_07830v1",
+    "title": "Academic Integrity and Emotional Responses to Inappropriate LLM Use in Software Engineering Education",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.07830v1",
+    "type": "paper",
+    "raw_text": "Academic integrity in higher education is increasingly shaped by complex socio-technical environments marked by automated tools, evolving institutional practices, and heightened performance pressures. Within this context, large language models (LLMs) are becoming prevalent in software engineering education, further blurring boundaries around acceptable assistance and authorship. This study investigates how software engineering students describe their emotional experiences after using LLMs in ways they perceive as academically inappropriate. We conducted a cross-sectional survey with 116 undergraduate students. Results show emotionally heterogeneous responses. Indifference was most frequent, including among students who recognized risks to learning and academic standing. Guilt and anxiety were reported in relation to moral discomfort and concern about penalties. Relief and satisfaction were evident primarily in deadline-driven contexts and situations of unclear guidance.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_07279v1",
+    "title": "Detective scaffolding for within-session reasoning development: a three-phase framework evaluated in polymer engineering and pre-university outreach",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.07279v1",
+    "type": "paper",
+    "raw_text": "This paper presents a detective scaffolding framework -- a three-phase instructional sequence (Hypothesis Activation -> Evidence Structuring -> Causal Integration) in which engineering students investigate a realistic industrial defect scenario using staged in-class polls as designed evidence probes. Unlike conventional uses of student response systems for engagement, the framework positions each poll as an Evidence-Centred Design instrument targeting a specific reasoning capability. In the primary implementation, 80 Year~3 polymer engineering students progressed from prior-knowledge-driven misconception (71% attributing defects to temperature) to complete root-cause convergence (100\\% identifying humidity; Fisher's exact test, $p < .001$) across four sequenced prompts within a single 90-minute lecture slot. A dual-accuracy analysis revealed that at one intermediate stage, textbook-correct and analytically valid responses diverged, illustrating why conventional scoring can misrepresent reasoning quality. In a transferability study, 26 Year~12 students with no engineering background achieved identical root-cause identification rates across two adapted scenarios, with significant gains in data-analysis confidence and AI explanation ability. The results suggest that the pedagogical structure, rather than disciplinary content, drives the convergence effect, implying portability across disciplines and educational levels.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_06869v1",
+    "title": "Evidence-Based Intelligent Diagnostic and Therapeutic Visualization System with Large Language Models: Multi-Turn Interaction and Multimodal Treatment Plan Generation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.06869v1",
+    "type": "paper",
+    "raw_text": "Aim: Existing AI-assisted traditional Chinese medicine diagnostic tools suffer from opaque reasoning processes, passive interaction, and limited treatment plan presentation. This study proposes a knowledge-enhanced visual diagnostic system to improve the transparency and interpretability of syndrome differentiation and treatment. Methods: The system is built upon a Neo4j knowledge graph comprising 241 syndromes, 1,263 symptoms, and 2,485 relations. It incorporates a four-stage symptom matching pipeline (exact, semantic, fuzzy, and large language model verification), an information gain-driven proactive questioning strategy optimized with genetic algorithms, and a multimodal treatment presentation integrating artificial intelligence-generated illustrations, three-dimensional meridian-acupoint models, and evidence-based literature. Results: Knowledge graph constraints reduced non-standard outputs by 32%. Case studies validated the effectiveness of the interactive workflow across patient self-assessment, clinician-assisted diagnosis, and traditional Chinese medicine education. Automated paired-comparison evaluation across 30 cases further demonstrated significant improvements in diagnostic trust (Cohen's d = 1.82, p < 0.001), reduced cognitive load (improvements in four of five dimensions), and higher credibility of evidence-based references (4.21 vs. 2.95). Conclusions: The proposed system enhances the transparency of traditional Chinese medicine diagnostic reasoning and the interpretability of treatment plans through knowledge graph-driven visualization and multimodal interaction, offering a practical solution for trustworthy artificial intelligence-assisted traditional Chinese medicine applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

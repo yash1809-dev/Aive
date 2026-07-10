@@ -1,0 +1,162 @@
+[
+  {
+    "id": "startup_khanmigo",
+    "title": "Khanmigo (Khan Academy)",
+    "source": "khan_academy",
+    "source_url": "https://www.khanacademy.org/khan-labs",
+    "year": "2023",
+    "raw_text": "Khanmigo is Khan Academy's AI tutor powered by GPT-4, designed as a Socratic guide that asks questions rather than giving direct answers. It helps students with math, coding, and humanities while giving teachers dashboard visibility into student interactions. Targets K-12 classrooms with guardrails against cheating."
+  },
+  {
+    "id": "startup_quizlet_qchat",
+    "title": "Quizlet Q-Chat",
+    "source": "product_hunt",
+    "source_url": "https://quizlet.com/features/q-chat",
+    "year": "2023",
+    "raw_text": "Q-Chat is Quizlet's AI tutor that uses adaptive questioning to help students study from their flashcard sets. It applies Socratic dialogue to existing study materials, personalizing review sessions based on what the student already knows and where they struggle."
+  },
+  {
+    "id": "startup_duolingo_max",
+    "title": "Duolingo Max",
+    "source": "yc_alumni",
+    "source_url": "https://www.duolingo.com/max",
+    "year": "2023",
+    "raw_text": "Duolingo Max adds GPT-4 powered Roleplay and Explain My Answer features to language learning. Roleplay simulates real conversations; Explain My Answer gives personalized grammar feedback. Serves 500M+ learners with subscription tier for AI features."
+  },
+  {
+    "id": "startup_synthesis",
+    "title": "Synthesis Tutor",
+    "source": "yc",
+    "source_url": "https://www.synthesis.com",
+    "year": "2021",
+    "raw_text": "Synthesis Tutor is an AI-powered math tutor for children ages 5-11, using adaptive games and conversational AI to teach mathematical thinking. Born from SpaceX-adjacent education experiments, focuses on problem-solving rather than rote memorization."
+  },
+  {
+    "id": "startup_ello",
+    "title": "Ello",
+    "source": "yc",
+    "source_url": "https://www.ello.com",
+    "year": "2020",
+    "raw_text": "Ello is an AI reading coach for children that listens to kids read aloud, provides real-time feedback, and adapts difficulty. Uses speech recognition and generative AI to act as a personal reading tutor, targeting early literacy in homes and schools."
+  },
+  {
+    "id": "startup_speak",
+    "title": "Speak",
+    "source": "yc",
+    "source_url": "https://www.speak.com",
+    "year": "2016",
+    "raw_text": "Speak is an AI-powered English conversation tutor using speech recognition and generative AI for immersive language practice. Replaces human tutors for spoken language learning at scale, popular in Korea and expanding globally."
+  },
+  {
+    "id": "startup_cognii",
+    "title": "Cognii",
+    "source": "startup_directory",
+    "source_url": "https://www.cognii.com",
+    "year": "2013",
+    "raw_text": "Cognii provides AI-powered open-response assessment and virtual learning assistants for higher education and corporate training. Uses NLP to evaluate short-answer responses and provide formative feedback, replacing multiple-choice-only assessment."
+  },
+  {
+    "id": "startup_riiid",
+    "title": "Riiid",
+    "source": "startup_directory",
+    "source_url": "https://riiid.com",
+    "year": "2014",
+    "raw_text": "Riiid builds AI adaptive learning and knowledge tracing for standardized test prep (SAT, ACT, TOEIC). Uses deep learning to model student knowledge states and recommend optimal next questions, reducing study time through personalized paths."
+  },
+  {
+    "id": "startup_century_tech",
+    "title": "Century Tech",
+    "source": "startup_directory",
+    "source_url": "https://www.century.tech",
+    "year": "2013",
+    "raw_text": "Century combines AI, neuroscience, and learning science to create personalized learning paths for schools. Uses knowledge tracing and micro-lessons to identify gaps and recommend content, reducing teacher planning workload in UK and international schools."
+  },
+  {
+    "id": "startup_carnegie_learning",
+    "title": "Carnegie Learning (MATHia)",
+    "source": "startup_directory",
+    "source_url": "https://www.carnegielearning.com",
+    "year": "1998",
+    "raw_text": "MATHia is an AI-driven math tutoring platform using cognitive science and knowledge tracing to provide step-by-step guided instruction. Adapts to individual student mastery levels in K-12 math, used in US school districts for blended learning."
+  },
+  {
+    "id": "startup_dreambox",
+    "title": "DreamBox Learning",
+    "source": "startup_directory",
+    "source_url": "https://www.dreambox.com",
+    "year": "2006",
+    "raw_text": "DreamBox provides adaptive K-8 math and reading instruction using intelligent adaptive learning that adjusts in real-time based on student actions. Analyzes thousands of data points per student to personalize learning paths without predefined grade levels."
+  },
+  {
+    "id": "startup_gradescope",
+    "title": "Gradescope (Turnitin)",
+    "source": "yc",
+    "source_url": "https://www.gradescope.com",
+    "year": "2014",
+    "raw_text": "Gradescope uses AI-assisted grading for handwritten and digital assignments in higher education. Combines machine learning with instructor rubrics to speed up grading of exams, homework, and programming assignments, reducing TA and professor workload."
+  },
+  {
+    "id": "startup_turnitin_ai",
+    "title": "Turnitin AI Writing Detection",
+    "source": "startup_directory",
+    "source_url": "https://www.turnitin.com",
+    "year": "2023",
+    "raw_text": "Turnitin launched AI writing detection and integrity tools for institutions to identify AI-generated student submissions. Addresses academic integrity crisis from ChatGPT, used by thousands of universities worldwide for plagiarism and AI authorship checks."
+  },
+  {
+    "id": "startup_classdojo",
+    "title": "ClassDojo",
+    "source": "yc",
+    "source_url": "https://www.classdojo.com",
+    "year": "2011",
+    "raw_text": "ClassDojo is a classroom communication platform used by 50M+ students and teachers. Added AI tools for lesson planning and student feedback generation, targeting K-8 teachers who need to reduce administrative communication burden with families."
+  },
+  {
+    "id": "startup_photomath",
+    "title": "Photomath",
+    "source": "startup_directory",
+    "source_url": "https://photomath.com",
+    "year": "2014",
+    "raw_text": "Photomath uses camera-based OCR and AI to solve math problems step-by-step from photos. Provides animated tutorials and explanations, used by students for homework help. Acquired by Google; raises academic integrity concerns in K-12 math."
+  },
+  {
+    "id": "startup_querium",
+    "title": "Querium",
+    "source": "startup_directory",
+    "source_url": "https://www.querium.com",
+    "year": "2013",
+    "raw_text": "Querium builds AI tutoring for STEM subjects using step-by-step analysis of student work in math and science. Their StepWise engine identifies specific errors in student reasoning and provides targeted hints, used in community colleges and high schools."
+  },
+  {
+    "id": "startup_squirrel_ai",
+    "title": "Squirrel AI",
+    "source": "startup_directory",
+    "source_url": "https://squirrelai.com",
+    "year": "2014",
+    "raw_text": "Squirrel AI operates AI-adaptive tutoring centers in China using knowledge tracing and nano-level knowledge points. Provides personalized learning paths across K-12 subjects with hybrid online-offline model for after-school education."
+  },
+  {
+    "id": "startup_labster",
+    "title": "Labster",
+    "source": "startup_directory",
+    "source_url": "https://www.labster.com",
+    "year": "2011",
+    "raw_text": "Labster provides virtual science lab simulations for universities and high schools. Added AI-powered lab assistants that guide students through experiments, answer questions, and adapt to learning pace, reducing equipment costs and accessibility barriers."
+  },
+  {
+    "id": "startup_magicschool",
+    "title": "MagicSchool AI",
+    "source": "product_hunt",
+    "source_url": "https://www.magicschool.ai",
+    "year": "2023",
+    "raw_text": "MagicSchool AI provides 60+ AI tools for teachers including lesson plan generation, IEP drafting, quiz creation, and communication templates. Used by 3M+ educators to reduce administrative workload and teacher burnout in K-12."
+  },
+  {
+    "id": "startup_brisk_teaching",
+    "title": "Brisk Teaching",
+    "source": "product_hunt",
+    "source_url": "https://www.briskteaching.com",
+    "year": "2023",
+    "raw_text": "Brisk is a Chrome extension that gives teachers AI superpowers inside Google Docs, Classroom, and Slides. Generates feedback on student writing, creates quizzes from any webpage, and differentiates content — targeting teacher time savings on grading and prep."
+  }
+]

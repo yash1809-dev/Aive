@@ -1,0 +1,82 @@
+[
+  {
+    "id": "paper_2606_11896v1",
+    "title": "PAPEL: A Collaborative System for Parental Guidance during Preschool Play-Based English Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11896v1",
+    "type": "paper",
+    "raw_text": "Play-based parent-child interaction offers preschoolers rich opportunities for everyday foreign language learning, yet many parents struggle to turn open-ended play into effective English-as-a-Foreign-Language (EFL) learning experiences at home. To explore how AI might support this process, we conducted formative studies through interviews and a Wizard-of-Oz study. We identified four key challenges: content selection, language expression, balancing instruction and play, and problem solving. To address these challenges, we present PAPEL, a parent-AI collaborative system that grounds suggestions in the ongoing play scene and organizes support into four core modules: content generation, language adaptation, balance assessment, and extended response. In a counterbalanced within-subjects study with 16 parent-child dyads, PAPEL was associated with more integrated parent utterances that combined playful and instructional content, as well as more parent-child conversational turns, than the lightweight chatbot baseline used in our study.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_06428v1",
+    "title": "Reinforcement Learning Elicits Contextual Learning of Unseen Language Translation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.06428v1",
+    "type": "paper",
+    "raw_text": "Prior work has shown that large language models (LLMs) can translate unseen or low-resource languages by undergoing continued training or even by encoding a grammar book in their context. However, both methods typically overfit specific languages, with limited zero-shot transfer at test time. To translate extremely low-resource languages at scale, we argue that LLMs must acquire the meta-skill of utilizing in-context linguistic knowledge rather than memorizing specific languages. In this paper, we propose a reinforcement learning (RL) approach to unseen language translation given rich linguistic context, using a surface-level translation metric (chrF) as the reward. Empirically, despite the lightweight reward, our RL-trained models effectively extract and apply relevant linguistic information from the provided context, leading to better translations on completely unseen languages than in-context learning or supervised fine-tuning. Our analyses suggest that outcome-based RL can extend beyond conventional reasoning tasks like math and coding to serve as a recipe for language learning from context.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_06065v3",
+    "title": "Multi-task Learning is Not Enough: Representational Entanglement in Dual-output Second Language Speech Recognition",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.06065v3",
+    "type": "paper",
+    "raw_text": "Second-language (L2) speech recognition often requires transcriptions of pronunciations and intended meanings. Multi-task learning (MTL) is a natural approach because it assumes that shared representations benefit both outputs. However, this paper shows that this assumption does not hold across Korean and English. MTL improves meaning but degrades surface transcription, especially in English, where the degradation scales with surface-meaning divergence measured by Levenshtein edit distance. Encoder analysis links these patterns to encoder-level entanglement, with Korean preserving distinct task representations while English produces nearly identical ones. Cross-task decoder analysis shows that the meaning dual-output decoder adapts with a unique representation, while the surface dual-output decoder remains constrained by the encoder. These findings motivate the design of MTL frameworks that mitigate encoder-level entanglement to reduce surface degradation in dual-output L2 automatic speech recognition.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_05569v1",
+    "title": "Domain-Aware Mispronunciation Detection and Diagnosis Using Language-Specific Statistical Graphs",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.05569v1",
+    "type": "paper",
+    "raw_text": "Mispronunciation Detection and Diagnosis (MDD) has gained increasing importance in computer-assisted language learning and speech technology in recent years. In this paper, we propose a method for constructing statistical graphs that enable models to learn phoneme confusion patterns represented as directed graphs. Furthermore, we introduce a language-specific strategy to capture systematic pronunciation differences across various native language (L1) backgrounds. The effectiveness of our approach is demonstrated through extensive experiments on the L2-ARCTIC benchmark, where it achieves an F1-score of 59.52%, outperforming several competitive baselines.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_03398v1",
+    "title": "Causal Evidence of Stack Representations in Modeling Counter Languages Using Transformers",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.03398v1",
+    "type": "paper",
+    "raw_text": "Formal languages have proven to be effective conduits to understand the inner mechanisms of transformers. Past work has shown that transformers trained on next token prediction over counter languages learn representations consistent with an underlying stack structure. Beyond representational analysis, this paper investigates the causal role of these representations. Linear probes are trained to predict the stack depth at each token from the model's hidden states, and a principal representation direction is extracted from the probe. Ablation of this direction from the model causes sequential accuracy to collapse to near 0%, providing strong empirical evidence that the stack representation is not just learned, but is causally necessary for model performance.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_01045v1",
+    "title": "Child-directed speech facilitates production, not comprehension, in BabyLMs",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.01045v1",
+    "type": "paper",
+    "raw_text": "Recent studies suggest that child-directed speech is not conducive to language learning in BabyLMs. However, current evaluations focus predominantly on comprehension and not production, which is central to usage-based theories of language acquisition which argue how CDS facilitates early language use through constructional ''frames'' (frequent lexical patterns with open slots). We introduce a novel generation-based evaluation inspired by such theories in form of a frame-completion task, and compare Llama models trained with CDS, the BabyLM corpus, and web-crawl data (FineWeb-edu) on comprehension benchmarks and our novel framework. Our results reveal a clear dissociation between models' comprehension and production capabilities: while FineWeb-trained models excel at minimal pairs, CDS-trained models produce grammatical completions substantially earlier in training and concentrate probability mass on appropriate slot-fillers. These findings show that comprehension benchmarks underestimate what CDS affords to BabyLMs.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_00275v1",
+    "title": "Hyperbolic and Evidence-Prioritized Experts for Large Vision-Language Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.00275v1",
+    "type": "paper",
+    "raw_text": "Large Vision-Language Models (LVLMs) have demonstrated impressive performance on multimodal tasks through scaled architectures and extensive training. Recent studies introduce Mixture of Experts (MoE) into LVLMs for improved computational efficiency. However, existing MoE approaches treat visual and linguistic modalities with symmetric architectures, overlooking the inherent asymmetry in how these two modalities are processed. This asymmetry causes two critical issues. First, text and vision form hierarchical rather than parallel relationships, as text queries typically describe partial aspects of complete visual scenes. Euclidean expert space struggles to encode such containment structures. Second, language experts in deeper layers progressively shift from evidence-based processing to parametric memory dependence, losing grounding in the provided visual and linguistic information. To address these issues, we propose AsyMoE, a novel architecture that explicitly models this asymmetry through three specialized expert groups. Intra-modality experts handle modality-specific processing. Hyperbolic inter-modality experts capture hierarchical cross-modal relationships through negative curvature geometry. Evidence-priority language experts suppress parametric memory activation and maintain contextual grounding throughout network depth. Extensive experiments demonstrate that AsyMoE achieves consistent improvements over baseline methods, with average gains of 1.5\\% over MoE variants and up to 3.8\\% on hallucination-sensitive tasks. AsyMoE activates 25.45\\% fewer parameters compared to dense models.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_31586v1",
+    "title": "Language Models Learn Constructional Semantics, Not To Mention Syntax: Investigating LM Understanding of Paired-Focus Constructions",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.31586v1",
+    "type": "paper",
+    "raw_text": "Grasping the semantics of rare constructions (form-meaning pairings) has been shown to be a challenging problem that has currently only been solved by the largest LLMs. It remains an open question if open-source models have robust constructional understanding, and if so, what learning dynamics underlie the acquisition of this knowledge. Focusing on a set of rare Paired-Focus constructions in English (e.g. \"let alone\", \"much less\"), we construct a novel dataset to test their meanings using both scalar adjectival semantics and general world knowledge. Testing a wide range of models differing in parameter count, architecture, and pretraining dataset size, we find that several modestly sized models are sensitive to both the forms and the meanings of Paired-Focus constructions, though models trained on human-scale data fail at all meaning evaluations. Turning to training dynamics for a set of open-checkpoint models, we find that Paired-Focus understanding emerges later in training than Paired-Focus syntactic knowledge, and that learning of Paired-Focus semantics is correlated with gains in some domains of world knowledge. Overall, our empirical results support the conclusion that modestly sized open-source models can grasp the rare Paired-Focus constructions, and demonstrate a connection between knowledge of Paired-Focus constructions and other meaning domains.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]
