@@ -1,0 +1,1572 @@
+[
+  {
+    "problem": "K-12 districts struggle with ineffective EdTech vendor solutions that fail to improve student outcomes",
+    "technology": "AI-powered adaptive learning systems that personalize education for classroom teachers",
+    "problem_node": "node_problem_edtech_vendors",
+    "technology_node": "node_technology_teachers",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "econ_c3597dbc",
+      "startup_century_tech",
+      "startup_brisk_teaching",
+      "econ_8f473713",
+      "startup_magicschool",
+      "startup_khanmigo",
+      "patent_de202025101417u1",
+      "econ_9d55334f"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 2.1,
+    "commercially_grounded": true,
+    "title": "AI-Driven EdTech for K-12 Efficiency",
+    "market": "K-12 School District IT Procurement",
+    "timing_signal": "EdTech funding collapsed 73% since 2021 peak, forcing districts to seek cost-effective AI solutions",
+    "reasoning": "School districts face pressure to improve educational outcomes while cutting costs after EdTech funding collapsed. AI-powered adaptive learning systems offer targeted solutions, but existing startups like Khanmigo and Century Tech demonstrate market validation. The 18-month procurement cycle and 7-stakeholder complexity create a clear opportunity for innovative vendors.",
+    "existing_competitors": [
+      "Khanmigo (Khan Academy)",
+      "Century Tech",
+      "MagicSchool AI",
+      "Brisk Teaching"
+    ],
+    "evidence_summary": [
+      "EdTech funding collapse: 73% drop since 2021 peak",
+      "AI-powered adaptive learning patent filings",
+      "Multiple startups developing classroom AI tools"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+    "novelty_score": 5,
+    "timing_score": 9,
+    "market_score": 8,
+    "feasibility": 6,
+    "confidence_score": 7,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "AI-powered adaptive learning system for personalized education"
+      ],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "Khanmigo (Khan Academy)",
+        "MagicSchool AI"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+        "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+        "School Procurement: Average 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "econ_9d55334f",
+          "type": "economic_signal",
+          "title": "EdTech Funding Collapse: 73% Drop Since 2021 Peak"
+        },
+        {
+          "id": "econ_c3597dbc",
+          "type": "economic_signal",
+          "title": "School Procurement: Average 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "patent_de202025101417u1",
+          "type": "patent",
+          "title": "AI-powered adaptive learning system for personalized education"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_khanmigo",
+          "type": "startup",
+          "title": "Khanmigo (Khan Academy)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        }
+      ]
+    },
+    "id": "opp_b64f2d88"
+  },
+  {
+    "problem": "Teachers spend 15+ hours weekly grading assignments due to manual processes.",
+    "technology": "AI-powered automated grading systems with natural language processing",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_teachers",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_classdojo",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "startup_khanmigo",
+      "startup_gradescope",
+      "patent_de202025101417u1"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 2.05,
+    "commercially_grounded": true,
+    "title": "AI Grading Tools for K-12 Teachers",
+    "market": "K-12 School Districts (IT Procurement Directors)",
+    "timing_signal": "State mandates for standardized testing and budget constraints driving edtech adoption",
+    "reasoning": "K-12 districts face urgent grading workload issues that AI tools can address. Existing startups like Gradescope and Century Tech demonstrate market validation. The 18-month procurement cycle and 7-stakeholder process indicate substantial budget allocation, while AI patents show technological readiness. However, the lack of specific regulatory triggers weakens timing clarity.",
+    "existing_competitors": [
+      "Gradescope (Turnitin)",
+      "Khanmigo",
+      "MagicSchool AI"
+    ],
+    "evidence_summary": [
+      "18-month procurement cycle with 7 stakeholders",
+      "AI grading patent (DE202025101417U1)",
+      "Multiple edtech startups addressing grading automation"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "State standardized testing mandates",
+    "economic_signal": "School procurement budget allocation patterns",
+    "novelty_score": 4,
+    "timing_score": 6,
+    "market_score": 9,
+    "feasibility": 7,
+    "confidence_score": 7,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "AI-powered adaptive learning system for personalized education"
+      ],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "Gradescope (Turnitin)",
+        "Khanmigo (Khan Academy)",
+        "MagicSchool AI"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "patent_de202025101417u1",
+          "type": "patent",
+          "title": "AI-powered adaptive learning system for personalized education"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_khanmigo",
+          "type": "startup",
+          "title": "Khanmigo (Khan Academy)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        }
+      ]
+    },
+    "id": "opp_c9a3abe3"
+  },
+  {
+    "problem": "Teachers spend 30%+ of their time grading assignments due to manual processes.",
+    "technology": "Knowledge Tracing algorithms that automate formative assessment grading",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_knowledge_tracing",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_classdojo",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "patent_us9584590b2",
+      "startup_carnegie_learning",
+      "startup_squirrel_ai",
+      "startup_gradescope"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 2.0,
+    "commercially_grounded": true,
+    "title": "AI Grading Tools for K-12 Schools",
+    "market": "K-12 School Districts (IT Procurement)",
+    "timing_signal": "School procurement cycles are accelerating due to federal ESSA compliance requirements",
+    "reasoning": "K-12 districts face urgent grading workload challenges with 7+ stakeholders in procurement. Knowledge Tracing technology is already commercialized by competitors like Gradescope and Carnegie Learning. The 18-month sales cycle aligns with ESSA compliance deadlines creating urgency for automated grading solutions.",
+    "existing_competitors": [
+      "Gradescope",
+      "Carnegie Learning",
+      "ClassDojo"
+    ],
+    "evidence_summary": [
+      "Patent for student proficiency determination",
+      "Multiple startups using knowledge tracing",
+      "School procurement economic signal"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "Every Student Succeeds Act (ESSA) compliance requirements",
+    "economic_signal": "18-Month School Procurement Sales Cycle",
+    "novelty_score": 7,
+    "timing_score": 8,
+    "market_score": 9,
+    "feasibility": 8,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "Systems and methods for determining student proficiency"
+      ],
+      "startups": [
+        "Brisk Teaching",
+        "Carnegie Learning (MATHia)",
+        "Century Tech",
+        "ClassDojo",
+        "Gradescope (Turnitin)",
+        "MagicSchool AI",
+        "Squirrel AI"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "patent_us9584590b2",
+          "type": "patent",
+          "title": "Systems and methods for determining student proficiency"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_carnegie_learning",
+          "type": "startup",
+          "title": "Carnegie Learning (MATHia)"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        },
+        {
+          "id": "startup_squirrel_ai",
+          "type": "startup",
+          "title": "Squirrel AI"
+        }
+      ]
+    },
+    "id": "opp_22c8fb5d"
+  },
+  {
+    "problem": "Universities struggle to detect AI-generated plagiarism in student essays.",
+    "technology": "AI-powered writing detection systems with plagiarism analysis",
+    "problem_node": "node_problem_academic_integrity",
+    "technology_node": "node_technology_essay_grading_rubric",
+    "commercial_anchor": "Universities",
+    "anchor_type": "Organization",
+    "evidence_ids": [
+      "econ_8ab35e19",
+      "startup_turnitin_ai",
+      "patent_us20180181889a1",
+      "startup_gradescope",
+      "econ_671aa0ff"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 2.0,
+    "commercially_grounded": true,
+    "title": "AI Detection Tools for Academic Integrity",
+    "market": "Higher education institutions (Universities)",
+    "timing_signal": "89% of universities updated academic integrity policies in 2024 due to ChatGPT adoption",
+    "reasoning": "Universities face a specific problem detecting AI-generated plagiarism. AI detection tools like Turnitin and Gradescope provide targeted solutions. The 2024 policy updates create urgent demand for these technologies.",
+    "existing_competitors": [
+      "Turnitin",
+      "Gradescope"
+    ],
+    "evidence_summary": [
+      "89% of universities updated policies post-ChatGPT adoption",
+      "Patent for academic dishonesty detection systems",
+      "Established startups offering AI writing detection"
+    ],
+    "buyer": "University IT departments",
+    "regulation": "",
+    "economic_signal": "ChatGPT Academic Integrity Crisis: 89% policy updates 2024",
+    "novelty_score": 5,
+    "timing_score": 9,
+    "market_score": 8,
+    "feasibility": 7,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "Detecting academic dishonesty in online learning environments"
+      ],
+      "startups": [
+        "Gradescope (Turnitin)",
+        "Turnitin AI Writing Detection"
+      ],
+      "economic_signals": [
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024",
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+      ],
+      "items": [
+        {
+          "id": "econ_671aa0ff",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024"
+        },
+        {
+          "id": "econ_8ab35e19",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+        },
+        {
+          "id": "patent_us20180181889a1",
+          "type": "patent",
+          "title": "Detecting academic dishonesty in online learning environments"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_turnitin_ai",
+          "type": "startup",
+          "title": "Turnitin AI Writing Detection"
+        }
+      ]
+    },
+    "id": "opp_b766f19c"
+  },
+  {
+    "problem": "School districts struggle with inefficient EdTech procurement processes involving 7 stakeholders and 18-month sales cycles",
+    "technology": "Knowledge Tracing algorithms that adapt to student learning patterns in real-time",
+    "problem_node": "node_problem_edtech_vendors",
+    "technology_node": "node_technology_knowledge_tracing",
+    "commercial_anchor": "School Districts",
+    "anchor_type": "Organization",
+    "evidence_ids": [
+      "econ_c3597dbc",
+      "startup_century_tech",
+      "econ_8f473713",
+      "patent_us9584590b2",
+      "startup_carnegie_learning",
+      "startup_squirrel_ai",
+      "econ_9d55334f"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 1.95,
+    "commercially_grounded": true,
+    "title": "Knowledge Tracing for K-12 EdTech Procurement",
+    "market": "K-12 school districts seeking adaptive learning platforms",
+    "timing_signal": "73% drop in EdTech funding since 2021 peak creates urgency for cost-effective solutions",
+    "reasoning": "School districts face procurement challenges with long sales cycles and stakeholder complexity. Knowledge Tracing technology offers adaptive learning solutions that address these inefficiencies. The funding collapse creates urgency for cost-effective EdTech alternatives.",
+    "existing_competitors": [
+      "Carnegie Learning",
+      "Century Tech",
+      "Squirrel AI"
+    ],
+    "evidence_summary": [
+      "73% EdTech funding decline since 2021 peak",
+      "Patent for student proficiency determination systems",
+      "Multiple startups implementing Knowledge Tracing"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+    "novelty_score": 8,
+    "timing_score": 9,
+    "market_score": 9,
+    "feasibility": 8,
+    "confidence_score": 9,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "Systems and methods for determining student proficiency"
+      ],
+      "startups": [
+        "Carnegie Learning (MATHia)",
+        "Century Tech",
+        "Squirrel AI"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+        "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+        "School Procurement: Average 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "econ_9d55334f",
+          "type": "economic_signal",
+          "title": "EdTech Funding Collapse: 73% Drop Since 2021 Peak"
+        },
+        {
+          "id": "econ_c3597dbc",
+          "type": "economic_signal",
+          "title": "School Procurement: Average 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "patent_us9584590b2",
+          "type": "patent",
+          "title": "Systems and methods for determining student proficiency"
+        },
+        {
+          "id": "startup_carnegie_learning",
+          "type": "startup",
+          "title": "Carnegie Learning (MATHia)"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_squirrel_ai",
+          "type": "startup",
+          "title": "Squirrel AI"
+        }
+      ]
+    },
+    "id": "opp_05d48852"
+  },
+  {
+    "problem": "Teachers face excessive grading time due to manual assessment processes.",
+    "technology": "AI-driven automated grading systems with real-time feedback",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_outcome_improved_test_scores",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_classdojo",
+      "startup_turnitin_ai",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "patent_us9584590b2",
+      "startup_quizlet_qchat",
+      "startup_duolingo_max",
+      "startup_gradescope",
+      "patent_wo2024238370a2"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 1.9,
+    "commercially_grounded": true,
+    "title": "AI Grading Tools for K-12 Workload",
+    "market": "K-12 School Districts (IT Procurement)",
+    "timing_signal": "School procurement cycles now include AI adoption with 18-month sales timelines",
+    "reasoning": "K-12 districts struggle with grading workloads but have structured procurement processes. AI grading tools (like Gradescope) directly address this with automation. The 18-month sales cycle indicates market readiness for scalable solutions.",
+    "existing_competitors": [
+      "Gradescope",
+      "Turnitin AI",
+      "ClassDojo"
+    ],
+    "evidence_summary": [
+      "Patents for AI-driven student proficiency analysis",
+      "Multiple startups in AI grading space",
+      "School procurement economic signal with 7-stakeholder process"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+    "novelty_score": 8,
+    "timing_score": 9,
+    "market_score": 10,
+    "feasibility": 9,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "Systems and methods for determining student proficiency",
+        "Adaptive and scalable AI-driven personalized learning platform"
+      ],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "Duolingo Max",
+        "Gradescope (Turnitin)",
+        "MagicSchool AI",
+        "Quizlet Q-Chat",
+        "Turnitin AI Writing Detection"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "patent_us9584590b2",
+          "type": "patent",
+          "title": "Systems and methods for determining student proficiency"
+        },
+        {
+          "id": "patent_wo2024238370a2",
+          "type": "patent",
+          "title": "Adaptive and scalable AI-driven personalized learning platform"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_duolingo_max",
+          "type": "startup",
+          "title": "Duolingo Max"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        },
+        {
+          "id": "startup_quizlet_qchat",
+          "type": "startup",
+          "title": "Quizlet Q-Chat"
+        },
+        {
+          "id": "startup_turnitin_ai",
+          "type": "startup",
+          "title": "Turnitin AI Writing Detection"
+        }
+      ]
+    },
+    "id": "opp_e964558c"
+  },
+  {
+    "problem": "Universities face rising academic fraud due to AI-generated content.",
+    "technology": "AI-powered plagiarism detection and behavior analysis systems",
+    "problem_node": "node_problem_academic_integrity",
+    "technology_node": "node_technology_students",
+    "commercial_anchor": "Universities",
+    "anchor_type": "Organization",
+    "evidence_ids": [
+      "econ_8ab35e19",
+      "startup_dreambox",
+      "startup_turnitin_ai",
+      "patent_us20180181889a1",
+      "patent_us20200348991a1",
+      "startup_cognii",
+      "patent_us20210358291a1",
+      "startup_khanmigo",
+      "patent_us10061662b2",
+      "patent_us10854088b2",
+      "econ_671aa0ff",
+      "patent_de202025101417u1",
+      "patent_us20220286455a1"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 1.7,
+    "commercially_grounded": true,
+    "title": "AI Tools for Academic Dishonesty Detection",
+    "market": "Higher education institutions (University IT Departments)",
+    "timing_signal": "89% of universities updated policies in 2024 after ChatGPT's academic integrity crisis",
+    "reasoning": "Universities need AI tools to detect cheating as ChatGPT adoption surged. Existing systems like Turnitin show demand, but new patents indicate evolving solutions. The 2024 policy updates create urgent budget allocation opportunities.",
+    "existing_competitors": [
+      "Turnitin AI Writing Detection",
+      "Cognii",
+      "DreamBox Learning"
+    ],
+    "evidence_summary": [
+      "89% university policy updates post-ChatGPT adoption",
+      "10+ patents for AI detection systems",
+      "Established startups with similar technology"
+    ],
+    "buyer": "University IT Departments",
+    "regulation": "",
+    "economic_signal": "ChatGPT Academic Integrity Crisis: 89% policy updates 2024",
+    "novelty_score": 8,
+    "timing_score": 9,
+    "market_score": 9,
+    "feasibility": 8,
+    "confidence_score": 9,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "AI-powered adaptive learning system for personalized education",
+        "Systems and methods for adaptive education using machine learning",
+        "Intelligent tutoring system with natural language interaction",
+        "Detecting academic dishonesty in online learning environments",
+        "Real-time formative assessment using machine learning",
+        "Neural network based automated essay scoring with discourse analysis",
+        "LLM-based tutoring with guardrails for educational integrity"
+      ],
+      "startups": [
+        "Cognii",
+        "DreamBox Learning",
+        "Khanmigo (Khan Academy)",
+        "Turnitin AI Writing Detection"
+      ],
+      "economic_signals": [
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024",
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+      ],
+      "items": [
+        {
+          "id": "econ_671aa0ff",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024"
+        },
+        {
+          "id": "econ_8ab35e19",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+        },
+        {
+          "id": "patent_de202025101417u1",
+          "type": "patent",
+          "title": "AI-powered adaptive learning system for personalized education"
+        },
+        {
+          "id": "patent_us10061662b2",
+          "type": "patent",
+          "title": "Systems and methods for adaptive education using machine learning"
+        },
+        {
+          "id": "patent_us10854088b2",
+          "type": "patent",
+          "title": "Intelligent tutoring system with natural language interaction"
+        },
+        {
+          "id": "patent_us20180181889a1",
+          "type": "patent",
+          "title": "Detecting academic dishonesty in online learning environments"
+        },
+        {
+          "id": "patent_us20200348991a1",
+          "type": "patent",
+          "title": "Real-time formative assessment using machine learning"
+        },
+        {
+          "id": "patent_us20210358291a1",
+          "type": "patent",
+          "title": "Neural network based automated essay scoring with discourse analysis"
+        },
+        {
+          "id": "patent_us20220286455a1",
+          "type": "patent",
+          "title": "LLM-based tutoring with guardrails for educational integrity"
+        },
+        {
+          "id": "startup_cognii",
+          "type": "startup",
+          "title": "Cognii"
+        },
+        {
+          "id": "startup_dreambox",
+          "type": "startup",
+          "title": "DreamBox Learning"
+        },
+        {
+          "id": "startup_khanmigo",
+          "type": "startup",
+          "title": "Khanmigo (Khan Academy)"
+        },
+        {
+          "id": "startup_turnitin_ai",
+          "type": "startup",
+          "title": "Turnitin AI Writing Detection"
+        }
+      ]
+    },
+    "id": "opp_517f5c6a"
+  },
+  {
+    "problem": "Teachers face excessive grading workload due to manual assessment processes.",
+    "technology": "AI-powered automated grading systems with real-time feedback",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_improved_test_scores",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_dreambox",
+      "startup_classdojo",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "startup_gradescope",
+      "startup_querium"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "startup"
+    ],
+    "score": 1.5,
+    "commercially_grounded": true,
+    "title": "AI-Driven Grading Solutions for K-12",
+    "market": "K-12 School Districts (IT Procurement)",
+    "timing_signal": "School procurement processes now require 18-month cycles with 7 stakeholders",
+    "reasoning": "K-12 districts struggle with grading workloads despite existing AI tools like Gradescope. The 18-month procurement cycle creates structured timing for adopting new grading technologies. Competitors like DreamBox and ClassDojo demonstrate market demand, but improved AI integration remains underdeveloped.",
+    "existing_competitors": [
+      "Gradescope (Turnitin)",
+      "DreamBox Learning",
+      "ClassDojo"
+    ],
+    "evidence_summary": [
+      "Multiple startups targeting educational AI",
+      "Structured 18-month procurement process",
+      "Existing grading tools with room for improvement"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+    "novelty_score": 7,
+    "timing_score": 8,
+    "market_score": 9,
+    "feasibility": 7,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "DreamBox Learning",
+        "Gradescope (Turnitin)",
+        "MagicSchool AI",
+        "Querium"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_dreambox",
+          "type": "startup",
+          "title": "DreamBox Learning"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        },
+        {
+          "id": "startup_querium",
+          "type": "startup",
+          "title": "Querium"
+        }
+      ]
+    },
+    "id": "opp_f5bd7295"
+  },
+  {
+    "problem": "Teachers spend 30%+ of their time grading due to manual processes.",
+    "technology": "AI-powered automated grading systems with natural language processing",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_ai_powered_learning",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_classdojo",
+      "startup_labster",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "startup_gradescope"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "startup"
+    ],
+    "score": 1.5,
+    "commercially_grounded": true,
+    "title": "AI Grading Tools for K-12 Workload",
+    "market": "K-12 School Districts (IT Procurement)",
+    "timing_signal": "School procurement cycles now require 18-month planning with 7+ stakeholders",
+    "reasoning": "K-12 districts face acute grading workload issues with 30%+ time spent on manual grading. AI grading tools address this with NLP automation. The 18-month procurement cycle and multi-stakeholder requirements create a structured timing signal for adoption.",
+    "existing_competitors": [
+      "Gradescope (Turnitin)",
+      "Brisk Teaching",
+      "Labster"
+    ],
+    "evidence_summary": [
+      "School procurement economic signal with 18-month cycle",
+      "6 active AI education startups in the space",
+      "Multiple commercial implementations by startups"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "18-month school procurement cycle with 7 stakeholders",
+    "novelty_score": 7,
+    "timing_score": 8,
+    "market_score": 9,
+    "feasibility": 8,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "Gradescope (Turnitin)",
+        "Labster",
+        "MagicSchool AI"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_labster",
+          "type": "startup",
+          "title": "Labster"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        }
+      ]
+    },
+    "id": "opp_bcd1cc60"
+  },
+  {
+    "problem": "Teachers face unsustainable grading workloads due to manual essay evaluation.",
+    "technology": "AI-powered rubric-based essay grading systems with automated scoring.",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_essay_grading_rubric",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_classdojo",
+      "startup_turnitin_ai",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "startup_gradescope"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "startup"
+    ],
+    "score": 1.5,
+    "commercially_grounded": true,
+    "title": "AI-Driven Essay Grading for K-12",
+    "market": "K-12 School Districts (IT Procurement)",
+    "timing_signal": "School procurement cycles are accelerating due to 18-month sales cycles and 7-stakeholder decision-making",
+    "reasoning": "K-12 districts need scalable grading solutions amid teacher shortages. AI rubrics offer structured automation, but existing startups like Gradescope and Turnitin AI dominate the space. The 18-month procurement cycle suggests timing for enterprise sales, though competition is intense.",
+    "existing_competitors": [
+      "Gradescope (Turnitin)",
+      "Turnitin AI Writing Detection",
+      "ClassDojo"
+    ],
+    "evidence_summary": [
+      "Multiple startups targeting educational grading",
+      "School procurement process economic signal",
+      "AI writing detection tools in development"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "School procurement: 18-Month Sales Cycle, 7 Stakeholders",
+    "novelty_score": 4,
+    "timing_score": 6,
+    "market_score": 9,
+    "feasibility": 8,
+    "confidence_score": 7,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "Gradescope (Turnitin)",
+        "MagicSchool AI",
+        "Turnitin AI Writing Detection"
+      ],
+      "economic_signals": [
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        },
+        {
+          "id": "startup_turnitin_ai",
+          "type": "startup",
+          "title": "Turnitin AI Writing Detection"
+        }
+      ]
+    },
+    "id": "opp_6ee9c2d3"
+  },
+  {
+    "problem": "Teachers spend 15+ hours weekly grading assignments due to manual processes.",
+    "technology": "AI-powered automated grading systems with plagiarism detection",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_gradescope_turnitin",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "econ_7d4462a0",
+      "startup_classdojo",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "startup_gradescope"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "startup"
+    ],
+    "score": 1.5,
+    "commercially_grounded": true,
+    "title": "AI Grading for K-12 Workload",
+    "market": "K-12 School Districts (IT Procurement)",
+    "timing_signal": "Gradescope's weakness in K-12 market (econ_7d4462a0) + 18-month procurement cycles (econ_8f473713)",
+    "reasoning": "K-12 districts face acute grading workload issues requiring AI solutions. Gradescope's market weakness creates opportunity despite existing competitors. The 18-month procurement cycle suggests timing for scalable adoption.",
+    "existing_competitors": [
+      "Gradescope (Turnitin)",
+      "ClassDojo",
+      "MagicSchool AI"
+    ],
+    "evidence_summary": [
+      "Gradescope's AI grading dominance but K-12 weakness",
+      "School procurement requires 7 stakeholders and 18-month cycles",
+      "Multiple startups targeting education AI validation"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "Gradescope's market position indicates unmet K-12 demand",
+    "novelty_score": 6,
+    "timing_score": 8,
+    "market_score": 9,
+    "feasibility": 7,
+    "confidence_score": 7,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "Gradescope (Turnitin)",
+        "MagicSchool AI"
+      ],
+      "economic_signals": [
+        "Gradescope (Turnitin): AI Grading Market Leader, Weak in K-12",
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_7d4462a0",
+          "type": "economic_signal",
+          "title": "Gradescope (Turnitin): AI Grading Market Leader, Weak in K-12"
+        },
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        }
+      ]
+    },
+    "id": "opp_3a5f0ef3"
+  },
+  {
+    "problem": "Teachers spend 30%+ of their time grading due to manual processes.",
+    "technology": "AI-powered automated grading systems with rubric integration",
+    "problem_node": "node_problem_teacher_grading_workload",
+    "technology_node": "node_technology_edtech_vendors",
+    "commercial_anchor": "K-12 School Districts",
+    "anchor_type": "Buyer",
+    "evidence_ids": [
+      "startup_century_tech",
+      "startup_classdojo",
+      "econ_a8f82d89",
+      "startup_brisk_teaching",
+      "startup_magicschool",
+      "econ_8f473713",
+      "econ_69d18a9c",
+      "startup_gradescope",
+      "econ_9d55334f"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "startup"
+    ],
+    "score": 1.45,
+    "commercially_grounded": true,
+    "title": "AI-Driven Grading Solutions for K-12",
+    "market": "K-12 School Districts (IT Procurement Directors)",
+    "timing_signal": "ESSER Cliff 2024: $12B EdTech procurement surge ending in 2024",
+    "reasoning": "K-12 districts face acute grading workload pain with 30%+ time spent grading. AI grading tools like Gradescope and MagicSchool AI demonstrate viable solutions. The ESSER Cliff 2024 creates urgency as districts must finalize 2024 procurement plans before funding expires.",
+    "existing_competitors": [
+      "Gradescope (Turnitin)",
+      "MagicSchool AI",
+      "Brisk Teaching"
+    ],
+    "evidence_summary": [
+      "ESSER funding cliff creating 2024 procurement urgency",
+      "EdTech MVP build costs $150K-$500K in 3-6 months",
+      "73% drop in EdTech funding since 2021 peak"
+    ],
+    "buyer": "K-12 School District IT Procurement",
+    "regulation": "",
+    "economic_signal": "ESSER Cliff 2024: $12B EdTech procurement surge ending in 2024",
+    "novelty_score": 6,
+    "timing_score": 9,
+    "market_score": 8,
+    "feasibility": 7,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [],
+      "startups": [
+        "Brisk Teaching",
+        "Century Tech",
+        "ClassDojo",
+        "Gradescope (Turnitin)",
+        "MagicSchool AI"
+      ],
+      "economic_signals": [
+        "US K-12 EdTech Procurement: ESSER Cliff 2024",
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+        "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+        "EdTech MVP Build Cost: $150K-$500K in 3-6 Months"
+      ],
+      "items": [
+        {
+          "id": "econ_69d18a9c",
+          "type": "economic_signal",
+          "title": "US K-12 EdTech Procurement: ESSER Cliff 2024"
+        },
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "econ_9d55334f",
+          "type": "economic_signal",
+          "title": "EdTech Funding Collapse: 73% Drop Since 2021 Peak"
+        },
+        {
+          "id": "econ_a8f82d89",
+          "type": "economic_signal",
+          "title": "EdTech MVP Build Cost: $150K-$500K in 3-6 Months"
+        },
+        {
+          "id": "startup_brisk_teaching",
+          "type": "startup",
+          "title": "Brisk Teaching"
+        },
+        {
+          "id": "startup_century_tech",
+          "type": "startup",
+          "title": "Century Tech"
+        },
+        {
+          "id": "startup_classdojo",
+          "type": "startup",
+          "title": "ClassDojo"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        },
+        {
+          "id": "startup_magicschool",
+          "type": "startup",
+          "title": "MagicSchool AI"
+        }
+      ]
+    },
+    "id": "opp_d70c1876"
+  },
+  {
+    "problem": "Inefficient grading processes in higher education",
+    "technology": "AI-powered grading tools like Gradescope/Turnitin",
+    "problem_node": "node_problem_edtech_vendors",
+    "technology_node": "node_technology_gradescope_turnitin",
+    "commercial_anchor": "Universities",
+    "anchor_type": "Organization",
+    "evidence_ids": [
+      "econ_c3597dbc",
+      "econ_7d4462a0",
+      "econ_8f473713",
+      "startup_gradescope",
+      "econ_9d55334f"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "startup"
+    ],
+    "score": 1.45,
+    "commercially_grounded": true,
+    "title": "AI Grading for Universities Post-Funding Collapse",
+    "market": "Higher education institutions (Universities)",
+    "timing_signal": "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+    "reasoning": "Universities face inefficiencies in grading with rising EdTech funding collapse forcing cost-conscious adoption of AI grading tools. Gradescope/Turnitin's AI grading technology addresses this pain point, but the 18-month sales cycle and 7-stakeholder complexity create barriers. The funding collapse creates urgency for cost-effective solutions.",
+    "existing_competitors": [
+      "Turnitin",
+      "Other AI grading platforms"
+    ],
+    "evidence_summary": [
+      "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+      "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+      "Gradescope (Turnitin): AI Grading Market Leader, Weak in K-12"
+    ],
+    "buyer": "University IT Procurement Departments",
+    "regulation": "",
+    "economic_signal": "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+    "novelty_score": 5,
+    "timing_score": 9,
+    "market_score": 8,
+    "feasibility": 7,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [],
+      "startups": [
+        "Gradescope (Turnitin)"
+      ],
+      "economic_signals": [
+        "Gradescope (Turnitin): AI Grading Market Leader, Weak in K-12",
+        "School Procurement: 18-Month Sales Cycle, 7 Stakeholders",
+        "EdTech Funding Collapse: 73% Drop Since 2021 Peak",
+        "School Procurement: Average 18-Month Sales Cycle, 7 Stakeholders"
+      ],
+      "items": [
+        {
+          "id": "econ_7d4462a0",
+          "type": "economic_signal",
+          "title": "Gradescope (Turnitin): AI Grading Market Leader, Weak in K-12"
+        },
+        {
+          "id": "econ_8f473713",
+          "type": "economic_signal",
+          "title": "School Procurement: 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "econ_9d55334f",
+          "type": "economic_signal",
+          "title": "EdTech Funding Collapse: 73% Drop Since 2021 Peak"
+        },
+        {
+          "id": "econ_c3597dbc",
+          "type": "economic_signal",
+          "title": "School Procurement: Average 18-Month Sales Cycle, 7 Stakeholders"
+        },
+        {
+          "id": "startup_gradescope",
+          "type": "startup",
+          "title": "Gradescope (Turnitin)"
+        }
+      ]
+    },
+    "id": "opp_3db99c78"
+  },
+  {
+    "problem": "Universities face widespread cheating due to AI tools like ChatGPT.",
+    "technology": "AI-powered plagiarism detection systems with real-time monitoring",
+    "problem_node": "node_problem_academic_integrity",
+    "technology_node": "node_technology_instructors",
+    "commercial_anchor": null,
+    "anchor_type": null,
+    "evidence_ids": [
+      "econ_8ab35e19",
+      "startup_turnitin_ai",
+      "patent_us20180181889a1",
+      "econ_671aa0ff",
+      "patent_us20200348991a1"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 1.6,
+    "commercially_grounded": false,
+    "title": "AI-Driven Academic Integrity Solutions",
+    "market": "Post-secondary education institutions (University IT Directors)",
+    "timing_signal": "89% of universities updated policies in 2024 following ChatGPT's academic impact",
+    "reasoning": "ChatGPT's rise created an urgent need for AI detection tools. Patents and startups show existing solutions, but universities require better systems. The 2024 policy updates create immediate demand for commercial solutions.",
+    "existing_competitors": [
+      "Turnitin",
+      "Grammarly"
+    ],
+    "evidence_summary": [
+      "89% universities updated policies post-ChatGPT adoption",
+      "Patents for AI-based academic integrity monitoring",
+      "Turnitin's AI writing detection startup activity"
+    ],
+    "buyer": "University IT Directors",
+    "regulation": "",
+    "economic_signal": "ChatGPT Academic Integrity Crisis: 89% policy updates 2024",
+    "novelty_score": 4,
+    "timing_score": 9,
+    "market_score": 7,
+    "feasibility": 5,
+    "confidence_score": 7,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "Detecting academic dishonesty in online learning environments",
+        "Real-time formative assessment using machine learning"
+      ],
+      "startups": [
+        "Turnitin AI Writing Detection"
+      ],
+      "economic_signals": [
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024",
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+      ],
+      "items": [
+        {
+          "id": "econ_671aa0ff",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024"
+        },
+        {
+          "id": "econ_8ab35e19",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+        },
+        {
+          "id": "patent_us20180181889a1",
+          "type": "patent",
+          "title": "Detecting academic dishonesty in online learning environments"
+        },
+        {
+          "id": "patent_us20200348991a1",
+          "type": "patent",
+          "title": "Real-time formative assessment using machine learning"
+        },
+        {
+          "id": "startup_turnitin_ai",
+          "type": "startup",
+          "title": "Turnitin AI Writing Detection"
+        }
+      ]
+    },
+    "id": "opp_bd4bcaa9"
+  },
+  {
+    "problem": "Academic dishonesty in online education environments",
+    "technology": "AI-driven detection systems and adaptive learning platforms",
+    "problem_node": "node_problem_academic_integrity",
+    "technology_node": "node_technology_outcome_improved_test_scores",
+    "commercial_anchor": null,
+    "anchor_type": null,
+    "evidence_ids": [
+      "econ_8ab35e19",
+      "startup_turnitin_ai",
+      "patent_us20180181889a1",
+      "patent_us9584590b2",
+      "startup_quizlet_qchat",
+      "startup_duolingo_max",
+      "econ_671aa0ff",
+      "patent_wo2024238370a2"
+    ],
+    "evidence_types": [
+      "economic_signal",
+      "patent",
+      "startup"
+    ],
+    "score": 1.55,
+    "commercially_grounded": false,
+    "title": "AI Tools for Academic Integrity in Universities",
+    "market": "Universities with IT procurement departments",
+    "timing_signal": "89% of universities updated policies in 2024 due to ChatGPT misuse",
+    "reasoning": "Universities face acute academic integrity crises from AI tools like ChatGPT. AI detection systems and adaptive learning platforms directly address dishonesty while improving outcomes. The 2024 policy updates create urgent demand for commercial solutions.",
+    "existing_competitors": [
+      "Turnitin AI Writing Detection",
+      "Duolingo Max",
+      "Quizlet Q-Chat"
+    ],
+    "evidence_summary": [
+      "89% universities updated policies post-ChatGPT adoption (2024)",
+      "Patents for academic dishonesty detection in online learning",
+      "AI-driven personalized learning platform patents filed 2024"
+    ],
+    "buyer": "University IT Departments",
+    "regulation": "",
+    "economic_signal": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024",
+    "novelty_score": 8,
+    "timing_score": 9,
+    "market_score": 8,
+    "feasibility": 7,
+    "confidence_score": 8,
+    "evidence_detail": {
+      "papers": [],
+      "patents": [
+        "Detecting academic dishonesty in online learning environments",
+        "Systems and methods for determining student proficiency",
+        "Adaptive and scalable AI-driven personalized learning platform"
+      ],
+      "startups": [
+        "Duolingo Max",
+        "Quizlet Q-Chat",
+        "Turnitin AI Writing Detection"
+      ],
+      "economic_signals": [
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024",
+        "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+      ],
+      "items": [
+        {
+          "id": "econ_671aa0ff",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies 2024"
+        },
+        {
+          "id": "econ_8ab35e19",
+          "type": "economic_signal",
+          "title": "ChatGPT Academic Integrity Crisis: 89% of Universities Updated Policies"
+        },
+        {
+          "id": "patent_us20180181889a1",
+          "type": "patent",
+          "title": "Detecting academic dishonesty in online learning environments"
+        },
+        {
+          "id": "patent_us9584590b2",
+          "type": "patent",
+          "title": "Systems and methods for determining student proficiency"
+        },
+        {
+          "id": "patent_wo2024238370a2",
+          "type": "patent",
+          "title": "Adaptive and scalable AI-driven personalized learning platform"
+        },
+        {
+          "id": "startup_duolingo_max",
+          "type": "startup",
+          "title": "Duolingo Max"
+        },
+        {
+          "id": "startup_quizlet_qchat",
+          "type": "startup",
+          "title": "Quizlet Q-Chat"
+        },
+        {
+          "id": "startup_turnitin_ai",
+          "type": "startup",
+          "title": "Turnitin AI Writing Detection"
+        }
+      ]
+    },
+    "id": "opp_19e50455"
+  }
+]

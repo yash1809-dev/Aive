@@ -1,0 +1,43 @@
+{
+  "packs": [
+    {
+      "pack_id": "crossdoc_001",
+      "sources": {
+        "paper_a": {
+          "id": "local_llms_001",
+          "type": "paper",
+          "title": "Efficient On-Device Inference with Quantized Large Language Models",
+          "summary": "Recent advances in 4-bit quantization (GGUF/llama.cpp) allow 7B-13B parameter LLMs to run on consumer CPUs and mobile devices with minimal accuracy loss. Offline inference is now feasible on a standard laptop without GPU hardware.",
+          "key_insight": "LLMs can run fully offline on a teacher's laptop using 4-bit quantization with no cloud dependency.",
+          "keywords": ["local LLM", "quantization", "offline inference", "llama.cpp", "on-device AI", "privacy"]
+        },
+        "paper_b": {
+          "id": "teacher_workload_001",
+          "type": "paper",
+          "title": "Teacher Time Allocation and Burnout: A Multi-Country Study",
+          "summary": "Teachers spend 50-60% of their working hours on administrative tasks including grading, attendance tracking, and lesson planning rather than direct student instruction. This administrative burden correlates strongly with burnout rates and reduced teaching quality.",
+          "key_insight": "Teachers spend more than half their time on administrative work, leaving less than half for actual teaching.",
+          "keywords": ["teacher workload", "administrative burden", "burnout", "grading automation", "education efficiency"]
+        },
+        "patent_c": {
+          "id": "knowledge_tracing_pat_001",
+          "type": "patent",
+          "title": "Adaptive Knowledge State Estimation System Using Bayesian Inference",
+          "summary": "A patented system that tracks student knowledge state across skill nodes using Bayesian inference over sequences of question-response pairs. The system identifies knowledge gaps and recommends the next optimal question to maximise learning efficiency.",
+          "key_insight": "Bayesian knowledge tracing can identify exactly which concept a student doesn't understand and prescribe the next question.",
+          "keywords": ["knowledge tracing", "Bayesian inference", "adaptive learning", "knowledge gaps", "question recommendation"]
+        },
+        "startup_d": {
+          "id": "assessment_startup_001",
+          "type": "startup",
+          "title": "QuizAI — Cloud-Based AI Assessment Platform",
+          "summary": "A venture-backed startup building cloud-based AI quiz and formative assessment tools for K-12 classrooms. The platform requires persistent internet connectivity and transmits student response data to external servers, raising FERPA compliance concerns for US schools.",
+          "key_insight": "Existing AI assessment tools are cloud-only and create student data privacy risks that block adoption in privacy-conscious districts.",
+          "keywords": ["assessment software", "formative assessment", "AI quiz", "cloud dependency", "FERPA", "student data privacy"]
+        }
+      },
+      "human_panel_baseline": "An offline, privacy-preserving Socratic tutoring system that runs entirely on the teacher's local device using a quantized LLM. It uses knowledge tracing to identify individual student gaps in real-time during class, auto-generates adaptive follow-up questions, and produces grading summaries automatically — freeing at least 30% of teacher administrative time without requiring cloud connectivity or sharing student data with any external server. This is non-obvious because it requires synthesising four independent insights: (1) LLMs now run offline, (2) teachers are drowning in admin work, (3) knowledge tracing can prescribe the next question, and (4) privacy concerns are blocking cloud-based tools.",
+      "non_obvious_threshold": 7.0
+    }
+  ]
+}

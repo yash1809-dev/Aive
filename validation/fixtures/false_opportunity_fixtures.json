@@ -1,0 +1,49 @@
+{
+  "combos": [
+    {
+      "combo_id": "false_001",
+      "combo": "Blockchain Attendance Platform",
+      "technology": "Blockchain",
+      "problem": "Teacher attendance tracking in K-12 schools",
+      "market": "K-12 schools",
+      "why_nonsense": "Blockchain adds no value over a simple database for attendance tracking. Immutability and decentralization are irrelevant properties for daily attendance records. Schools have a single trusted authority (the district) making decentralization pointless, and the added complexity and cost far outweigh any benefit.",
+      "expected_verdict": "rejected"
+    },
+    {
+      "combo_id": "false_002",
+      "combo": "NFT Student Certificates",
+      "technology": "NFTs (Non-Fungible Tokens)",
+      "problem": "Verifying academic credentials",
+      "market": "Universities and employers",
+      "why_nonsense": "NFTs add no verifiable trust over existing digitally-signed PDF certificates or blockchain-anchored credential systems like Blockcerts. NFT ownership can be transferred, making them inappropriate for non-transferable credentials. Market volatility and wallet management create unnecessary complexity for institutions.",
+      "expected_verdict": "rejected"
+    },
+    {
+      "combo_id": "false_003",
+      "combo": "Metaverse Classroom for Rural Students",
+      "technology": "VR Metaverse / High-bandwidth streaming",
+      "problem": "Poor educational access in rural and underserved communities",
+      "market": "Rural schools with limited internet connectivity",
+      "why_nonsense": "VR metaverse classrooms require high-bandwidth, low-latency internet connections — the exact resource that rural underserved communities lack. The proposed technology directly contradicts the problem it claims to solve. This is a category error.",
+      "expected_verdict": "rejected"
+    },
+    {
+      "combo_id": "false_004",
+      "combo": "Cryptocurrency Rewards for Student Motivation",
+      "technology": "Cryptocurrency / token incentives",
+      "problem": "Low student motivation in elementary schools",
+      "market": "K-8 elementary students",
+      "why_nonsense": "Cryptocurrency is legally prohibited for minors in most jurisdictions. Schools face strict fiduciary and child protection regulations that make token economies with real monetary value illegal. Even ignoring legality, research shows extrinsic financial rewards undermine intrinsic learning motivation in children.",
+      "expected_verdict": "rejected"
+    },
+    {
+      "combo_id": "false_005",
+      "combo": "Web3 DAO for School Governance",
+      "technology": "Decentralized Autonomous Organization (DAO)",
+      "problem": "Lack of community voice in public school decision-making",
+      "market": "Public K-12 school districts",
+      "why_nonsense": "Public schools operate under mandatory legal frameworks (state education codes, federal regulations, elected school boards) that are fundamentally incompatible with DAO governance. Educational decisions affecting children cannot be made by anonymous token-weighted votes. The legal liability and accountability structures required for public education cannot be replaced by smart contracts.",
+      "expected_verdict": "rejected"
+    }
+  ]
+}

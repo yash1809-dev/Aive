@@ -1,0 +1,73 @@
+{
+  "easy": [
+    {
+      "item_id": "t1_easy_001",
+      "item_type": "paper",
+      "difficulty": "easy",
+      "expected_problem": "Fine-tuning large language models is prohibitively expensive because it requires updating all model parameters, which demands enormous GPU memory and compute resources that are inaccessible to most researchers and practitioners.",
+      "expected_technology": "Low-rank decomposition matrices injected into the attention layers of a Transformer; only the small adapter matrices are trained while the original pretrained weights remain frozen, dramatically reducing trainable parameters.",
+      "expected_keywords": [
+        "LoRA",
+        "low-rank adaptation",
+        "parameter-efficient fine-tuning",
+        "large language models",
+        "attention layers",
+        "adapter",
+        "rank decomposition"
+      ],
+      "source_sentences": [
+        "We propose Low-Rank Adaptation, or LoRA, which freezes the pretrained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture.",
+        "LoRA reduces the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times compared to GPT-3 fine-tuned with Adam."
+      ],
+      "raw_text": "An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full fine-tuning, which retrains all model parameters, becomes less feasible. Using GPT-3 175B as an example — deploying independent instances of fine-tuned models, each with 175B parameters, is prohibitively expensive. We propose Low-Rank Adaptation, or LoRA, which freezes the pretrained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks. Compared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times. LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and, unlike adapters, no additional inference latency. We also provide an empirical investigation into rank-deficiency in language model adaptation, which sheds light on the efficacy of our approach."
+    }
+  ],
+  "medium": [
+    {
+      "item_id": "t1_medium_001",
+      "item_type": "paper",
+      "difficulty": "medium",
+      "expected_problem": "Accurately modeling a student's knowledge state over time to predict future performance on new questions, given that existing approaches such as Bayesian Knowledge Tracing rely on hand-crafted features and fail to capture complex latent knowledge dynamics.",
+      "expected_technology": "Recurrent neural networks, specifically LSTMs, applied to sequences of student interaction data (question, correctness pairs) to model a latent continuous knowledge state and predict the probability of correctly answering future questions.",
+      "expected_keywords": [
+        "knowledge tracing",
+        "deep learning",
+        "LSTM",
+        "student modeling",
+        "educational data mining",
+        "sequential prediction",
+        "Bayesian Knowledge Tracing"
+      ],
+      "source_sentences": [
+        "We introduce Deep Knowledge Tracing (DKT), a model that uses recurrent neural networks to model student knowledge.",
+        "Our model takes a sequence of student responses as input and outputs the probability of correctly answering each concept at each time step."
+      ],
+      "raw_text": "Knowledge tracing is the task of modeling student knowledge over time so that we can accurately predict how students will perform on future interactions. Existing methods such as Bayesian Knowledge Tracing (BKT) assume a simple binary latent knowledge state and rely on hand-engineered features, limiting their capacity to capture the richness of student learning dynamics. We introduce Deep Knowledge Tracing (DKT), a model that uses recurrent neural networks to model student knowledge. Our model takes a sequence of student responses as input and outputs the probability of correctly answering each concept at each time step. Unlike classical methods, DKT requires no feature engineering and can capture complex temporal dependencies across skills. We evaluate our approach on two large-scale real-world datasets and demonstrate that DKT outperforms existing methods by a significant margin. Furthermore, we show that the learned knowledge state representations are interpretable and reveal meaningful structure in student learning trajectories. Our results suggest that deep learning models can substantially improve the accuracy of knowledge tracing systems, with direct implications for personalised tutoring and adaptive learning platforms."
+    }
+  ],
+  "hard": [
+    {
+      "item_id": "t1_hard_001",
+      "item_type": "paper",
+      "difficulty": "hard",
+      "expected_problem": "Large language models trained on next-token prediction are misaligned with user intent; even technically fluent models can produce outputs that are harmful, untruthful, or unhelpful, because the training objective does not capture what humans actually want from a language model assistant.",
+      "expected_technology": "A three-stage pipeline: (1) supervised fine-tuning on human-written demonstrations, (2) a reward model trained from human preference comparisons between model outputs, and (3) PPO reinforcement learning that optimises the policy against the reward model signal while applying a KL-divergence penalty to prevent excessive divergence from the original supervised model.",
+      "expected_keywords": [
+        "RLHF",
+        "reinforcement learning from human feedback",
+        "instruction following",
+        "alignment",
+        "reward model",
+        "PPO",
+        "human preferences",
+        "InstructGPT",
+        "constitutional AI"
+      ],
+      "source_sentences": [
+        "We train a reward model (RM) on human-labeled comparison data, then use this reward model as the scalar reward in a reinforcement learning algorithm.",
+        "InstructGPT models show improvements in truthfulness and reductions in toxic outputs while maintaining performance on public NLP datasets."
+      ],
+      "raw_text": "Making language models bigger does not inherently make them better at following a user's intent. Large models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts, we collect a dataset of human-written demonstrations of the desired model behavior and use this to fine-tune GPT-3 using supervised learning. We then collect a dataset of human-labeled comparisons between model outputs and train a reward model (RM) on this data. We train a reward model (RM) on human-labeled comparison data, then use this reward model as the scalar reward in a reinforcement learning algorithm. We use this RM as a reward function and fine-tune the supervised learning baseline to maximise this reward using the PPO algorithm, with a KL penalty term to prevent excessive deviation. The resulting models, which we call InstructGPT, are preferred by human labelers over GPT-3 on a wide range of tasks. InstructGPT models show improvements in truthfulness and reductions in toxic outputs while maintaining performance on public NLP datasets, despite having 100x fewer parameters than GPT-3."
+    }
+  ]
+}
