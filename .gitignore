@@ -1,1 +1,25 @@
+# Environment
 .env
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# SQLite databases (workspace files — generated at runtime)
+data/aive_ws_*.db
+data/concept_cache.json
+data/exports/
+
+# Reports (generated at runtime — not source code)
+# reports/  ← keep reports tracked so pipeline output is versioned
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
