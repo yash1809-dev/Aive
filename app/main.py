@@ -857,13 +857,29 @@ def copilot():
             )
             conn.commit()
 
+            # Auto-generate updated report including the new opportunity/rejected idea
+            import os as _os
+            _report_env = dict(_os.environ, AIVE_ACTIVE_WORKSPACE=ACTIVE_WORKSPACE_ID)
+            _now_str = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+            _report_file = f"aive_portfolio_{_now_str}.md"
+            try:
+                subprocess.Popen(
+                    [sys.executable, "scripts/run_report.py", _report_file],
+                    cwd=str(ROOT), env=_report_env,
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+                )
+                report_note = f"\n- **Report:** Saved as `{_report_file}` in Reports section."
+            except Exception:
+                report_note = ""
+
             status_text = "🎉 **Survived Critic Check!**" if critic_verdict == "survived" else "❌ **Rejected by Critic.**"
             reply_text = (
                 f"{status_text}\n\n"
                 f"I processed your concept **\"{opp_data.get('title')}\"** and added it to the workspace.\n\n"
                 f"- **Verdict:** {critic_verdict.capitalize()}\n"
                 f"- **Critic Summary:** {critic_summary}\n"
-                f"- **Confidence Score:** {metrics['confidence_score']}/10 ({metrics['validation_status']})\n\n"
+                f"- **Confidence Score:** {metrics['confidence_score']}/10 ({metrics['validation_status']})"
+                f"{report_note}\n\n"
                 f"It is now visible in the **{ 'Opportunities' if critic_verdict == 'survived' else 'Rejected Ideas' }** section on the Canvas."
             )
             return jsonify({"status": "success", "reply": reply_text})

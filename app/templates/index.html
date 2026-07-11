@@ -1538,7 +1538,23 @@
                 if (res.error) {
                     replyEl.innerHTML = `<span style="color: var(--neon-red); font-weight: 600;">Copilot Error:</span> ${res.error}`;
                 } else {
-                    replyEl.innerHTML = `<span style="color: var(--neon-purple); font-weight: 600;">Copilot:</span> ${res.reply}`;
+                    // Render markdown-style bold
+                    const formatted = (res.reply || '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                    replyEl.innerHTML = `<span style="color: var(--neon-purple); font-weight: 600;">Copilot:</span><br>${formatted}`;
+
+                    // If Copilot processed a new opportunity, auto-refresh canvas + reports
+                    const isOppResult = res.reply && (
+                        res.reply.includes('Critic Check') ||
+                        res.reply.includes('Rejected by Critic') ||
+                        res.reply.includes('visible in the')
+                    );
+                    if (isOppResult) {
+                        setTimeout(() => {
+                            loadGraphData();
+                            loadResearchBank();
+                            if (typeof loadReportsList === 'function') loadReportsList();
+                        }, 800);
+                    }
                 }
                 chatHistory.appendChild(replyEl);
                 chatHistory.scrollTop = chatHistory.scrollHeight;
