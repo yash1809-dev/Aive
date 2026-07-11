@@ -487,6 +487,8 @@ def _run_pipeline_thread():
 
         # Stage 2: Rebuild knowledge graph
         _pipeline_state["stage"] = "graph_build"
+        from utils.progress import write_progress
+        write_progress("graph_build", "Connecting concepts in graph", 0, 1)
         proc2 = subprocess.run(
             [sys.executable, "agents/graph_builder.py"],
             cwd=str(ROOT), timeout=1200, env=env,
@@ -494,10 +496,12 @@ def _run_pipeline_thread():
         )
         if proc2.returncode != 0:
             raise RuntimeError(f"graph_builder failed (exit {proc2.returncode}):\n{proc2.stderr}")
+
         # Stage 3: Opportunity discovery + novelty + critic + report
         # Run as subprocess so AIVE_ACTIVE_WORKSPACE is set BEFORE any
         # module-level DB_PATH constants are evaluated in the engine files.
         _pipeline_state["stage"] = "discovery"
+        write_progress("discovery", "Critic check & scoring candidates", 0, 1)
         proc = subprocess.run(
             [sys.executable, "scripts/run_orchestrator.py", "15"],
             cwd=str(ROOT), timeout=600, env=env,
@@ -505,16 +509,24 @@ def _run_pipeline_thread():
         )
         if proc.returncode == 0 and proc.stdout.strip():
             import json as _json
-            # Last non-empty line is the JSON summary
-            last_line = [l for l in proc.stdout.strip().splitlines() if l.strip()][-1]
-            try:
-                summary = _json.loads(last_line)
+            summary = None
+            for line in reversed(proc.stdout.strip().splitlines()):
+                line_str = line.strip()
+                if line_str.startswith("{") and line_str.endswith("}"):
+                    try:
+                        parsed = _json.loads(line_str)
+                        if "discovered" in parsed:
+                            summary = parsed
+                            break
+                    except Exception:
+                        continue
+            if summary:
                 _pipeline_state["last_result"] = {
                     "discovered": summary.get("discovered", 0),
                     "survived":   summary.get("survived", 0),
                     "rejected":   summary.get("rejected", 0),
                 }
-            except Exception:
+            else:
                 _pipeline_state["last_result"] = {"discovered": 0, "survived": 0, "rejected": 0}
         else:
             _pipeline_state["last_result"] = {"discovered": 0, "survived": 0, "rejected": 0}

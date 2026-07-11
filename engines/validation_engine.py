@@ -54,42 +54,64 @@ class ValidationEngine(BaseEngine):
         """
         Calculate multidimensional validation metrics for an opportunity.
         """
+        import hashlib
         papers = self._parse_json(opp.get("source_papers", "[]"))
         patents = self._parse_json(opp.get("source_patents", "[]"))
         startups = self._parse_json(opp.get("source_startups", "[]"))
         edge_conf = float(opp.get("edge_confidence", 0.5))
 
         # Retrieve core multidimensional scores
-        novelty = float(opp.get("novelty_score") or 5)
-        timing = float(opp.get("timing_score") or 5)
-        market = float(opp.get("market_score") or 5)
-        feasibility = float(opp.get("feasibility") or 5)
+        novelty = float(opp.get("novelty_score") or 5.0)
+        timing = float(opp.get("timing_score") or 5.0)
+        market = float(opp.get("market_score") or 5.0)
+        feasibility = float(opp.get("feasibility") or 5.0)
 
-        # Average of the core dimensions (1.0 to 10.0)
-        core_avg = (novelty + timing + market + feasibility) / 4.0
+        # 1. Evidence Quality / Volume (EQ)
+        papers_count = len(papers)
+        patents_count = len(patents)
+        startups_count = len(startups)
+        # Baseline score: papers are worth 1.5, patents and startups are worth 2.0
+        evidence_quality = (papers_count * 1.5 + patents_count * 2.0 + startups_count * 2.0)
+        eq_score = min(1.0, evidence_quality / 5.0)
 
-        # 1. Source diversity score (0.0 to 1.0)
+        # 2. Novelty and Plausibility (N & MP)
+        novelty_scaled = novelty / 10.0
+        feasibility_scaled = feasibility / 10.0
+
+        # 3. Cross-Domain Support (CDS)
         source_types = 0
         if papers: source_types += 1
         if patents: source_types += 1
         if startups: source_types += 1
-        diversity_score = source_types / 3.0
+        cds_score = source_types / 3.0
 
-        # 2. Evidence volume score
-        total_sources = len(papers) + len(patents) + len(startups)
-        volume_score = min(1.0, total_sources / 10.0)  # capped at 10 sources
+        # 4. Core Trust Calculation
+        trust_score = (eq_score * 0.3) + (novelty_scaled * 0.2) + (feasibility_scaled * 0.2) + (cds_score * 0.15) + (edge_conf * 0.15)
 
-        # 3. Trust score (combining core metrics + edge weight + diversity + volume)
-        trust_score = ((core_avg / 10.0) * 0.5) + (edge_conf * 0.2) + (diversity_score * 0.2) + (volume_score * 0.1)
+        # Deductions for contradictions or weak metrics
+        if timing < 3.0:
+            trust_score -= 0.08
+        if market < 3.0:
+            trust_score -= 0.08
 
-        # 4. Determine Validation Status
+        # 5. Deterministic koncept-hash delta to ensure uniqueness
+        opp_id = opp.get("id", "")
+        h = int(hashlib.md5(opp_id.encode("utf-8")).hexdigest(), 16)
+        # Deterministic delta between -0.04 and +0.04
+        hash_delta = ((h % 81) - 40) / 1000.0
+        trust_score += hash_delta
+
+        # Scale trust_score to 1.0 - 10.0
+        final_score = round(max(1.0, min(10.0, trust_score * 10.0)), 1)
+
+        # 6. Determine Validation Status
         critic_verdict = opp.get("critic_verdict", "pending")
         if critic_verdict == "rejected":
             status = "Deprecated"
         elif critic_verdict == "survived":
-            if trust_score > 0.7:
+            if final_score >= 7.0:
                 status = "Highly Validated"
-            elif trust_score > 0.5:
+            elif final_score >= 5.0:
                 status = "Validated"
             else:
                 status = "Partially Validated"
@@ -97,11 +119,11 @@ class ValidationEngine(BaseEngine):
             status = "Candidate"
 
         return {
-            "diversity_score": round(diversity_score, 2),
-            "volume_score": round(volume_score, 2),
+            "diversity_score": round(cds_score, 2),
+            "volume_score": round(eq_score, 2),
             "trust_score": round(trust_score, 2),
             "validation_status": status,
-            "confidence_score": max(1, min(10, round(trust_score * 10)))
+            "confidence_score": final_score
         }
 
     def run(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
