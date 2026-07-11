@@ -15,6 +15,7 @@ SCHEMA_PATH = Path(__file__).resolve().parent / "schema.sql"
 
 
 def init_db(db_path: Path = DB_PATH) -> Path:
+    """Initialize database with complete V2 schema including discoveries and contradictions tables."""
     db_path.parent.mkdir(parents=True, exist_ok=True)
     schema = SCHEMA_PATH.read_text(encoding="utf-8")
     with sqlite3.connect(db_path) as conn:

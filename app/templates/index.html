@@ -1,1677 +1,3094 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIVE Canvas OS — Advanced Discovery Workspace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root {
-            --bg-primary: #0a0d14;
-            --bg-secondary: #0f131c;
-            --bg-tertiary: #141924;
-            --bg-card: rgba(20, 25, 36, 0.8);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            
-            --neon-blue: #00d9ff;
-            --neon-purple: #bd00ff;
-            --neon-green: #39ff14;
-            --neon-red: #ff3860;
-            --neon-yellow: #ffb703;
-            
-            --accent-glow: rgba(0, 217, 255, 0.15);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIVE — Discovery Operating System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────── */
+    :root {
+      /* Surface */
+      --bg-0: #080b10;
+      --bg-1: #0d1017;
+      --bg-2: #111520;
+      --bg-3: #161b28;
+      --bg-hover: rgba(255,255,255,0.03);
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      /* Border */
+      --border-0: rgba(255,255,255,0.06);
+      --border-1: rgba(255,255,255,0.10);
+      --border-focus: rgba(214,163,79,0.5);
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+      /* Text */
+      --tx-0: #f0f2f5;
+      --tx-1: #8b95a8;
+      --tx-2: #4e5768;
+      --tx-mono: #7eb8d4;
 
-        /* Top Navigation Bar */
-        .topbar {
-            height: 56px;
-            background-color: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1.5rem;
-            z-index: 10;
-        }
+      /* Accent — discovery amber, the signature risk */
+      --amber: #d6a34f;
+      --amber-dim: rgba(214,163,79,0.12);
+      --amber-glow: rgba(214,163,79,0.25);
 
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
+      /* Semantic colors */
+      --clr-paper: #5b9cf6;
+      --clr-patent: #e8c458;
+      --clr-startup: #6ee7b7;
+      --clr-problem: #f87171;
+      --clr-opp: #c084fc;
+      --clr-tech: #60a5fa;
+      --clr-success: #4ade80;
+      --clr-warn: #fb923c;
+      --clr-error: #f87171;
 
-        .logo {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-        }
+      /* Sizing */
+      --topbar-h: 48px;
+      --actbar-w: 48px;
+      --sidebar-w: 232px;
+      --inspector-w: 296px;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+    }
 
-        .logo-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--neon-blue);
-            background: rgba(0, 217, 255, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .project-meta {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    html, body {
+      height: 100%;
+      background: var(--bg-0);
+      color: var(--tx-0);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
 
-        .project-meta span {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
+    /* ─── Scrollbar ──────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
-        .topbar-center {
-            display: flex;
-            gap: 0.5rem;
-        }
+    /* ─── Typography Helpers ─────────────────────────────────── */
+    .label-xs  { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); }
+    .label-sm  { font-size: 11px; font-weight: 500; color: var(--tx-1); }
+    .mono      { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--tx-mono); }
+    .truncate  { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .topbar-tab {
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    /* ─── App Shell ──────────────────────────────────────────── */
+    #app {
+      display: grid;
+      grid-template-rows: var(--topbar-h) 1fr;
+      grid-template-columns: var(--actbar-w) var(--sidebar-w) 1fr var(--inspector-w);
+      grid-template-areas:
+        "topbar topbar topbar topbar"
+        "actbar sidebar main inspector";
+      height: 100vh;
+    }
 
-        .topbar-tab.active, .topbar-tab:hover {
-            color: var(--text-primary);
-            background-color: var(--bg-tertiary);
-        }
+    /* ─── Topbar ─────────────────────────────────────────────── */
+    #topbar {
+      grid-area: topbar;
+      display: flex;
+      align-items: center;
+      background: var(--bg-1);
+      border-bottom: 1px solid var(--border-0);
+      padding: 0 12px 0 0;
+      gap: 0;
+      z-index: 20;
+    }
 
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+    .topbar-brand {
+      width: var(--actbar-w);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border-0);
+      height: 100%;
+      flex-shrink: 0;
+    }
 
-        .btn-pipeline {
-            background: linear-gradient(135deg, #00d9ff, #bd00ff);
-            border: none;
-            color: white;
-            padding: 0.45rem 1rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .brand-mark {
+      width: 22px;
+      height: 22px;
+      background: var(--amber);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--bg-0);
+      letter-spacing: -0.5px;
+    }
 
-        .btn-pipeline:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
-        }
+    .topbar-workspace {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      border-right: 1px solid var(--border-0);
+      height: 100%;
+    }
 
-        /* Workspace Main Layout */
-        .workspace-body {
-            display: flex;
-            flex-grow: 1;
-            height: calc(100vh - 56px);
-            overflow: hidden;
-            position: relative;
-        }
+    .workspace-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--tx-0);
+    }
 
-        /* Sidebar Left */
-        .sidebar-left {
-            width: 260px;
-            background-color: var(--bg-secondary);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            padding: 1.25rem 1rem;
-            gap: 1.25rem;
-            overflow-y: auto;
-        }
+    .workspace-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: var(--amber-dim);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
 
-        .sidebar-left::-webkit-scrollbar {
-            width: 4px;
-        }
-        .sidebar-left::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 2px;
-        }
+    .topbar-tabs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 0 12px;
+      flex: 1;
+    }
 
-        .section-title {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-secondary);
-            font-weight: 700;
-            margin-bottom: 0.6rem;
-            opacity: 0.6;
-        }
+    .topbar-tab {
+      padding: 5px 12px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--tx-1);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
 
-        .elements-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.4rem;
-        }
+    .topbar-tab:hover { background: var(--bg-hover); color: var(--tx-0); }
+    .topbar-tab.active { background: var(--bg-3); color: var(--tx-0); }
 
-        .element-btn {
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            padding: 0.45rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
 
-        .element-btn:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background-color: rgba(255, 255, 255, 0.02);
-        }
+    #health-badge {
+      font-size: 11px;
+      color: var(--tx-1);
+      cursor: help;
+      white-space: nowrap;
+    }
 
-        .element-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            display: inline-block;
-        }
+    /* ─── Activity Bar ───────────────────────────────────────── */
+    #actbar {
+      grid-area: actbar;
+      background: var(--bg-1);
+      border-right: 1px solid var(--border-0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 0;
+      gap: 2px;
+      z-index: 10;
+    }
 
-        /* Sidebar navigation links */
-        .side-nav {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
+    .act-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: var(--tx-2);
+      font-size: 15px;
+      transition: background 0.15s, color 0.15s;
+      border: none;
+      background: transparent;
+      position: relative;
+    }
 
-        .side-nav-link {
-            padding: 0.5rem 0.6rem;
-            border-radius: 6px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: all 0.15s;
-        }
+    .act-btn:hover { background: var(--bg-hover); color: var(--tx-1); }
 
-        .side-nav-link:hover, .side-nav-link.active {
-            background-color: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-        }
+    .act-btn.active {
+      color: var(--amber);
+      background: var(--amber-dim);
+    }
 
-        /* Research Bank List */
-        .research-bank-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            max-height: 320px;
-            overflow-y: auto;
-            padding-right: 4px;
-        }
+    .act-btn[data-tip]:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-3);
+      border: 1px solid var(--border-1);
+      color: var(--tx-0);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 100;
+    }
 
-        .research-bank-list::-webkit-scrollbar {
-            width: 3px;
-        }
-        .research-bank-list::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1.5px;
-        }
+    .act-spacer { flex: 1; }
 
-        .bank-item {
-            padding: 0.4rem 0.5rem;
-            border-radius: 4px;
-            background-color: transparent;
-            border: none;
-            font-size: 0.75rem;
-            cursor: pointer;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--text-secondary);
-            transition: background-color 0.15s, color 0.15s;
-            text-align: left;
-            width: 100%;
-        }
+    /* ─── Sidebar ────────────────────────────────────────────── */
+    #sidebar {
+      grid-area: sidebar;
+      background: var(--bg-1);
+      border-right: 1px solid var(--border-0);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-        .bank-item:hover {
-            background-color: rgba(255, 255, 255, 0.04);
-            color: var(--text-primary);
-        }
+    .sidebar-header {
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--border-0);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        /* Middle Area: Canvas & Bottom Panels */
-        .middle-pane {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-            background-color: var(--bg-primary);
-        }
+    .sidebar-section {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-0);
+    }
 
-        /* Infinite Canvas styling */
-        .canvas-container {
-            flex-grow: 1;
-            overflow: auto;
-            position: relative;
-            background-size: 24px 24px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            min-height: 500px;
-        }
+    .sidebar-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tx-2);
+      padding: 0 12px 6px;
+    }
 
-        /* Figma Floating Toolbar */
-        .floating-toolbar {
-            position: absolute;
-            top: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem;
-            border-radius: 10px;
-            display: flex;
-            gap: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 5;
-        }
+    .sidebar-scroll { flex: 1; overflow-y: auto; }
 
-        .toolbar-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      cursor: pointer;
+      color: var(--tx-1);
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 0;
+      transition: background 0.12s, color 0.12s;
+      user-select: none;
+    }
 
-        .toolbar-btn:hover, .toolbar-btn.active {
-            background-color: var(--bg-tertiary);
-            color: var(--neon-blue);
-        }
+    .nav-item:hover { background: var(--bg-hover); color: var(--tx-0); }
 
-        /* Draggable Node element on canvas */
-        .canvas-node {
-            position: absolute;
-            width: 240px;
-            background-color: var(--bg-card);
-            border: 1.5px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            cursor: move;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            z-index: 2;
-        }
+    .nav-item.active {
+      background: var(--amber-dim);
+      color: var(--amber);
+    }
 
-        .canvas-node:hover {
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
+    .nav-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
-        .node-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+    .nav-count {
+      margin-left: auto;
+      font-size: 10px;
+      color: var(--tx-2);
+      background: var(--bg-3);
+      padding: 1px 5px;
+      border-radius: 9px;
+    }
 
-        .node-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 0.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+    /* Research Bank */
+    .bank-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      cursor: pointer;
+      color: var(--tx-1);
+      font-size: 11px;
+      transition: background 0.12s, color 0.12s;
+    }
 
-        .node-desc {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
+    .bank-item:hover { background: var(--bg-hover); color: var(--tx-0); }
 
-        /* Node Types color codings */
-        .node-paper { border-color: var(--neon-blue); }
-        .node-paper .node-header { color: var(--neon-blue); }
-        .node-patent { border-color: var(--neon-yellow); }
-        .node-patent .node-header { color: var(--neon-yellow); }
-        .node-problem { border-color: var(--neon-red); }
-        .node-problem .node-header { color: var(--neon-red); }
-        .node-opportunity { border-color: var(--neon-purple); }
-        .node-opportunity .node-header { color: var(--neon-purple); }
-        .node-competitor { border-color: var(--neon-purple); }
-        .node-competitor .node-header { color: var(--neon-purple); }
+    .bank-item-icon { font-size: 10px; flex-shrink: 0; }
 
-        /* SVG Connections Overlay */
-        .canvas-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2000px;
-            height: 2000px;
-            pointer-events: none;
-            z-index: 1;
-        }
+    .bank-item-title { flex: 1; min-width: 0; }
 
-        /* Bottom Pane: Rich Document Editor */
-        .bottom-pane {
-            height: 240px;
-            background-color: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            overflow: hidden;
-        }
+    .bank-item-del {
+      display: none;
+      border: none;
+      background: none;
+      color: var(--clr-error);
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 1;
+      padding: 0 2px;
+    }
 
-        .editor-header {
-            width: 260px;
-            border-right: 1px solid var(--border-color);
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+    .bank-item:hover .bank-item-del { display: block; }
 
-        .editor-content {
-            flex-grow: 1;
-            padding: 1.25rem;
-            overflow-y: auto;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
+    /* ─── Main Area ──────────────────────────────────────────── */
+    #main {
+      grid-area: main;
+      background: var(--bg-0);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
 
-        /* Right Panel: Copilot, Simulation & Time Machine */
-        .right-pane {
-            width: 320px;
-            background-color: var(--bg-secondary);
-            border-left: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
+    /* Pipeline status banner */
+    #pipeline-status-bar {
+      display: none;
+      padding: 5px 16px;
+      font-size: 11px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border-0);
+      transition: background 0.3s;
+    }
 
-        .pane-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
-        }
+    /* ─── Professional Pipeline Progress Modal ─────────────── */
+    #pipeline-progress-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(8, 11, 16, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .pane-tab {
-            flex: 1;
-            text-align: center;
-            padding: 0.75rem 0;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-        }
+    #pipeline-progress-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border-1);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 640px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
 
-        .pane-tab.active {
-            color: var(--text-primary);
-            border-bottom-color: var(--neon-blue);
-        }
+    .progress-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
 
-        .pane-content {
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            flex-grow: 1;
-        }
+    .progress-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--amber-dim);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      animation: pulse-icon 2s ease-in-out infinite;
+    }
 
-        .copilot-card {
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1rem;
-            font-size: 0.8rem;
-            line-height: 1.4;
-        }
+    @keyframes pulse-icon {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.85; }
+    }
 
-        .copilot-input-container {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
+    .progress-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--tx-0);
+    }
 
-        .copilot-input {
-            flex-grow: 1;
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.5rem;
-            color: #fff;
-            font-size: 0.8rem;
-        }
+    .progress-subtitle {
+      font-size: 12px;
+      color: var(--tx-1);
+      margin-top: 2px;
+    }
 
-        /* Ingestion Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-        }
+    .progress-stages {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 8px;
+    }
 
-        .modal-content {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            width: 500px;
-            border-radius: 12px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+    .progress-stage {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Outfit';
-            font-size: 1.2rem;
-        }
+    .stage-marker {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 2px solid var(--border-0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px auto;
+      font-size: 14px;
+      color: var(--tx-2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        .modal-body {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
+    .progress-stage.active .stage-marker {
+      background: var(--amber-dim);
+      border-color: var(--amber);
+      color: var(--amber);
+      box-shadow: 0 0 20px var(--amber-glow);
+      animation: pulse-stage 1.5s ease-in-out infinite;
+    }
 
-        .modal-input {
-            width: 100%;
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            padding: 0.6rem;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 0.85rem;
-        }
+    .progress-stage.complete .stage-marker {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--bg-0);
+    }
 
-        .btn-modal {
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
+    @keyframes pulse-stage {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
 
-        .btn-submit {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            color: white;
-        }
+    .stage-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--tx-2);
+    }
 
-        .ingest-tab {
-            padding: 0.6rem 1rem;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.15s;
-        }
-        .ingest-tab.active {
-            color: var(--text-primary);
-            border-bottom-color: var(--neon-blue);
-        }
-        .ingest-tab:hover {
-            color: var(--text-primary);
-        }
-    </style>
+    .progress-stage.active .stage-label {
+      color: var(--amber);
+    }
+
+    .progress-stage.complete .stage-label {
+      color: var(--tx-1);
+    }
+
+    .progress-bar-container {
+      height: 8px;
+      background: var(--bg-3);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber) 0%, #f0a850 100%);
+      border-radius: 4px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .progress-details {
+      font-size: 12px;
+      color: var(--tx-1);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .progress-item-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--tx-mono);
+      background: var(--bg-3);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      margin-top: 8px;
+      max-height: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .progress-stat {
+      background: var(--bg-3);
+      padding: 12px;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .progress-stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tx-0);
+      display: block;
+    }
+
+    .progress-stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--tx-2);
+      margin-top: 4px;
+    }
+
+    .progress-close-btn {
+      display: none;
+      width: 100%;
+      padding: 10px;
+      background: var(--bg-3);
+      border: 1px solid var(--border-1);
+      border-radius: var(--radius-md);
+      color: var(--tx-0);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s;
+    }
+
+    .progress-close-btn:hover {
+      background: var(--bg-hover);
+    }
+
+    /* ─── Canvas view ────────────────────────────────────────── */
+    #view-canvas { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+
+    .canvas-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border-0);
+      background: var(--bg-1);
+    }
+
+    .canvas-toolbar-btn {
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--tx-1);
+      border: none;
+      background: transparent;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .canvas-toolbar-btn:hover { background: var(--bg-3); color: var(--tx-0); }
+    .canvas-toolbar-btn.active { background: var(--amber-dim); color: var(--amber); }
+
+    .canvas-toolbar-sep {
+      width: 1px; height: 16px;
+      background: var(--border-0);
+      margin: 0 4px;
+    }
+
+    .canvas-workspace {
+      flex: 1;
+      overflow: auto;
+      position: relative;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .canvas-svg {
+      position: absolute; top: 0; left: 0;
+      width: 2400px; height: 2400px;
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Knowledge Node Cards */
+    .k-node {
+      position: absolute;
+      width: 220px;
+      background: var(--bg-2);
+      border: 1px solid var(--border-0);
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      cursor: move;
+      z-index: 2;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+
+    .k-node:hover {
+      border-color: var(--border-1);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    .k-node.selected { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber-dim); }
+
+    .k-node-type {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+
+    .k-node-title {
+      font-size: 12px; font-weight: 600; line-height: 1.35; margin-bottom: 4px;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    .k-node-meta { font-size: 10px; color: var(--tx-1); line-height: 1.4; }
+
+    .k-node-score {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 10px; font-weight: 600;
+      color: var(--amber); margin-top: 6px;
+    }
+
+    /* Node type theming */
+    .k-node-paper   .k-node-type { color: var(--clr-paper); }
+    .k-node-patent  .k-node-type { color: var(--clr-patent); }
+    .k-node-startup .k-node-type { color: var(--clr-startup); }
+    .k-node-problem .k-node-type { color: var(--clr-problem); }
+    .k-node-opp              { border-color: rgba(192,132,252,0.3); }
+    .k-node-opp              .k-node-type { color: var(--clr-opp); }
+
+    /* Discovery node types */
+    .k-node-contradiction    { border-color: rgba(248,113,113,0.4); }
+    .k-node-contradiction    .k-node-type { color: var(--clr-error); }
+    .k-node-research_gap     { border-color: rgba(251,146,60,0.4); }
+    .k-node-research_gap     .k-node-type { color: var(--clr-warn); }
+    .k-node-method_transfer  { border-color: rgba(45,212,191,0.4); }
+    .k-node-method_transfer  .k-node-type { color: #2dd4bf; }
+
+    /* Insights tab charts */
+    .insights-chart-wrap { background: var(--bg-2); border-radius: var(--radius-md); padding: 10px; margin-bottom: 10px; }
+    .insights-chart-wrap canvas { max-height: 180px; }
+
+    /* Empty canvas state */
+    .canvas-empty {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; color: var(--tx-2); pointer-events: none;
+    }
+
+    .canvas-empty-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.4; }
+    .canvas-empty-title { font-size: 14px; font-weight: 500; color: var(--tx-1); margin-bottom: 6px; }
+    .canvas-empty-sub   { font-size: 12px; }
+
+    /* ─── Detail Pane (bottom split) ─────────────────────────── */
+    #detail-pane {
+      height: 200px;
+      background: var(--bg-1);
+      border-top: 1px solid var(--border-0);
+      display: flex;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .detail-nav {
+      width: 160px;
+      border-right: 1px solid var(--border-0);
+      padding: 10px 0;
+      flex-shrink: 0;
+      overflow-y: auto;
+    }
+
+    .detail-nav-item {
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--tx-1);
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .detail-nav-item:hover { background: var(--bg-hover); color: var(--tx-0); }
+    .detail-nav-item.active { color: var(--amber); background: var(--amber-dim); }
+
+    .detail-content {
+      flex: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--tx-0);
+    }
+
+    .detail-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--tx-0);
+    }
+
+    .detail-field { margin-bottom: 6px; }
+    .detail-field-label { color: var(--tx-1); font-weight: 500; margin-right: 4px; }
+    .detail-field-value { color: var(--tx-0); }
+
+    /* Score pills */
+    .score-pill {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 1px 7px; border-radius: 9px;
+      font-size: 10px; font-weight: 600;
+      background: var(--bg-3); color: var(--tx-1);
+      margin: 2px;
+    }
+
+    .score-pill.high { background: rgba(74,222,128,0.12); color: var(--clr-success); }
+    .score-pill.mid  { background: var(--amber-dim); color: var(--amber); }
+    .score-pill.low  { background: rgba(248,113,113,0.12); color: var(--clr-error); }
+
+    /* ─── Inspector (right panel) ────────────────────────────── */
+    #inspector {
+      grid-area: inspector;
+      background: var(--bg-1);
+      border-left: 1px solid var(--border-0);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .inspector-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-0);
+      flex-shrink: 0;
+    }
+
+    .inspector-tab {
+      flex: 1;
+      padding: 8px 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      color: var(--tx-1);
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .inspector-tab:hover { color: var(--tx-0); }
+    .inspector-tab.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+    .inspector-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 12px;
+      gap: 10px;
+    }
+
+    /* Copilot chat */
+    #copilot-chat {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .chat-msg {
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      font-size: 11px;
+      line-height: 1.5;
+      border: 1px solid var(--border-0);
+    }
+
+    .chat-msg-user {
+      background: var(--amber-dim);
+      border-color: rgba(214,163,79,0.2);
+      align-self: flex-end;
+      max-width: 90%;
+    }
+
+    .chat-msg-bot {
+      background: var(--bg-2);
+      align-self: flex-start;
+      max-width: 96%;
+    }
+
+    .chat-sender { font-weight: 600; font-size: 10px; margin-bottom: 3px; }
+    .chat-sender-user { color: var(--amber); }
+    .chat-sender-bot  { color: var(--clr-opp); }
+
+    .copilot-input-row {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    /* Insight cards inside copilot */
+    .insight-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border-0);
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .insight-card-title {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--tx-1); margin-bottom: 4px;
+    }
+
+    /* ─── Simulator & secondary views ───────────────────────── */
+    #view-simulator, #view-workspaces, #view-reports {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .view-title {
+      font-size: 16px; font-weight: 600;
+      margin-bottom: 16px; color: var(--tx-0);
+    }
+
+    /* ─── Shared Components ──────────────────────────────────── */
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px;
+      border: none; border-radius: var(--radius-md);
+      font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.4; cursor: default; }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--bg-0);
+    }
+
+    .btn-primary:hover { opacity: 0.9; }
+
+    .btn-ghost {
+      background: var(--bg-3);
+      color: var(--tx-0);
+      border: 1px solid var(--border-1);
+    }
+
+    .btn-ghost:hover { background: var(--bg-hover); border-color: var(--border-1); }
+
+    .btn-danger {
+      background: rgba(248,113,113,0.15);
+      color: var(--clr-error);
+      border: 1px solid rgba(248,113,113,0.25);
+    }
+
+    /* Inputs */
+    .input {
+      background: var(--bg-2);
+      border: 1px solid var(--border-1);
+      border-radius: var(--radius-md);
+      padding: 6px 10px;
+      color: var(--tx-0);
+      font-size: 12px;
+      font-family: inherit;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .input:focus { border-color: var(--border-focus); }
+    .input::placeholder { color: var(--tx-2); }
+
+    textarea.input { resize: vertical; line-height: 1.5; }
+
+    /* Tag badges */
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px; font-weight: 600;
+    }
+
+    .tag-paper   { background: rgba(91,156,246,0.12); color: var(--clr-paper); }
+    .tag-patent  { background: rgba(232,196,88,0.12); color: var(--clr-patent); }
+    .tag-startup { background: rgba(110,231,183,0.12); color: var(--clr-startup); }
+    .tag-done    { background: rgba(74,222,128,0.1);  color: var(--clr-success); }
+    .tag-pending { background: rgba(251,146,60,0.1);  color: var(--clr-warn); }
+    .tag-failed  { background: rgba(248,113,113,0.1); color: var(--clr-error); }
+
+    /* ─── Modal ──────────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--bg-2);
+      border: 1px solid var(--border-1);
+      border-radius: var(--radius-lg);
+      width: 560px;
+      max-width: 92vw;
+      max-height: 88vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid var(--border-0);
+    }
+
+    .modal-title { font-size: 13px; font-weight: 600; }
+
+    .modal-close {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm);
+      border: none; background: transparent;
+      color: var(--tx-1); font-size: 16px; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .modal-close:hover { background: var(--bg-3); color: var(--tx-0); }
+
+    .modal-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+    .modal-footer { padding: 10px 16px; border-top: 1px solid var(--border-0); display: flex; justify-content: flex-end; gap: 8px; }
+
+    /* Ingest tabs */
+    .ingest-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-0);
+      margin-bottom: 12px;
+    }
+
+    .ingest-tab {
+      padding: 6px 12px;
+      font-size: 11px; font-weight: 600;
+      color: var(--tx-1);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .ingest-tab:hover { color: var(--tx-0); }
+    .ingest-tab.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+    /* Drop zone */
+    .drop-zone {
+      border: 1.5px dashed var(--border-1);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--amber);
+      background: var(--amber-dim);
+    }
+
+    /* URL queue, file queue items */
+    .queue-item {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg-3);
+      border-radius: var(--radius-sm);
+      padding: 5px 8px;
+      font-size: 11px;
+    }
+
+    .queue-item-text { flex: 1; min-width: 0; color: var(--clr-paper); }
+    .queue-item-size { color: var(--tx-2); font-size: 10px; }
+
+    .queue-item-remove {
+      border: none; background: none;
+      color: var(--tx-2); cursor: pointer; font-size: 14px;
+      line-height: 1; padding: 0;
+      transition: color 0.12s;
+    }
+
+    .queue-item-remove:hover { color: var(--clr-error); }
+
+    /* Status message */
+    .status-msg {
+      font-size: 11px; min-height: 16px;
+      transition: color 0.2s;
+    }
+
+    /* ─── Workspace & Time Machine ───────────────────────────── */
+    .ws-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border-0);
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .ws-card:hover { border-color: var(--border-1); background: var(--bg-3); }
+    .ws-card.active { border-color: var(--amber); background: var(--amber-dim); }
+
+    .ws-card-header { display: flex; justify-content: space-between; align-items: center; }
+    .ws-card-name { font-size: 12px; font-weight: 600; }
+    .ws-active-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+
+    /* Report cards */
+    .report-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border-0);
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* ─── Grid helpers ───────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+    /* Stat counter boxes */
+    .stat-box {
+      background: var(--bg-2);
+      border: 1px solid var(--border-0);
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+    }
+
+    .stat-box-val { font-size: 22px; font-weight: 700; color: var(--tx-0); font-variant-numeric: tabular-nums; }
+    .stat-box-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); margin-top: 2px; }
+
+  </style>
 </head>
+
 <body>
+<div id="app">
 
-    <!-- Topbar Navigation -->
-    <div class="topbar">
-        <div class="topbar-left">
-            <div class="logo">AIVE CANVAS OS</div>
-            <div class="logo-tag">PRO</div>
-            <div class="project-meta">
-                Workspace: <span id="active-ws-name">Default Workspace</span>
-            </div>
-        </div>
-        <div class="topbar-center">
-            <div class="topbar-tab active" onclick="switchMainTab('canvas')">Canvas</div>
-            <div class="topbar-tab" onclick="switchMainTab('simulator')">Simulator</div>
-            <div class="topbar-tab" onclick="switchMainTab('workspaces')">Time Machine</div>
-            <div class="topbar-tab" onclick="switchMainTab('reports')">Reports</div>
-        </div>
-        <div class="topbar-right">
-            <span id="health-badge" style="font-size:0.72rem; color: var(--text-secondary); margin-right: 1rem; cursor: help;">● Checking…</span>
-            <button id="btn-pipeline-run" class="btn-pipeline" onclick="triggerPipelineRun()">Run Pipeline</button>
-        </div>
-    </div>
-    <!-- Pipeline Status Bar -->
-    <div id="pipeline-status-bar" style="display:none; padding: 0.35rem 1.2rem; font-size: 0.78rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); transition: all 0.3s;"></div>
-
-    <!-- Main Workspace Area -->
-    <div class="workspace-body">
-        
-        <!-- Left Sidebar -->
-        <div class="sidebar-left">
-            <div>
-                <div class="section-title">Elements</div>
-                <div class="elements-grid">
-                    <div class="element-btn" onclick="openIngestModal('paper')">
-                        <span class="element-dot" style="background: var(--neon-blue);"></span>
-                        Paper
-                    </div>
-                    <div class="element-btn" onclick="openIngestModal('patent')">
-                        <span class="element-dot" style="background: var(--neon-yellow);"></span>
-                        Patent
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="section-title">Navigation</div>
-                <ul class="side-nav">
-                    <li class="side-nav-link active" onclick="switchNav('opportunities')">💡 Opportunities</li>
-                    <li class="side-nav-link" onclick="switchNav('rejected')">❌ Rejected Ideas</li>
-                    <li class="side-nav-link" onclick="switchNav('papers')">📄 Ingested Library</li>
-                </ul>
-            </div>
-
-            <div>
-                <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>Research Bank</span>
-                    <button class="btn-pipeline" style="padding: 0.15rem 0.4rem; font-size: 0.65rem;" onclick="syncArxivPacks()">Sync Packs</button>
-                </div>
-                <div class="research-bank-list" id="research-bank-container">
-                    <!-- Loaded dynamically -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Middle Area (Canvas / Simulator / Workspaces) -->
-        <div class="middle-pane">
-            
-            <!-- Canvas Mode -->
-            <div id="view-canvas" style="display: block; width: 100%; height: 100%; position: relative;">
-                <div class="floating-toolbar">
-                    <button class="toolbar-btn active">🖐️</button>
-                    <button class="toolbar-btn">⚡</button>
-                    <button class="toolbar-btn">🔗</button>
-                    <button class="toolbar-btn">📝</button>
-                </div>
-                
-                <div class="canvas-container" id="canvas-workspace">
-                    <svg class="canvas-svg" id="canvas-connections-svg"></svg>
-                    <!-- Nodes loaded dynamically -->
-                </div>
-
-                <!-- Bottom Document Editor Pane -->
-                <div class="bottom-pane">
-                    <div class="editor-header">
-                        <div style="font-family: 'Outfit'; font-size: 1.1rem;" id="editor-node-title">Select Canvas Node</div>
-                        <div style="font-size: 0.75rem; color: var(--text-secondary);" id="editor-node-type">-</div>
-                    </div>
-                    <div class="editor-content" id="editor-node-content">
-                        Click on any node in the canvas or item in the Research Bank to preview full abstract/details.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Simulator Mode -->
-            <div id="view-simulator" style="display: none; padding: 2rem; overflow-y: auto; width: 100%; height: 100%;">
-                <h2 style="font-family: 'Outfit'; margin-bottom: 1.5rem;">Simulation Lab</h2>
-                <div style="max-width: 600px; background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px;">
-                    <canvas id="simulationChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Workspaces Mode -->
-            <div id="view-workspaces" style="display: none; padding: 2rem; overflow-y: auto; width: 100%; height: 100%;">
-                <h2 style="font-family: 'Outfit'; margin-bottom: 1rem;">Workspaces & Time Machine Checkpoints</h2>
-                <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
-                    <input type="text" id="new-ws-name" placeholder="New Workspace Name..." style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #fff; padding: 0.5rem; border-radius: 6px;">
-                    <button class="btn-pipeline" onclick="createWorkspace()">Create Workspace</button>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div>
-                        <div class="section-title">Active Workspaces</div>
-                        <div id="workspaces-list"></div>
-                    </div>
-                    <div>
-                        <div class="section-title">Historical Checkpoints</div>
-                        <button class="btn-pipeline" id="btn-save-checkpoint" style="width: 100%; margin-bottom: 1rem; display: none;" onclick="saveCheckpoint()">Create Snapshot Checkpoint</button>
-                        <div id="workspace-history-list"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reports Mode -->
-            <div id="view-reports" style="display: none; padding: 2rem; overflow-y: auto; width: 100%; height: 100%;">
-                <h2 style="font-family: 'Outfit'; margin-bottom: 1rem;">AIVE Opportunity Reports & Portfolios</h2>
-                <div style="display: flex; gap: 1rem; margin-bottom: 2rem; align-items: center;">
-                    <button class="btn-pipeline" onclick="generateUnifiedReport()">Generate Unified Report</button>
-                    <div id="report-gen-status" style="font-size: 0.82rem; color: var(--neon-green);"></div>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem;">
-                    <div>
-                        <div class="section-title">Saved Opportunity Reports</div>
-                        <div id="reports-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
-                            <p style="color: var(--text-secondary);">No reports generated yet. Click above to compile all surviving evidence into a publication-ready portfolio.</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="section-title" id="report-preview-title">Report Preview</div>
-                        <div id="report-preview-content" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; min-height: 450px; max-height: 650px; overflow-y: auto; color: var(--text-primary); font-family: 'Outfit', sans-serif; line-height: 1.6; font-size: 0.9rem;">
-                            Select a report from the list to preview its contents.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Right Sidebar (Copilot / Chat) -->
-        <div class="right-pane">
-            <div class="pane-tabs">
-                <div class="pane-tab active">AIVE Copilot</div>
-            </div>
-            <div class="pane-content">
-                <div class="copilot-card">
-                    <strong>Current Synthesis Insights:</strong>
-                    <p style="margin-top: 0.5rem;" id="copilot-status">Loading active discovery signals...</p>
-                </div>
-                <div class="copilot-card" style="background-color: rgba(0, 217, 255, 0.05); border-color: rgba(0, 217, 255, 0.2);">
-                    <strong>Contradictions Alert</strong>
-                    <p style="margin-top: 0.5rem;">None detected currently. All graph edges are semantically verified.</p>
-                </div>
-
-                <!-- Chat history area -->
-                <div id="copilot-chat-history" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; padding-right: 0.25rem; font-size: 0.82rem; max-height: 380px;">
-                    <div style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);">
-                        <span style="color: var(--neon-blue); font-weight: 600;">Copilot:</span> Hello! Ask me anything about the ingested research, opportunities, or concepts in the graph.
-                    </div>
-                </div>
-
-                <div class="copilot-input-container">
-                    <input type="text" id="copilot-text-input" class="copilot-input" placeholder="Ask Copilot about research..." onkeydown="if(event.key === 'Enter') sendCopilotMessage()">
-                    <button class="btn-pipeline" style="padding: 0.5rem;" onclick="sendCopilotMessage()">Send</button>
-                </div>
-            </div>
-        </div>
-
+  <!-- ── Topbar ──────────────────────────────────────────────── -->
+  <header id="topbar">
+    <div class="topbar-brand">
+      <div class="brand-mark">A</div>
     </div>
 
-    <!-- Source Ingestion Panel (NotebookLM-style) -->
-    <div class="modal" id="ingest-modal">
-        <div class="modal-content" style="width: 640px; max-height: 85vh; overflow-y: auto;">
-
-            <!-- Header -->
-            <div class="modal-header">
-                <div style="font-family: 'Outfit'; font-size: 1.1rem; font-weight: 600;">Add Sources to AIVE</div>
-                <div style="cursor: pointer; font-size: 1.3rem; color: var(--text-secondary);" onclick="closeIngestModal()">&times;</div>
-            </div>
-
-            <!-- Source tabs -->
-            <div style="display: flex; gap: 0; border-bottom: 1px solid var(--border-color); margin-bottom: 1.25rem;">
-                <div class="ingest-tab active" id="itab-url" onclick="switchIngestTab('url')">🔗 URL</div>
-                <div class="ingest-tab" id="itab-pdf" onclick="switchIngestTab('pdf')">📄 PDF / File</div>
-                <div class="ingest-tab" id="itab-text" onclick="switchIngestTab('text')">✏️ Paste Text</div>
-            </div>
-
-            <!-- URL Tab -->
-            <div id="ingest-panel-url">
-                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Paste any URL — AIVE automatically fetches and extracts the full page content.</p>
-                <div id="url-list" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;"></div>
-                <div style="display: flex; gap: 0.5rem;">
-                    <input type="text" id="url-input" class="modal-input" style="flex-grow: 1;" placeholder="https://arxiv.org/abs/... or any article URL">
-                    <button class="btn-modal btn-submit" onclick="addUrlToQueue()" style="white-space: nowrap;">Add URL</button>
-                </div>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">You can add multiple URLs.</p>
-            </div>
-
-            <!-- PDF Tab -->
-            <div id="ingest-panel-pdf" style="display: none;">
-                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Upload one or more PDF or TXT files. AIVE extracts text automatically.</p>
-                <div id="pdf-drop-zone" style="border: 2px dashed var(--border-color); border-radius: 10px; padding: 2.5rem; text-align: center; cursor: pointer; transition: border-color 0.2s;" onclick="document.getElementById('pdf-file-input').click()" ondragover="event.preventDefault(); this.style.borderColor='var(--neon-blue)'" ondragleave="this.style.borderColor='var(--border-color)'" ondrop="handleFileDrop(event)">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📂</div>
-                    <div style="font-weight: 600; margin-bottom: 0.25rem;">Drop files here or click to browse</div>
-                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Supports PDF and TXT — up to 64MB total</div>
-                    <input type="file" id="pdf-file-input" multiple accept=".pdf,.txt" style="display: none;" onchange="handleFileSelect(this.files)">
-                </div>
-                <div id="pdf-file-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.4rem;"></div>
-            </div>
-
-            <!-- Text Tab -->
-            <div id="ingest-panel-text" style="display: none;">
-                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Paste any abstract, paper excerpt, or research notes directly.</p>
-                <input type="text" id="ingest-title" class="modal-input" placeholder="Title (e.g. 'RASC+ Clinical Value Set Authoring')" style="margin-bottom: 0.6rem;">
-                <textarea id="ingest-text" class="modal-input" rows="9" placeholder="Paste the full abstract, methodology, results or any text here..."></textarea>
-            </div>
-
-            <!-- Status message -->
-            <div id="ingest-status" style="margin-top: 0.75rem; font-size: 0.82rem; min-height: 1.2rem;"></div>
-
-            <!-- Actions -->
-            <div style="display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1rem;">
-                <button class="btn-modal" onclick="closeIngestModal()" style="background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);">Cancel</button>
-                <button class="btn-modal btn-submit" id="btn-ingest-submit" onclick="submitAllSources()">Ingest &amp; Sync</button>
-            </div>
-        </div>
+    <div class="topbar-workspace">
+      <span class="workspace-label" id="active-ws-name">Default Workspace</span>
+      <span class="workspace-badge">Discovery OS</span>
     </div>
 
-    <script>
-        let currentTab = 'opportunities';
-        let activeWorkspaceId = null;
-        let selectedIngestType = 'paper';
+    <nav class="topbar-tabs">
+      <div class="topbar-tab active" onclick="switchMainView('canvas', this)">Canvas</div>
+      <div class="topbar-tab" onclick="switchMainView('simulator', this)">Simulator</div>
+      <div class="topbar-tab" onclick="switchMainView('workspaces', this)">Time Machine</div>
+      <div class="topbar-tab" onclick="switchMainView('reports', this)">Reports</div>
+      <div class="topbar-tab" onclick="switchMainView('paper-builder', this)">Paper Builder</div>
+    </nav>
 
-        function switchMainTab(tab) {
-            document.querySelectorAll('.topbar-tab').forEach(t => t.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+    <div class="topbar-right">
+      <span id="health-badge">● Checking…</span>
+      <button id="btn-pipeline-run" class="btn btn-primary" onclick="triggerPipelineRun()">
+        ▶ Run Pipeline
+      </button>
+    </div>
+  </header>
 
-            document.getElementById('view-canvas').style.display = tab === 'canvas' ? 'block' : 'none';
-            document.getElementById('view-simulator').style.display = tab === 'simulator' ? 'block' : 'none';
-            document.getElementById('view-workspaces').style.display = tab === 'workspaces' ? 'block' : 'none';
-            document.getElementById('view-reports').style.display = tab === 'reports' ? 'block' : 'none';
+  <!-- ── Activity Bar ────────────────────────────────────────── -->
+  <aside id="actbar">
+    <button class="act-btn active" data-tip="Discovery" onclick="setActSection('discovery')">💡</button>
+    <button class="act-btn" data-tip="Knowledge" onclick="setActSection('knowledge')">🕸</button>
+    <button class="act-btn" data-tip="Research Bank" onclick="setActSection('bank')">📚</button>
+    <button class="act-btn" data-tip="Add Sources" onclick="openIngestModal('paper')">＋</button>
+    <div class="act-spacer"></div>
+    <button class="act-btn" data-tip="System Health" onclick="checkSystemHealth()">⚙</button>
+  </aside>
 
-            if (tab === 'workspaces') loadWorkspaces();
-            if (tab === 'simulator') loadSimulationChart();
-            if (tab === 'reports') loadReportsList();
+  <!-- ── Sidebar ─────────────────────────────────────────────── -->
+  <nav id="sidebar">
+    <!-- Discovery section (default) -->
+    <div id="sidebar-discovery" style="display:flex; flex-direction:column; height:100%; overflow:hidden;">
+      <div class="sidebar-header">
+        <span class="label-xs">Discovery</span>
+        <button class="btn btn-ghost" style="padding:2px 8px;font-size:10px;" onclick="openIngestModal('paper')">+ Add</button>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Views</div>
+        <div class="nav-item active" onclick="switchNav('opportunities', this)">
+          <span class="nav-dot" style="background:var(--clr-opp)"></span>
+          Opportunities
+          <span class="nav-count" id="count-opp">—</span>
+        </div>
+        <div class="nav-item" onclick="switchNav('rejected', this)">
+          <span class="nav-dot" style="background:var(--clr-problem)"></span>
+          Rejected
+          <span class="nav-count" id="count-rej">—</span>
+        </div>
+        <div class="nav-item" onclick="switchNav('papers', this)">
+          <span class="nav-dot" style="background:var(--clr-paper)"></span>
+          Library
+          <span class="nav-count" id="count-papers">—</span>
+        </div>
+        <div class="nav-item" onclick="switchNav('discoveries', this)">
+          <span class="nav-dot" style="background:#fb923c"></span>
+          Discoveries
+          <span class="nav-count" id="count-disc">—</span>
+        </div>
+      </div>
+      <div class="sidebar-section" style="flex:1; display:flex; flex-direction:column; border:none; padding:0; overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px 6px;">
+          <span class="sidebar-section-label" style="padding:0;">Research Bank</span>
+          <button class="btn btn-ghost" style="padding:2px 8px;font-size:9px;" onclick="syncArxivPacks()">Sync Packs</button>
+        </div>
+        <div id="research-bank-container" class="sidebar-scroll" style="flex:1;"></div>
+      </div>
+    </div>
+
+    <!-- Knowledge section (graph nodes) -->
+    <div id="sidebar-knowledge" style="display:none; height:100%; overflow:hidden; flex-direction:column;">
+      <div class="sidebar-header">
+        <span class="label-xs">Knowledge Graph</span>
+      </div>
+      <div id="graph-node-list" class="sidebar-scroll" style="flex:1; padding:8px 0;"></div>
+    </div>
+
+    <!-- Bank section -->
+    <div id="sidebar-bank" style="display:none; height:100%; overflow:hidden; flex-direction:column;">
+      <div class="sidebar-header">
+        <span class="label-xs">Research Bank</span>
+        <button class="btn btn-ghost" style="padding:2px 8px;font-size:9px;" onclick="syncArxivPacks()">Sync</button>
+      </div>
+      <div id="research-bank-container-2" class="sidebar-scroll" style="flex:1;"></div>
+    </div>
+  </nav>
+
+  <!-- ── Main ────────────────────────────────────────────────── -->
+  <main id="main">
+    <!-- Pipeline status banner -->
+    <div id="pipeline-status-bar"></div>
+
+    <!-- Canvas view -->
+    <div id="view-canvas" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+      <!-- Toolbar -->
+      <div class="canvas-toolbar">
+        <button class="canvas-toolbar-btn active" title="Select (V)">↖</button>
+        <button class="canvas-toolbar-btn" title="Connect (E)">⤳</button>
+        <button class="canvas-toolbar-btn" title="Note (N)">✎</button>
+        <div class="canvas-toolbar-sep"></div>
+        <button class="canvas-toolbar-btn" title="Zoom In" onclick="zoomCanvas(0.15)">＋</button>
+        <button class="canvas-toolbar-btn" title="Zoom Out" onclick="zoomCanvas(-0.15)">－</button>
+        <button class="canvas-toolbar-btn" title="Fit" onclick="fitCanvas()">⊡</button>
+        <div class="canvas-toolbar-sep"></div>
+        <span class="label-xs" id="canvas-count-label" style="color:var(--tx-2); margin-left:4px;"></span>
+      </div>
+
+      <!-- Canvas workspace -->
+      <div class="canvas-workspace" id="canvas-workspace">
+        <svg class="canvas-svg" id="canvas-connections-svg"></svg>
+        <div id="canvas-empty-state" class="canvas-empty">
+          <div class="canvas-empty-icon">◈</div>
+          <div class="canvas-empty-title">Knowledge canvas is empty</div>
+          <div class="canvas-empty-sub">Run the pipeline or add sources to populate the graph</div>
+        </div>
+      </div>
+
+      <!-- Detail pane -->
+      <div id="detail-pane">
+        <div class="detail-nav">
+          <div class="detail-nav-item active" id="detail-tab-summary" onclick="setDetailTab('summary', this)">Summary</div>
+          <div class="detail-nav-item" id="detail-tab-evidence" onclick="setDetailTab('evidence', this)">Evidence</div>
+          <div class="detail-nav-item" id="detail-tab-scores" onclick="setDetailTab('scores', this)">Scores</div>
+        </div>
+        <div class="detail-content" id="detail-content">
+          <div style="color:var(--tx-2); font-size:12px;">Select a node on the canvas to inspect it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simulator view -->
+    <div id="view-simulator">
+      <div class="view-title">Simulation Lab</div>
+      <div style="max-width:520px; background:var(--bg-2); border:1px solid var(--border-0); border-radius:var(--radius-lg); padding:16px;">
+        <canvas id="simulationChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Workspaces / Time Machine view -->
+    <div id="view-workspaces">
+      <div class="view-title">Workspaces &amp; Time Machine</div>
+      <div style="display:flex; gap:10px; margin-bottom:16px;">
+        <input type="text" id="new-ws-name" class="input" placeholder="New workspace name…" style="width:240px;">
+        <button class="btn btn-primary" onclick="createWorkspace()">Create</button>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="label-xs" style="margin-bottom:8px;">Active Workspaces</div>
+          <div id="workspaces-list"></div>
+        </div>
+        <div>
+          <div class="label-xs" style="margin-bottom:8px;">Historical Checkpoints</div>
+          <button id="btn-save-checkpoint" class="btn btn-ghost" style="width:100%;margin-bottom:10px;display:none;" onclick="saveCheckpoint()">Create Snapshot</button>
+          <div id="workspace-history-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports view -->
+    <div id="view-reports">
+      <div class="view-title">Opportunity Reports</div>
+      <div style="display:flex; gap:10px; align-items:center; margin-bottom:16px;">
+        <button class="btn btn-primary" onclick="generateUnifiedReport()">Generate Unified Report</button>
+        <span id="report-gen-status" class="label-sm"></span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="label-xs" style="margin-bottom:8px;">Saved Reports</div>
+          <div id="reports-list">
+            <div style="color:var(--tx-2);font-size:12px;">No reports yet. Generate one above.</div>
+          </div>
+        </div>
+        <div>
+          <div class="label-xs" id="report-preview-title" style="margin-bottom:8px;">Preview</div>
+          <div id="report-preview-content" style="background:var(--bg-2);border:1px solid var(--border-0);border-radius:var(--radius-lg);padding:16px;min-height:400px;max-height:600px;overflow-y:auto;font-size:12px;line-height:1.6;">
+            Select a report to preview its contents.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paper Builder view -->
+    <div id="view-paper-builder">
+      <div class="view-title">Research Paper Builder</div>
+      <div style="color:var(--tx-1); font-size:12px; margin-bottom:16px; max-width:720px;">
+        Visually link knowledge nodes from opportunities, concepts, and discoveries to generate evidence-grounded research papers.
+      </div>
+      
+      <div class="grid-2">
+        <!-- Left: Knowledge graph nodes -->
+        <div>
+          <div class="label-xs" style="margin-bottom:8px;">Available Knowledge Nodes</div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-0);border-radius:var(--radius-lg);padding:12px;height:500px;overflow-y:auto;">
+            <div id="paper-nodes-list">
+              <div style="color:var(--tx-2);font-size:11px;">Loading knowledge nodes...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Linked nodes + paper generation -->
+        <div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <div class="label-xs">Linked Nodes (<span id="linked-count">0</span>)</div>
+            <button class="btn btn-ghost" style="font-size:10px;padding:3px 8px;" onclick="clearLinkedNodes()">Clear All</button>
+          </div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-0);border-radius:var(--radius-lg);padding:12px;min-height:200px;max-height:280px;overflow-y:auto;margin-bottom:12px;">
+            <div id="linked-nodes-list" style="display:flex;flex-direction:column;gap:6px;">
+              <div style="color:var(--tx-2);font-size:11px;">Click + icon on nodes to link them here</div>
+            </div>
+          </div>
+
+          <div class="label-xs" style="margin-bottom:8px;">Paper Configuration</div>
+          <input type="text" id="paper-title-input" class="input" placeholder="Research paper title..." style="width:100%;margin-bottom:10px;" value="Novel Insights from AIVE Discovery System">
+          
+          <div style="margin-bottom:12px;">
+            <div class="label-xs" style="margin-bottom:6px;">Sections</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:10px;">
+              <label style="display:flex;align-items:center;gap:4px;"><input type="checkbox" checked name="paper-section" value="abstract"> Abstract</label>
+              <label style="display:flex;align-items:center;gap:4px;"><input type="checkbox" checked name="paper-section" value="introduction"> Introduction</label>
+              <label style="display:flex;align-items:center;gap:4px;"><input type="checkbox" checked name="paper-section" value="methods"> Methods</label>
+              <label style="display:flex;align-items:center;gap:4px;"><input type="checkbox" checked name="paper-section" value="results"> Results</label>
+              <label style="display:flex;align-items:center;gap:4px;"><input type="checkbox" checked name="paper-section" value="discussion"> Discussion</label>
+              <label style="display:flex;align-items:center;gap:4px;"><input type="checkbox" checked name="paper-section" value="conclusion"> Conclusion</label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;" onclick="generateResearchPaper()">
+            ⚡ Generate Research Paper
+          </button>
+          <div id="paper-gen-status" style="margin-top:8px;font-size:11px;color:var(--tx-1);"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Inspector ───────────────────────────────────────────── -->
+  <aside id="inspector">
+    <div class="inspector-tabs">
+      <div class="inspector-tab active" onclick="setInspectorTab('copilot', this)">Copilot</div>
+      <div class="inspector-tab" onclick="setInspectorTab('graph', this)">Graph</div>
+      <div class="inspector-tab" onclick="setInspectorTab('status', this)">Status</div>
+      <div class="inspector-tab" onclick="setInspectorTab('insights', this)">Insights</div>
+    </div>
+
+    <!-- Copilot panel -->
+    <div id="inspector-copilot" class="inspector-body">
+      <div class="insight-card">
+        <div class="insight-card-title">Synthesis Insights</div>
+        <div id="copilot-status" style="font-size:11px;color:var(--tx-1);">Loading discovery signals…</div>
+      </div>
+      <div class="insight-card" style="border-color:rgba(214,163,79,0.2);background:var(--amber-dim);">
+        <div class="insight-card-title">Contradictions</div>
+        <div style="font-size:11px;color:var(--tx-1);">None detected. All graph edges semantically verified.</div>
+      </div>
+      <div id="copilot-chat" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:8px; min-height:0;">
+        <div class="chat-msg chat-msg-bot">
+          <div class="chat-sender chat-sender-bot">Copilot</div>
+          Ask me anything about the ingested research, opportunities, or graph concepts.
+        </div>
+      </div>
+      <div class="copilot-input-row">
+        <input id="copilot-input" class="input" style="flex:1;padding:5px 8px;font-size:11px;" placeholder="Ask about research…"
+          onkeydown="if(event.key==='Enter')sendCopilotMessage()">
+        <button class="btn btn-primary" style="padding:5px 10px;" onclick="sendCopilotMessage()">→</button>
+      </div>
+    </div>
+
+    <!-- Graph stats panel -->
+    <div id="inspector-graph" class="inspector-body" style="display:none;">
+      <div class="grid-2" style="gap:8px;">
+        <div class="stat-box"><div class="stat-box-val" id="stat-nodes">—</div><div class="stat-box-label">Nodes</div></div>
+        <div class="stat-box"><div class="stat-box-val" id="stat-edges">—</div><div class="stat-box-label">Edges</div></div>
+        <div class="stat-box"><div class="stat-box-val" id="stat-papers">—</div><div class="stat-box-label">Papers</div></div>
+        <div class="stat-box"><div class="stat-box-val" id="stat-patents">—</div><div class="stat-box-label">Patents</div></div>
+        <div class="stat-box"><div class="stat-box-val" id="stat-opps">—</div><div class="stat-box-label">Survived</div></div>
+        <div class="stat-box"><div class="stat-box-val" id="stat-rej">—</div><div class="stat-box-label">Rejected</div></div>
+      </div>
+      <div id="graph-type-breakdown" style="margin-top:4px;"></div>
+    </div>
+
+    <!-- Pipeline status panel -->
+    <div id="inspector-status" class="inspector-body" style="display:none;">
+      <div class="label-xs" style="margin-bottom:6px;">Pipeline State</div>
+      <div id="status-detail" style="font-size:11px;color:var(--tx-1);line-height:1.6;">
+        Idle — click "Run Pipeline" to start.
+      </div>
+      <div style="margin-top:8px;">
+        <div class="label-xs" style="margin-bottom:6px;">DB Counts</div>
+        <div id="status-db-counts" style="font-size:11px;color:var(--tx-1);"></div>
+      </div>
+    </div>
+
+    <!-- Insights panel (Task 8) -->
+    <div id="inspector-insights" class="inspector-body" style="display:none; flex-direction:column; gap:10px; padding:10px; overflow-y:auto;">
+      <div class="label-xs">Pipeline Funnel</div>
+      <div class="insights-chart-wrap">
+        <canvas id="chart-funnel"></canvas>
+      </div>
+      <div class="label-xs">Node Distribution</div>
+      <div class="insights-chart-wrap">
+        <canvas id="chart-distribution"></canvas>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- #app -->
+
+<!-- ── Ingestion Modal ────────────────────────────────────────── -->
+<div class="modal-overlay" id="ingest-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">Add Sources to AIVE</span>
+      <button class="modal-close" onclick="closeIngestModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="ingest-tabs">
+        <div class="ingest-tab active" id="itab-url" onclick="switchIngestTab('url')">🔗 URL</div>
+        <div class="ingest-tab" id="itab-pdf" onclick="switchIngestTab('pdf')">📄 File</div>
+        <div class="ingest-tab" id="itab-text" onclick="switchIngestTab('text')">✎ Text</div>
+      </div>
+
+      <!-- URL panel -->
+      <div id="ingest-panel-url">
+        <p class="label-sm" style="margin-bottom:10px;">Paste any URL — AIVE fetches and extracts the full content automatically.</p>
+        <div id="url-list" style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;"></div>
+        <div style="display:flex;gap:6px;">
+          <input type="text" id="url-input" class="input" style="flex:1;" placeholder="https://arxiv.org/abs/... or any article URL">
+          <button class="btn btn-ghost" onclick="addUrlToQueue()">Add</button>
+        </div>
+      </div>
+
+      <!-- File panel -->
+      <div id="ingest-panel-pdf" style="display:none;">
+        <p class="label-sm" style="margin-bottom:10px;">Upload PDF or TXT files. AIVE extracts text automatically.</p>
+        <div id="pdf-drop-zone" class="drop-zone"
+          onclick="document.getElementById('pdf-file-input').click()"
+          ondragover="event.preventDefault();this.classList.add('drag-over')"
+          ondragleave="this.classList.remove('drag-over')"
+          ondrop="handleFileDrop(event)">
+          <div style="font-size:24px;margin-bottom:8px;opacity:0.5;">⬆</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px;">Drop files or click to browse</div>
+          <div class="label-sm">PDF and TXT supported · up to 64MB</div>
+          <input type="file" id="pdf-file-input" multiple accept=".pdf,.txt" style="display:none;" onchange="handleFileSelect(this.files)">
+        </div>
+        <div id="pdf-file-list" style="margin-top:10px;display:flex;flex-direction:column;gap:4px;"></div>
+      </div>
+
+      <!-- Text panel -->
+      <div id="ingest-panel-text" style="display:none;">
+        <p class="label-sm" style="margin-bottom:10px;">Paste any abstract, excerpt, or research notes directly.</p>
+        <input type="text" id="ingest-title" class="input" style="width:100%;margin-bottom:8px;" placeholder="Title">
+        <textarea id="ingest-text" class="input" rows="8" style="width:100%;" placeholder="Paste the full abstract, methodology, results or any text here…"></textarea>
+      </div>
+
+      <div id="ingest-status" class="status-msg"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeIngestModal()">Cancel</button>
+      <button id="btn-ingest-submit" class="btn btn-primary" onclick="submitAllSources()">Ingest &amp; Sync</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ── State ──────────────────────────────────────────────────── */
+let currentNav   = 'opportunities';
+let activeWorkspaceId = null;
+let selectedIngestType = 'paper';
+let activeIngestTab  = 'url';
+let urlQueue  = [];
+let fileQueue = [];
+let researchBankCache = {};
+let currentDetailItem = null;
+let currentDetailType = null;
+let currentDetailTab = 'summary';
+let canvasZoom = 1.0;
+let _pipelinePoller = null;
+let simChartInstance = null;
+
+/* ── Main view switching ─────────────────────────────────────── */
+function switchMainView(view, el) {
+  document.querySelectorAll('.topbar-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  ['canvas','simulator','workspaces','reports','paper-builder'].forEach(v => {
+    const el = document.getElementById('view-' + v);
+    if (el) el.style.display = v === view ? (v === 'canvas' ? 'flex' : 'block') : 'none';
+  });
+
+  if (view === 'workspaces') loadWorkspaces();
+  if (view === 'simulator')  loadSimulationChart();
+  if (view === 'reports')    loadReportsList();
+  if (view === 'paper-builder') loadPaperBuilderNodes();
+}
+
+/* ── Activity bar sections ───────────────────────────────────── */
+function setActSection(section) {
+  document.querySelectorAll('.act-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  const sections = ['sidebar-discovery','sidebar-knowledge','sidebar-bank'];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  const map = {
+    discovery: 'sidebar-discovery',
+    knowledge: 'sidebar-knowledge',
+    bank:      'sidebar-bank'
+  };
+  const targetId = map[section];
+  if (targetId) {
+    const el = document.getElementById(targetId);
+    if (el) el.style.display = 'flex';
+  }
+  if (section === 'knowledge') loadGraphNodes();
+  if (section === 'bank')      loadResearchBankAlt();
+}
+
+/* ── Inspector tabs ─────────────────────────────────────────── */
+let _chartFunnel = null, _chartDist = null;
+
+function setInspectorTab(tab, el) {
+  document.querySelectorAll('.inspector-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  ['copilot','graph','status','insights'].forEach(t => {
+    const panel = document.getElementById('inspector-' + t);
+    if (panel) panel.style.display = t === tab ? 'flex' : 'none';
+  });
+
+  if (tab === 'graph')   loadStats();
+  if (tab === 'status')  pollStatusOnce();
+  if (tab === 'insights') loadInsightsCharts();
+}
+
+/* ── Insights charts (Task 8) ───────────────────────────────── */
+function loadInsightsCharts() {
+  const amber = '#d6a34f';
+  const amberDim = 'rgba(214,163,79,0.18)';
+  const tx1 = '#8b95a8';
+
+  // Funnel chart
+  fetch('/api/visualizations/funnel')
+    .then(r => r.json())
+    .then(data => {
+      const stages = data.stages || [];
+      const ctx = document.getElementById('chart-funnel');
+      if (!ctx) return;
+      if (_chartFunnel) { _chartFunnel.destroy(); _chartFunnel = null; }
+      _chartFunnel = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: stages.map(s => s.label),
+          datasets: [{
+            data: stages.map(s => s.count),
+            backgroundColor: amber,
+            borderColor: amber,
+            borderRadius: 4,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tx1, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { ticks: { color: tx1, font: { size: 10 } }, grid: { display: false } }
+          }
         }
+      });
+    }).catch(() => {});
 
-        function switchNav(nav) {
-            document.querySelectorAll('.side-nav-link').forEach(l => l.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            currentTab = nav;
-            loadGraphData();
+  // Distribution doughnut chart
+  fetch('/api/visualizations/distribution')
+    .then(r => r.json())
+    .then(data => {
+      const ctx = document.getElementById('chart-distribution');
+      if (!ctx) return;
+      if (_chartDist) { _chartDist.destroy(); _chartDist = null; }
+      const colors = ['#5b9cf6','#e8c458','#6ee7b7','#c084fc','#f87171','#60a5fa','#fb923c','#4ade80'];
+      _chartDist = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: data.map(d => d.type),
+          datasets: [{
+            data: data.map(d => d.count),
+            backgroundColor: colors.slice(0, data.length),
+            borderColor: '#111520',
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: tx1, font: { size: 10 }, boxWidth: 10 } }
+          }
         }
+      });
+    }).catch(() => {});
+}
 
-        // Draggable Nodes implementation
-        function makeDraggable(element) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            element.onmousedown = dragMouseDown;
+/* ── Canvas nav ─────────────────────────────────────────────── */
+function switchNav(nav, el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  currentNav = nav;
+  loadGraphData();
+}
 
-            function dragMouseDown(e) {
-                e = e || window.event;
-                // Only drag if not clicking text/buttons inside
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
-                e.preventDefault();
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
+/* ── Zoom ───────────────────────────────────────────────────── */
+function zoomCanvas(delta) {
+  canvasZoom = Math.max(0.3, Math.min(2.5, canvasZoom + delta));
+  const ws = document.getElementById('canvas-workspace');
+  if (ws) ws.style.zoom = canvasZoom;
+}
+
+function fitCanvas() {
+  canvasZoom = 1.0;
+  const ws = document.getElementById('canvas-workspace');
+  if (ws) { ws.style.zoom = 1; ws.scrollTop = 0; ws.scrollLeft = 0; }
+}
+
+/* ── Detail pane tabs ───────────────────────────────────────── */
+function setDetailTab(tab, el) {
+  document.querySelectorAll('.detail-nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  currentDetailTab = tab;
+  if (currentDetailItem) renderDetailPane(currentDetailItem, currentDetailType);
+}
+
+/* ── Canvas: load data and render nodes ─────────────────────── */
+function loadGraphData() {
+  const urls = {
+    opportunities: '/api/opportunities',
+    rejected: '/api/rejected',
+    papers: '/api/papers',
+    discoveries: '/api/discoveries'
+  };
+  const url = urls[currentNav] || '/api/opportunities';
+
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      renderCanvas(data);
+      updateCopilotInsights(data);
+      document.getElementById('canvas-count-label').textContent =
+        data.length + ' ' + currentNav;
+      // Update discoveries count badge
+      if (currentNav === 'discoveries') {
+        const el = document.getElementById('count-disc');
+        if (el) el.textContent = data.length;
+      }
+    })
+    .catch(() => {});
+}
+
+function renderCanvas(data) {
+  const ws     = document.getElementById('canvas-workspace');
+  const svg    = document.getElementById('canvas-connections-svg');
+  const empty  = document.getElementById('canvas-empty-state');
+
+  // Remove old nodes but keep SVG and empty state
+  ws.querySelectorAll('.k-node').forEach(n => n.remove());
+  svg.innerHTML = '';
+
+  if (!data || data.length === 0) {
+    if (empty) empty.style.display = 'flex';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  data.forEach((item, idx) => {
+    const node = buildNode(item, idx);
+    ws.appendChild(node);
+  });
+
+  setTimeout(drawConnections, 60);
+}
+
+function buildNode(item, idx) {
+  const node = document.createElement('div');
+  node.className = 'k-node';
+  node.id = 'kn-' + (item.id || idx);
+
+  // Type and styling
+  let typeLabel = 'Document';
+  let nodeClass = '';
+
+  if (currentNav === 'opportunities') {
+    typeLabel = 'Opportunity';
+    nodeClass = 'k-node-opp';
+  } else if (currentNav === 'rejected') {
+    typeLabel = 'Rejected';
+    nodeClass = 'k-node-problem';
+  } else if (currentNav === 'discoveries') {
+    const dtype = item.type || 'research_gap';
+    typeLabel = dtype.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    nodeClass = 'k-node-' + dtype;
+  } else {
+    typeLabel = (item.type || 'paper').toUpperCase();
+    nodeClass = 'k-node-' + (item.type || 'paper');
+  }
+
+  node.classList.add(nodeClass);
+
+  const title = item.title || 'Untitled';
+  const desc  = currentNav === 'opportunities'
+    ? (item.market || item.technology || '')
+    : (currentNav === 'rejected'
+        ? (item.reason || '')
+        : (item.problem || ''));
+
+  const score = item.confidence_score
+    ? `<div class="k-node-score">◈ ${item.confidence_score}/10</div>` : '';
+
+  const statusTag = item.extraction_status
+    ? `<span class="tag tag-${item.extraction_status}" style="margin-top:4px;">${item.extraction_status}</span>` : '';
+
+  node.innerHTML = `
+    <div class="k-node-type">${typeLabel}</div>
+    <div class="k-node-title">${escHtml(title)}</div>
+    <div class="k-node-meta truncate">${escHtml(desc)}</div>
+    ${score}${statusTag}
+  `;
+
+  // Position in a clean grid with subtle stagger
+  const cols = 3;
+  const col  = idx % cols;
+  const row  = Math.floor(idx / cols);
+  const jitterX = (idx % 2 === 0) ? 0 : 16;
+  const jitterY = (idx % 3 === 0) ? 0 : 8;
+  node.style.left = (80 + col * 280 + jitterX) + 'px';
+  node.style.top  = (80 + row * 200 + jitterY) + 'px';
+
+  node.addEventListener('click', () => selectNode(item, typeLabel));
+  makeDraggable(node);
+  return node;
+}
+
+/* ── Draw SVG connection lines ──────────────────────────────── */
+function drawConnections() {
+  const svg = document.getElementById('canvas-connections-svg');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  if (currentNav !== 'opportunities') return;
+
+  const oppNodes = document.querySelectorAll('.k-node-opp');
+  const paperNodes = document.querySelectorAll('.k-node-paper, .k-node-patent');
+
+  const positions = {};
+  document.querySelectorAll('.k-node').forEach(n => {
+    positions[n.id] = {
+      x: n.offsetLeft + n.offsetWidth / 2,
+      y: n.offsetTop + n.offsetHeight / 2
+    };
+  });
+
+  oppNodes.forEach(opp => {
+    paperNodes.forEach(paper => {
+      const s = positions[paper.id];
+      const e = positions[opp.id];
+      if (!s || !e) return;
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const dx = Math.abs(e.x - s.x) * 0.4;
+      path.setAttribute('d', `M${s.x} ${s.y} C${s.x+dx} ${s.y},${e.x-dx} ${e.y},${e.x} ${e.y}`);
+      path.setAttribute('stroke', 'rgba(192,132,252,0.2)');
+      path.setAttribute('stroke-width', '1');
+      path.setAttribute('fill', 'none');
+      svg.appendChild(path);
+    });
+  });
+}
+
+/* ── Draggable nodes ────────────────────────────────────────── */
+function makeDraggable(el) {
+  let x0=0,y0=0,mx=0,my=0;
+  el.onmousedown = function(e) {
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
+    e.preventDefault();
+    mx = e.clientX; my = e.clientY;
+    document.onmouseup = stopDrag;
+    document.onmousemove = drag;
+  };
+  function drag(e) {
+    e.preventDefault();
+    x0 = mx - e.clientX; y0 = my - e.clientY;
+    mx = e.clientX; my = e.clientY;
+    el.style.top  = (el.offsetTop  - y0) + 'px';
+    el.style.left = (el.offsetLeft - x0) + 'px';
+    drawConnections();
+  }
+  function stopDrag() { document.onmouseup = null; document.onmousemove = null; }
+}
+
+/* ── Node selection → detail pane ───────────────────────────── */
+function selectNode(item, typeLabel) {
+  document.querySelectorAll('.k-node').forEach(n => n.classList.remove('selected'));
+  const el = document.getElementById('kn-' + item.id);
+  if (el) el.classList.add('selected');
+
+  currentDetailItem = item;
+  currentDetailType = typeLabel;
+  renderDetailPane(item, typeLabel);
+}
+
+function renderDetailPane(item, typeLabel) {
+  const container = document.getElementById('detail-content');
+  const tab = currentDetailTab;
+
+  if (tab === 'summary') {
+    let html = `<div class="detail-title">${escHtml(item.title || 'Untitled')}</div>`;
+
+    if (currentNav === 'opportunities') {
+      html += field('Problem', item.problem);
+      html += field('Technology', item.technology);
+      html += field('Market', item.market);
+      html += field('Timing', item.timing_signal);
+      html += field('Reasoning', item.reasoning);
+    } else if (currentNav === 'rejected') {
+      html += field('Problem', item.problem);
+      html += field('Technology', item.technology);
+      html += field('Market', item.market);
+      html += `<div class="detail-field"><span class="detail-field-label">Rejection:</span>
+        <span style="color:var(--clr-error)">${escHtml(item.reason || '')}</span></div>`;
+    } else if (currentNav === 'discoveries') {
+      const dtype = item.type || '';
+      html += field('Type', dtype.replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase()));
+      html += field('Description', item.description);
+      html += field('Reasoning', item.reasoning);
+      if (dtype === 'contradiction') {
+        html += field('Concept', item.concept);
+        html += field('Claim A', item.claim_a);
+        html += field('Claim B', item.claim_b);
+        html += field('Source A', item.source_a);
+        html += field('Source B', item.source_b);
+      } else if (dtype === 'research_gap') {
+        const evidence = safeJson(item.evidence, []);
+        if (evidence.length) html += `<div class="detail-field"><span class="detail-field-label">Evidence:</span>
+          <span class="detail-field-value">${evidence.slice(0,4).map(e => `<span class="mono">${escHtml(e)}</span>`).join(', ')}</span></div>`;
+      } else if (dtype === 'method_transfer') {
+        html += field('Missing Dimension', item.missing_dimension || '');
+        const evidence = safeJson(item.evidence, []);
+        if (evidence.length) html += `<div class="detail-field"><span class="detail-field-label">Evidence:</span>
+          <span class="detail-field-value">${evidence.slice(0,4).map(e => `<span class="mono">${escHtml(e)}</span>`).join(', ')}</span></div>`;
+      }
+      const conf = item.confidence;
+      if (conf !== null && conf !== undefined) {
+        const pct = (conf * 100).toFixed(0);
+        const cls = conf >= 0.7 ? 'high' : conf >= 0.4 ? 'mid' : 'low';
+        html += `<span class="score-pill ${cls}" style="margin-top:8px;">Confidence ${pct}%</span>`;
+      }
+    } else {
+      html += field('Problem', item.problem);
+      html += field('Technology', item.technology);
+      html += field('Solution', item.solution);
+      if (item.source_url) {
+        html += `<div class="detail-field"><a href="${item.source_url}" target="_blank" style="color:var(--clr-paper);font-size:11px;">View source ↗</a></div>`;
+      }
+    }
+    container.innerHTML = html;
+
+  } else if (tab === 'evidence') {
+    let html = `<div class="detail-title">Evidence Sources</div>`;
+    const papers   = safeJson(item.source_papers, []);
+    const patents  = safeJson(item.source_patents, []);
+    const startups = safeJson(item.source_startups, []);
+    const evidence = safeJson(item.evidence, []);
+
+    if (papers.length)   html += `<div class="label-xs" style="margin:6px 0 4px;">Papers</div>` + papers.map(p => `<div class="mono" style="margin-bottom:2px;">${escHtml(p)}</div>`).join('');
+    if (patents.length)  html += `<div class="label-xs" style="margin:6px 0 4px;">Patents</div>` + patents.map(p => `<div class="mono" style="margin-bottom:2px;">${escHtml(p)}</div>`).join('');
+    if (startups.length) html += `<div class="label-xs" style="margin:6px 0 4px;">Startups</div>` + startups.map(p => `<div class="mono" style="margin-bottom:2px;">${escHtml(p)}</div>`).join('');
+    if (evidence.length) html += `<div class="label-xs" style="margin:6px 0 4px;">Evidence</div>` + evidence.map(e => `<div class="mono" style="margin-bottom:2px;">${escHtml(e)}</div>`).join('');
+    if (!papers.length && !patents.length && !startups.length && !evidence.length) {
+      html += `<div style="color:var(--tx-2);font-size:12px;">No evidence sources recorded.</div>`;
+    }
+    container.innerHTML = html;
+
+  } else if (tab === 'scores') {
+    let html = `<div class="detail-title">Quality Scores</div>`;
+    const scores = [
+      ['Novelty',     item.novelty_score],
+      ['Timing',      item.timing_score],
+      ['Market',      item.market_score],
+      ['Feasibility', item.feasibility],
+      ['Confidence',  item.confidence_score],
+    ];
+    scores.forEach(([label, val]) => {
+      if (val === undefined || val === null) return;
+      const cls = val >= 7 ? 'high' : val >= 4 ? 'mid' : 'low';
+      html += `<span class="score-pill ${cls}">${label} ${val}/10</span>`;
+    });
+
+    const competitors = safeJson(item.existing_competitors, []);
+    if (competitors.length) {
+      html += `<div class="label-xs" style="margin:10px 0 6px;">Competitors</div>`;
+      html += competitors.map(c => `<div class="mono" style="margin-bottom:2px;">${escHtml(c)}</div>`).join('');
+    }
+    container.innerHTML = html;
+  }
+}
+
+function field(label, val) {
+  if (!val) return '';
+  return `<div class="detail-field">
+    <span class="detail-field-label">${label}:</span>
+    <span class="detail-field-value">${escHtml(val)}</span>
+  </div>`;
+}
+
+/* ── Research Bank ──────────────────────────────────────────── */
+function loadResearchBank() {
+  fetch('/api/papers')
+    .then(r => r.json())
+    .then(data => {
+      researchBankCache = {};
+      data.forEach(item => researchBankCache[item.id] = item);
+
+      const html = data.map(item => `
+        <div class="bank-item" onclick="selectBankItem('${item.id}')">
+          <span class="bank-item-icon">📄</span>
+          <span class="bank-item-title truncate">${escHtml(item.title)}</span>
+          <button class="bank-item-del" onclick="event.stopPropagation();deleteIngestedSource('${item.id}')">×</button>
+        </div>
+      `).join('');
+
+      const c1 = document.getElementById('research-bank-container');
+      const c2 = document.getElementById('research-bank-container-2');
+      if (c1) c1.innerHTML = html || '<div class="bank-item" style="color:var(--tx-2);">No items yet</div>';
+      if (c2) c2.innerHTML = html || '<div class="bank-item" style="color:var(--tx-2);">No items yet</div>';
+
+      const countEl = document.getElementById('count-papers');
+      if (countEl) countEl.textContent = data.length;
+    });
+}
+
+function loadResearchBankAlt() { loadResearchBank(); }
+
+function selectBankItem(id) {
+  const item = researchBankCache[id];
+  if (item) selectNode(item, 'PAPER');
+}
+
+function deleteIngestedSource(id) {
+  const item = researchBankCache[id];
+  const title = item ? item.title : id;
+  if (!confirm(`Delete "${title}" from Research Bank?`)) return;
+  fetch(`/api/ingest/delete/${id}`, { method: 'POST' })
+    .then(r => r.json())
+    .then(() => { loadResearchBank(); loadGraphData(); loadStats(); });
+}
+
+/* ── Graph node list ────────────────────────────────────────── */
+function loadGraphNodes() {
+  fetch('/api/graph')
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById('graph-node-list');
+      if (!list) return;
+      list.innerHTML = data.nodes.slice(0, 100).map(n => `
+        <div class="nav-item" style="font-size:11px;">
+          <span class="nav-dot" style="background:var(--clr-tech)"></span>
+          <span class="truncate" style="flex:1;">${escHtml(n.label)}</span>
+          <span class="label-sm" style="font-size:9px;">${n.node_type}</span>
+        </div>
+      `).join('');
+    });
+}
+
+/* ── Stats ──────────────────────────────────────────────────── */
+function loadStats() {
+  fetch('/api/stats')
+    .then(r => r.json())
+    .then(s => {
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      set('stat-papers',  s.papers || 0);
+      set('stat-patents', s.patents || 0);
+      set('stat-nodes',   s.nodes || 0);
+      set('stat-edges',   s.edges || 0);
+      set('stat-opps',    s.opportunities || 0);
+      set('stat-rej',     s.rejected || 0);
+      set('count-opp',    s.opportunities || 0);
+      set('count-rej',    s.rejected || 0);
+      set('count-papers', s.papers || 0);
+
+      // Status panel DB counts
+      const dbEl = document.getElementById('status-db-counts');
+      if (dbEl) dbEl.innerHTML = `
+        Papers: ${s.papers} · Patents: ${s.patents} · Nodes: ${s.nodes}<br>
+        Edges: ${s.edges} · Survived: ${s.opportunities} · Rejected: ${s.rejected}
+      `;
+    });
+}
+
+/* ── Pipeline ───────────────────────────────────────────────── */
+let _pipelineStartTime = null;
+
+function showProgressModal() {
+  const modal = document.getElementById('pipeline-progress-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    _pipelineStartTime = Date.now();
+  }
+}
+
+function hideProgressModal() {
+  const modal = document.getElementById('pipeline-progress-modal');
+  if (modal) modal.style.display = 'none';
+  const closeBtn = document.getElementById('progress-close-btn');
+  if (closeBtn) closeBtn.style.display = 'none';
+  _pipelineStartTime = null;
+}
+
+function updateProgressStages(stage) {
+  // Reset all stages
+  ['extraction', 'graph', 'discovery'].forEach(s => {
+    const el = document.getElementById('stage-' + s);
+    if (el) {
+      el.classList.remove('active', 'complete');
+    }
+  });
+
+  // Map stage names to IDs
+  const stageMap = {
+    reset: 'extraction',
+    extraction: 'extraction',
+    graph_build: 'graph',
+    discovery: 'discovery'
+  };
+
+  const currentStageId = stageMap[stage];
+  if (!currentStageId) return;
+
+  // Mark completed stages
+  const stageOrder = ['extraction', 'graph', 'discovery'];
+  const currentIndex = stageOrder.indexOf(currentStageId);
+
+  for (let i = 0; i < currentIndex; i++) {
+    const el = document.getElementById('stage-' + stageOrder[i]);
+    if (el) el.classList.add('complete');
+  }
+
+  // Mark current stage as active
+  const currentEl = document.getElementById('stage-' + currentStageId);
+  if (currentEl) currentEl.classList.add('active');
+}
+
+function calculateProgress(stage, progressInfo) {
+  // Base progress by stage
+  const stageProgress = {
+    idle: 0,
+    reset: 5,
+    extraction: 33,
+    graph_build: 66,
+    discovery: 90,
+    done: 100,
+    error: 100
+  };
+
+  let baseProgress = stageProgress[stage] || 0;
+
+  // Fine-tune with item progress if available
+  if (progressInfo && progressInfo.total > 0) {
+    const stageRange = {
+      extraction: [5, 33],
+      graph_build: [33, 66],
+      discovery: [66, 90]
+    }[stage];
+
+    if (stageRange) {
+      const itemPercent = progressInfo.processed / progressInfo.total;
+      baseProgress = stageRange[0] + (itemPercent * (stageRange[1] - stageRange[0]));
+    }
+  }
+
+  return Math.round(baseProgress);
+}
+
+function formatElapsedTime(startTime) {
+  if (!startTime) return 'Starting...';
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const mins = Math.floor(elapsed / 60);
+  const secs = elapsed % 60;
+  if (mins > 0) {
+    return `Running for ${mins}m ${secs}s`;
+  }
+  return `Running for ${secs}s`;
+}
+
+function triggerPipelineRun() {
+  const btn = document.getElementById('btn-pipeline-run');
+  btn.textContent = '⏳ Starting…';
+  btn.disabled = true;
+
+  fetch('/api/pipeline/run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ force: true })
+  })
+    .then(r => r.json())
+    .then(res => {
+      if (res.status === 'already_running') {
+        showPipelineStatus('Already running — stage: ' + res.stage, 'info');
+      } else {
+        showProgressModal();
+        showPipelineStatus('Pipeline started — this will take a few minutes…', 'info');
+      }
+      startPipelinePoller();
+    })
+    .catch(err => {
+      btn.textContent = '▶ Run Pipeline';
+      btn.disabled = false;
+      showPipelineStatus('Could not reach backend: ' + err, 'error');
+    });
+}
+
+function startPipelinePoller() {
+  if (_pipelinePoller) clearInterval(_pipelinePoller);
+  _pipelinePoller = setInterval(pollStatusOnce, 2000); // Poll every 2s for smoother updates
+}
+
+function pollStatusOnce() {
+  fetch('/api/pipeline/status')
+    .then(r => r.json())
+    .then(s => {
+      const stageLabels = {
+        idle:        'Idle',
+        reset:       'Resetting sources for full rebuild...',
+        extraction:  'Extracting knowledge from research sources...',
+        graph_build: 'Building knowledge graph and extracting concepts...',
+        discovery:   'Running opportunity discovery and critic validation...',
+        done:        'Pipeline completed successfully',
+        error:       'Pipeline encountered an error'
+      };
+
+      let label = stageLabels[s.stage] || s.stage;
+      
+      // Update progress modal
+      const modal = document.getElementById('pipeline-progress-modal');
+      if (modal && modal.style.display === 'flex') {
+        // Update elapsed time
+        const elapsedEl = document.getElementById('progress-elapsed');
+        if (elapsedEl) elapsedEl.textContent = formatElapsedTime(_pipelineStartTime);
+
+        // Update stage markers
+        updateProgressStages(s.stage);
+
+        // Update progress bar
+        const progress = calculateProgress(s.stage, s.progress);
+        const progressBar = document.getElementById('progress-bar-fill');
+        if (progressBar) progressBar.style.width = progress + '%';
+
+        // Update stage text
+        const stageText = document.getElementById('progress-stage-text');
+        if (stageText) {
+          if (s.progress && s.progress.current_item) {
+            stageText.textContent = `${label} [${s.progress.processed + 1}/${s.progress.total}]`;
+            const itemEl = document.getElementById('progress-item-current');
+            if (itemEl) {
+              itemEl.textContent = s.progress.current_item;
+              itemEl.style.display = 'block';
             }
+          } else {
+            stageText.textContent = label;
+            const itemEl = document.getElementById('progress-item-current');
+            if (itemEl) itemEl.style.display = 'none';
+          }
+        }
 
-            function elementDrag(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                element.style.top = (element.offsetTop - pos2) + "px";
-                element.style.left = (element.offsetLeft - pos1) + "px";
-                drawConnections();
+        // Update stats from DB
+        if (s.db) {
+          const extractedEl = document.getElementById('progress-extracted');
+          const nodesEl = document.getElementById('progress-nodes');
+          const oppsEl = document.getElementById('progress-opportunities');
+          
+          if (extractedEl) extractedEl.textContent = s.db.extracted || 0;
+          if (nodesEl) nodesEl.textContent = s.db.graph_nodes || 0;
+          if (oppsEl) oppsEl.textContent = s.db.survived_opportunities || 0;
+        }
+      }
+
+      // Update status panel (existing behavior)
+      if (s.progress) {
+        const p = s.progress;
+        label += ` | ${escHtml(p.current_item || '')} [${p.processed+1}/${p.total}] ${p.percent}%`;
+      }
+
+      const statusEl = document.getElementById('status-detail');
+      if (statusEl) {
+        statusEl.innerHTML = `Stage: ${label}<br>Running: ${s.running}`;
+        if (s.last_error) statusEl.innerHTML += `<br><span style="color:var(--clr-error);">${escHtml(s.last_error)}</span>`;
+      }
+
+      if (!s.running) {
+        clearInterval(_pipelinePoller);
+        _pipelinePoller = null;
+        const btn = document.getElementById('btn-pipeline-run');
+        if (btn) { btn.textContent = '▶ Run Pipeline'; btn.disabled = false; }
+
+        // Show close button on modal
+        const closeBtn = document.getElementById('progress-close-btn');
+        if (closeBtn) closeBtn.style.display = 'block';
+
+        if (s.stage === 'done' && s.last_result) {
+          const r = s.last_result;
+          
+          // Update modal to show completion
+          const progressBar = document.getElementById('progress-bar-fill');
+          if (progressBar) progressBar.style.width = '100%';
+          
+          const stageText = document.getElementById('progress-stage-text');
+          if (stageText) {
+            stageText.innerHTML = `<span style="color:var(--clr-success);">✓ Pipeline completed successfully!</span><br>` +
+              `Discovered: ${r.discovered} opportunities · Survived critic: ${r.survived} · Rejected: ${r.rejected}`;
+          }
+          
+          const itemEl = document.getElementById('progress-item-current');
+          if (itemEl) itemEl.style.display = 'none';
+
+          // Mark all stages complete
+          ['extraction', 'graph', 'discovery'].forEach(s => {
+            const el = document.getElementById('stage-' + s);
+            if (el) {
+              el.classList.remove('active');
+              el.classList.add('complete');
             }
+          });
 
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
+          showPipelineStatus(
+            `✓ Pipeline complete — Discovered: ${r.discovered} · Survived: ${r.survived} · Rejected: ${r.rejected}`,
+            'success'
+          );
+          setTimeout(() => {
+            loadGraphData(); loadResearchBank(); loadStats();
+          }, 400);
+
+          // Auto-hide modal after 10 seconds
+          setTimeout(() => hideProgressModal(), 10000);
+
+        } else if (s.stage === 'error') {
+          const stageText = document.getElementById('progress-stage-text');
+          if (stageText) {
+            stageText.innerHTML = `<span style="color:var(--clr-error);">✗ Pipeline error</span><br>` +
+              (s.last_error ? escHtml(s.last_error) : 'Check Status panel for details');
+          }
+          showPipelineStatus('Pipeline error — check Status panel for details', 'error');
+        } else {
+          hideProgressModal();
+          document.getElementById('pipeline-status-bar').style.display = 'none';
         }
+      } else {
+        showPipelineStatus(label, 'info');
+      }
+    });
+}
 
-        // SVG connection lines
-        function drawConnections() {
-            const svg = document.getElementById('canvas-connections-svg');
-            svg.innerHTML = '';
-            
-            // Loop through all nodes and draw lines based on data relations
-            const nodes = document.querySelectorAll('.canvas-node');
-            const nodePositions = {};
-            
-            nodes.forEach(node => {
-                nodePositions[node.id] = {
-                    x: node.offsetLeft + (node.offsetWidth / 2),
-                    y: node.offsetTop + (node.offsetHeight / 2)
-                };
-            });
+function showPipelineStatus(msg, type) {
+  const el = document.getElementById('pipeline-status-bar');
+  if (!el) return;
+  const bg = {
+    info:    'rgba(214,163,79,0.12)',
+    success: 'rgba(74,222,128,0.10)',
+    error:   'rgba(248,113,113,0.10)'
+  };
+  el.style.background = bg[type] || bg.info;
+  el.style.display = 'block';
+  el.textContent = msg;
+}
 
-            // We will dynamically connect nodes that represent related concepts
-            // Example connections: connect technology to problem or opportunities
-            const oppNodes = document.querySelectorAll('.node-opportunity');
-            oppNodes.forEach(opp => {
-                const targetId = opp.id;
-                // Find paper or patent nodes to connect
-                const related = document.querySelectorAll('.node-paper, .node-patent');
-                related.forEach(rel => {
-                    if (nodePositions[targetId] && nodePositions[rel.id]) {
-                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        const start = nodePositions[rel.id];
-                        const end = nodePositions[targetId];
-                        
-                        // Control points for smooth bezier curve
-                        const dx = Math.abs(end.x - start.x) * 0.5;
-                        const d = `M ${start.x} ${start.y} C ${start.x + dx} ${start.y}, ${end.x - dx} ${end.y}, ${end.x} ${end.y}`;
-                        
-                        path.setAttribute('d', d);
-                        path.setAttribute('stroke', 'rgba(189, 0, 255, 0.4)');
-                        path.setAttribute('stroke-width', '1.5');
-                        path.setAttribute('fill', 'none');
-                        svg.appendChild(path);
-                    }
-                });
-            });
-        }
+/* ── System health ──────────────────────────────────────────── */
+function checkSystemHealth() {
+  fetch('/api/system/health')
+    .then(r => r.json())
+    .then(h => {
+      const badge = document.getElementById('health-badge');
+      if (!badge) return;
+      if (h.status === 'healthy') {
+        badge.innerHTML = `<span style="color:var(--clr-success);">●</span> ${h.llm.provider}/${h.llm.model}`;
+      } else {
+        badge.innerHTML = `<span style="color:var(--clr-error);">●</span> Degraded`;
+        badge.title = h.recommendation;
+      }
+      if (h.llm.ollama_models_available && h.llm.ollama_models_available.length) {
+        badge.title = 'Models: ' + h.llm.ollama_models_available.join(', ');
+      }
+    })
+    .catch(() => {
+      const badge = document.getElementById('health-badge');
+      if (badge) badge.innerHTML = '<span style="color:var(--clr-error);">●</span> Offline';
+    });
+}
 
-        // Load graph data and populate nodes
-        function loadGraphData() {
-            const workspace = document.getElementById('canvas-workspace');
-            
-            // Keep background SVG
-            const svg = document.getElementById('canvas-connections-svg');
-            workspace.innerHTML = '';
-            workspace.appendChild(svg);
+/* ── Copilot insights summary ───────────────────────────────── */
+function updateCopilotInsights(data) {
+  const el = document.getElementById('copilot-status');
+  if (!el) return;
+  if (currentNav === 'opportunities') {
+    el.textContent = `${data.length} validated opportunit${data.length === 1 ? 'y' : 'ies'} survived the critic filter.`;
+  } else if (currentNav === 'rejected') {
+    el.textContent = `Critic filtered ${data.length} concept${data.length === 1 ? '' : 's'} — logged for learning.`;
+  } else {
+    el.textContent = `${data.length} document${data.length === 1 ? '' : 's'} in Research Bank.`;
+  }
+}
 
-            let url = '/api/opportunities';
-            if (currentTab === 'rejected') url = '/api/rejected';
-            if (currentTab === 'papers') url = '/api/papers';
+/* ── Copilot chat ───────────────────────────────────────────── */
+function sendCopilotMessage() {
+  const input = document.getElementById('copilot-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
 
-            fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        workspace.innerHTML += `<div style="padding: 3rem; text-align: center; color: var(--text-secondary);">No nodes in this view. Run pipeline to generate.</div>`;
-                        return;
-                    }
+  const chat = document.getElementById('copilot-chat');
 
-                    // Dynamically position nodes in a clean Figma-like flow layout
-                    data.forEach((item, index) => {
-                        const node = document.createElement('div');
-                        node.className = `canvas-node`;
-                        node.id = `node-${item.id || index}`;
-                        
-                        let type = 'paper';
-                        let title = item.title || 'Untitled Node';
-                        let desc = item.problem || item.solution || '';
+  const userBubble = document.createElement('div');
+  userBubble.className = 'chat-msg chat-msg-user';
+  userBubble.innerHTML = `<div class="chat-sender chat-sender-user">You</div>${escHtml(msg)}`;
+  chat.appendChild(userBubble);
 
-                        if (currentTab === 'opportunities') {
-                            type = 'opportunity';
-                            node.classList.add('node-opportunity');
-                            desc = `Confidence Score: ${item.confidence_score}/10`;
-                        } else if (currentTab === 'rejected') {
-                            type = 'problem';
-                            node.classList.add('node-problem');
-                            desc = `Rejected: ${item.reason}`;
-                        } else {
-                            type = item.type || 'paper';
-                            node.classList.add(`node-${type}`);
-                        }
+  const loadingBubble = document.createElement('div');
+  loadingBubble.className = 'chat-msg chat-msg-bot';
+  loadingBubble.innerHTML = `<div class="chat-sender chat-sender-bot">Copilot</div><span style="color:var(--tx-2);">Thinking…</span>`;
+  chat.appendChild(loadingBubble);
+  chat.scrollTop = chat.scrollHeight;
 
-                        node.innerHTML = `
-                            <div class="node-header">${type}</div>
-                            <div class="node-title">${title}</div>
-                            <div class="node-desc">${desc}</div>
-                        `;
+  fetch('/api/copilot', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: msg })
+  })
+  .then(r => r.json())
+  .then(res => {
+    loadingBubble.remove();
+    const replyBubble = document.createElement('div');
+    replyBubble.className = 'chat-msg chat-msg-bot';
 
-                        // Arrange nodes neatly
-                        const col = index % 3;
-                        const row = Math.floor(index / 3);
-                        node.style.left = `${100 + col * 320}px`;
-                        node.style.top = `${100 + row * 220}px`;
+    if (res.error) {
+      replyBubble.innerHTML = `<div class="chat-sender chat-sender-bot">Copilot</div><span style="color:var(--clr-error);">${escHtml(res.error)}</span>`;
+    } else {
+    const formatted = (res.reply || '')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+      replyBubble.innerHTML = `<div class="chat-sender chat-sender-bot">Copilot</div>${formatted}`;
 
-                        node.addEventListener('click', () => selectNode(item, type));
-                        workspace.appendChild(node);
-                        makeDraggable(node);
-                    });
-
-                    drawConnections();
-                    updateCopilotInsights(data);
-                });
-        }
-
-        // Selected Node updates preview editor
-        function selectNode(item, type) {
-            document.getElementById('editor-node-title').innerText = item.title || 'Selected Node';
-            document.getElementById('editor-node-type').innerText = type.toUpperCase();
-            
-            let content = '';
-            if (type === 'opportunity') {
-                content = `
-                    <strong>Problem Identified:</strong> ${item.problem}<br><br>
-                    <strong>Technology Solution:</strong> ${item.technology}<br><br>
-                    <strong>Market Applicability:</strong> ${item.market}<br><br>
-                    <strong>Timing Signal:</strong> ${item.timing_signal}<br><br>
-                    <strong>Detailed Reasoning:</strong> ${item.reasoning}
-                `;
-            } else if (type === 'problem') {
-                content = `
-                    <strong>Identified Problem:</strong> ${item.problem}<br><br>
-                    <strong>Technology Proposed:</strong> ${item.technology}<br><br>
-                    <strong>Market Segment:</strong> ${item.market}<br><br>
-                    <strong>Critic Rejection Reason:</strong> <span style="color: var(--neon-red);">${item.reason}</span>
-                `;
-            } else {
-                content = `
-                    <strong>Raw Text Summary:</strong> ${item.raw_text || 'No text summary extracted.'}<br><br>
-                    <strong>Extracted Problem Noun Phrase:</strong> ${item.problem || 'Pending...'}<br><br>
-                    <strong>Extracted Technology Noun Phrase:</strong> ${item.technology || 'Pending...'}<br><br>
-                    <strong>Extracted Solution:</strong> ${item.solution || 'Pending...'}
-                `;
-            }
-            document.getElementById('editor-node-content').innerHTML = content;
-        }
-
-        function openIngestModal(type) {
-            selectedIngestType = type || 'paper';
-            urlQueue = []; fileQueue = [];
-            renderUrlList(); renderFileList();
-            setIngestStatus('');
-            switchIngestTab('url');
-            document.getElementById('ingest-modal').style.display = 'flex';
-        }
-
-        function closeIngestModal() {
-            document.getElementById('ingest-modal').style.display = 'none';
-        }
-
-        // ── Ingestion Panel ───────────────────────────────────────────────
-        let activeIngestTab = 'url';
-        let urlQueue = [];   // URLs waiting to be ingested
-        let fileQueue = [];  // Files waiting to be ingested
-
-        function switchIngestTab(tab) {
-            activeIngestTab = tab;
-            ['url', 'pdf', 'text'].forEach(t => {
-                document.getElementById(`itab-${t}`).classList.toggle('active', t === tab);
-                document.getElementById(`ingest-panel-${t}`).style.display = t === tab ? 'block' : 'none';
-            });
-        }
-
-        function addUrlToQueue() {
-            const inp = document.getElementById('url-input');
-            const url = inp.value.trim();
-            if (!url) return;
-            urlQueue.push(url);
-            inp.value = '';
-            renderUrlList();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('url-input')?.addEventListener('keydown', e => {
-                if (e.key === 'Enter') addUrlToQueue();
-            });
-
-            // Check system health on startup
-            checkSystemHealth();
-
-            // If a pipeline was already running (e.g., server restarted mid-run), resume polling
-            fetch('/api/pipeline/status')
-                .then(r => r.json())
-                .then(s => { if (s.running) startPipelinePoller(); })
-                .catch(() => {});
+      // Evidence refs badges (Task 10)
+      if (res.evidence_refs && res.evidence_refs.length > 0) {
+        const badgeWrap = document.createElement('div');
+        badgeWrap.style.cssText = 'display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;';
+        res.evidence_refs.slice(0, 5).forEach(ref => {
+          const badge = document.createElement('span');
+          badge.className = 'tag tag-paper';
+          badge.style.cssText = 'font-size:9px;padding:1px 5px;cursor:pointer;';
+          badge.title = ref;
+          badge.textContent = ref.length > 18 ? ref.slice(0, 18) + '…' : ref;
+          badgeWrap.appendChild(badge);
         });
+        replyBubble.appendChild(badgeWrap);
+      }
 
+      // Confidence indicator (Task 10)
+      if (res.confidence && res.confidence !== 'Unknown') {
+        const confEl = document.createElement('div');
+        confEl.style.cssText = 'margin-top:5px;font-size:10px;';
+        const confMap = {
+          'High':    { icon: '◎', color: 'var(--clr-success)' },
+          'Medium':  { icon: '◎', color: 'var(--amber)' },
+          'Low':     { icon: '◎', color: 'var(--clr-error)' },
+          'Unknown': { icon: '◎', color: 'var(--tx-2)' },
+        };
+        const c = confMap[res.confidence] || confMap['Unknown'];
+        confEl.innerHTML = `<span style="color:${c.color};">${c.icon} ${res.confidence} confidence</span>`;
+        replyBubble.appendChild(confEl);
+      } else if (res.confidence === 'Unknown') {
+        const confEl = document.createElement('div');
+        confEl.style.cssText = 'margin-top:5px;font-size:10px;';
+        confEl.innerHTML = `<span style="color:var(--tx-2);">◎ Unknown confidence</span>`;
+        replyBubble.appendChild(confEl);
+      }
 
-        function renderUrlList() {
-            const el = document.getElementById('url-list');
-            el.innerHTML = urlQueue.map((u, i) => `
-                <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-tertiary); border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.8rem;">
-                    <span style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--neon-blue);">${u}</span>
-                    <span style="cursor: pointer; color: var(--text-secondary);" onclick="removeUrlFromQueue(${i})">✕</span>
-                </div>
-            `).join('');
+      // Auto-refresh if copilot processed a new opportunity
+      if (res.reply && (res.reply.includes('Critic Check') || res.reply.includes('visible in the'))) {
+        setTimeout(() => { loadGraphData(); loadStats(); }, 800);
+      }
+    }
+    chat.appendChild(replyBubble);
+    chat.scrollTop = chat.scrollHeight;
+  })
+  .catch(() => {
+    loadingBubble.remove();
+    const errBubble = document.createElement('div');
+    errBubble.className = 'chat-msg chat-msg-bot';
+    errBubble.innerHTML = `<div class="chat-sender chat-sender-bot">Copilot</div><span style="color:var(--clr-error);">Backend unreachable.</span>`;
+    chat.appendChild(errBubble);
+    chat.scrollTop = chat.scrollHeight;
+  });
+}
+
+/* ── Ingest Modal ───────────────────────────────────────────── */
+function openIngestModal(type) {
+  selectedIngestType = type || 'paper';
+  urlQueue = []; fileQueue = [];
+  renderUrlList(); renderFileList();
+  setIngestStatus('', '');
+  switchIngestTab('url');
+  document.getElementById('ingest-modal').classList.add('open');
+}
+
+function closeIngestModal() {
+  document.getElementById('ingest-modal').classList.remove('open');
+}
+
+function switchIngestTab(tab) {
+  activeIngestTab = tab;
+  ['url','pdf','text'].forEach(t => {
+    const tabEl   = document.getElementById('itab-' + t);
+    const panelEl = document.getElementById('ingest-panel-' + t);
+    if (tabEl)   tabEl.classList.toggle('active', t === tab);
+    if (panelEl) panelEl.style.display = t === tab ? 'block' : 'none';
+  });
+}
+
+function addUrlToQueue() {
+  const inp = document.getElementById('url-input');
+  const url = inp.value.trim();
+  if (!url) return;
+  urlQueue.push(url);
+  inp.value = '';
+  renderUrlList();
+}
+
+function removeUrlFromQueue(i) {
+  urlQueue.splice(i, 1);
+  renderUrlList();
+}
+
+function renderUrlList() {
+  const el = document.getElementById('url-list');
+  if (!el) return;
+  el.innerHTML = urlQueue.map((u, i) => `
+    <div class="queue-item">
+      <span class="queue-item-text truncate">${escHtml(u)}</span>
+      <button class="queue-item-remove" onclick="removeUrlFromQueue(${i})">×</button>
+    </div>
+  `).join('');
+}
+
+function handleFileSelect(files) {
+  Array.from(files).forEach(f => fileQueue.push(f));
+  renderFileList();
+}
+
+function handleFileDrop(e) {
+  e.preventDefault();
+  document.getElementById('pdf-drop-zone').classList.remove('drag-over');
+  handleFileSelect(e.dataTransfer.files);
+}
+
+function removeFileFromQueue(i) {
+  fileQueue.splice(i, 1);
+  renderFileList();
+}
+
+function renderFileList() {
+  const el = document.getElementById('pdf-file-list');
+  if (!el) return;
+  el.innerHTML = fileQueue.map((f, i) => `
+    <div class="queue-item">
+      <span style="font-size:12px;">📄</span>
+      <span class="queue-item-text truncate">${escHtml(f.name)}</span>
+      <span class="queue-item-size">${(f.size/1024).toFixed(0)} KB</span>
+      <button class="queue-item-remove" onclick="removeFileFromQueue(${i})">×</button>
+    </div>
+  `).join('');
+}
+
+function setIngestStatus(msg, type) {
+  const el = document.getElementById('ingest-status');
+  if (!el) return;
+  const colors = {
+    success: 'var(--clr-success)', error: 'var(--clr-error)',
+    warn:    'var(--clr-warn)',    '':   'var(--tx-1)'
+  };
+  el.style.color = colors[type] || colors[''];
+  el.textContent = msg;
+}
+
+async function submitAllSources() {
+  const btn = document.getElementById('btn-ingest-submit');
+  btn.disabled = true;
+  btn.textContent = 'Ingesting…';
+  let totalSaved = 0;
+
+  try {
+    // URLs
+    for (const url of urlQueue) {
+      setIngestStatus(`Fetching: ${url}`, '');
+      const res  = await fetch('/api/ingest/url', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ url, type: selectedIngestType })
+      });
+      const data = await res.json();
+      if (data.status === 'success') { totalSaved++; setIngestStatus(`✓ ${data.title}`, 'success'); }
+      else { setIngestStatus(`✗ ${url}: ${data.error}`, 'error'); }
+      await new Promise(r => setTimeout(r, 200));
+    }
+
+    // Files
+    if (fileQueue.length > 0) {
+      setIngestStatus(`Uploading ${fileQueue.length} file(s)…`, '');
+      const form = new FormData();
+      fileQueue.forEach(f => form.append('files', f));
+      form.append('type', selectedIngestType);
+      const res  = await fetch('/api/ingest/file', { method: 'POST', body: form });
+      const data = await res.json();
+      totalSaved += (data.saved || []).length;
+      if (data.errors?.length) setIngestStatus(`⚠ ${data.errors.length} file error(s)`, 'warn');
+      else setIngestStatus(`✓ ${totalSaved} file(s) uploaded`, 'success');
+    }
+
+    // Text paste
+    const titleVal = document.getElementById('ingest-title')?.value.trim();
+    const textVal  = document.getElementById('ingest-text')?.value.trim();
+    if (textVal) {
+      if (!titleVal) { setIngestStatus('Title required for text paste.', 'error'); btn.disabled=false; btn.textContent='Ingest & Sync'; return; }
+      const res  = await fetch('/api/ingest/manual', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ title: titleVal, raw_text: textVal, type: selectedIngestType })
+      });
+      const data = await res.json();
+      if (data.status === 'success') totalSaved++;
+    }
+
+    if (totalSaved > 0) {
+      setIngestStatus(`✓ ${totalSaved} source(s) added. Extraction running…`, 'success');
+      urlQueue = []; fileQueue = [];
+      renderUrlList(); renderFileList();
+      const it = document.getElementById('ingest-title'); if (it) it.value = '';
+      const tx = document.getElementById('ingest-text');  if (tx) tx.value = '';
+      setTimeout(() => { closeIngestModal(); loadResearchBank(); loadGraphData(); loadStats(); }, 1500);
+    } else {
+      setIngestStatus('Nothing ingested. Add at least one source.', 'warn');
+    }
+  } catch(err) {
+    setIngestStatus(`Error: ${err.message}`, 'error');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Ingest & Sync';
+}
+
+/* ── arXiv Pack sync ────────────────────────────────────────── */
+function syncArxivPacks() {
+  const target = event.currentTarget;
+  const orig = target.textContent;
+  target.textContent = 'Syncing…';
+  target.disabled = true;
+
+  fetch('/api/ingest/arxiv', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({})
+  })
+  .then(r => r.json())
+  .then(data => {
+    target.textContent = orig; target.disabled = false;
+    let count = 0;
+    const iv = setInterval(() => { loadResearchBank(); if(++count > 5) clearInterval(iv); }, 3000);
+  })
+  .catch(() => { target.textContent = orig; target.disabled = false; });
+}
+
+/* ── Simulator Chart ────────────────────────────────────────── */
+function loadSimulationChart() {
+  const ctx = document.getElementById('simulationChart');
+  if (!ctx) return;
+  if (simChartInstance) { simChartInstance.destroy(); }
+  simChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Baseline', 'Optimised', 'Frontier'],
+      datasets: [{
+        label: 'Novelty',
+        data: [4, 7.5, 9.2],
+        borderColor: '#d6a34f',
+        backgroundColor: 'rgba(214,163,79,0.08)',
+        fill: true, tension: 0.4
+      },{
+        label: 'Timing',
+        data: [5, 6.8, 8.5],
+        borderColor: '#c084fc',
+        backgroundColor: 'rgba(192,132,252,0.08)',
+        fill: true, tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#8b95a8', font: { size: 11 } } } },
+      scales: {
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4e5768' } },
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4e5768' } }
+      }
+    }
+  });
+}
+
+/* ── Workspaces ─────────────────────────────────────────────── */
+function loadWorkspaces() {
+  fetch('/api/workspaces/active')
+    .then(r => r.json())
+    .then(a => {
+      activeWorkspaceId = a.active_workspace_id;
+      fetch('/api/workspaces')
+        .then(r => r.json())
+        .then(data => {
+          const all = [{ id: 'default', name: 'Default Workspace', status: 'active' }]
+            .concat(data.filter(w => w.id !== 'default'));
+
+          const list = document.getElementById('workspaces-list');
+          if (!list) return;
+          list.innerHTML = all.map(w => `
+            <div class="ws-card ${w.id === activeWorkspaceId ? 'active' : ''}" onclick="selectWorkspace('${w.id}','${escAttr(w.name)}')">
+              <div class="ws-card-header">
+                <span class="ws-card-name">${escHtml(w.name)}</span>
+                ${w.id === activeWorkspaceId ? '<span class="ws-active-badge">Active</span>' : ''}
+              </div>
+            </div>
+          `).join('');
+
+          const active = all.find(w => w.id === activeWorkspaceId);
+          if (active) {
+            const wsNameEl = document.getElementById('active-ws-name');
+            if (wsNameEl) wsNameEl.textContent = active.name;
+          }
+        });
+    });
+}
+
+function selectWorkspace(id, name) {
+  activeWorkspaceId = id;
+  fetch('/api/workspaces/active', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id })
+  })
+  .then(r => r.json())
+  .then(() => {
+    const wsEl = document.getElementById('active-ws-name');
+    if (wsEl) wsEl.textContent = name;
+    const btn = document.getElementById('btn-save-checkpoint');
+    if (btn) btn.style.display = id === 'default' ? 'none' : 'block';
+    if (id !== 'default') loadWorkspaceHistory(id);
+    loadWorkspaces(); loadResearchBank(); loadGraphData(); loadStats();
+  });
+}
+
+function createWorkspace() {
+  const name = document.getElementById('new-ws-name')?.value.trim();
+  if (!name) return;
+  fetch('/api/workspaces', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ name })
+  })
+  .then(r => r.json())
+  .then(() => { document.getElementById('new-ws-name').value = ''; loadWorkspaces(); });
+}
+
+function saveCheckpoint() {
+  if (!activeWorkspaceId) return;
+  fetch(`/api/workspaces/${activeWorkspaceId}/checkpoint`, { method: 'POST' })
+    .then(r => r.json())
+    .then(() => loadWorkspaceHistory(activeWorkspaceId));
+}
+
+function loadWorkspaceHistory(id) {
+  fetch(`/api/workspaces/${id}/history`)
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById('workspace-history-list');
+      if (!list) return;
+      if (!data.length) {
+        list.innerHTML = '<div style="color:var(--tx-2);font-size:12px;">No checkpoints yet.</div>';
+        return;
+      }
+      list.innerHTML = data.map(h => `
+        <div class="report-card">
+          <div>
+            <div style="font-size:12px;font-weight:600;">Version ${h.version}</div>
+            <div class="label-sm">By ${h.created_by}</div>
+          </div>
+          <button class="btn btn-ghost" style="padding:3px 8px;" onclick="restoreWorkspace('${id}',${h.version})">Restore</button>
+        </div>
+      `).join('');
+    });
+}
+
+function restoreWorkspace(id, version) {
+  fetch(`/api/workspaces/${id}/restore/${version}`, { method: 'POST' })
+    .then(r => r.json())
+    .then(() => { loadGraphData(); loadStats(); });
+}
+
+/* ── Reports ────────────────────────────────────────────────── */
+function loadReportsList() {
+  const list = document.getElementById('reports-list');
+  fetch('/api/reports')
+    .then(r => r.json())
+    .then(data => {
+      if (!data.length) {
+        list.innerHTML = '<div style="color:var(--tx-2);font-size:12px;">No reports yet.</div>';
+        return;
+      }
+      list.innerHTML = data.map(r => `
+        <div class="report-card">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--clr-paper);">${escHtml(r.filename)}</div>
+            <div class="label-sm">${(r.size_bytes/1024).toFixed(1)} KB · ${new Date(r.created_at).toLocaleString()}</div>
+          </div>
+          <button class="btn btn-ghost" style="padding:3px 8px;" onclick="viewReportContent('${r.filename}')">Open</button>
+        </div>
+      `).join('');
+    });
+}
+
+function viewReportContent(filename) {
+  fetch(`/api/reports/view/${filename}`)
+    .then(r => r.json())
+    .then(data => {
+      const titleEl = document.getElementById('report-preview-title');
+      if (titleEl) titleEl.textContent = filename;
+      const preview = document.getElementById('report-preview-content');
+      if (!preview) return;
+
+      const rendered = data.content
+        .replace(/^# (.*$)/gim, '<h1 style="font-size:15px;font-weight:700;color:var(--amber);margin:14px 0 6px;border-bottom:1px solid var(--border-0);padding-bottom:4px;">$1</h1>')
+        .replace(/^## (.*$)/gim, '<h2 style="font-size:13px;font-weight:600;color:var(--clr-opp);margin:12px 0 5px;">$1</h2>')
+        .replace(/^### (.*$)/gim, '<h3 style="font-size:12px;font-weight:600;margin:10px 0 4px;">$1</h3>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/`([^`]+)`/g, '<code style="background:var(--bg-3);padding:1px 4px;border-radius:3px;font-family:monospace;font-size:10px;">$1</code>')
+        .replace(/^> (.*$)/gim, '<blockquote style="border-left:2px solid var(--amber);padding-left:8px;color:var(--tx-1);margin:8px 0;font-style:italic;">$1</blockquote>')
+        .replace(/\n/g, '<br>');
+      preview.innerHTML = `<div style="font-size:12px;line-height:1.7;">${rendered}</div>`;
+    });
+}
+
+function generateUnifiedReport() {
+  const status = document.getElementById('report-gen-status');
+  if (status) { status.textContent = 'Compiling…'; status.style.color = 'var(--amber)'; }
+
+  fetch('/api/reports/generate', { method: 'POST' })
+    .then(r => r.json())
+    .then(data => {
+      if (data.report_path) {
+        if (status) { status.textContent = `✓ Report saved — ${data.opportunity_count || ''} opportunities`; status.style.color = 'var(--clr-success)'; }
+        loadReportsList();
+      } else {
+        if (status) { status.textContent = 'No surviving opportunities to report.'; status.style.color = 'var(--clr-warn)'; }
+      }
+    })
+    .catch(err => {
+      if (status) { status.textContent = 'Failed: ' + err.message; status.style.color = 'var(--clr-error)'; }
+    });
+}
+
+/* ── Utility helpers ────────────────────────────────────────── */
+function escHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function escAttr(str) {
+  return String(str || '').replace(/'/g,"\\'");
+}
+
+function safeJson(str, fallback) {
+  try { return JSON.parse(str); } catch { return fallback; }
+}
+
+/* ── Keyboard shortcut: Enter to add URL ───────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('url-input')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') addUrlToQueue();
+  });
+});
+
+/* ── Bootstrap ──────────────────────────────────────────────── */
+checkSystemHealth();
+loadStats();
+loadResearchBank();
+loadGraphData();
+loadWorkspaces();
+
+// Resume pipeline poller if already running
+fetch('/api/pipeline/status')
+  .then(r => r.json())
+  .then(s => { if (s.running) { startPipelinePoller(); showProgressModal(); } })
+  .catch(() => {});
+
+/* ── Paper Builder Functions ────────────────────────────────── */
+let linkedNodes = [];
+
+function loadPaperBuilderNodes() {
+  fetch('/api/research-paper/graph')
+    .then(r => r.json())
+    .then(data => {
+      const container = document.getElementById('paper-nodes-list');
+      if (!container) return;
+      
+      let html = '';
+      
+      // Opportunities
+      if (data.opportunities && data.opportunities.length) {
+        html += '<div class="label-xs" style="margin-bottom:6px;color:var(--clr-opp);">OPPORTUNITIES</div>';
+        data.opportunities.forEach(opp => {
+          const isLinked = linkedNodes.includes(opp.id);
+          html += `
+            <div style="background:var(--bg-3);border:1px solid var(--border-0);border-radius:4px;padding:8px;margin-bottom:6px;font-size:11px;display:flex;justify-content:space-between;align-items:start;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-weight:600;color:var(--tx-0);margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(opp.title)}</div>
+                <div style="color:var(--tx-2);font-size:10px;">Problem: ${escHtml((opp.problem || '').substring(0, 60))}...</div>
+                <div style="color:var(--tx-2);font-size:10px;">Confidence: ${opp.confidence_score || 'N/A'}/10</div>
+              </div>
+              <button class="btn btn-ghost" style="padding:2px 6px;font-size:16px;${isLinked ? 'opacity:0.3;' : ''}" 
+                onclick="linkNode('${opp.id}', 'opportunity', '${escHtml(opp.title).replace(/'/g, "\\'")}')" 
+                ${isLinked ? 'disabled' : ''}>+</button>
+            </div>
+          `;
+        });
+      }
+      
+      // Concepts
+      if (data.concepts && data.concepts.length) {
+        html += '<div class="label-xs" style="margin-top:12px;margin-bottom:6px;color:var(--clr-tech);">CONCEPTS</div>';
+        data.concepts.forEach(node => {
+          const isLinked = linkedNodes.includes(node.id);
+          html += `
+            <div style="background:var(--bg-3);border:1px solid var(--border-0);border-radius:4px;padding:8px;margin-bottom:6px;font-size:11px;display:flex;justify-content:space-between;align-items:center;">
+              <div style="flex:1;min-width:0;">
+                <span style="font-weight:500;color:var(--tx-0);">${escHtml(node.label)}</span>
+                <span style="color:var(--tx-2);font-size:10px;margin-left:6px;">(${escHtml(node.node_type)})</span>
+              </div>
+              <button class="btn btn-ghost" style="padding:2px 6px;font-size:16px;${isLinked ? 'opacity:0.3;' : ''}" 
+                onclick="linkNode('${node.id}', 'concept', '${escHtml(node.label).replace(/'/g, "\\'")}')" 
+                ${isLinked ? 'disabled' : ''}>+</button>
+            </div>
+          `;
+        });
+      }
+      
+      // Discoveries
+      if (data.discoveries && data.discoveries.length) {
+        html += '<div class="label-xs" style="margin-top:12px;margin-bottom:6px;color:var(--clr-success);">DISCOVERIES</div>';
+        data.discoveries.forEach(disc => {
+          const isLinked = linkedNodes.includes(disc.id);
+          html += `
+            <div style="background:var(--bg-3);border:1px solid var(--border-0);border-radius:4px;padding:8px;margin-bottom:6px;font-size:11px;display:flex;justify-content:space-between;align-items:start;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-weight:500;color:var(--tx-0);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(disc.title || disc.type)}</div>
+                <div style="color:var(--tx-2);font-size:10px;">${escHtml(disc.type)}</div>
+              </div>
+              <button class="btn btn-ghost" style="padding:2px 6px;font-size:16px;${isLinked ? 'opacity:0.3;' : ''}" 
+                onclick="linkNode('${disc.id}', 'discovery', '${escHtml(disc.title || disc.type).replace(/'/g, "\\'")}')" 
+                ${isLinked ? 'disabled' : ''}>+</button>
+            </div>
+          `;
+        });
+      }
+      
+      if (!html) {
+        html = '<div style="color:var(--tx-2);font-size:11px;">No knowledge nodes available. Run the pipeline first.</div>';
+      }
+      
+      container.innerHTML = html;
+    })
+    .catch(err => {
+      const container = document.getElementById('paper-nodes-list');
+      if (container) container.innerHTML = `<div style="color:var(--clr-error);font-size:11px;">Error loading nodes: ${err}</div>`;
+    });
+}
+
+function linkNode(nodeId, nodeType, nodeTitle) {
+  if (linkedNodes.includes(nodeId)) return;
+  
+  linkedNodes.push(nodeId);
+  
+  const container = document.getElementById('linked-nodes-list');
+  if (!container) return;
+  
+  // Clear placeholder
+  if (linkedNodes.length === 1) {
+    container.innerHTML = '';
+  }
+  
+  const typeColors = {
+    opportunity: 'var(--clr-opp)',
+    concept: 'var(--clr-tech)',
+    discovery: 'var(--clr-success)'
+  };
+  
+  const badge = document.createElement('div');
+  badge.style.cssText = 'display:flex;align-items:center;justify-content:space-between;background:var(--bg-3);border:1px solid var(--border-0);border-radius:4px;padding:6px 8px;font-size:11px;';
+  badge.innerHTML = `
+    <div style="flex:1;min-width:0;">
+      <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${typeColors[nodeType]};margin-right:6px;"></span>
+      <span style="color:var(--tx-0);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(nodeTitle)}</span>
+    </div>
+    <button class="btn btn-ghost" style="padding:2px 6px;font-size:12px;line-height:1;" onclick="unlinkNode('${nodeId}')">×</button>
+  `;
+  badge.dataset.nodeId = nodeId;
+  
+  container.appendChild(badge);
+  
+  // Update count
+  const countEl = document.getElementById('linked-count');
+  if (countEl) countEl.textContent = linkedNodes.length;
+  
+  // Reload nodes to update button states
+  loadPaperBuilderNodes();
+}
+
+function unlinkNode(nodeId) {
+  linkedNodes = linkedNodes.filter(id => id !== nodeId);
+  
+  const container = document.getElementById('linked-nodes-list');
+  if (container) {
+    const badge = container.querySelector(`[data-node-id="${nodeId}"]`);
+    if (badge) badge.remove();
+    
+    if (linkedNodes.length === 0) {
+      container.innerHTML = '<div style="color:var(--tx-2);font-size:11px;">Click + icon on nodes to link them here</div>';
+    }
+  }
+  
+  // Update count
+  const countEl = document.getElementById('linked-count');
+  if (countEl) countEl.textContent = linkedNodes.length;
+  
+  // Reload nodes to update button states
+  loadPaperBuilderNodes();
+}
+
+function clearLinkedNodes() {
+  linkedNodes = [];
+  const container = document.getElementById('linked-nodes-list');
+  if (container) {
+    container.innerHTML = '<div style="color:var(--tx-2);font-size:11px;">Click + icon on nodes to link them here</div>';
+  }
+  const countEl = document.getElementById('linked-count');
+  if (countEl) countEl.textContent = '0';
+  loadPaperBuilderNodes();
+}
+
+function generateResearchPaper() {
+  if (linkedNodes.length === 0) {
+    alert('Please link at least one knowledge node before generating a paper.');
+    return;
+  }
+  
+  const title = document.getElementById('paper-title-input').value.trim() || 'Untitled Research Paper';
+  const checkboxes = document.querySelectorAll('input[name="paper-section"]:checked');
+  const sections = Array.from(checkboxes).map(cb => cb.value);
+  
+  const statusEl = document.getElementById('paper-gen-status');
+  if (statusEl) {
+    statusEl.textContent = 'Generating research paper... This may take 1-2 minutes.';
+    statusEl.style.color = 'var(--amber)';
+  }
+  
+  fetch('/api/research-paper/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: title,
+      linked_nodes: linkedNodes,
+      structure: sections
+    })
+  })
+    .then(r => r.json())
+    .then(res => {
+      if (res.status === 'success') {
+        if (statusEl) {
+          statusEl.innerHTML = `✓ Paper generated successfully!<br>` +
+            `<span style="font-size:10px;">File: ${res.filename}<br>` +
+            `Linked: ${res.linked_nodes_count} nodes | Evidence: ${res.evidence_count} items | Citations: ${res.citations_count}</span>`;
+          statusEl.style.color = 'var(--clr-success)';
         }
-
-        function removeUrlFromQueue(i) {
-            urlQueue.splice(i, 1);
-            renderUrlList();
+        
+        // Auto-switch to Reports tab to view
+        setTimeout(() => {
+          switchMainView('reports', document.querySelector('.topbar-tab:nth-child(4)'));
+          loadReportsList();
+        }, 2000);
+      } else {
+        if (statusEl) {
+          statusEl.textContent = `Error: ${res.error || 'Unknown error'}`;
+          statusEl.style.color = 'var(--clr-error)';
         }
+      }
+    })
+    .catch(err => {
+      if (statusEl) {
+        statusEl.textContent = `Error: ${err}`;
+        statusEl.style.color = 'var(--clr-error)';
+      }
+    });
+}
 
-        function handleFileSelect(files) {
-            Array.from(files).forEach(f => fileQueue.push(f));
-            renderFileList();
-        }
+</script>
 
-        function handleFileDrop(e) {
-            e.preventDefault();
-            document.getElementById('pdf-drop-zone').style.borderColor = 'var(--border-color)';
-            handleFileSelect(e.dataTransfer.files);
-        }
+<!-- ── Pipeline Progress Modal ────────────────────────────── -->
+<div id="pipeline-progress-modal">
+  <div id="pipeline-progress-card">
+    <div class="progress-header">
+      <div class="progress-icon">⚡</div>
+      <div>
+        <div class="progress-title">Processing Pipeline</div>
+        <div class="progress-subtitle" id="progress-elapsed">Starting...</div>
+      </div>
+    </div>
 
-        function renderFileList() {
-            const el = document.getElementById('pdf-file-list');
-            el.innerHTML = fileQueue.map((f, i) => `
-                <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-tertiary); border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.8rem;">
-                    <span>📄</span>
-                    <span style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${f.name}</span>
-                    <span style="font-size: 0.72rem; color: var(--text-secondary);">${(f.size/1024).toFixed(0)} KB</span>
-                    <span style="cursor: pointer; color: var(--text-secondary);" onclick="removeFileFromQueue(${i})">✕</span>
-                </div>
-            `).join('');
-        }
+    <div class="progress-stages">
+      <div class="progress-stage" id="stage-extraction">
+        <div class="stage-marker">1</div>
+        <div class="stage-label">Extract</div>
+      </div>
+      <div class="progress-stage" id="stage-graph">
+        <div class="stage-marker">2</div>
+        <div class="stage-label">Graph</div>
+      </div>
+      <div class="progress-stage" id="stage-discovery">
+        <div class="stage-marker">3</div>
+        <div class="stage-label">Discover</div>
+      </div>
+    </div>
 
-        function removeFileFromQueue(i) {
-            fileQueue.splice(i, 1);
-            renderFileList();
-        }
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+    </div>
 
-        function setIngestStatus(msg, color = 'var(--text-secondary)') {
-            const el = document.getElementById('ingest-status');
-            if (el) { el.style.color = color; el.innerText = msg; }
-        }
+    <div class="progress-details">
+      <div id="progress-stage-text">Initializing pipeline...</div>
+      <div id="progress-item-current" class="progress-item-name" style="display: none;"></div>
+    </div>
 
-        async function submitAllSources() {
-            const btn = document.getElementById('btn-ingest-submit');
-            btn.disabled = true;
-            btn.innerText = 'Ingesting...';
-            let totalSaved = 0;
+    <div class="progress-stats">
+      <div class="progress-stat">
+        <span class="progress-stat-value" id="progress-extracted">0</span>
+        <span class="progress-stat-label">Extracted</span>
+      </div>
+      <div class="progress-stat">
+        <span class="progress-stat-value" id="progress-nodes">0</span>
+        <span class="progress-stat-label">Graph Nodes</span>
+      </div>
+      <div class="progress-stat">
+        <span class="progress-stat-value" id="progress-opportunities">0</span>
+        <span class="progress-stat-label">Opportunities</span>
+      </div>
+    </div>
 
-            try {
-                // --- URLs ---
-                for (const url of urlQueue) {
-                    setIngestStatus(`Fetching: ${url}`);
-                    const res = await fetch('/api/ingest/url', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ url, type: selectedIngestType })
-                    });
-                    const data = await res.json();
-                    if (data.status === 'success') {
-                        totalSaved++;
-                        setIngestStatus(`✓ Added: ${data.title}`, 'var(--neon-green)');
-                    } else {
-                        setIngestStatus(`✗ ${url}: ${data.error}`, 'var(--neon-red)');
-                    }
-                    await new Promise(r => setTimeout(r, 300));
-                }
+    <button class="progress-close-btn" id="progress-close-btn" onclick="hideProgressModal()">Close</button>
+  </div>
+</div>
 
-                // --- Files ---
-                if (fileQueue.length > 0) {
-                    setIngestStatus(`Uploading ${fileQueue.length} file(s)...`);
-                    const form = new FormData();
-                    fileQueue.forEach(f => form.append('files', f));
-                    form.append('type', selectedIngestType);
-                    const res = await fetch('/api/ingest/file', { method: 'POST', body: form });
-                    const data = await res.json();
-                    totalSaved += (data.saved || []).length;
-                    if (data.errors?.length) {
-                        setIngestStatus(`⚠ ${data.errors.length} file(s) had errors.`, 'var(--neon-yellow)');
-                    } else {
-                        setIngestStatus(`✓ ${totalSaved} file(s) uploaded.`, 'var(--neon-green)');
-                    }
-                }
-
-                // --- Text paste ---
-                const titleVal = document.getElementById('ingest-title')?.value.trim();
-                const textVal = document.getElementById('ingest-text')?.value.trim();
-                if (textVal) {
-                    if (!titleVal) { setIngestStatus('Title is required for text paste.', 'var(--neon-red)'); btn.disabled = false; btn.innerText = 'Ingest & Sync'; return; }
-                    setIngestStatus('Saving text...');
-                    const res = await fetch('/api/ingest/manual', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ title: titleVal, raw_text: textVal, type: selectedIngestType })
-                    });
-                    const data = await res.json();
-                    if (data.status === 'success') totalSaved++;
-                }
-
-                if (totalSaved > 0) {
-                    setIngestStatus(`✓ ${totalSaved} source(s) added to Research Bank. Extraction running...`, 'var(--neon-green)');
-                    urlQueue = []; fileQueue = [];
-                    renderUrlList(); renderFileList();
-                    if (document.getElementById('ingest-title')) document.getElementById('ingest-title').value = '';
-                    if (document.getElementById('ingest-text')) document.getElementById('ingest-text').value = '';
-                    setTimeout(() => { closeIngestModal(); loadResearchBank(); loadGraphData(); }, 1500);
-                } else {
-                    setIngestStatus('Nothing was ingested. Add at least one source.', 'var(--neon-yellow)');
-                }
-            } catch (err) {
-                setIngestStatus(`Error: ${err.message}`, 'var(--neon-red)');
-            }
-
-            btn.disabled = false;
-            btn.innerText = 'Ingest & Sync';
-        }
-
-        // Memory cache to prevent JSON.stringify from breaking HTML parsing when text contains quotes
-        let researchBankCache = {};
-
-        function selectNodeById(id, type) {
-            const item = researchBankCache[id];
-            if (item) {
-                selectNode(item, type);
-            }
-        }
-
-        // Ingest library checklist
-        function loadResearchBank() {
-            fetch('/api/papers')
-                .then(res => res.json())
-                .then(data => {
-                    const bank = document.getElementById('research-bank-container');
-                    researchBankCache = {}; // Reset cache
-                    data.forEach(item => {
-                        researchBankCache[item.id] = item;
-                    });
-                    bank.innerHTML = data.map(item => `
-                        <div class="bank-item" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;" onclick="selectNodeById('${item.id}', 'paper')">
-                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📄 ${item.title}</span>
-                            <button onclick="event.stopPropagation(); deleteIngestedSource('${item.id}', '${item.title.replace(/'/g, "\\'")}')" style="background: none; border: none; color: var(--neon-red); font-size: 1rem; cursor: pointer; padding: 2px 6px;">×</button>
-                        </div>
-                    `).join('');
-                });
-        }
-
-        function deleteIngestedSource(id, title) {
-            if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
-            fetch(`/api/ingest/delete/${id}`, { method: 'POST' })
-                .then(res => res.json())
-                .then(data => {
-                    loadResearchBank();
-                    loadGraphData();
-                    if (typeof loadStats === 'function') loadStats();
-                });
-        }
-
-        // ── Pipeline execution — non-blocking with live status polling ──────────
-        let _pipelinePoller = null;
-
-        function triggerPipelineRun() {
-            const btn = document.getElementById('btn-pipeline-run');
-            if (!btn) return;
-            btn.innerText = '⏳ Starting...';
-            btn.disabled = true;
-
-            fetch('/api/pipeline/run', { method: 'POST' })
-                .then(r => r.json())
-                .then(res => {
-                    if (res.status === 'already_running') {
-                        showPipelineStatus('Already running — stage: ' + res.stage, 'info');
-                    } else {
-                        showPipelineStatus('Pipeline started in background…', 'info');
-                    }
-                    startPipelinePoller();
-                })
-                .catch(err => {
-                    btn.innerText = 'Run Pipeline';
-                    btn.disabled = false;
-                    showPipelineStatus('Could not reach backend: ' + err, 'error');
-                });
-        }
-
-        function startPipelinePoller() {
-            if (_pipelinePoller) clearInterval(_pipelinePoller);
-            _pipelinePoller = setInterval(() => {
-                fetch('/api/pipeline/status')
-                    .then(r => r.json())
-                    .then(s => {
-                        const stageLabels = {
-                            idle: 'Idle',
-                            extraction: '⚙️ Step 1/3: Extracting papers...',
-                            graph_build: '🕸️ Step 2/3: Rebuilding knowledge graph concepts...',
-                            discovery: '🔍 Step 3/3: Running Critic & discovering opportunities...',
-                            done: '✅ Done!',
-                            error: '❌ Error'
-                        };
-                        let label = stageLabels[s.stage] || s.stage;
-
-                        if (s.progress) {
-                            const p = s.progress;
-                            label += ` | Current: "${p.current_item}" [${p.processed + 1}/${p.total}] (${p.percent}%)`;
-                        }
-
-                        if (!s.running) {
-                            clearInterval(_pipelinePoller);
-                            _pipelinePoller = null;
-                            const btn = document.getElementById('btn-pipeline-run');
-                            if (btn) { btn.innerText = 'Run Pipeline'; btn.disabled = false; }
-
-                            if (s.stage === 'done' && s.last_result) {
-                                showPipelineStatus(`✅ Done — Discovered: ${s.last_result.discovered}, Survived: ${s.last_result.survived}, Rejected: ${s.last_result.rejected}`, 'success');
-                                setTimeout(async () => {
-                                    const r = s.last_result;
-                                    alert(`🎉 Pipeline completed!\n\nDiscovered: ${r.discovered}  |  Survived: ${r.survived}  |  Rejected: ${r.rejected}\n\nClick OK to view opportunities and generate a new report.`);
-                                    // Refresh canvas (opportunities tab)
-                                    loadGraphData();
-                                    loadResearchBank();
-                                    // Auto-generate and save a new report
-                                    try {
-                                        const resp = await fetch('/api/reports/generate', { method: 'POST' });
-                                        const data = await resp.json();
-                                        if (data.status !== 'failed') {
-                                            showPipelineStatus(`✅ Report saved: ${data.report_path || 'aive_portfolio.md'}`, 'success');
-                                        }
-                                        // Refresh reports list if reports tab is visible
-                                        if (typeof loadReportsList === 'function') loadReportsList();
-                                    } catch(e) { /* silent */ }
-                                }, 100);
-                            } else if (s.stage === 'error') {
-                                showPipelineStatus('❌ Pipeline error: ' + (s.last_error || 'unknown'), 'error');
-                            } else {
-                                showPipelineStatus(label, 'info');
-                            }
-                        } else {
-                            showPipelineStatus(label, 'info');
-                        }
-
-                        // Update DB stats in sidebar
-                        if (s.db) {
-                            const el = document.getElementById('stat-pending');
-                            if (el) el.innerText = s.db.pending_extractions;
-                            const el2 = document.getElementById('stat-extracted');
-                            if (el2) el2.innerText = s.db.extracted;
-                        }
-                    });
-            }, 3000);
-        }
-
-        function showPipelineStatus(msg, type) {
-            let el = document.getElementById('pipeline-status-bar');
-            if (!el) return;
-            const colors = { info: 'rgba(0,217,255,0.15)', success: 'rgba(0,255,128,0.15)', error: 'rgba(255,50,50,0.15)' };
-            el.style.background = colors[type] || colors.info;
-            el.style.display = 'block';
-            el.innerText = msg;
-        }
-
-        // ── System Health Check ───────────────────────────────────────────────
-        function checkSystemHealth() {
-            fetch('/api/system/health')
-                .then(r => r.json())
-                .then(h => {
-                    const badge = document.getElementById('health-badge');
-                    if (!badge) return;
-                    if (h.status === 'healthy') {
-                        badge.innerHTML = `<span style="color:#00ff80;">● System Ready</span> — LLM: ${h.llm.provider}/${h.llm.model}`;
-                    } else {
-                        badge.innerHTML = `<span style="color:#ff6060;">● Degraded</span> — ${h.recommendation}`;
-                    }
-                    // Show Ollama models if available
-                    if (h.llm.ollama_models_available && h.llm.ollama_models_available.length) {
-                        badge.title = 'Available models: ' + h.llm.ollama_models_available.join(', ');
-                    }
-                })
-                .catch(() => {
-                    const badge = document.getElementById('health-badge');
-                    if (badge) badge.innerHTML = '<span style="color:#ff6060;">● Backend offline</span>';
-                });
-        }
-
-        // Update copilot panel text based on loaded opportunities
-        function updateCopilotInsights(data) {
-            const status = document.getElementById('copilot-status');
-            if (currentTab === 'opportunities') {
-                status.innerHTML = `Based on your library, AIVE synthesized <strong>${data.length} validated opportunities</strong> that survived novelty filtering and critique.`;
-            } else if (currentTab === 'rejected') {
-                status.innerHTML = `Critic successfully filtered out <strong>${data.length} concepts</strong> containing duplicate models or saturated market approaches.`;
-            }
-        }
-
-        // Simulation parameters Chart.js
-        function loadSimulationChart() {
-            const ctx = document.getElementById('simulationChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Baseline', 'Optimized', 'Frontier'],
-                    datasets: [{
-                        label: 'Novelty Score',
-                        data: [4, 7.5, 9.2],
-                        borderColor: '#00d9ff',
-                        backgroundColor: 'rgba(0, 217, 255, 0.1)',
-                        fill: true
-                    }, {
-                        label: 'Timing Suitability',
-                        data: [5, 6.8, 8.5],
-                        borderColor: '#bd00ff',
-                        backgroundColor: 'rgba(189, 0, 255, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { labels: { color: '#f3f4f6' } }
-                    },
-                    scales: {
-                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } },
-                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }
-                    }
-                }
-            });
-        }
-
-        // Workspaces & checkpoints
-        function loadWorkspaces() {
-            // Fetch active workspace first
-            fetch('/api/workspaces/active')
-                .then(res => res.json())
-                .then(activeData => {
-                    activeWorkspaceId = activeData.active_workspace_id;
-                    
-                    // Fetch all workspaces
-                    fetch('/api/workspaces')
-                        .then(res => res.json())
-                        .then(data => {
-                            const list = document.getElementById('workspaces-list');
-                            const allWS = [{id: 'default', name: 'Default Workspace', status: 'active'}].concat(data.filter(w => w.id !== 'default'));
-                            
-                            list.innerHTML = allWS.map(w => {
-                                const isActive = w.id === activeWorkspaceId;
-                                const borderStyle = isActive ? 'border: 1px solid var(--neon-purple); background: rgba(147, 51, 234, 0.15);' : '';
-                                return `
-                                    <div class="concept-item" style="cursor: pointer; padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px; ${borderStyle}" onclick="selectWorkspace('${w.id}', '${w.name.replace(/'/g, "\\'")}')">
-                                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                                            <strong>${w.name}</strong>
-                                            ${isActive ? '<span style="font-size: 0.75rem; color: var(--neon-purple); font-weight: 600;">ACTIVE</span>' : `<span style="font-size: 0.75rem; color: var(--text-secondary);">${w.status}</span>`}
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('');
-                            
-                            const activeWS = allWS.find(w => w.id === activeWorkspaceId);
-                            if (activeWS) {
-                                document.getElementById('active-ws-name').innerText = activeWS.name;
-                            }
-                        });
-                });
-        }
-
-        function selectWorkspace(id, name) {
-            activeWorkspaceId = id;
-            fetch('/api/workspaces/active', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: id })
-            })
-            .then(res => res.json())
-            .then(() => {
-                document.getElementById('active-ws-name').innerText = name;
-                if (id === 'default') {
-                    document.getElementById('btn-save-checkpoint').style.display = 'none';
-                    document.getElementById('workspace-history-list').innerHTML = `<div style="color: var(--text-secondary);">Default workspace runs directly in live environment. Snapshotting not applicable.</div>`;
-                } else {
-                    document.getElementById('btn-save-checkpoint').style.display = 'block';
-                    loadWorkspaceHistory(id);
-                }
-                loadWorkspaces();
-                loadResearchBank();
-                loadGraphData();
-                if (typeof loadStats === 'function') loadStats();
-                // Also reset detail pane
-                document.getElementById('editor-node-title').innerText = 'Select Node';
-                document.getElementById('editor-node-type').innerText = 'DETAILS';
-                document.getElementById('editor-node-content').innerHTML = '<p style="color: var(--text-secondary);">Click on any paper or opportunity in the sidebar or any graph node on the Canvas to inspect details and trace citations.</p>';
-            });
-        }
-
-        function loadWorkspaceHistory(id) {
-            fetch(`/api/workspaces/${id}/history`)
-                .then(res => res.json())
-                .then(data => {
-                    const list = document.getElementById('workspace-history-list');
-                    if (data.length === 0) {
-                        list.innerHTML = `<div style="color: var(--text-secondary);">No checkpoints saved for this workspace. Create one above!</div>`;
-                        return;
-                    }
-                    list.innerHTML = data.map(hist => `
-                        <div class="concept-item" style="padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-                            <span>Version ${hist.version} (Saved by ${hist.created_by})</span>
-                            <button onclick="restoreWorkspace('${id}', ${hist.version})" style="background: var(--neon-purple); border: none; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Restore</button>
-                        </div>
-                    `).join('');
-                });
-        }
-
-        function createWorkspace() {
-            const nameInput = document.getElementById('new-ws-name');
-            const name = nameInput.value.trim();
-            if (!name) return;
-            fetch('/api/workspaces', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name })
-            })
-            .then(res => res.json())
-            .then(ws => {
-                nameInput.value = '';
-                loadWorkspaces();
-            });
-        }
-
-        function saveCheckpoint() {
-            if (!activeWorkspaceId) return;
-            fetch(`/api/workspaces/${activeWorkspaceId}/checkpoint`, { method: 'POST' })
-            .then(res => res.json())
-            .then(() => loadWorkspaceHistory(activeWorkspaceId));
-        }
-
-        function restoreWorkspace(id, version) {
-            fetch(`/api/workspaces/${id}/restore/${version}`, { method: 'POST' })
-            .then(res => res.json())
-            .then(() => {
-                alert(`Restored successfully to version ${version}`);
-                loadGraphData();
-            });
-        }
-
-        function sendCopilotMessage() {
-            const inputEl = document.getElementById('copilot-text-input');
-            const message = inputEl.value.trim();
-            if (!message) return;
-
-            const chatHistory = document.getElementById('copilot-chat-history');
-            
-            // Append User message
-            const userMsgEl = document.createElement('div');
-            userMsgEl.style.cssText = 'background: rgba(0, 217, 255, 0.05); border-radius: 6px; padding: 0.6rem; border: 1px solid rgba(0,217,255,0.15); align-self: flex-end; width: 90%;';
-            userMsgEl.innerHTML = `<span style="color: var(--neon-blue); font-weight: 600;">You:</span> ${message}`;
-            chatHistory.appendChild(userMsgEl);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
-            inputEl.value = '';
-
-            // Loading indicator
-            const loadingEl = document.createElement('div');
-            loadingEl.style.cssText = 'background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);';
-            loadingEl.innerHTML = `<span style="color: var(--text-secondary); font-style: italic;">Copilot is thinking...</span>`;
-            chatHistory.appendChild(loadingEl);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
-            fetch('/api/copilot', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
-            })
-            .then(res => res.json())
-            .then(res => {
-                loadingEl.remove();
-                const replyEl = document.createElement('div');
-                replyEl.style.cssText = 'background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);';
-                if (res.error) {
-                    replyEl.innerHTML = `<span style="color: var(--neon-red); font-weight: 600;">Copilot Error:</span> ${res.error}`;
-                } else {
-                    // Render markdown-style bold
-                    const formatted = (res.reply || '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-                    replyEl.innerHTML = `<span style="color: var(--neon-purple); font-weight: 600;">Copilot:</span><br>${formatted}`;
-
-                    // If Copilot processed a new opportunity, auto-refresh canvas + reports
-                    const isOppResult = res.reply && (
-                        res.reply.includes('Critic Check') ||
-                        res.reply.includes('Rejected by Critic') ||
-                        res.reply.includes('visible in the')
-                    );
-                    if (isOppResult) {
-                        setTimeout(() => {
-                            loadGraphData();
-                            loadResearchBank();
-                            if (typeof loadReportsList === 'function') loadReportsList();
-                        }, 800);
-                    }
-                }
-                chatHistory.appendChild(replyEl);
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            })
-            .catch(err => {
-                loadingEl.remove();
-                const errorEl = document.createElement('div');
-                errorEl.style.cssText = 'background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);';
-                errorEl.innerHTML = `<span style="color: var(--neon-red); font-weight: 600;">System Error:</span> Could not connect to backend.`;
-                chatHistory.appendChild(errorEl);
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            });
-        }
-
-        function syncArxivPacks() {
-            const btn = event.currentTarget;
-            const originalText = btn.innerText;
-            btn.innerText = 'Syncing...';
-            btn.disabled = true;
-
-            fetch('/api/ingest/arxiv', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({})
-            })
-            .then(res => res.json())
-            .then(data => {
-                alert(data.message || 'arXiv pack ingestion triggered in background.');
-                btn.innerText = originalText;
-                btn.disabled = false;
-                // Poll research bank periodically to update UI as ingestion runs
-                let count = 0;
-                const interval = setInterval(() => {
-                    loadResearchBank();
-                    count++;
-                    if (count > 5) clearInterval(interval);
-                }, 3000);
-            })
-            .catch(err => {
-                alert('Failed to trigger arXiv sync: ' + err.message);
-                btn.innerText = originalText;
-                btn.disabled = false;
-            });
-        }
-
-        function loadReportsList() {
-            const list = document.getElementById('reports-list');
-            fetch('/api/reports')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        list.innerHTML = `<p style="color: var(--text-secondary);">No reports generated yet. Click above to compile all surviving evidence into a publication-ready portfolio.</p>`;
-                        return;
-                    }
-                    list.innerHTML = data.map(r => `
-                        <div class="concept-item" style="padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <strong style="color: var(--neon-blue);">${r.filename}</strong>
-                                <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.2rem;">
-                                    Size: ${(r.size_bytes/1024).toFixed(1)} KB | Generated: ${new Date(r.created_at).toLocaleString()}
-                                </div>
-                            </div>
-                            <button onclick="viewReportContent('${r.filename}')" style="background: var(--neon-purple); border: none; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Open</button>
-                        </div>
-                    `).join('');
-                });
-        }
-
-        function viewReportContent(filename) {
-            fetch(`/api/reports/view/${filename}`)
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById('report-preview-title').innerText = "Report: " + filename;
-                    // Format markdown into readable HTML
-                    const parsed = data.content
-                        .replace(/^# (.*$)/gim, '<h1 style="color:var(--neon-blue); font-size:1.5rem; margin-top:1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3rem;">$1</h1>')
-                        .replace(/^## (.*$)/gim, '<h2 style="color:var(--neon-purple); font-size:1.2rem; margin-top:1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.2rem;">$1</h2>')
-                        .replace(/^### (.*$)/gim, '<h3 style="color:var(--text-primary); font-size:1.05rem; margin-top:1rem;">$1</h3>')
-                        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-                        .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.06); padding:2px 4px; border-radius:4px;">$1</code>')
-                        .replace(/^> (.*$)/gim, '<blockquote style="border-left: 3px solid var(--neon-purple); padding-left: 10px; color: var(--text-secondary); margin: 10px 0; font-style: italic;">$1</blockquote>')
-                        .replace(/\n/g, '<br>');
-                    document.getElementById('report-preview-content').innerHTML = `
-                        <div style="font-family: 'Outfit', sans-serif; line-height: 1.6; color: var(--text-primary);">
-                            ${parsed}
-                        </div>
-                    `;
-                });
-        }
-
-        function generateUnifiedReport() {
-            const status = document.getElementById('report-gen-status');
-            status.innerText = 'Compiling surviving evidence and generating portfolio report...';
-            status.style.color = 'var(--neon-blue)';
-
-            fetch('/api/reports/generate', { method: 'POST' })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.report_path) {
-                        status.innerText = `✓ Portfolio report generated successfully! Saved ${data.opportunity_count} opportunities.`;
-                        status.style.color = 'var(--neon-green)';
-                        loadReportsList();
-                    } else {
-                        status.innerText = 'No surviving opportunities in the database to report.';
-                        status.style.color = 'var(--neon-yellow)';
-                    }
-                })
-                .catch(err => {
-                    status.innerText = 'Failed to generate report: ' + err.message;
-                    status.style.color = 'var(--neon-red)';
-                });
-        }
-
-        // Initialization
-        loadWorkspaces();   // Syncs active workspace name to header on load
-        loadResearchBank();
-        loadGraphData();
-    </script>
 </body>
 </html>

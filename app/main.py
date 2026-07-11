@@ -471,7 +471,7 @@ _pipeline_state = {
 _pipeline_lock = threading.Lock()
 
 
-def _run_pipeline_thread():
+def _run_pipeline_thread(force: bool = False):
     """Background thread: runs the full 3-stage pipeline without blocking Flask."""
     with _pipeline_lock:
         _pipeline_state["running"] = True
@@ -482,20 +482,57 @@ def _run_pipeline_thread():
     try:
         import os
         env = dict(os.environ, AIVE_ACTIVE_WORKSPACE=ACTIVE_WORKSPACE_ID)
-        # Stage 1: Extract knowledge from pending items
+        from utils.progress import write_progress
+
+        # ── Force mode: reset all items + clear concept cache ────────────────
+        if force:
+            _pipeline_state["stage"] = "reset"
+            write_progress("reset", "Resetting all items for full re-extraction", 0, 1)
+            conn = get_db_connection()
+            try:
+                conn.execute("UPDATE items SET extraction_status='pending'")
+                conn.commit()
+            finally:
+                conn.close()
+            # Clear concept cache so graph_builder re-extracts richer concepts
+            cache_path = ROOT / "data" / "concept_cache.json"
+            if cache_path.exists():
+                cache_path.unlink()
+
+        # ── Stage 1: Extract knowledge from pending items ────────────────────
         _pipeline_state["stage"] = "extraction"
+        write_progress("extraction", "Extracting knowledge from sources", 0, 1)
+
+        # Use universal_analyst for 'document' type items; research_analyst for papers
+        # Run research_analyst for papers/patents/startups
         proc1 = subprocess.run(
-            [sys.executable, "-u", "agents/research_analyst.py", "10"],
+            [sys.executable, "-u", "agents/research_analyst.py", "50"],
             cwd=str(ROOT), timeout=600, env=env,
             capture_output=True, text=True
         )
         if proc1.returncode != 0:
             raise RuntimeError(f"research_analyst failed (exit {proc1.returncode}):\n{proc1.stderr}")
 
-        # Stage 2: Rebuild knowledge graph
+        # Also run patent and startup analysts for their respective types
+        for analyst, item_type in [("patent_analyst", "patent"), ("startup_analyst", "startup")]:
+            proc_a = subprocess.run(
+                [sys.executable, "-u", f"agents/{analyst}.py", "50"],
+                cwd=str(ROOT), timeout=600, env=env,
+                capture_output=True, text=True
+            )
+            # Non-fatal — these may have no items
+
+        # Stage 1b: Universal analyst for non-paper/patent/startup types
+        proc1b = subprocess.run(
+            [sys.executable, "-u", "agents/universal_analyst.py", "50"],
+            cwd=str(ROOT), timeout=600, env=env,
+            capture_output=True, text=True
+        )
+        # Non-fatal
+
+        # ── Stage 2: Rebuild knowledge graph ────────────────────────────────
         _pipeline_state["stage"] = "graph_build"
-        from utils.progress import write_progress
-        write_progress("graph_build", "Connecting concepts in graph", 0, 1)
+        write_progress("graph_build", "Extracting concepts and building knowledge graph", 0, 1)
         proc2 = subprocess.run(
             [sys.executable, "agents/graph_builder.py"],
             cwd=str(ROOT), timeout=1200, env=env,
@@ -504,20 +541,19 @@ def _run_pipeline_thread():
         if proc2.returncode != 0:
             raise RuntimeError(f"graph_builder failed (exit {proc2.returncode}):\n{proc2.stderr}")
 
-        # Stage 3: Opportunity discovery + novelty + critic + report
-        # Run as subprocess so AIVE_ACTIVE_WORKSPACE is set BEFORE any
-        # module-level DB_PATH constants are evaluated in the engine files.
+        # ── Stage 3: Opportunity discovery + novelty + critic + report ───────
         _pipeline_state["stage"] = "discovery"
-        write_progress("discovery", "Critic check & scoring candidates", 0, 1)
-        proc = subprocess.run(
-            [sys.executable, "scripts/run_orchestrator.py", "5"],
-            cwd=str(ROOT), timeout=600, env=env,
+        write_progress("discovery", "Discovering opportunities and running critic", 0, 1)
+        proc3 = subprocess.run(
+            [sys.executable, "scripts/run_orchestrator.py", "10"],
+            cwd=str(ROOT), timeout=900, env=env,
             capture_output=True, text=True
         )
-        if proc.returncode == 0 and proc.stdout.strip():
-            import json as _json
-            summary = None
-            for line in reversed(proc.stdout.strip().splitlines()):
+
+        import json as _json
+        summary = None
+        if proc3.stdout.strip():
+            for line in reversed(proc3.stdout.strip().splitlines()):
                 line_str = line.strip()
                 if line_str.startswith("{") and line_str.endswith("}"):
                     try:
@@ -527,19 +563,22 @@ def _run_pipeline_thread():
                             break
                     except Exception:
                         continue
-            if summary:
-                _pipeline_state["last_result"] = {
-                    "discovered": summary.get("discovered", 0),
-                    "survived":   summary.get("survived", 0),
-                    "rejected":   summary.get("rejected", 0),
-                }
-            else:
-                _pipeline_state["last_result"] = {"discovered": 0, "survived": 0, "rejected": 0}
+
+        if summary:
+            _pipeline_state["last_result"] = {
+                "discovered": summary.get("discovered", 0),
+                "survived":   summary.get("survived", 0),
+                "rejected":   summary.get("rejected", 0),
+            }
         else:
             _pipeline_state["last_result"] = {"discovered": 0, "survived": 0, "rejected": 0}
-            if proc.stderr:
-                _pipeline_state["last_error"] = proc.stderr[-500:]
+
+        if proc3.returncode != 0 and proc3.stderr:
+            # Non-fatal — log but don't crash; partial results are still useful
+            _pipeline_state["last_error"] = proc3.stderr[-600:]
+
         _pipeline_state["stage"] = "done"
+
     except Exception as e:
         _pipeline_state["last_error"] = str(e)
         _pipeline_state["stage"] = "error"
@@ -551,18 +590,28 @@ def _run_pipeline_thread():
 
 @app.route("/api/pipeline/run", methods=["POST"])
 def pipeline_run():
-    """Starts the full pipeline in a background thread (non-blocking)."""
+    """
+    Starts the full pipeline in a background thread (non-blocking).
+    POST body: { "force": true }  — resets all items and clears cache for full re-run.
+    """
     if _pipeline_state["running"]:
         return jsonify({
             "status": "already_running",
             "stage": _pipeline_state["stage"],
             "message": "Pipeline is already running. Check /api/pipeline/status for progress."
         })
+    data = request.get_json(silent=True) or {}
+    force = bool(data.get("force", False))
+
     from utils.progress import clear_progress
     clear_progress()
-    t = threading.Thread(target=_run_pipeline_thread, daemon=True)
+    t = threading.Thread(target=_run_pipeline_thread, args=(force,), daemon=True)
     t.start()
-    return jsonify({"status": "started", "message": "Pipeline started in background. Poll /api/pipeline/status."})
+    return jsonify({
+        "status": "started",
+        "force": force,
+        "message": "Pipeline started. Poll /api/pipeline/status for progress."
+    })
 
 
 @app.route("/api/pipeline/status")
@@ -697,6 +746,199 @@ def ingest_arxiv():
     return jsonify({
         "status": "started",
         "message": f"arXiv ingestion started for pack: {pack_name or 'ALL'}"
+    })
+
+
+@app.route("/api/research-paper/graph", methods=["GET"])
+def research_paper_graph():
+    """
+    Returns a visual graph structure for manual knowledge linking.
+    Includes nodes (concepts, opportunities) and edges that can be linked.
+    """
+    conn = get_db_connection()
+    try:
+        # Get high-confidence opportunities
+        opps = conn.execute("""
+            SELECT id, title, problem, technology, confidence_score
+            FROM opportunities WHERE critic_verdict='survived' 
+            ORDER BY confidence_score DESC LIMIT 20
+        """).fetchall()
+
+        # Get key graph nodes
+        nodes = conn.execute("""
+            SELECT id, label, node_type FROM nodes 
+            WHERE node_type IN ('Technology', 'Problem', 'Market', 'Method')
+            LIMIT 50
+        """).fetchall()
+
+        # Get discoveries
+        discoveries = conn.execute("""
+            SELECT id, type, title, confidence FROM discoveries
+            ORDER BY confidence DESC LIMIT 15
+        """).fetchall()
+
+        return jsonify({
+            "opportunities": [dict(o) for o in opps],
+            "concepts": [dict(n) for n in nodes],
+            "discoveries": [dict(d) for d in discoveries]
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+@app.route("/api/research-paper/generate", methods=["POST"])
+def generate_research_paper():
+    """
+    Generates a research paper from manually linked knowledge nodes.
+    Uses evidence-grounded LLM synthesis to prevent hallucination.
+    
+    POST body:
+    {
+      "title": "Paper title",
+      "linked_nodes": ["opp_id1", "node_id2", "disc_id3"],
+      "structure": ["abstract", "introduction", "methods", "results", "discussion", "conclusion"]
+    }
+    """
+    data = request.json or {}
+    title = data.get("title", "Untitled Research Paper")
+    linked_nodes = data.get("linked_nodes", [])
+    structure = data.get("structure", ["abstract", "introduction", "methods", "results", "discussion", "conclusion"])
+
+    if not linked_nodes:
+        return jsonify({"error": "No nodes linked. Please link knowledge nodes first."}), 400
+
+    conn = get_db_connection()
+    try:
+        # Gather evidence from linked nodes
+        evidence = []
+        
+        # Get opportunities
+        opp_ids = [n for n in linked_nodes if n.startswith("opp_")]
+        if opp_ids:
+            placeholders = ",".join(["?" for _ in opp_ids])
+            opps = conn.execute(f"""
+                SELECT id, title, problem, technology, solution, reasoning, evidence
+                FROM opportunities WHERE id IN ({placeholders})
+            """, opp_ids).fetchall()
+            evidence.extend([dict(o) for o in opps])
+
+        # Get graph nodes
+        node_ids = [n for n in linked_nodes if n.startswith("node_")]
+        if node_ids:
+            placeholders = ",".join(["?" for _ in node_ids])
+            nodes = conn.execute(f"""
+                SELECT id, label, node_type, source_items FROM nodes WHERE id IN ({placeholders})
+            """, node_ids).fetchall()
+            evidence.extend([dict(n) for n in nodes])
+
+        # Get discoveries
+        disc_ids = [n for n in linked_nodes if n.startswith("disc_")]
+        if disc_ids:
+            placeholders = ",".join(["?" for _ in disc_ids])
+            discs = conn.execute(f"""
+                SELECT id, type, title, description, evidence FROM discoveries WHERE id IN ({placeholders})
+            """, disc_ids).fetchall()
+            evidence.extend([dict(d) for d in discs])
+
+        # Get source items for citations
+        all_source_ids = set()
+        for e in evidence:
+            if "evidence" in e and e["evidence"]:
+                try:
+                    ev_list = json.loads(e["evidence"]) if isinstance(e["evidence"], str) else e["evidence"]
+                    all_source_ids.update(ev_list)
+                except:
+                    pass
+            if "source_items" in e and e["source_items"]:
+                try:
+                    src_list = json.loads(e["source_items"]) if isinstance(e["source_items"], str) else e["source_items"]
+                    all_source_ids.update(src_list)
+                except:
+                    pass
+
+        citations = {}
+        if all_source_ids:
+            placeholders = ",".join(["?" for _ in all_source_ids])
+            items = conn.execute(f"""
+                SELECT id, title, source_url, year FROM items WHERE id IN ({placeholders})
+            """, list(all_source_ids)).fetchall()
+            citations = {item["id"]: dict(item) for item in items}
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+    # Build grounded context for LLM
+    evidence_context = "\n\n".join([
+        f"[{e.get('id')}] {e.get('title', e.get('label', 'Untitled'))}\n"
+        f"Type: {e.get('node_type', e.get('type', 'unknown'))}\n"
+        f"Content: {e.get('problem', e.get('description', e.get('reasoning', '')))[:300]}"
+        for e in evidence
+    ])
+
+    # Generate paper using evidence-grounded LLM
+    sections = {}
+    for section in structure:
+        system_prompt = (
+            "You are a senior research scientist writing an academic paper. "
+            "Use ONLY the provided evidence context. Cite sources using [item_id] format. "
+            "Never fabricate facts or citations. Write in formal academic style. "
+            "If evidence is insufficient for a section, state that explicitly."
+        )
+        
+        section_prompts = {
+            "abstract": f"Write a 150-200 word abstract for a paper titled '{title}' based on this evidence:\n{evidence_context[:2000]}",
+            "introduction": f"Write an introduction section for '{title}' that establishes context and motivation. Evidence:\n{evidence_context[:3000]}",
+            "methods": f"Write a methods/approach section describing the technical approach for '{title}'. Evidence:\n{evidence_context[:3000]}",
+            "results": f"Write a results section presenting the key findings for '{title}'. Evidence:\n{evidence_context[:3000]}",
+            "discussion": f"Write a discussion section analyzing implications and limitations for '{title}'. Evidence:\n{evidence_context[:3000]}",
+            "conclusion": f"Write a conclusion section summarizing contributions for '{title}'. Evidence:\n{evidence_context[:2000]}"
+        }
+        
+        user_prompt = section_prompts.get(section, f"Write the {section} section for '{title}'. Evidence:\n{evidence_context[:3000]}")
+        
+        try:
+            section_text = _call_llm_internal(system_prompt, user_prompt)
+            sections[section] = section_text
+        except Exception as e:
+            sections[section] = f"[Error generating {section}: {str(e)}]"
+
+    # Assemble paper
+    paper_md = f"# {title}\n\n"
+    paper_md += f"*Generated by AIVE Research Paper Builder on {datetime.now(timezone.utc).strftime('%Y-%m-%d')}*\n\n"
+    paper_md += "---\n\n"
+    
+    for section in structure:
+        paper_md += f"## {section.title()}\n\n"
+        paper_md += sections.get(section, "[Section not generated]") + "\n\n"
+    
+    # Add references
+    if citations:
+        paper_md += "## References\n\n"
+        for idx, (item_id, cite) in enumerate(citations.items(), 1):
+            paper_md += f"{idx}. [{item_id}] {cite.get('title', 'Untitled')} ({cite.get('year', 'n.d.')}). "
+            if cite.get('source_url'):
+                paper_md += f"{cite['source_url']}"
+            paper_md += "\n"
+
+    # Save to reports directory
+    reports_dir = ROOT / "reports"
+    reports_dir.mkdir(exist_ok=True)
+    filename = f"research_paper_{slugify(title[:40])}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.md"
+    filepath = reports_dir / filename
+    filepath.write_text(paper_md, encoding="utf-8")
+
+    return jsonify({
+        "status": "success",
+        "filename": filename,
+        "filepath": str(filepath),
+        "paper_preview": paper_md[:500] + "...",
+        "linked_nodes_count": len(linked_nodes),
+        "evidence_count": len(evidence),
+        "citations_count": len(citations)
     })
 
 
@@ -884,7 +1126,35 @@ def copilot():
             )
             return jsonify({"status": "success", "reply": reply_text})
 
-        # Regular Chat Mode
+        # Regular Chat Mode — route through QA Engine for grounded responses
+        try:
+            from engines.qa_engine import QAEngine
+            from db.init_db import DB_PATH as _DB_PATH
+            qa = QAEngine(db_path=_DB_PATH)
+            qa_result = qa.answer(user_message)
+            
+            # Enhanced: Check if user is asking about research paper generation
+            paper_keywords = ["research paper", "paper", "publish", "write paper", "generate paper", "create paper"]
+            if any(kw in user_message.lower() for kw in paper_keywords):
+                # Suggest using the research paper builder
+                paper_suggestion = (
+                    "\n\n💡 **Research Paper Builder Available**: "
+                    "You can use the Research Paper Builder tab to visually link knowledge nodes "
+                    "and generate evidence-grounded research papers. Navigate to the 'Paper Builder' tab to get started."
+                )
+                qa_result["reply"] = qa_result.get("reply", "") + paper_suggestion
+            
+            return jsonify({
+                "status": "success",
+                "reply": qa_result.get("reply", ""),
+                "evidence_refs": qa_result.get("evidence_refs", []),
+                "confidence": qa_result.get("confidence", "Unknown"),
+                "question_type": qa_result.get("question_type", "factual"),
+            })
+        except Exception as qa_err:
+            pass  # fallback to legacy context-based response below
+
+        # Fallback: Enhanced legacy context-based response with deep document knowledge
         opps = conn.execute(
             """SELECT title, problem, technology, market, timing_signal
                FROM opportunities WHERE critic_verdict='survived'
@@ -896,10 +1166,23 @@ def copilot():
                ORDER BY ROWID DESC LIMIT 20"""
         ).fetchall()
 
+        # Enhanced: Include full document summaries for intensive knowledge
         recent = conn.execute(
-            """SELECT title, problem, technology FROM items
+            """SELECT id, title, problem, technology, solution, summary, domain, doc_type
+               FROM items
                WHERE extraction_status='done'
-               ORDER BY extracted_at DESC LIMIT 5"""
+               ORDER BY extracted_at DESC LIMIT 8"""
+        ).fetchall()
+
+        # Enhanced: Include discoveries and contradictions
+        discoveries = conn.execute(
+            """SELECT type, title, description FROM discoveries 
+               ORDER BY confidence DESC LIMIT 5"""
+        ).fetchall()
+
+        contradictions = conn.execute(
+            """SELECT concept, claim_a, claim_b FROM contradictions
+               ORDER BY confidence DESC LIMIT 3"""
         ).fetchall()
 
         opp_ctx = "\n".join(
@@ -909,16 +1192,35 @@ def copilot():
 
         node_ctx = ", ".join(f"{n['label']} ({n['node_type']})" for n in top_nodes) or "Graph is empty."
 
+        # Enhanced document context with full details
         recent_ctx = "\n".join(
-            f"- {r['title']}: {r['problem']}" for r in recent
+            f"- [{r['id']}] {r['title']}\n"
+            f"  Domain: {r.get('domain', 'N/A')} | Type: {r.get('doc_type', 'N/A')}\n"
+            f"  Problem: {r.get('problem', 'N/A')}\n"
+            f"  Technology: {r.get('technology', 'N/A')}\n"
+            f"  Solution: {r.get('solution', 'N/A')[:150]}\n"
+            f"  Summary: {r.get('summary', 'N/A')[:200]}"
+            for r in recent
         ) or "No recent extractions."
 
+        disc_ctx = "\n".join(
+            f"- {d['type']}: {d['title']} - {d.get('description', '')[:150]}"
+            for d in discoveries
+        ) or "No discoveries yet."
+
+        contra_ctx = "\n".join(
+            f"- {c['concept']}: Claim A: {c['claim_a'][:100]} vs Claim B: {c['claim_b'][:100]}"
+            for c in contradictions
+        ) or "No contradictions detected."
+
         system_prompt = (
-            "You are the AIVE Research Copilot. "
-            "You help researchers synthesize knowledge, discover opportunities, and understand contradictions "
-            "from a live scientific knowledge graph. "
+            "You are the AIVE Research Copilot with INTENSIVE knowledge of all submitted documents. "
+            "You help researchers synthesize knowledge, discover opportunities, understand contradictions, "
+            "and suggest new research directions from a live scientific knowledge graph. "
             "Answer based on the provided context from the graph. Be specific and actionable. "
+            "Reference specific document IDs [id] when citing evidence. "
             "If the graph has insufficient data, say so honestly and suggest what data to add. "
+            "When users ask about research papers, suggest using the Research Paper Builder. "
             "Do NOT make up citations or papers that are not in the context."
         )
 
@@ -931,13 +1233,20 @@ TOP SURVIVED OPPORTUNITIES:
 RECENT GRAPH NODES (concepts, technologies, buyers):
 {node_ctx}
 
-RECENTLY EXTRACTED PAPERS:
+RECENTLY EXTRACTED DOCUMENTS (Full Details):
 {recent_ctx}
+
+RESEARCH DISCOVERIES:
+{disc_ctx}
+
+DETECTED CONTRADICTIONS:
+{contra_ctx}
 
 USER QUESTION:
 {user_message}
 
-Answer concisely in 2-4 paragraphs. Reference the graph context where relevant.
+Answer concisely in 2-4 paragraphs. Reference the graph context and document IDs where relevant.
+If asked about research papers, mention the Research Paper Builder feature.
 """
         reply = _call_llm_internal(system_prompt, user_prompt)
         return jsonify({"status": "success", "reply": reply})
@@ -946,6 +1255,244 @@ Answer concisely in 2-4 paragraphs. Reference the graph context where relevant.
         return jsonify({"error": str(e)}), 500
     finally:
         conn.close()
+
+
+# ── TASK 4: Discovery endpoints ───────────────────────────────────────────────
+
+@app.route("/api/discoveries")
+def discoveries():
+    """Returns all classified discoveries. Optional ?type= filter."""
+    disc_type = request.args.get("type", None)
+    conn = get_db_connection()
+    try:
+        if disc_type:
+            rows = conn.execute(
+                "SELECT * FROM discoveries WHERE type=? ORDER BY confidence DESC",
+                (disc_type,)
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT * FROM discoveries ORDER BY confidence DESC"
+            ).fetchall()
+        result = []
+        for r in rows:
+            d = dict(r)
+            d["evidence"] = json.loads(d["evidence"]) if d["evidence"] else []
+            d["source_nodes"] = json.loads(d["source_nodes"]) if d["source_nodes"] else []
+            result.append(d)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+@app.route("/api/contradictions")
+def contradictions():
+    """Returns all detected contradictions."""
+    conn = get_db_connection()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM contradictions ORDER BY confidence DESC"
+        ).fetchall()
+        return jsonify([dict(r) for r in rows])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+@app.route("/api/research-gaps")
+def research_gaps():
+    """Returns discoveries of type research_gap."""
+    conn = get_db_connection()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM discoveries WHERE type='research_gap' ORDER BY confidence DESC"
+        ).fetchall()
+        result = []
+        for r in rows:
+            d = dict(r)
+            d["evidence"] = json.loads(d["evidence"]) if d["evidence"] else []
+            d["source_nodes"] = json.loads(d["source_nodes"]) if d["source_nodes"] else []
+            result.append(d)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+# ── TASK 5: Deep report endpoint ──────────────────────────────────────────────
+
+@app.route("/api/reports/generate-deep", methods=["POST"])
+def generate_deep_report():
+    """Generate a research-grade 15-section report using ReportBuilder."""
+    import os
+    try:
+        from agents.report_builder import ReportBuilder
+        from db.init_db import DB_PATH as _DB_PATH
+        now_str = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        filename = f"aive_deep_{now_str}.md"
+        output_path = ROOT / "reports" / filename
+        builder = ReportBuilder(db_path=_DB_PATH)
+        saved_path = builder.build(output_path=output_path)
+        return jsonify({
+            "status": "success",
+            "report_path": filename,
+            "message": f"Deep report saved as {filename}",
+        })
+    except Exception as e:
+        return jsonify({"status": "failed", "error": str(e)}), 500
+
+
+# ── TASK 7: Visualization API endpoints ───────────────────────────────────────
+
+@app.route("/api/visualizations/funnel")
+def viz_funnel():
+    """Pipeline stage counts for funnel chart."""
+    conn = get_db_connection()
+    try:
+        ingested = conn.execute("SELECT COUNT(*) FROM items").fetchone()[0]
+        extracted = conn.execute(
+            "SELECT COUNT(*) FROM items WHERE extraction_status='done'"
+        ).fetchone()[0]
+        graph_nodes = conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
+        candidates = conn.execute("SELECT COUNT(*) FROM opportunities").fetchone()[0]
+        survived = conn.execute(
+            "SELECT COUNT(*) FROM opportunities WHERE critic_verdict='survived'"
+        ).fetchone()[0]
+        rejected = conn.execute("SELECT COUNT(*) FROM rejected_ideas").fetchone()[0]
+        return jsonify({
+            "stages": [
+                {"label": "Ingested", "count": ingested},
+                {"label": "Extracted", "count": extracted},
+                {"label": "Graph Nodes", "count": graph_nodes},
+                {"label": "Candidates", "count": candidates},
+                {"label": "Survived", "count": survived},
+                {"label": "Rejected", "count": rejected},
+            ]
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+@app.route("/api/visualizations/scores")
+def viz_scores():
+    """Per-opportunity score arrays for radar chart."""
+    conn = get_db_connection()
+    try:
+        rows = conn.execute("""
+            SELECT id, title, novelty_score, timing_score, market_score,
+                   feasibility, confidence_score
+            FROM opportunities WHERE critic_verdict='survived'
+            ORDER BY confidence_score DESC LIMIT 10
+        """).fetchall()
+        result = []
+        for r in rows:
+            result.append({
+                "id": r["id"],
+                "title": (r["title"] or "")[:40],
+                "scores": {
+                    "novelty":     r["novelty_score"] or 0,
+                    "timing":      r["timing_score"] or 0,
+                    "market":      r["market_score"] or 0,
+                    "feasibility": r["feasibility"] or 0,
+                    "confidence":  r["confidence_score"] or 0,
+                }
+            })
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+@app.route("/api/visualizations/timeline")
+def viz_timeline():
+    """Ingestion counts grouped by date."""
+    conn = get_db_connection()
+    try:
+        rows = conn.execute("""
+            SELECT DATE(extracted_at) AS date, COUNT(*) AS count
+            FROM items
+            WHERE extracted_at IS NOT NULL
+            GROUP BY DATE(extracted_at)
+            ORDER BY date ASC
+            LIMIT 60
+        """).fetchall()
+        return jsonify([{"date": r["date"], "count": r["count"]} for r in rows])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+@app.route("/api/visualizations/distribution")
+def viz_distribution():
+    """Node type counts for distribution chart."""
+    conn = get_db_connection()
+    try:
+        rows = conn.execute(
+            "SELECT node_type, COUNT(*) AS count FROM nodes GROUP BY node_type ORDER BY count DESC"
+        ).fetchall()
+        return jsonify([{"type": r["node_type"], "count": r["count"]} for r in rows])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
+# ── TASK 6: Enhanced Copilot with QA Engine ───────────────────────────────────
+# (original copilot route is preserved; this adds QA engine routing to it)
+
+@app.route("/api/understand", methods=["POST"])
+def understand():
+    """
+    Universal document understanding endpoint.
+    Accepts text, URL, or file content with optional type hint.
+    Uses UniversalAnalyst to detect doc_type, domain, and extract structured knowledge.
+    """
+    data = request.json or {}
+    raw_text = data.get("text", "").strip()
+    source_url = data.get("url", "").strip()
+    type_hint = data.get("type_hint", None)  # optional: paper, patent, startup, etc.
+    
+    # If URL provided, fetch content
+    if source_url and not raw_text:
+        try:
+            page_title, raw_text = fetch_url_text(source_url)
+        except Exception as e:
+            return jsonify({"error": f"Failed to fetch URL: {e}"}), 400
+    
+    if not raw_text:
+        return jsonify({"error": "No content provided. Supply 'text' or 'url'."}), 400
+    
+    # Call UniversalAnalyst
+    try:
+        from agents.universal_analyst import UniversalAnalyst
+        analyst = UniversalAnalyst()
+        
+        metadata = {}
+        if source_url:
+            metadata["source_url"] = source_url
+        if type_hint:
+            metadata["type_hint"] = type_hint
+        
+        result = analyst.classify(raw_text, metadata)
+        
+        return jsonify({
+            "status": "success",
+            "doc_type": result.get("doc_type", "unknown"),
+            "domain": result.get("domain", "unknown"),
+            "extracted": result.get("extracted", {}),
+            "evidence_classification": result.get("evidence_classification", {}),
+            "metadata": result.get("metadata", {})
+        })
+    except Exception as e:
+        return jsonify({"error": f"Analysis failed: {str(e)}"}), 500
 
 
 if __name__ == "__main__":

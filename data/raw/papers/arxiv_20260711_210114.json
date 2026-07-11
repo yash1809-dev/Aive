@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2607_07401v1",
+    "title": "Heterogeneity-Adaptive Diffusion Schrodinger Bridge for PET-Guided Whole-Body MRI Translation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.07401v1",
+    "type": "paper",
+    "raw_text": "While whole-body multimodal medical imaging scanners have been increasingly recognized for more effective medical applications, the excessive long acquisition time in PET-MR scanning is a major obstacle in more efficient clinical practice. Deep learning-based MRI translation provides a potential solution to reduce scan duration. However, current models often focus on specific anatomical regions and face challenges for whole-body scans that consists of highly heterogeneous feature distributions mainly due to (1) different anatomical regions across whole-body, and (2) lesions or pathological tissues. This paper tackles the challenges through a novel Heterogeneity-Adaptive Diffusion Schrodinger Bridge (HA-DSB) framework. By explicitly modeling translation as stochastic transport between source and target distributions, HA-DSB incorporates region context embeddings derived from a vision-language model (VLM) to enable region-specific modeling. To enhance fidelity of the pathological tissue, lesion-aware metabolic prior from PET is integrated directly into the bridge dynamics through a dual-stage guidance mechanism. Specifically, a PET-guided noise modulation module adaptively scales spatial diffusion perturbations during the forward process, while PET features are leveraged during the reverse process to selectively amplify lesion-relevant structures via an attention mechanism. Experiments demonstrate the superiority of our method across different body regions in whole-body MRI translation and show improved translation quality in lesion areas under PET guidance. Our code is available at Github.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_06083v1",
+    "title": "MSA-DCNN: A Data-Efficient Multi-Scale Deformable CNN for Medical Image Classification",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.06083v1",
+    "type": "paper",
+    "raw_text": "Existing deep learning methods perform well in medical image classification but struggle with multi-scale morphology and limited annotations due to fixed sampling and data-hungry training. Existing approaches address these challenges in isolation: DCN-based models provide adaptive sampling but lack explicit multi-scale attention fusion and label-efficient regularisation; multi-scale architectures typically rely on static fusion; and semi-supervised methods target label scarcity without jointly modelling adaptive cross-scale representations. We propose MSA-DCNN, a scale-consistent deformable attention learning framework that introduces adaptive multi-scale sampling, within-scale saliency refinement, learned cross-scale fusion, and auxiliary self-distillation within a unified optimisation scheme, with potential to generalise to structurally heterogeneous anatomy. We evaluate on three public benchmarks and an external hold-out set for leukaemia. MSA-DCNN demonstrates competitive and often better performance against ViT baselines, CNN baselines, and a MICCAI semi-supervised baseline under distribution shift and label scarcity in accuracy, F1, and AUC (binary), while using fewer parameters. Ablations confirm complementary component contributions, supporting MSA-DCNN as a practical foundation for data-efficient medical image classification.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03797v1",
+    "title": "Probabilistic Robustness in Medical Image Classification",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03797v1",
+    "type": "paper",
+    "raw_text": "Deep learning (DL) has shown strong performance in medical image classification, but its trustworthy deployment remains challenging in safety-critical clinical settings, where prediction errors under perturbations may lead to severe consequences. Existing studies mainly focus on adversarial robustness (AR) from a worst-case perspective; however, such settings may be less representative of real medical applications. In this work, we investigate probabilistic robustness (PR) as a more practical measure of model trustworthiness. To this end, we construct a set of natural corruption settings for medical image classification and systematically evaluate commonly used DL models on MedMNIST v2 dataset. Our study provides a statistically grounded perspective on assessing the trustworthiness of DL models, thereby supporting their more trustworthy deployment in medical imaging applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03593v1",
+    "title": "An Interpretable Deep Learning Framework for Discovery and Clinical Validation of Deep Radiomic Signatures in Tumor Classification",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03593v1",
+    "type": "paper",
+    "raw_text": "Imaging signatures are quantitative features extracted from medical images that provide clinically meaningful information for tumor diagnosis, characterization, prognosis, and treatment planning. Although deep learning has shown great potential for imaging signature discovery, its limited interpretability remains a major barrier to clinical adoption. Existing approaches often achieve high predictive performance but provide little biological insight into the identified signatures. We propose a unified framework for interpretable imaging signature discovery by integrating deep learning based segmentation, explainable classification, and radiomic analysis. A robust segmentation model is first used to accurately delineate tumors, followed by a Grad-CAM guided pipeline that identifies diagnostically important regions as candidate imaging signatures. A mutual information based adaptive thresholding strategy enables patient-specific signature extraction. The resulting signatures are validated using a downstream deep learning classification model, while radiomic features extracted from the signature regions are evaluated with traditional machine learning models and interpreted using SHAP to identify the most discriminative biomarkers. The proposed framework is evaluated on the public BUSI breast ultrasound, KiTS renal CT, and BraTS brain tumor datasets, as well as a private UF Health renal CT cohort. Compared with conventional whole-tumor radiomics, the proposed signature-based approach achieves improved discriminative performance while providing greater biological interpretability. By converting deep learning attention into reproducible quantitative imaging biomarkers, this framework offers an interpretable and reproducible solution for non-invasive tumor characterization and imaging biomarker discovery.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02185v1",
+    "title": "RadiomicNet: A Hybrid Radiomics-Guided Lightweight Architecture for Interpretable Medical Image Segmentation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02185v1",
+    "type": "paper",
+    "raw_text": "Deep learning has achieved remarkable performance in medical image segmentation, yet it suffers from critical limitations: mathematical intractability, substantial parameter requirements, and lack of clinical interpretability. We propose RadiomicNet, a novel two-stream hybrid architecture that enhances standard deep learning by integrating handcrafted radiomics features directly into the segmentation learning process. The key contribution is the Radiomics Attention Gate (RAG), which leverages Gray-Level Co-occurrence Matrix (GLCM) and Local Binary Pattern (LBP) features to modulate skip-connection attention in a lightweight MobileNetV2-based encoder-decoder, providing ante-hoc interpretability without post-hoc approximations. A novel Radiomics Consistency Loss further enforces alignment between texture complexity and prediction uncertainty, reducing Expected Calibration Error (ECE) from 0.142 to 0.118. RadiomicNet achieves a Dice Similarity Coefficient (DSC) of 0.763 +/- 0.231 on the Breast Ultrasound Images (BUSI) dataset and 0.854 +/- 0.112 on Kvasir-SEG, outperforming U-KAN by 1.2% and 1.8%, respectively (p < 0.05, Wilcoxon signed-rank test), with only 3.27M parameters, 9.5x fewer than standard U-Net and 4.3x fewer than U-KAN. Gradient-based feature importance analysis reveals that GLCM dissimilarity (15.24%), GLCM energy (14.56%), and LBP entropy (11.49%) are the dominant radiomics cues, providing clinically meaningful explanations for segmentation decisions. The proposed approach demonstrates that compact, interpretable models grounded in domain knowledge can deliver state-of-the-art segmentation performance with substantially reduced computational overhead.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02596v1",
+    "title": "CIPHER: Causal Intervention Pathways for Healthcare Equity and Robustness",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02596v1",
+    "type": "paper",
+    "raw_text": "Deep learning models for medical diagnosis frequently exhibit substantial performance disparities across sensitive subgroups (e.g., race, sex), even when average accuracy is high. While generative data augmentation offers a route to mitigate this, existing strategies are suboptimal; they typically address only one or two dependency channels between sensitive attributes and image features. We formalize the medical image formation process via a structural causal model, revealing that sensitive attributes actually influence image content through four distinct pathways-a structural complexity neglected by prior works. Based on this insight, we introduce CIPHER (Causal Intervention Pathways for Healthcare Equity and Robustness), a framework designed to systematically intervene on all four causal paths. To achieve this, CIPHER utilizes a diffusion backbone equipped with classifier-free guidance and null-text inversion. This technical design enables the faithful reconstruction of patient-specific anatomy while allowing for the precise, editable synthesis of counterfactuals required to break sensitive dependency chains. We tested CIPHER using chest X-ray and dermoscopy benchmarks across both standard and shifted data distributions. By employing a multi-pathway intervention strategy, our model reduced worst-group disparities by an average of 35.8% compared to disease-conditioned synthesis baselines, while also improving total diagnostic accuracy",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02594v1",
+    "title": "An automated method of identifying incorrectly labelled images based on the sequences of loss functions of deep learning networks",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02594v1",
+    "type": "paper",
+    "raw_text": "Deep learning is widely applied in medical image analysis, but up to 10% of manually labelled images may be incorrect, degrading model performance. This paper proposes an automated method to identify incorrectly labelled medical images by analyzing sequences of loss functions from deep learning classification networks over multiple training epochs. Identified images can be reviewed and relabelled by experts, improving dataset quality and model performance. Two experiments validate the method on a fundus image dataset for referable diabetic retinopathy screening. In the first, 6% (648) of 10,788 gold-standard labels were intentionally flipped. The method identified 75.31% (488) of the flipped samples, with only 4.85% (492) false positives among correctly labelled samples. In the second, reviewing and correcting the 980 identified samples (9.1% of the dataset) and retraining the model improved best accuracy on an independent test set from 95.93% (with 6% label noise) to 96.50% (with 1.5% noise), approaching the ideal 96.57% (with 0% noise). The results demonstrate the method's effectiveness in improving model performance through automated label quality control.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00385v1",
+    "title": "MalariAI: A Label-Resilient Decoupled Framework for Universal Cell Segmentation and Explainable Stage Classification in Dense Malaria Blood Smears",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00385v1",
+    "type": "paper",
+    "raw_text": "Automated malaria diagnosis from blood smear microscopy is a critical challenge in global health AI; in resource-limited settings, the scarcity of expert microscopists remains the primary bottleneck to timely and accurate diagnosis. Three compounding failure modes prevent reliable clinical deployment of existing deep learning systems. First, end-to-end detectors treat unannotated cells as background during training, producing recall figures that are strongly influenced by annotation completeness rather than reflecting true cell recovery. Second, Non-Maximum Suppression tends to suppress valid detections in dense smear regions where infection counts matter most. Third, existing whole-slide detection pipelines lack per-cell spatial evidence for clinical audit, despite image-level explainability methods such as Grad-CAM having been applied to malaria image classification tasks. We present MalariAI, a two-stage decoupled framework that addresses all three failure modes in a unified pipeline. Stage 1 applies an annotation-agnostic distance-transform guided watershed algorithm to isolate every cell in a full 1600x1200 blood smear image, recovering 75.95% of ground-truth cells by centroid localisation across the 120-image NIH BBBC041 test set without any ground-truth input. Stage 2 fine-tunes EfficientNet-B0 with Focal Loss (gamma = 2.0, per-class inverse-frequency weights) on 64x64 crops, achieving 98.36% overall classification accuracy with 87.5% and 75.0% per-class accuracy on the rare schizont and gametocyte stages, compared to only 24.57% and 25.95% AP for a Faster R-CNN baseline on the same classes. Grad-CAM++ heatmaps generated per detected cell provide instance-level spatial evidence for clinical audit, enabling microscopists to verify model predictions at the individual parasite level without sacrificing classification performance.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_30183v1",
+    "title": "DrivenMorph: Bridging Attention Mechanism and Variational Image Registration via Difference Modeling",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.30183v1",
+    "type": "paper",
+    "raw_text": "Medical image registration benefits significantly from deep learning, yet existing approaches often lack physical explainability and fine-grained deformation control. Motivated by Demons algorithms, we propose a novel DrivenMorph framework that bridges attention mechanisms with variational image registration by incorporating difference modeling as a physically inspired inductive bias. The resulting driving force, computed from local differences in the latent feature space, provides explicit semantic guidance throughout the registration process. It directly drives the registration process through a neural Demons layer that simulates force-displacement interactions to generate smooth and anatomically consistent deformation. Unlike previous methods, our approach not only integrates traditional registration principles with popular deep networks, providing an explainable and efficient solution for learning-based medical image registration, but also separates difference modeling from deformation, improving modularity and explainability. Extensive experiments on multiple 3D brain MRI datasets demonstrate superior performance over state of-the-art learning-based and optimization-based methods. Furthermore, visualizations and statistical analyses confirm that the learned driving force aligns closely with actual deformation patterns, supporting its explanatory value.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_30159v1",
+    "title": "A Dual-domain Refinement Network with FBP-based Jacobian Learning for Sparse-view Dual-Energy CT Material Decomposition",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.30159v1",
+    "type": "paper",
+    "raw_text": "Dual-energy CT (DECT) exploits attenuation differences across different X-ray spectra to provide richer material information and has been widely used in medical imaging. While sparse-view acquisition can lower radiation exposure, it makes DECT material decomposition even more challenging, as the problem is nonlinear and ill-posed. Existing deep unrolling approaches generally do not explicitly incorporate the Jacobian operator induced by the nonlinear forward model, and their sparsity priors are still mainly built on conventional convolutions, which are insufficient for modeling global structural information. This study addresses the challenge of DECT multi-material decomposition in sparse-view settings by representing it as a sparse-regularized nonlinear least-squares problem. To solve it, we propose an iterative dual-domain refinement network (DECT-DRNet). In each iteration, the filtered back-projection (FBP)-based Jacobian approximation module is used first to generate an intermediate material decomposition result. Here, we characterize the forward process of material decomposition using a nonlinear operator, and then construct a theoretically grounded learnable approximation of the adjoint Jacobian operator by integrating the FBP algorithm with a U-Net into the backward process. In addition, to address the limitation of existing deep learning-based decomposition methods in globally suppressing noise and artifacts, we introduce a learnable sparse dual domain regularization term that incorporates Fourier convolutional residual blocks. This refinement block combines geometric feature extraction in the image domain with noise suppression in the frequency domain, allowing the model to capture both global and local features while maintaining structural details. DECT-DRNet demonstrates its ability to achieve more accurate material decomposition under sparse-view conditions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

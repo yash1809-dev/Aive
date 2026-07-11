@@ -23,6 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from db.init_db import DB_PATH
+from graph.label_normalizer import get_normalizer
 
 # ── Canonical merge map ───────────────────────────────────────────────────────
 # Maps common variant phrases → canonical short concept label
@@ -105,9 +106,12 @@ def normalize_label(text: str) -> str:
     if not text:
         return "Unknown"
     lower = text.lower().strip().rstrip(".")
+    
+    # Fast path: check static MERGE_MAP first
     for pattern, canonical in MERGE_MAP.items():
         if pattern in lower:
             return canonical
+    
     # Truncate to 5 meaningful words
     words = re.findall(r"[A-Za-z][A-Za-z0-9\-]*", text)
     STOP = {"the","a","an","of","in","for","to","and","or","is","are","with",
@@ -129,7 +133,25 @@ def upsert_node(conn, label: str, node_type: str, item_id: str,
     """Insert or update a concept node, merging source items and tracking evidence."""
     if node_type not in VALID_NODE_TYPES:
         node_type = "Technology"
+    
+    # Phase 1: Static MERGE_MAP fast path
     canonical = normalize_label(label)
+    
+    # Phase 2: Dynamic label normalization — check against existing nodes of same type
+    # to prevent duplicate nodes for semantically equivalent concepts
+    normalizer = get_normalizer()
+    existing_labels = [
+        row[0] for row in conn.execute(
+            "SELECT DISTINCT label FROM nodes WHERE node_type=?", (node_type,)
+        ).fetchall()
+    ]
+    
+    # Only apply dynamic normalization if we have existing labels to compare against
+    if existing_labels:
+        normalized = normalizer.normalize(canonical, existing_labels)
+        if normalized is not None:
+            canonical = normalized
+    
     node_id = f"node_{node_type.lower()}_{slugify(canonical)}"
     row = conn.execute("SELECT source_items FROM nodes WHERE id=?", (node_id,)).fetchone()
     sources = json.loads(row[0]) if row else []

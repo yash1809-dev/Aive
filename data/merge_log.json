@@ -1,0 +1,23 @@
+[
+  {
+    "original": "Transformer Architecture",
+    "canonical": "Transformer",
+    "method": "substring_containment",
+    "similarity": 0.458,
+    "timestamp": 1783799463.922235
+  },
+  {
+    "original": "Language Processing Researchers",
+    "canonical": "Researchers",
+    "method": "substring_containment",
+    "similarity": 0.355,
+    "timestamp": 1783799463.922235
+  },
+  {
+    "original": "Transformer Architecture",
+    "canonical": "Transformer",
+    "method": "substring_containment",
+    "similarity": 0.458,
+    "timestamp": 1783799463.922235
+  }
+]

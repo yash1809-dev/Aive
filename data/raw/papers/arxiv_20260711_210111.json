@@ -1,0 +1,152 @@
+[
+  {
+    "id": "paper_2607_06531v1",
+    "title": "The Large Cancer Assistant (LCA): A Model-Agnostic Orchestration Framework for Scalable Clinical Decision Support in Oncology",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.06531v1",
+    "type": "paper",
+    "raw_text": "- Objective: Multimodal deep learning models in oncology are currently limited by monolithic designs that rigidly couple data ingestion, clinical routing, and artificial intelligence (AI) inference. To address this inflexibility, we propose the Large Cancer Assistant (LCA), a model-agnostic, post-hoc orchestration framework designed for scalable clinical decision support. - Methods: The LCA is mathematically formalized as a 7-tuple architecture grounded in the principle of Algorithmic Impermeability, ensuring the orchestration logic remains strictly independent of underlying black-box AI models. We introduce the Entry Theory, leveraging Geometric Deep Learning (GDL) to standardize multimodal patient data along distinct structural and medical axes. The system dynamically orchestrates data via a Cancer Switching Module and intentionally isolates the core AI execution from volatile hospital IT infrastructures by outputting a Standardized Intermediate Payload (SIP). - Results: A Proof of Concept (PoC) validated the orchestration logic across four technical scenarios. The framework executed a nominal flow with negligible orchestration overhead. It empirically demonstrated algorithmic impermeability by maintaining an invariant routing projection during AI model swaps, and it validated strict failure-safety by achieving a 100\\% recall rate in generating targeted Supplementary Data Requests (SDR) under injected data anomalies. Multi-protocol execution capability was also successfully verified. - Conclusion: By structurally decoupling multimodal ingestion from feature inference, the LCA provides a highly adaptable and modular orchestration foundation. The SIP establishes a clear architectural boundary, natively setting the stage for downstream Electronic Medical Record (EMR) interoperability as an independent future paradigm.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05628v1",
+    "title": "Taxlifier: Leveraging Disease Taxonomy for Enhanced Multi-Label Classification in Chest Radiography",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05628v1",
+    "type": "paper",
+    "raw_text": "Accurate and efficient classification of thoracic diseases in chest X-ray (CXR) images is crucial for timely diagnosis and treatment. However, the presence of multiple pathologies with overlapping visual characteristics poses significant challenges for automated classification systems. In this study, we propose two novel hierarchical multi-label classification techniques, namely the loss-based and logit-based methods, to address these challenges by leveraging the hierarchical relationships among different thoracic pathologies. The loss-based technique integrates hierarchical information directly into the optimization process, while the logit-based method adjusts the predicted probabilities of each class based on its parent class in the disease taxonomy. We evaluate the performance of both techniques using three large-scale CXR datasets: CheXpert (224,316 CXRs), PADCHEST (160,000 CXRs), and NIH (112,120 CXRs). The experimental results demonstrate significant improvements in accuracy, AUC, and F1 scores compared to the baseline method across various pathologies. The logit-based and loss-based methods improve accuracy by 12\\% and 11\\%, AUC by 13\\% and 10\\%, and F1 scores by 24\\% and 12\\%, respectively compared to the baseline. These results represent a substantial improvement over the baseline method. Furthermore, we conduct a comprehensive statistical analysis to validate the robustness and reliability of the proposed techniques. The integration of domain-specific hierarchical knowledge not only enhances the classification performance but also provides a more interpretable output for clinical decision support. Our findings highlight the potential of hierarchical multi-label classification in advancing computer-aided diagnosis systems for chest radiography.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02692v1",
+    "title": "An Automated Multimodal Glaucoma Detection Framework Using ViT and a Stacking-Based Ensemble",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02692v1",
+    "type": "paper",
+    "raw_text": "Glaucoma is a progressive eye disease that can lead to irreversible vision loss if not detected at an early stage. Conventional diagnostic procedures are often time-consuming and rely heavily on expert interpretation, limiting their scalability for large-scale screening. In this study, glaucoma detection is investigated under two evaluation settings: sample-wise, where individual samples are analyzed independently, and patient-wise, where data from each patient are aggregated for final prediction. An automated multimodal framework is proposed that integrates fundus images with clinical data. Under the sample-wise setting, detection is performed using fundus images and clinical features individually, as well as through their multimodal combination. Under the patient-wise setting, predictions are obtained by aggregating multiple fundus image representations with corresponding clinical information for each patient. Deep visual features are extracted using a Vision Transformer (ViT) architecture and classified using classical machine-learning models, with a stacking-based ensemble of the three best-performing classifiers employed to optimize performance. Experiments conducted on the publicly available PAPILA dataset demonstrate strong diagnostic performance, achieving 97.47% accuracy and a 97.50% F1-score for sample-wise multimodal classification, and 98.97% accuracy and F1-score for subject-wise detection. The proposed framework is further deployed as an end-to-end web-based platform to support automated glaucoma screening and clinical decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_23992v1",
+    "title": "RASC+: Retrieval-Constrained LLM Adjudication for Clinical Value Set Authoring",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.23992v1",
+    "type": "paper",
+    "raw_text": "Clinical value sets define the standardized terminology codes used in quality measurement, phenotyping, cohort construction, and clinical decision support. The recently introduced Retrieval-Augmented Set Completion (RASC) benchmark showed that direct zero-shot large language model (LLM) generation is poorly suited to this task: clinical code systems are large, version-controlled, and not reliably memorized by language models. We study a stage-wise alternative in which candidate-pool construction is optimized for recall and a constrained LLM adjudicator is optimized for candidate selection. On the full 3,744-value-set RASC test split, Qwen3-based retrieval with vocabulary-aware expansion and code-display rescue retrieval increases candidate-pool recall from the original RASC retrieval baseline of 0.553 to 0.730; on the held-out-publisher stratum, pool recall is 0.655. The higher-recall pool alone is not sufficient: applying the original SAPBert cross-encoder to this expanded pool gives full-test macro F1 of 0.287 and held-out-publisher macro F1 of 0.233. Replacing the stage-2 selector with blinded GPT-5 adjudication over the same pool increases full-test macro F1 to 0.549 and held-out-publisher macro F1 to 0.533. These results show that retrieval-constrained LLM adjudication can substantially improve value set completion while preserving the safety constraint that all returned codes must come from an auditable candidate pool.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_20874v1",
+    "title": "Machine Learning Classification of Cryopathy Syndromes: A Comprehensive Comparative Study",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.20874v1",
+    "type": "paper",
+    "raw_text": "Cryopathy syndromes are difficult to classify because laboratory patterns often overlap across diagnostic categories, while some diagnoses are rare. This makes routine interpretation of cryoglobulin-related tests challenging and increases dependence on expert judgment. The aim of this study was to develop and compare machine learning approaches for automated classification of cryopathy syndromes from laboratory data and to identify a practical strategy for clinical decision support. Methods: We analysed laboratory records from 2,686 patients assigned to 14 diagnostic categories. The dataset included demographic variables, cryoglobulin measurements, precipitation tests, and hemagglutinin and hemolysin titers. Data preprocessing included cleaning, encoding, imputation, normalization, and construction of clinically informed interaction features. We evaluated 12 modelling strategies, including Random Forest, Gradient Boosted Trees, Multi-Layer Perceptron, soft-voting ensembles, class balancing with Synthetic Minority Over-sampling Technique, hierarchical classification, period-aware models, targeted binary classifiers, and probability calibration. Performance was assessed using stratified train-test evaluation and stratified 5-fold cross-validation. The main metrics were macro-averaged F1 score, accuracy, Top-3 accuracy, and expected calibration error. The overall task proved difficult because of marked class imbalance and clinical overlap between diagnoses. The best multiclass performance was achieved by a soft-voting ensemble of Random Forest and Gradient Boosted Trees. Cross-validation confirmed stable performance for the balanced Random Forest model. Tree-based methods consistently outperformed the neural network model. Feature engineering improved discrimination, and the most informative predictors were derived cryoglobulin-based interaction features.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_20164v1",
+    "title": "MedRLM: Recursive Multimodal Health Intelligence for Long-Context Clinical Reasoning, Sensor-Guided Screening, Evidence-Grounded Decision Support, and Community-to-Tertiary Referral Optimization",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.20164v1",
+    "type": "paper",
+    "raw_text": "Real-world clinical decision support requires reasoning over heterogeneous and longitudinal patient information rather than answering isolated medical questions. However, current medical large language models and retrieval-augmented generation systems often rely on single-step prompting or retrieval, which can be fragile when clinical evidence is distributed across long electronic health records, medical images, sensor streams, guidelines, and referral constraints. This paper proposes MedRLM, a Recursive Multimodal Health Intelligence framework for long-context clinical reasoning, sensor-guided screening, and community-to-tertiary referral support. Instead of compressing all patient information into one prompt, MedRLM treats the patient case as an external clinical environment that can be recursively inspected, decomposed, retrieved, verified, and synthesized. The framework coordinates specialized agents for clinical text, longitudinal EHR, medical imaging, physiological sensor signals, guideline retrieval, uncertainty auditing, and referral planning. It further introduces a Clinical Evidence Graph Memory to connect patient-specific observations with retrieved evidence, standardized definitions, sensor-derived biomarkers, and referral criteria. A sensor-guided recursive triggering mechanism activates deeper reasoning when abnormal physiological or behavioral patterns are detected, while uncertainty-gated refinement supports clinician review for high-risk or low-confidence cases. We also outline a real-data evaluation design using public and credentialed clinical datasets spanning EHR, radiology, ECG, ICU time series, and referral-proxy outcomes. MedRLM aims to move medical AI from static question answering toward auditable, multimodal, and workflow-aware clinical decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_19183v1",
+    "title": "Language Models as Interfaces, Not Oracles: A Hybrid LLM-ML System for Pediatric Appendicitis",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.19183v1",
+    "type": "paper",
+    "raw_text": "Large language models (LLMs) can make clinical decision support more accessible by interpreting free-text documentation, but their direct use as diagnostic engines is limited by sensitivity to prompts, information order, and plausible but incorrect outputs. Structured machine-learning models offer more stable risk prediction, yet they require tabular inputs that are difficult to integrate with narrative clinical workflows. We present ClaMPAPP (Clinical Language-assisted Machine-learning Pipeline for Appendicitis), a hybrid system that uses an LLM as an interface rather than as the final decision-maker. ClaMPAPP extracts schema-constrained clinical features from note-like narratives, applies deterministic plausibility checks, and passes validated features to an XGBoost classifier trained on clinical, laboratory, and ultrasound variables. We evaluated ClaMPAPP on two independent pediatric appendicitis cohorts from German hospitals and compared it with end-to-end LLM baselines, including open-source and proprietary models. To preserve ground truth while testing free-text input, narratives were generated from structured electronic health records through template rendering and constrained LLM rewriting, with additional sentence-order permutation to assess positional robustness. ClaMPAPP achieved the strongest overall diagnostic performance in both internal and external validation while minimizing missed appendicitis cases, the key safety concern in acute triage. End-to-end LLMs showed unstable sensitivity-specificity trade-offs and greater degradation under narrative reordering. These results support an LLM-as-interface, ML-as-predictor design that separates natural-language usability from predictive inference and provides a more auditable pathway for clinical decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_16337v3",
+    "title": "Medical Heuristic Learning: An LLM-Driven Framework for Interpretable and Auditable Clinical Decision Rules",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.16337v3",
+    "type": "paper",
+    "raw_text": "Predictive modeling for clinical decision support requires not only strong predictive performance but also transparent decision logic. Although deep learning and tree-based ensemble methods can achieve high accuracy, their black-box nature remains a major obstacle to clinical deployment. This challenge is further compounded by common characteristics of medical data, including limited sample sizes, severe class imbalance, and feature evolution arising from changes in diagnostic criteria and clinical documentation. To address these issues, we propose Medical Heuristic Learning (MHL), an instantiation of the learning beyond gradients paradigm for clinical prediction from structured medical data. Instead of relying on neural network weight updates, MHL uses a large language model (LLM) driven workflow that integrates statistical probes, medical knowledge probes, rule synthesis, and code-level iterative refinement to optimize a deterministic and executable rule-based expert system. The resulting model is expressed not as opaque parameters, but as versioned pure Python decision rules that are explicitly interpretable, fully auditable, and clinically grounded. MHL also supports continual learning by starting from previously validated rules and iteratively revising them using updated feature information under data drift or feature evolution. Comprehensive experiments on medical datasets show that MHL achieves performance comparable to state-of-the-art methods while maintaining strong behavior in small-sample and highly imbalanced settings. The results further indicate that this explicit rule-update mechanism can help alleviate catastrophic forgetting under feature evolution. Overall, these findings suggest that non-gradient-based heuristic systems offer a transparent and adaptable alternative for high-stakes clinical decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_15284v1",
+    "title": "CAP: Towards PPG Universal Representation Learning with Patient-level Supervision",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.15284v1",
+    "type": "paper",
+    "raw_text": "Photoplethysmography (PPG) plays a central role in wearable health monitoring and clinical decision support. Yet existing approaches to universal PPG representation learning largely focus on signal-level objectives and often overlook patient-level health context, which limits generalization to complex clinical tasks and heterogeneous cohorts. To address this gap, we construct a large-scale paired PPG-EHR multimodal dataset by distilling fragmented medical histories and clinical records into cohesive, patient-level electronic health records (EHR). Building on this resource, we propose Clinical Anchored Pretraining for PPG (CAP). During pretraining, CAP performs cross-modal contrastive alignment that anchors PPG representations to patient-level clinical semantics, guiding the encoder beyond waveform fitting toward modeling consistency in a patient's overall physiological state. During downstream adaptation, the pretrained PPG encoder provides clinically grounded representations that strengthen inductive bias and improve robustness and transferability. Experiments demonstrate that CAP consistently outperforms strong baselines on four diverse downstream tasks. CAP achieves a particularly large gain on respiratory rate prediction (up to +87.6% relative improvement over the state-of-the-art baseline) and delivers an average relative +26.7% across all tasks. We further enhance the interpretability of our approach through comprehensive analyses, including ablations and multiple complementary visualizations of the learned representations. The code for our experiments is available at: https://github.com/gody123gody/CAP .",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_15155v1",
+    "title": "Semantic Reasoning in Medicine: The Role of Knowledge Graphs Across Five Key Domains",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.15155v1",
+    "type": "paper",
+    "raw_text": "Knowledge graphs (KGs) have emerged as a promising solution for integrating and reasoning over complex biomedical and clinical data in healthcare. By representing structured relationships among entities such as diseases, drugs, symptoms, and patient records, KGs provide a semantic backbone for decision-making, prediction, recommendation, and personalized care. Recent advances have demonstrated their utility across diverse medical applications--including clinical decision support systems, disease and treatment outcome prediction, health recommender systems, precision medicine, and medical question answering--where KGs often enhance interpretability, semantic coherence, and patient-specific reasoning. In parallel, a growing body of work focuses on medical KG generation itself, proposing frameworks that construct graphs from EHRs, clinical narratives, biomedical literature, and web resources using ontologies, semantic web technologies, deep-learning-based information extraction, and hybrid neuro-symbolic pipelines. Despite this progress, significant challenges remain, including limited and fragmented knowledge coverage, difficulties in aligning heterogeneous data sources, the fragility of current reasoning and representation-learning methods on dense multi-relational graphs, and unresolved issues related to privacy, bias, and accountability. This survey reviews and categorizes current research on KGs in medicine along both application-oriented and methodology-oriented dimensions, discusses their benefits and technical foundations, and outlines key limitations and open research directions. By analyzing trends, architectures, and evaluation practices, this work aims to guide future developments in KG-driven medical AI systems and support their safe and effective integration into healthcare environments.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11794v1",
+    "title": "Multimodal Ordinal Modeling of Alzheimer's Disease Severity Using Structural MRI and Clinical Data",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11794v1",
+    "type": "paper",
+    "raw_text": "Neurodegenerative diseases such as Alzheimer's disease (AD) require accurate and scalable tools for assessing disease severity, yet current clinical staging remains time-intensive and prone to variability. We propose an attention-enhanced multimodal machine learning framework with ordinal regression for automated and interpretable AD severity staging. The framework integrates T1-weighted MRI with demographic and genetic variables and compares unimodal and multimodal architectures using ordinal and non-ordinal prediction heads. Models were trained and validated using cohort-stratified splits derived from the ADNI, AIBL, and NIFD datasets. A strictly held-out test set was constructed using subjects excluded from all training, validation, preprocessing, and hyperparameter tuning procedures, with subject-level splitting employed throughout to prevent data leakage. Among unimodal approaches, the T1-weighted MRI model achieved slightly higher adjacent-stage accuracy (0.963) and agreement with clinical staging (QWK 0.444) than the tabular model (QWK 0.433). Integrating imaging, demographic, and genetic information improved overall performance. The multimodal non-ordinal baseline achieved the lowest prediction error (MAE 0.340), whereas the ordinal multimodal model achieved the highest adjacent-stage accuracy (0.970) and strongest agreement with clinical staging (QWK 0.549). These findings indicate that ordinal formulations better capture the ordered structure of the CDR scale and yield predictions more consistent with clinical staging. Explainability analyses using Grad CAM++ and SHAP demonstrated anatomically and clinically plausible model behavior, supporting transparent decision-making. Overall, attention-based multimodal learning with ordinal regression represents a robust, interpretable, and scalable approach for automated AD severity staging and AI-assisted clinical decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_24678v2",
+    "title": "Exploration of Perceptual Speech Features for Clinical Decision-Support in Mental Health Care",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.24678v2",
+    "type": "paper",
+    "raw_text": "Speech and language technologies offer valuable opportunities for supporting mental health assessment through objective and interpretable cues. We present a systematic feature-based analysis framework leveraging perceptually grounded acoustic and linguistic characteristics, including prosody, vocal quality, semantic coherence, syntactic structure, and sarcasm. Using statistical analysis and interpretable machine learning (XGBoost with SHAP and LIME), we examine associations between speech features and validated symptom measures of depression, anxiety, and ADHD. Evaluated on both controlled benchmark datasets (StressID, DAIC-WOZ, Androids, EATD) and a real-world clinical dataset, the framework reveals stable and consistent relationships between symptom severity and vocal irregularities (e.g., shimmer, jitter), lexical-syntactic patterns, and affective tone. An ablation study conducted across all datasets further identifies the most informative feature groups. This work explores a transparent and clinically interpretable approach to speech-based mental health analysis.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_21083v1",
+    "title": "AIMBio-Mat: An AI-Native FAIR Platform for Closed-Loop Materials Discovery and Biomedical Translation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.21083v1",
+    "type": "paper",
+    "raw_text": "Materials discovery and biomedical translation increasingly require models that can reason across composition, processing, structure, biological response, manufacturability, safety, and governance constraints. Existing materials and biomedical data ecosystems are powerful but remain poorly coupled for AI-guided discovery. Here we present AIMBio, a conceptual framework for an AI-native, FAIR, and governance-aware decision layer that links materials provenance, biomedical context, knowledge graphs, uncertainty-aware machine learning, and human-in-the-loop active learning. The framework formulates biomedical-materials discovery as constrained multi-objective optimization under uncertainty and introduces practical requirements for metadata, model documentation, risk-tiered governance, evaluation metrics, and phased implementation. To make the roadmap testable, we add a minimum viable prototype specification and a worked pilot for AI-guided nanomaterials for drug delivery. AIMBio is positioned as exploratory and preclinical discovery infrastructure, not as clinical decision-support software; any clinical or regulated-device use would require separate validation, change control, and regulatory review. The central contribution is a publishable platform blueprint for converting fragmented materials and biomedical records into auditable, experimentally actionable, and translationally responsible discovery workflows.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_20468v2",
+    "title": "CASCADE Conformal Prediction: Uncertainty-Adaptive Prediction Intervals for Two-Stage Clinical Decision Support",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.20468v2",
+    "type": "paper",
+    "raw_text": "Effective medication management in Parkinson's Disease (PD) is challenging due to heterogeneous disease progression, variable patient response, and medication side effects. While AI models can forecast levodopa equivalent daily dose (LEDD) as a measure of medication needs, standard uncertainty quantification often fails to communicate the reliability of these predictions, treating high and low confidence clinical decisions identically. We introduce CASCADE (Calibrated Adaptive Scaling via Conformal And Distributional Estimation), a novel conformal prediction framework that propagates epistemic uncertainty from a screening classifier to adapt downstream predictions. Unlike standard conformal methods that rely on auxiliary residual regression, we leverage epistemic uncertainty from a primary classification task (identifying whether a medication change is needed) to dynamically scale the prediction intervals of a secondary regression task (predicting how much change). By mapping Venn-Abers multi-probabilistic uncertainty directly to non-conformity scores, our framework achieves continuous risk adaptation. We demonstrate that this ``cascade effect'' produces highly efficient intervals for confident patients (38.9% narrower than standard conformal baselines) while automatically expanding intervals to ensure robust coverage for uncertain cases, bridging the gap between discrete clinical decision-making and continuous dose forecasting in PD.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_19589v1",
+    "title": "Physics-Informed Graph Neural Network Surrogates for Turbulent Nanoparticle Dispersion in Dental Clinical Environments",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.19589v1",
+    "type": "paper",
+    "raw_text": "Dental aerosol procedures produce sub-50 micrometre nuclei that can remain airborne for long periods in enclosed clinics, creating pathways for airborne pathogen transmission. Reynolds-Averaged Navier-Stokes (RANS) simulations with Euler-Lagrange particle tracking capture this transport accurately but require very long run times per scenario, which precludes real-time clinical decision support in 3D. We present the Eulerian-Lagrangian Graph Interaction Network (ELGIN), a physics-informed graph surrogate that jointly predicts carrier-flow dynamics on the OpenFOAM polyhedral mesh and the per-parcel motion of the polydisperse spray cloud. ELGIN couples a multi-head Graph Transformer with Jacobi-preconditioned learnable pressure projection and a turbulence-closure head to a sigmoid-gated Lagrangian Interaction Network through differentiable inverse-distance mesh-parcel coupling, and advances parcels with a symplectic Stormer-Verlet integrator. A four-stage physics-informed curriculum stabilises 260-step autoregressive rollouts without gradient explosion. A parameter sweep with foam-extend 4.1 OpenFOAM reactingParcelFoam across clinically relevant ventilation rates and handpiece spray speeds provides CFD ground truth. This article reports a single-case demonstration in which both ELGIN and a Lagrangian-only baseline (M0) are trained and evaluated on Sweep_Case_03 of a twenty-case sweep; full 16/2/2 retraining is in progress and will replace all reported metrics. On this case, ELGIN tracks the foam-extend particle cloud much more closely than M0: mean parcel displacement error falls from 19.56% to 16.20% of room width and cloud radius-of-gyration error from 9.85% to 6.58%. A 26-second rollout completes in ~64 s on a 4 GB GPU, approximately 37x faster than the foam-extend reference pipeline, toward per-appointment infection-risk screening once the multi-case checkpoint is in place.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

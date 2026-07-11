@@ -1,0 +1,82 @@
+[
+  {
+    "id": "paper_2607_04811v1",
+    "title": "Hybrid Deep Learning for Traceability and Classification of Industrial Slate Tiles",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04811v1",
+    "type": "paper",
+    "raw_text": "Applying deep learning to instance-aware reidentification of slate tiles and extraction site classification can improve production efficiency and quality control in the slate tile industry. These tasks are particularly important for handling natural materials where visual variability can make manual inspection costly and error-prone. We present a lightweight, hybrid deep learning approach that combines image matching and classification within a single framework. The system integrates a feature-matching branch based on XFeat with a MobileNetV3- based classification branch. The XFeat branch, combined with a LightGlue matching head, improves instance matching performance by +15.4% AUC. For classification, features from both backbones are shared and fused, resulting in a +10.9% accuracy improvement over a standard MobileNetV3 model. Our approach is evaluated on a newly created industrial dataset consisting of 2,610 slate tile images from six extraction sites. The results demonstrate the effectiveness of the proposed approach for object re-identification and classification in an industrial setting.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01798v2",
+    "title": "Approximate Attention Weighting for Sustainable FPGA-Based Vision Transformer Inference",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01798v2",
+    "type": "paper",
+    "raw_text": "Vision Transformers have reshaped computer vision by using self-attention to capture global context across image regions. This makes them attractive for edge visual inspection and monitoring in applications such as renewable-energy infrastructure, industrial quality control, medical imaging, and autonomous-system sensing. However, deploying ViTs on small FPGAs remains challenging because the softmax stage in self-attention requires exponential evaluation and normalization, which are costly in hardware. Existing implementations often rely on CORDIC pipelines or BRAM-based look-up tables, increasing area and power consumption. This paper presents a BRAM-free approximate attention-weighting unit for FPGA-based ViT inference. The proposed design approximates the natural exponential in softmax using a 16-segment piecewise-linear function implemented entirely with distributed LUT fabric. Unlike base-2 approximations, the natural-exponential formulation preserves the pre-trained attention temperature and avoids model-specific recalibration. Implemented on a Xilinx Zynq-7020, the complete attention-row core uses 1444 LUTs, 77 DSPs, and no BRAM, while hardware-accurate emulation shows accuracy within a \\(0.20\\%\\) absolute top-1 difference from the exact-softmax reference on ViT-family models. These results demonstrate the potential of the proposed core for energy-efficient ViT inference on resource-constrained edge-AI platforms.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02594v1",
+    "title": "An automated method of identifying incorrectly labelled images based on the sequences of loss functions of deep learning networks",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02594v1",
+    "type": "paper",
+    "raw_text": "Deep learning is widely applied in medical image analysis, but up to 10% of manually labelled images may be incorrect, degrading model performance. This paper proposes an automated method to identify incorrectly labelled medical images by analyzing sequences of loss functions from deep learning classification networks over multiple training epochs. Identified images can be reviewed and relabelled by experts, improving dataset quality and model performance. Two experiments validate the method on a fundus image dataset for referable diabetic retinopathy screening. In the first, 6% (648) of 10,788 gold-standard labels were intentionally flipped. The method identified 75.31% (488) of the flipped samples, with only 4.85% (492) false positives among correctly labelled samples. In the second, reviewing and correcting the 980 identified samples (9.1% of the dataset) and retraining the model improved best accuracy on an independent test set from 95.93% (with 6% label noise) to 96.50% (with 1.5% noise), approaching the ideal 96.57% (with 0% noise). The results demonstrate the method's effectiveness in improving model performance through automated label quality control.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02585v1",
+    "title": "Reliability-Aware CT-MRI Registration: A Quality Engineering Framework with Stability Analysis and Risk Classification",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02585v1",
+    "type": "paper",
+    "raw_text": "Multimodal CT-MRI registration is central to image-guided radiotherapy, surgical navigation, and diagnostic workflows, but most pipelines report only aggregate quality metrics without per-case reliability signals. We propose a reliability-aware framework that converts registration quality into Green/Yellow/Red risk categories using data-learned thresholds. CT images were registered to T1-weighted MRI using rigid and affine transformations on 90 paired slices from 18 patients across brain, abdominal, and neck anatomies. Reliability was assessed using Delta NMI, Delta SSIM, Dice overlap, registration stability, and inverse consistency error, combined into a single score R. Thresholds learned from training patients were applied unchanged to held-out test patients. Affine registration outperformed rigid registration on NMI and SSIM, yielding 44% Green classifications versus 33% for rigid. Reliability-filtered registrations improved the average alignment profile compared with unfiltered methods. Per-anatomy analysis showed substantial variation, with stronger reliability for abdominal registrations than brain registrations. Weight sensitivity analysis identified Dice overlap as the dominant reliability component. The proposed framework provides an interpretable quality-control layer for multimodal registration, while risk thresholds reflect statistical rather than clinical validation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00129v1",
+    "title": "A Synthetic-Driven Vision System for Assembly Step Recognition",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00129v1",
+    "type": "paper",
+    "raw_text": "Quality control in industrial assembly is essential, and real-time monitoring of the assembly process is crucial for preventing costly defects and ensuring production reliability. Vision-based automated inspection offers a powerful solution for such real-time monitoring. However, due to the specialized industrial components and processes, training these models typically relies on task-specific real-world data, which is costly and labor-intensive to collect and annotate. In this paper, we propose a system that automatically generates realistic assembly sequences and further trains real-time inspection models using the synthetic data. It can be efficiently applied to a given task within an hour, requiring only CAD models and simple step descriptions. Focusing on practical challenges, our system integrates a physics-based motion generation module to capture the variance of different human assembly, designs domain-randomized rendering to deal with the environmental complexity and variation, and employs an object-detection-based step recognition module for robust sim-to-real transfer, leading to 92.4% accuracy on a real-world assembly case with 46.7%, 15.8% and 61.2% performance improvement, respectively. Overall, our system provides a practical solution for industrial assembly inspection without requiring expensive real-world data collection and annotation, with the effectiveness validated on real industrial assembly tasks.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_30027v1",
+    "title": "Cross-Modal Iteration Distillation for Robust IHD Screening: The IDNet Framework and A New Benchmark",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.30027v1",
+    "type": "paper",
+    "raw_text": "Color Fundus Photography (CFP) offers a low-cost and non-invasive route for ischemic heart disease (IHD) screening, but current studies are limited by scarce public benchmarks and ineffective fusion of retinal images with sparse clinical variables. We propose IDNet, a multimodal framework with a Cross-Modal Distillation Aggregator (CDA) that uses learnable queries to sequentially integrate left-eye, right-eye, and clinical features, mitigating the imbalance between high-dimensional visual features and low-dimensional tabular inputs. We also construct a reproducible UK Biobank benchmark with open-source curation and quality-control pipelines, yielding 50,410 images from 25,205 subjects. On this benchmark, IDNet outperforms image-only, clinical-only, and several multimodal baselines, and CDA consistently improves multiple visual encoders as a plug-in fusion module.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_26260v1",
+    "title": "A multi-task spatiotemporal deep neural network for predicting penetration depth and morphology in laser welding",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.26260v1",
+    "type": "paper",
+    "raw_text": "In laser penetration welding, the assessment of penetration state and weld seam morphology plays a crucial role in determining the weld quality. This paper presents a comprehensive introduction of the innovative muti-task deep learning model that has the capability to predict penetration state, depth, and weld seam morphology with high accuracy. The monitoring platform relies on weld pool images captured during the laser welding process using a complementary metal-oxide-semiconductor camera. The proposed model integrates spatiotemporal features extracted from top weld pool images along with welding parameters, establishing a deep learning framework based on convolutional neural networks and state space models for more efficient extraction and processing of spatial-temporal information. Furthermore, a reliable method for constructing the dataset is proposed to enhance both robustness and generalization capability of the developed model. Validation results on the test set demonstrate that prediction accuracy for penetration state can reach 99.35%, while prediction error for penetration depth is 1.79 millimeter, and accuracy of reconstructing the weld cross-section is 95.65%. This study provides new insights and methodologies for in-situ quality control strategies in laser penetration welding systems.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_25174v1",
+    "title": "An iterative energy-based multimodal transformer for joint retrieval of wheat soil moisture, leaf area index, and plant height from Sentinel-1 and Sentinel-2 time series",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.25174v1",
+    "type": "paper",
+    "raw_text": "Field-scale retrieval of surface soil moisture (SM), leaf area index (LAI), and plant height (PH) is essential for precision agriculture, yet it remains an ill-posed inverse problem. Concurrent variations in soil moisture and canopy density generate substantial ambiguities in radar backscatter and spectral responses, which reduces the effectiveness of traditional feedforward regression models in heterogeneous smallholder cropping systems. This study presents the Iterative Energy-Based Transformer (iEBT) for the joint retrieval of coupled soil-canopy states from Sentinel-1 C-band SAR and Sentinel-2 multispectral time series. Instead of direct regression, iEBT embeds multi-modal predictors within a shared sequence, produces an initial state estimate, and iteratively updates the target [SM, LAI, PH] vector through normalized gradient descent to minimize a learned scalar compatibility energy function. Using 700 quality-controlled field measurements from Varanasi, India, iEBT achieved the highest learned-model performance on the random test split, with a four-seed mean R^2 of 0.854 \\pm 0.012 (R_SM^2 = 0.841, R_LAI^2 = 0.905, R_PH^2 = 0.821). WCM and PROSAIL were retained as physically interpretable SAR and optical reference models for comparison. Modality ablations confirmed that Sentinel-1 drives SM retrieval, while Sentinel-2 dominates LAI, whereas PH relies on combined structural-phenological signatures. Crucially, the model's terminal energy functions as an uncalibrated post-retrieval quality diagnostic; screening the 10% highest-energy samples markedly reduced target level root-mean-square errors. While leave-one-campaign-out validation highlights persistent cross-season domain shift challenges due to localized management variations, compatibility-guided multimodal fusion offers a structured self-diagnostic path toward reliable biophysical parameter estimation",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2607_07759v1",
+    "title": "AI-integrated models for assessing agricultural resilience",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.07759v1",
+    "type": "paper",
+    "raw_text": "Agricultural supply chains are vulnerable to disruptions through linked biophysical and economic systems. We develop an AI-powered tool that integrates economic models (GTAP) with biophysical models (APSIM) to analyze supply chain shocks, enabling policymakers and market participants to assess cross-disciplinary impacts through queries and responses written in natural language.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05120v1",
+    "title": "Agent Data Injection Attacks are Realistic Threats to AI Agents",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05120v1",
+    "type": "paper",
+    "raw_text": "AI agents act on behalf of user prompts, consuming external data and taking actions based on the agent context. Prior research on AI agent security has primarily focused on indirect prompt injection (IPI). Its most well-studied category is instruction injection, where attacker-controlled untrusted data is interpreted as an instruction. In response, many mitigations have been proposed to prevent instruction injection attacks. In this paper, we introduce a new category of IPI, agent data injection attacks (ADI). ADI injects malicious data disguised as trusted data, such as security-critical metadata (e.g., resource identifiers or data origins) or agent context data (e.g., tool call and response formats). As a result, agents unknowingly execute unintended actions based on attacker-controlled data. ADI has similar attack impacts as instruction injection attacks, because it causes agents to misbehave and execute unintended actions. Despite the similar impact, ADI remains underexplored and easily bypasses existing IPI defenses. We found several critical vulnerabilities in real-world agents that allow an attacker to launch various attacks: arbitrary click attacks on web agents (Claude in Chrome, Antigravity, and Nanobrowser), and remote code execution and supply-chain attacks on coding agents (Claude Code, Codex, and Gemini CLI). We evaluate ADI vulnerabilities across off-the-shelf models and AI agents, and find that ADI is effective in both standalone LLMs and AI agent settings. ADI exposes a critical gap in agent security, signifying that current AI agents do not employ a fundamental security principle: current agents do not isolate trusted data from untrusted data.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_04178v1",
+    "title": "Dynamic Interest Rate Discovery in Decentralized Finance: A Reverse Kelly Automated Market Maker for Risk-Adjusted Lending",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04178v1",
+    "type": "paper",
+    "raw_text": "Decentralized Finance (DeFi) lending protocols currently rely on heuristic, utilization-based bonding curves that mandate severe over-collateralization, systematically excluding under-collateralized assets like corporate invoices. This paper introduces a mathematically optimal pricing mechanism for decentralized credit: the Reverse Kelly Automated Market Maker (rkAMM), the core engine of our proposed lending framework. By inverting the Kelly Criterion, traditionally used for optimal bet sizing, we construct a dynamic interest rate discovery protocol that explicitly prices individual loan risk. The rkAMM ingests real-time Probability of Default (PD) streams from an off-chain Explainable AI oracle and dynamically calculates the exact interest rate required to sustain target liquidity provider (LP) yields. We mathematically derive the Reverse Kelly pricing function ($r = \\frac{y + PD}{1 - PD}$), proving its strictly convex superiority over Aave and Compound's static utilization curves in managing capital efficiency. Furthermore, we deploy the rkAMM architecture via Solidity smart contracts, optimizing for gas-efficient 1e18 (WAD) floating-point arithmetic. To ensure decentralized transparency, our simulation infrastructure leverages MLflow for tracking yield hyperparameters, Data Version Control (DVC) linked to DagsHub for versioning Real-World Asset (RWA) data arrays, and localized edge-inference via Ollama (Llama-3) and Hugging Face (FinBERT) for zero-cost predictive modeling. Monte Carlo simulations across 10,000 macroeconomic stress scenarios confirm that the rkAMM maintains protocol solvency and stabilizes LP yields at 12-15\\% net of expected credit losses. This work provides the foundational financial engineering required to bridge the \\$2 trillion global supply chain finance gap using permissionless blockchain infrastructure.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03310v1",
+    "title": "Regulatory compliance-readiness in the AI Supply Chain: examining datasets in Hugging Face",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03310v1",
+    "type": "paper",
+    "raw_text": "A very large number of datasets are made available via Hugging Face (HF). These datasets are used to train a vast number of AI models, also available via HF. There are regulatory issues that might arise in the AI supply chain when those datasets do not follow, for instance, data privacy practices, or do not disclose their data sources, cleaning and preparation processes. In this preliminary work, regulatory compliance-readiness is examined as a quality attribute in the framework of HF datasets, with a main focus on data privacy (e.g. GDPR, CCPA). Towards this direction, an analysis on regulatory compliance (e.g. with privacy laws) of the dataset using the dataset card and the dataset structure overview as starting points has been performed. We collected 11,682 HF datasets that have a dataset card, are not gated and have at least 500 downloads and analyzed the datasets using automated techniques and manual analysis on a sample of the dataset. The results show that a very small number of datasets are explicit on the datasets creation processes and mention data sources, while some make mentions to Personally Identifiable Information (PII) or other sensitive data in their data schemas. These results show the need for more detailed examinations of regulatory compliance in AI datasets and models, and research on tools that provide guidance to practitioners and automate the compliance process.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_31227v1",
+    "title": "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.31227v1",
+    "type": "paper",
+    "raw_text": "The fast growth of open-source AI infrastructure, from model serving engines and agent platforms to the Model Context Protocol (MCP) ecosystem and the language models themselves, has outpaced the security tooling available to defend it. We present AI-Infra-Guard, an open-source framework that organizes AI red teaming around a single observation: the attack surface of an AI agent is stratified across layers (infrastructure, protocol/tool, agent behavior, and model), and no single detection paradigm fits all of them. The framework therefore matches a paradigm to each layer, from deterministic rule matching over 75+ AI components and 1{,}400+ vulnerability rules, through LLM-driven agentic auditing of MCP servers and agent-skill packages and multi-turn black-box agent red teaming, to a jailbreak harness with 26+ attack operators over sixteen datasets. To our knowledge it is the only open-source framework to span all of these, including supply-chain auditing of the agent skills that increasingly extend AI agents. We release AI-Infra-Guard as open source so that \\emph{layer-paradigm matching} can serve as a practical foundation for agent security and a shared base for the community to build on.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_30755v1",
+    "title": "Understanding and Evaluating Claw-like Agent Security Through a Computer-Systems Lens",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.30755v1",
+    "type": "paper",
+    "raw_text": "Claw-like AI agents (e.g., OpenClaw) are always-on processes with persistent access to credentials, files, tools, and external services. They take on system-level responsibilities -- installing packages, maintaining state, scheduling subtasks, and mediating I/O -- making security failures far more severe than in other agents. Yet existing benchmarks focus on model responses and tool calls, leaving cross-component failure modes largely unmeasured. We adopt a computer-system analogy: treating a Claw-like agent as an agentic computer system whose gateway runtime plays an OS-like mediation role, whose Skills resemble user-installed applications, and whose Plugins resemble loadable extensions with runtime privileges. Each component has a classical counterpart whose protection mechanisms -- refined over decades of cybersecurity research -- are absent on the agent side. From this perspective, we develop SafeClawArena, a benchmark of 406 adversarial tasks across four attack surfaces (Skill Supply-Chain Integrity, Persistent State Exploitation, Cross-Boundary Data Flow, and Indirect Prompt Injection), executed in containerized replicas of real agent platforms with canary-marked credentials and evaluated via automated taint tracking across nine output channels. We evaluate three platforms (OpenClaw, NemoClaw, SeClaw) and five frontier LLMs. The highest attack success rate reaches 70%; malicious Plugins succeed in 100% of cases regardless of the LLM. SeClaw cuts GPT-5.4's attack success rate from 70% to 22%, partly through utility-security tradeoffs rather than active defenses, while Claude-Opus-4.6 already sits near a 22% floor on every platform. These results expose the inadequacy of current defenses and suggest directions for future hardening. Code and data: https://github.com/sunblaze-ucb/SafeClawArena.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_26924v1",
+    "title": "A Deterministic Control Plane for LLM Coding Agents",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.26924v1",
+    "type": "paper",
+    "raw_text": "LLM coding harnesses grant agents broad file and shell access, yet the configuration layer that steers them -- rules files, agent definitions, IDE-specific markdown -- is largely unmanaged. A prevalence study of 10,008 public GitHub repositories (n=6,145 agent config files) finds that agent configurations propagate as undeclared shared components: 10.1% of tracked paths are SHA-256 exact duplicates across independent repositories (fork-adjusted, threshold-independent), with 75.5% of clone pairs crossing organisational boundaries. Two further patterns are indicative: configurations are rarely revised (58% single-commit; 0.4 vs 0.6 commits/month age-normalised against CI/CD workflows), and rarely declare permission boundaries (<1% of agent configs vs 33% of Actions workflows, n=31 true positives).\n  We propose a deterministic control plane above the harness that maps one-to-one to these gaps. Rel(AI)Build treats agent definitions as a managed supply chain (SHA-256 content addressing, HMAC-stamped lockfiles, hash-chained audit logs); enforces tiered permissions and attack-derived blocklists before LLM invocation; gates feature work through a phase state machine with requirement-to-file-to-test traceability; compiles a single canonical definition to seven IDE targets; and detects prompt drift via Jaccard similarity. Conformance tests on injected violations confirm each mechanism enforces its stated invariant; developer outcomes remain future work. Governance of this layer must be deterministic and tool-agnostic -- not delegated to further LLM orchestration.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_26757v1",
+    "title": "Batch-Invariant Spectral Intelligence for Robust and Explainable Insect Authentication",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.26757v1",
+    "type": "paper",
+    "raw_text": "Edible insects offer an efficient source of alternative protein, requiring less land, water and emitting less greenhouse gas than conventional livestock. However, their successful integration into the food supply chain demands reliable species authentication to control allergen exposure, prevent adulteration, and meet regulatory standards. Near-infrared spectroscopy provides a rapid analytical tool, but its performance drops when applied to production batches unseen during training due to batch-to-batch variation in spectral measurements. We introduce the Batch-Invariant Spectral Network (BISN), an end-to-end framework that combines a learnable preprocessing module, initialised with Savitzky-Golay filtering, with an entropy-regularised adversarial objective to suppress batch-specific spectral variation. In contrast to Domain-Adversarial Neural Networks, which enforce domain adaptation only after feature extraction, BISN suppress batch-effects before species-specific features are learned. Using 2,700 spectra from three species (Acheta domesticus, Hermetia illucens, and Tenebrio molitor) collected across three independent production batches, BISN achieves a mean leave-one-batch-out accuracy of 0.93 (standard deviation 0.04), outperforming the strongest baseline by four percent. Further insights gained by using explainable AI confirm that model decisions consistently rely on the lipid and protein absorption regions across all folds, connecting predictive performance to known insect biochemistry. BISN addresses both cross-batch robustness and biochemical interpretability for automated insect species authentication under realistic industrial conditions. The source code and dataset are publicly available at https://github.com/majharB/bisn.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_25281v1",
+    "title": "GaN Power Devices and Converter Architectures for AI Data Centers: Efficiency, Reliability, and Deployment Pathways",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.25281v1",
+    "type": "paper",
+    "raw_text": "The growth of artificial-intelligence workloads is increasing the electrical and thermal demands on data-center power-delivery systems, making conversion efficiency, power density, and reliability critical design priorities. This review examines how gallium-nitride (GaN) power devices can be matched to specific stages of the grid-to-load conversion chain, including power-factor correction, isolated DC/DC conversion, 48-V intermediate-bus conversion, and point-of-load regulation. Si, SiC, and GaN are compared using converter-relevant metrics, and lateral, vertical, and specialized GaN architectures are evaluated in terms of voltage scalability, switching behavior, reverse conduction, thermal pathways, gate control, and technology maturity. The analysis shows that GaN provides a stage-dependent rather than universal advantage. Commercial lateral GaN HEMTs are particularly effective in high-frequency, low-to-mid-voltage stages, while specialized and hybrid devices support bidirectional operation, normally-off control, extreme conversion ratios, and integration. Vertical GaN remains an emerging option for higher-voltage and higher-power conversion. A quantitative framework links cascaded converter efficiency to electrical-loss reduction, cooling demand, annual facility energy use, and operational carbon emissions. Broad deployment further requires low-parasitic packaging, disciplined gate-drive and EMI co-design, mission-profile reliability qualification, scalable manufacturing, and supply-chain resilience. GaN is therefore best treated as a stage-specific system lever whose value depends on coordinated device, topology, package, and thermal co-design.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_24429v1",
+    "title": "Detecting AI Coding Agents in Open Source: A Validated Multi-Method Census of 180 Million Repositories",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.24429v1",
+    "type": "paper",
+    "raw_text": "Generative AI coding agents are entering the open-source supply chain, yet their diverse and often invisible traces leave their prevalence poorly understood. We introduce a multi-layered detection framework that integrates configuration-file scanning, commit-message analysis, author-identity matching, and bot-signature lookup across World of Code (180M+ Git repositories), classifying agent traces into four behavioral types. No single method captures more than a fraction of activity: multi-method detection identifies 850,157 Claude Code commits in one snapshot, of which bot-account lookup_the signal most adoption studies rely on_recovers only 28,154 (3.3%), a 30x relative-recall gap, so single-signal prevalence estimates are biased low by at least this factor. Every detection pattern is hand-validated (495 labels) with per-cell precision and Wilson confidence intervals. Across snapshots from December 2024 to April 2026, commit-attributed agents generate over 320,000 commits per month; Claude Code leads (886,122 commits across 17,295 projects) and dominates silent, configuration-file-only adoption (21,078 projects). Compared against an independent pull-request census (AIDev), the two channels capture nearly disjoint agent populations_a PR census misses 79% of commit-detected Claude Code adopters and essentially all Codex adopters_and different kinds of work: PR-deployed cloud agents (Codex, Cursor) surface as feature work, while commit-deployed in-editor agents (Claude Code, OpenHands, Aider) surface as maintenance. The observed work profile follows deployment and detection mode rather than the tool itself, so no single channel is representative.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

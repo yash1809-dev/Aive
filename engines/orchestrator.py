@@ -94,6 +94,21 @@ class Orchestrator(BaseEngine):
         self.event_bus.publish("critique.complete", crit_res)
         self.logger.info(f"Critic: {crit_res['survived']} survived / {crit_res['rejected']} killed.")
 
+        # Stage 3.5: Discovery Classification (research gaps, contradictions, method transfers)
+        disc_class_res = {"research_gaps": 0, "contradictions": 0, "method_transfers": 0}
+        try:
+            from agents.discovery_classifier import DiscoveryClassifier
+            from db.init_db import DB_PATH
+            classifier = DiscoveryClassifier(db_path=DB_PATH)
+            disc_class_res = classifier.run_all()
+            self.logger.info(
+                f"Discovery Classification: {disc_class_res['research_gaps']} gaps, "
+                f"{disc_class_res['contradictions']} contradictions, "
+                f"{disc_class_res['method_transfers']} transfers."
+            )
+        except Exception as e:
+            self.logger.warning(f"Discovery Classification skipped: {e}")
+
         # Stage 4: Validation scoring
         val_res = self.validation_engine.run({})
 
@@ -112,6 +127,7 @@ class Orchestrator(BaseEngine):
             "discovery": disc_res,
             "novelty": {"passed": novelty_passed, "blocked": novelty_blocked},
             "critique": crit_res,
+            "classification": disc_class_res,
             "validation": val_res,
             "report": rep_res,
             "learning": learn_res.get("overall_recommendations", []),

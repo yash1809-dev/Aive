@@ -1,0 +1,122 @@
+[
+  {
+    "id": "paper_2607_00870v1",
+    "title": "Dynamic Bidirectional Pattern Memory: A Production-Scale Empirical Characterisation of Inference-Time Gating in Clinical NLP",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00870v1",
+    "type": "paper",
+    "raw_text": "We study inference-time pattern-memory gating in a production-scale clinical natural language processing (NLP) pipeline. The pipeline pairs a generator (Llama-3.3 70B) proposing extractions with a verifier (MMed-Llama-3.1 70B) accepting or rejecting them, over 167,034 PMC-Patients narratives, and adds a lightweight memory that learns at deployment which extractions to filter, so the verifier need not re-examine candidates already seen to fail. We report four findings. First, learning filtering rules directly from the verifier's rejections failed at full scale: the relation-extraction filter stayed empty despite 785,797 logged rejections, because they were spread too thinly across too many distinct forms to accumulate. Second, a simpler rule using a fixed clinical ontology produced the same filtering without the verifier, capturing 49,734 ontology-violating relations on a held-out 5,000-patient set. Third, of five versions of the question-answering filter, four failed for distinct, instructive reasons; the fifth succeeded by checking whether a patient's extracted entities support the question asked, and where it applies was 1.84 times likelier to flag an answer the verifier would reject than one it would accept. Fourth, one pattern held across all five: a filter is selective only when it tests the same evidence the verifier weighs, not when it imitates the verifier's output. Together these give a transferable result for any generator-verifier pipeline: the most natural memory design can fail silently at scale, and whether a pre-generation gate is selective is decided before any engineering effort, by whether its signal probes the question the verifier itself answers. Throughout, the system flags suspect extractions rather than deleting them, so every decision stays visible for clinical review. All code and test artefacts are released openly.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_19637v1",
+    "title": "Before the Labels: How Dataset Construction Shapes Suicidality Detection in Clinical Text",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.19637v1",
+    "type": "paper",
+    "raw_text": "Clinical NLP increasingly relies on electronic health record (EHR) data to detect suicidal behaviors, treating clinical documentation as more reliable ground truth than social media. We argue that this framing obscures how EHR-based suicidality datasets encode a particular operationalization of suicidality, shaped by who authors the data, how episodes are bounded, and how ambiguity is resolved. We ground this argument in a case study of the ScAN dataset, built over MIMIC-III clinical notes. We show how governance constraints, ICD-based cohort selection, single-annotator labeling, and hospital-stay-level aggregation produce labels that reflect clinician-documented judgments, treat suicidality as a bounded episode, and assume that intent can be reliably inferred from documentation. A linguistic analysis demonstrates that identical labels subsume heterogeneous clinical framings differing in temporality, negation, and uncertainty. We argue that clinical NLP should examine the assumptions embedded in suicidality datasets before interpreting their labels as ground truth.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_13082v1",
+    "title": "sebis at CRF Filling 2026: A Two-Stage Local LLM Pipeline for Medical CRF Filling",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.13082v1",
+    "type": "paper",
+    "raw_text": "The extraction of structured clinical information from unstructured EHR notes is a persistent bottleneck in healthcare informatics. While large language models (LLMs) offer high performance, their deployment in clinical settings is hindered by privacy risks, inference costs, and the tendency to hallucinate beyond textual evidence. We address these challenges for the CL4Health 2026 Case Report Form (CRF) filling task by proposing a fully local, domain-adapted pipeline using the MedGemma-27B model. Our two-stage architecture, which separates binary presence classification from value extraction, enforces strict adherence to textual evidence and ensures deterministic outputs for negated, uncertain, or unknown states. By leveraging item-specific, few-shot in-context learning without external API calls or fine-tuning, our approach achieves a macro-F1 score of 0.55 on the official English test track. This result secures second place among all locally-hosted, open-source submissions. Our work demonstrates that privacy-preserving, on-premise LLM pipelines can achieve near-competitive performance with proprietary frontier models, providing a practical, data-sovereign framework for clinical NLP.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_03250v1",
+    "title": "The Word and the Way: Strategies for Domain-Specific BERT Pre-Training in German Medical NLP",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.03250v1",
+    "type": "paper",
+    "raw_text": "Digital healthcare generates vast amounts of clinical text that can support AI-assisted applications, yet German biomedical language models remain limited by older architectures or restricted training data. We present ChristBERT (Clinical- and Healthcare-Related Issues and Subjects Tuned BERT), a family of domain-specific German RoBERTa-based language models trained on a 13.5GB corpus of scientific publications, clinical texts, health-related web content, and translated clinical resources. To investigate the impact of domain adaptation strategies in German clinical NLP, we compare continued pre-training, training from scratch, and domain-specific vocabulary adaptation. The resulting models are evaluated on three medical named entity recognition tasks and two text classification tasks. ChristBERT consistently outperforms existing general-purpose and medical German language models on four of five benchmarks and establishes a new state of the art for German clinical language modeling. Our results show that the optimal adaptation strategy is task-dependent: in our evaluation, training from scratch is particularly effective for highly specialized clinical texts, whereas continued pre-training performs well on more commonly written medical texts. All models are publicly released to support future research and applications in German medical NLP.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_00647v1",
+    "title": "LinguIUTics at PsyDefDetect: Iterative Imbalance-Aware Fine-tuning of Qwen3-8B for Psychological Defense Mechanism Classification",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.00647v1",
+    "type": "paper",
+    "raw_text": "Detecting psychological defense mechanisms in conversational text remains a challenging clinical NLP problem. For the PsyDefDetect 2026 shared task (nine-class utterance classification evaluated via macro F1), our team LinguIUTics achieves a macro F1-score of 0.3917 on the official positive-class leaderboard, ranking 4th out of 21 registered teams and improving over the Ministral-8B task baseline (31.48 macro F1) by 7.7 absolute points (24.4 percent relative). BERT-family encoders and zero-shot LLMs proved ineffective on rare classes due to severe class imbalance, leading us to QLoRA fine-tuning of Qwen3-8B. We leverage three key strategies: grouped stratified cross-validation (preventing leakage), minority-class round-robin lexical augmentation, and a post-processing pipeline with logit bias tuning and ensemble blending. Together, these components close much of the validation-to-leaderboard gap and substantially improve minority-class recall, driving the critical \"Unclear\" class (Level 8) from near-zero performance to an F1 score of 0.797.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_28060v1",
+    "title": "Challenges in Explaining Pretrained Clinical Text Classifiers",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.28060v1",
+    "type": "paper",
+    "raw_text": "Explaining the predictions of neural models in clinical NLP remains a significant challenge, especially for complex tasks involving long, unstructured medical texts. While post-hoc methods like LIME and SHAP are widely used, they often fall short when applied to clinical narratives. In this paper, we identify core limitations of token-level and perturbation-based explanation techniques through targeted demonstra- tions on a hospital length-of-stay prediction task. Our findings reveal issues such as overemphasis on non-informative tokens, instability in at- tributions, and high-confidence predictions for incoherent input variants. These results underscore the need for explanation strategies that are clin- ically meaningful, semantically grounded, and robust to linguistic noise.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_26007v1",
+    "title": "Forgotten Words: Benchmarking NeoBERT for Dementia Detection in Low-Resource Conversational Filipino and English Speech",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.26007v1",
+    "type": "paper",
+    "raw_text": "Dementia detection from spontaneous speech offers a scalable approach to cognitive screening, yet NLP systems remain predominantly English-centric. This limitation is especially acute in the Philippines, where Filipino-English code-switching is pervasive and no prior work has addressed NLP-based dementia detection. We present the first systematic evaluation of transformer-based dementia detection in Filipino speech and the first assessment of NeoBERT in a clinical NLP setting. To separate language from domain effects, we construct a parallel bilingual dataset of 4,000 DementiaBank-derived transcripts, with Filipino translations produced manually to preserve discourse-level markers of cognitive decline. We evaluate five model families, TF-IDF + LogReg, BERT, NeoBERT, XLM-R, and RoBERTa-Tagalog, under monolingual, zero-shot cross-lingual, and bilingual fine-tuning settings. We find that in-domain performance does not transfer across languages, with English-trained BERT dropping to Macro-F1 = 0.455 on Filipino, and that architectural modernization alone does not improve robustness. Bilingual fine-tuning, however, eliminates cross-lingual degradation across all transformer models, converging to Macro-F1 = 0.969-0.973. These results suggest that multilingual clinical NLP performance is driven primarily by linguistic coverage during training rather than model scale or architecture.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_17228v1",
+    "title": "Artificial Intolerance: Stigmatizing Language in Clinical Documentation Skews Large Language Model Decision-Making",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.17228v1",
+    "type": "paper",
+    "raw_text": "Large Language Models (LLMs) are increasingly deployed in high-stakes domains such as clinical decision support and medical documentation. However, the robustness of these models against subtle linguistic variations, specifically stigmatizing language (SL) commonly found in human-authored clinical notes, remains critically under-explored. In this work, we investigate whether frontier LLMs inherit and propagate this human bias when processing clinical text. We systematically evaluate nine frontier LLMs across four stigmatized medical conditions, utilizing clinical vignettes injected with varying intensities and phenotypes of SL (doubt, blame, and maligning). Our results demonstrate that all evaluated models exhibit substantial bias, with clinical decision-making significantly skewed towards less aggressive patient management. Notably, we observe a high sensitivity to linguistic framing, where a single SL sentence is sufficient to alter model outputs, revealing a clear dose-response relationship. Furthermore, we evaluate standard prompt-based mitigation strategies, including Chain-of-Thought (CoT) reasoning and model self-debiasing. These approaches show limited efficacy; models struggle to explicitly identify SL while remaining implicitly influenced by it. Our findings expose a critical vulnerability in current LLMs regarding fairness and robustness in clinical NLP, underscoring the need for rigorous algorithmic guardrails to prevent the automation of health disparities.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_06191v1",
+    "title": "Systematic Evaluation of Large Language Models for Post-Discharge Clinical Action Extraction",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.06191v1",
+    "type": "paper",
+    "raw_text": "The work in this paper evaluates zero-shot and few-shot large language models (LLMs) for safety-critical clinical action extraction using the CLIP discharge-note dataset, with particular emphasis on transitions of care and post-discharge patient safety. To manage the complexity of clinical documentation, we introduce a two-stage extraction framework that decomposes discharge notes, that are written in narrative form, into fine-grained, explicitly actionable clinical tasks through a staged prompting strategy. Our contributions include a systematic assessment of generative LLMs for clinical action extraction, a detailed comparison between general-purpose LLMs and task-specific supervised BERT-based models, and an analysis of annotation inconsistencies across different action categories. We show that contemporary LLMs achieve performance comparable to or exceeding supervised models on binary actionability detection, while supervised baselines retain a meaningful advantage on fine-grained multi-label category classification, despite the absence of task-specific fine-tuning and under strict data-privacy constraints. Qualitative error analysis reveals that many failures stem from misalignment between model reasoning and dataset annotation conventions, particularly in cases involving implicit clinical actions and rigid structural labeling rules. These results indicate that reported performance reflects model limitations due to lack of clinical reasoning, that is not captured by plain annotations. Labels without rationales make it impossible to distinguish clinical reasoning failures from annotation convention mismatches. Advancing clinical NLP requires reasoning-annotated datasets that document why specific spans are actionable, not merely which spans were labeled, enabling proper evaluation of model clinical understanding.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_01664v1",
+    "title": "A Hybrid Retrieval and Reranking Framework for Evidence-Grounded Retrieval-Augmented Generation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.01664v1",
+    "type": "paper",
+    "raw_text": "Retrieval-augmented generation (RAG) improves large language model reliability by grounding generated responses in external evidence. However, RAG performance depends on the relevance of retrieved passages, the quality of evidence ranking, and the ability to verify whether generated claims are supported by source documents. This study presents a hybrid retrieval and reranking framework for citation-aware RAG in biomedical and healthcare-related document question answering. The framework uses Amazon Bedrock Knowledge Bases for document ingestion, parsing, chunking, embedding generation, and evidence retrieval. Source PDF documents are stored in Amazon S3, embedded using Amazon Titan Text Embeddings V2, and indexed with Amazon OpenSearch Serverless. Hybrid retrieval first retrieves candidate evidence chunks, and Cohere reranking then prioritizes the most relevant passages before answer generation. The answer-generation stage uses top-ranked evidence chunks to produce controlled, evidence-grounded responses, while a separate judge model evaluates each generated factual claim against the retrieved evidence. The framework was evaluated using 25 biomedical NLP and healthcare transformer queries as a pilot-scale proof-of-concept study. Across the evaluation set, the system retrieved and reranked 500 evidence chunks and generated answers from top-ranked evidence. Claim-level grounding evaluation extracted 200 factual claims, all of which were judged to be supported by retrieved evidence, resulting in 100.0% grounding accuracy. The results suggest that hybrid retrieval, reranking, conservative prompting, and claim-level evaluation can support reliable evidence-grounded RAG responses when sufficient source evidence is available.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_01077v1",
+    "title": "Teaching LLMs Brazilian Healthcare: Injecting Knowledge from Official Clinical Guidelines",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.01077v1",
+    "type": "paper",
+    "raw_text": "Brazil's Unified Health System (SUS) relies on official clinical guidelines that define diagnostic criteria, treatments, dosages, and monitoring procedures for over 200 million citizens. Yet current LLMs perform poorly on this guideline-specific knowledge, and no benchmark evaluates clinical recall grounded in Brazilian Portuguese protocols. We address this gap by adapting Qwen2.5-14B-Instruct to the Brazilian clinical domain. From 178 official guidelines (~5.4M tokens), we generate ~70M tokens of synthetic data in three formats -- rephrases, wiki-style articles, and question-answer pairs -- using four generator LLMs. We then apply continual pre-training followed by Group Relative Policy Optimization (GRPO). We introduce HealthBench-BR, with 1,780 balanced true/false clinical assertions, and PCDT-QA, with 890 open-ended clinical questions scored by an LLM judge. Our best model achieves 83.9% on HealthBench-BR and 85.4% on PCDT-QA, outperforming GPT-5.2, Claude Sonnet 4.6, Gemini 3.1 Pro, and Google AI Overview's web-grounded RAG despite having only 14B parameters. Ablations show that generator diversity and reinforcement learning are critical to these gains. We release all datasets, benchmarks, and model weights to support reproducible clinical NLP research for Brazilian Portuguese. Code, data, and model weights are available at https://github.com/hugoabonizio/clinical-protocols-br",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_06650v1",
+    "title": "A Parameter-Efficient Transfer Learning Approach through Multitask Prompt Distillation and Decomposition for Clinical NLP",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.06650v1",
+    "type": "paper",
+    "raw_text": "Existing prompt-based fine-tuning methods typically learn task-specific prompts independently, imposing significant computing and storage overhead at scale when deploying multiple clinical natural language processing (NLP) systems. We present a multitask prompt distillation and decomposition framework that learns a single shared metaprompt from 21 diverse clinical source tasks and adapts it to unseen target tasks with fewer than 0.05% trainable parameters. Evaluated across five clinical NLP task types (named entity recognition, relation extraction, question answering, natural language inference, and summarization) on 10 held-out target datasets using three backbone models (LLaMA 3.1 8B, Meditron3 8B, gpt-oss 20B), our framework consistently outperforms LoRA by 1.5~1.7% despite using orders of magnitude fewer parameters, and exceeds single-task prompt tuning by 6.1~6.6%. The gpt-oss 20B model achieves the highest overall performance, particularly on clinical reasoning tasks. The strong zero- and few-shot performance demonstrates better transferability of the shared prompt representation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_20087v1",
+    "title": "Multi-Head Attention-Based Feature Extractor Integration with Soft Actor-Critic for Porosity Prediction and Process Parameter Optimization in Additive Manufacturing",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.20087v1",
+    "type": "paper",
+    "raw_text": "Additive manufacturing process optimization requires precise parameter control to minimize defects such as porosity. Traditional reinforcement learning (RL) approaches using discrete action spaces suffer from slow convergence and susceptibility to local optima, limiting their effectiveness for high-precision manufacturing tasks. This study addresses these limitations by employing a continuous action space combined with a novel architecture that integrates a multi-head attention mechanism with the Soft Actor-Critic (SAC) algorithm. The attention-based feature extractor enhances the agent's ability to capture subtle variations in low-dimensional input features, enabling more effective exploration-exploitation balance for navigating value spaces with local minima. We validate our approach on porosity prediction and process parameter optimization in laser powder bed fusion, demonstrating faster convergence and higher final reward values compared to standard RL methods including DQN, PPO, TD3, and vanilla SAC. The proposed methodology achieves a convergence value of 322.79 within 14 episodes, outperforming existing approaches while maintaining stability throughout training.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_15099v1",
+    "title": "Think Less, Act Early: Reinforced Latent Reasoning with Early Exit in Vision-Language-Action Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.15099v1",
+    "type": "paper",
+    "raw_text": "Existing Vision-Language-Action (VLA) models predominantly rely on explicit Chain-of-Thought (CoT) reasoning to bridge perception and action. While effective, this paradigm suffers from high computational costs and error propagation in multi-step tasks. In this paper, we propose Adaptive Variable Alignment VLA (AVA-VLA), a novel Latent Reasoning VLA framework that models reasoning as a sequence of unobservable latent variables, bypassing the need for explicit text generation. However, latent trajectories are inherently susceptible to noise interference and misalignment with downstream objectives. To address this, we introduce a Reinforcement Learning-based Denoising mechanism that treats latent state generation as a sequential decision process, optimizing reasoning trajectories via task-level rewards. Furthermore, we incorporate an Early-Exit Strategy that adaptively terminates reasoning based on state confidence, enabling a dynamic trade-off between depth and efficiency. Extensive experiments on embodied decision benchmarks demonstrate that AVA-VLA achieves a 6x inference speedup over explicit CoT methods while attaining a 98.3% average success rate on LIBERO, improving both efficiency and long-horizon stability over full-reasoning baselines.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_05680v2",
+    "title": "MotionGRPO: Overcoming Low Intra-Group Diversity in GRPO-Based Egocentric Motion Recovery",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.05680v2",
+    "type": "paper",
+    "raw_text": "This paper studies full-body 3D human motion recovery from head-mounted device signals. Existing diffusion-based methods often rely on global distribution matching, leading to local joint reconstruction errors. We propose MotionGRPO, a novel framework leveraging reinforcement learning post-training to inject fine-grained guidance into the diffusion process. Technically, we model diffusion sampling as a Markov decision process optimized via Group Relative Policy Optimization (GRPO). To this end, we introduce a hybrid reward mechanism that combines a learned conditioned perceptual model for global visual plausibility and explicit constraints for local joint precision. Our key technical insight is that policy optimization in diffusion-based recovery suffers from vanishing gradients due to limited intra-group sample diversity. To address this, we further introduce a noise-injection strategy that explicitly increases sample variance and stabilizes learning. Extensive experiments demonstrate that MotionGRPO achieves state-of-the-art performance with superior visual fidelity",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_19234v2",
+    "title": "Learning to Credit the Right Steps: Objective-aware Process Optimization for Visual Generation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.19234v2",
+    "type": "paper",
+    "raw_text": "Reinforcement learning, particularly Group Relative Policy Optimization (GRPO), has emerged as an effective framework for post-training visual generative models with human preference signals. However, its effectiveness is fundamentally limited by coarse reward credit assignment. In modern visual generation, multiple reward models are often used to capture heterogeneous objectives, such as visual quality, motion consistency, and text alignment. Existing GRPO pipelines typically collapse these rewards into a single static scalar and propagate it uniformly across the entire diffusion trajectory. This design ignores the stage-specific roles of different denoising steps and produces mistimed or incompatible optimization signals. To address this issue, we propose Objective-aware Trajectory Credit Assignment (OTCA), a structured framework for fine-grained GRPO training. OTCA consists of two key components. Trajectory-Level Credit Decomposition estimates the relative importance of different denoising steps. Multi-Objective Credit Allocation adaptively weights and combines multiple reward signals throughout the denoising process. By jointly modeling temporal credit and objective-level credit, OTCA converts coarse reward supervision into a structured, timestep-aware training signal that better matches the iterative nature of diffusion-based generation. Extensive experiments show that OTCA consistently improves both image and video generation quality across evaluation metrics.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_26097v1",
+    "title": "Dynamic Tokenization via Reinforcement Patching: End-to-end Training and Zero-shot Transfer",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.26097v1",
+    "type": "paper",
+    "raw_text": "Efficiently aggregating spatial or temporal horizons to acquire compact representations has become a unifying principle in modern deep learning models, yet learning data-adaptive representations for long-horizon sequence data, especially continuous sequences like time series, remains an open challenge. While fixed-size patching has improved scalability and performance, discovering variable-sized, data-driven patches end-to-end often forces models to rely on soft discretization, specific backbones, or heuristic rules. In this work, we propose Reinforcement Patching (ReinPatch), the first framework to jointly optimize a sequence patching policy and its downstream sequence backbone model using reinforcement learning. By formulating patch boundary placement as a discrete decision process optimized via Group Relative Policy Gradient (GRPG), ReinPatch bypasses the need for continuous relaxations and performs dynamic patching policy optimization in a natural manner. Moreover, our method allows strict enforcement of a desired compression rate, freeing the downstream backbone to scale efficiently, and naturally supports multi-level hierarchical modeling. We evaluate ReinPatch on time-series forecasting datasets, where it demonstrates compelling performance compared to state-of-the-art data-driven patching strategies. Furthermore, our detached design allows the patching module to be extracted as a standalone foundation patcher, providing the community with visual and empirical insights into the segmentation behaviors preferred by a purely performance-driven neural patching strategy.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_23086v1",
+    "title": "Policy-based Tuning of Autoregressive Image Models with Instance- and Distribution-Level Rewards",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.23086v1",
+    "type": "paper",
+    "raw_text": "Autoregressive (AR) models are highly effective for image generation, yet their standard maximum-likelihood estimation training lacks direct optimization for sample quality and diversity. While reinforcement learning (RL) has been used to align diffusion models, these methods typically suffer from output diversity collapse. Similarly, concurrent RL methods for AR models rely strictly on instance-level rewards, often trading off distributional coverage for quality. To address these limitations, we propose a lightweight RL framework that casts token-based AR synthesis as a Markov Decision Process, optimized via Group Relative Policy Optimization (GRPO). Our core contribution is the introduction of a novel distribution-level Leave-One-Out FID (LOO-FID) reward; by leveraging an exponential moving average of feature moments, it explicitly encourages sample diversity and prevents mode collapse during policy updates. We integrate this with composite instance-level rewards (CLIP and HPSv2) for strict semantic and perceptual fidelity, and stabilize the multi-objective learning with an adaptive entropy regularization term. Extensive experiments on LlamaGen and VQGAN architectures demonstrate clear improvements across standard quality and diversity metrics within only a few hundred tuning iterations. The results also show that the model can be updated to produce competitive samples even without Classifier-Free Guidance, and bypass its 2x inference cost.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_17051v1",
+    "title": "Astrolabe: Steering Forward-Process Reinforcement Learning for Distilled Autoregressive Video Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.17051v1",
+    "type": "paper",
+    "raw_text": "Distilled autoregressive (AR) video models enable efficient streaming generation but frequently misalign with human visual preferences. Existing reinforcement learning (RL) frameworks are not naturally suited to these architectures, typically requiring either expensive re-distillation or solver-coupled reverse-process optimization that introduces considerable memory and computational overhead. We present Astrolabe, an efficient online RL framework tailored for distilled AR models. To overcome existing bottlenecks, we introduce a forward-process RL formulation based on negative-aware fine-tuning. By contrasting positive and negative samples directly at inference endpoints, this approach establishes an implicit policy improvement direction without requiring reverse-process unrolling. To scale this alignment to long videos, we propose a streaming training scheme that generates sequences progressively via a rolling KV-cache, applying RL updates exclusively to local clip windows while conditioning on prior context to ensure long-range coherence. Finally, to mitigate reward hacking, we integrate a multi-reward objective stabilized by uncertainty-aware selective regularization and dynamic reference updates. Extensive experiments demonstrate that our method consistently enhances generation quality across multiple distilled AR video models, serving as a robust and scalable alignment solution.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_15180v1",
+    "title": "Iterative Learning Control-Informed Reinforcement Learning for Batch Process Control",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.15180v1",
+    "type": "paper",
+    "raw_text": "A significant limitation of Deep Reinforcement Learning (DRL) is the stochastic uncertainty in actions generated during exploration-exploitation, which poses substantial safety risks during both training and deployment. In industrial process control, the lack of formal stability and convergence guarantees further inhibits adoption of DRL methods by practitioners. Conversely, Iterative Learning Control (ILC) represents a well-established autonomous control methodology for repetitive systems, particularly in batch process optimization. ILC achieves desired control performance through iterative refinement of control laws, either between consecutive batches or within individual batches, to compensate for both repetitive and non-repetitive disturbances. This study introduces an Iterative Learning Control-Informed Reinforcement Learning (IL-CIRL) framework for training DRL controllers in dual-layer batch-to-batch and within-batch control architectures for batch processes. The proposed method incorporates Kalman filter-based state estimation within the iterative learning structure to guide DRL agents toward control policies that satisfy operational constraints and ensure stability guarantees. This approach enables the systematic design of DRL controllers for batch processes operating under multiple disturbance conditions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_01409v1",
+    "title": "MIST-RL: Mutation-based Incremental Suite Testing via Reinforcement Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.01409v1",
+    "type": "paper",
+    "raw_text": "Large Language Models (LLMs) often fail to generate correct code on the first attempt, which requires using generated unit tests as verifiers to validate the solutions. Despite the success of recent verification methods, they remain constrained by a \"scaling-by-quantity\" paradigm. This brute-force approach suffers from a critical limitation: it yields diminishing returns in fault detection while causing severe test redundancy. To address this, we propose MIST-RL (Mutation-based Incremental Suite Testing via Reinforcement Learning), a framework that shifts the focus to \"scaling-by-utility\". We formulate test generation as a sequential decision process optimized via Group Relative Policy Optimization (GRPO). Specifically, we introduce a novel incremental mutation reward combined with dynamic penalties, which incentivizes the model to discover new faults while it suppresses functionally equivalent assertions. Experiments on HumanEval+ and MBPP+ demonstrate that MIST-RL outperforms state-of-the-art baselines. It achieves a +28.5% higher mutation score while reducing the number of test cases by 19.3%. Furthermore, we show that these compact, high-utility tests serve as superior verifiers, which improves downstream code reranking accuracy on HumanEval+ by 3.05% over the SOTA baseline with 10 candidate samples. The source code and data are provided in the supplementary material.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2602_09485v1",
+    "title": "Bridging Efficiency and Transparency: Explainable CoT Compression in Multimodal Large Reasoning Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2602.09485v1",
+    "type": "paper",
+    "raw_text": "Long chains of thought (Long CoTs) are widely employed in multimodal reasoning models to tackle complex tasks by capturing detailed visual information. However, these Long CoTs are often excessively lengthy and contain redundant reasoning steps, which can hinder inference efficiency. Compressing these long CoTs is a natural solution, yet existing approaches face two major challenges: (1) they may compromise the integrity of visual-textual reasoning by removing essential alignment cues, and (2) the compression process lacks explainability, making it difficult to discern which information is critical. To address these problems, we propose XMCC, an eXplainable Multimodal CoT Compressor that formulates compression as a sequential decision-making process optimized via reinforcement learning. XMCC can effectively shorten reasoning trajectories while preserving key reasoning steps and answer correctness, and simultaneously generates natural-language explanations for its compression decisions. Extensive experiments on representative multimodal reasoning benchmarks demonstrate that XMCC not only reduces reasoning length but also provides explainable explanations, validating its effectiveness.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

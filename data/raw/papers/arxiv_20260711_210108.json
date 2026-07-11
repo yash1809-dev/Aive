@@ -1,0 +1,82 @@
+[
+  {
+    "id": "paper_2607_08317v1",
+    "title": "Blind-Spots-Bench: Evaluating Blind Spots in Multimodal Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08317v1",
+    "type": "paper",
+    "raw_text": "Modern AI models achieve strong performance on many established benchmarks, yet they still fail on tasks that humans find almost trivial, such as manipulating a string or drawing a dog with five legs. These examples suggest that existing benchmarks may under-measure persistent blind spots in current systems. We introduce $\\texttt{blind-spots-bench}$, a benchmark designed to expose such blind spots through tasks that appear simple for humans but remain challenging for modern AI. We collect raw questions from students in an AI course, clean and annotate them with structured reference solutions, and propose a task taxonomy tailored to the resulting dataset of 235 samples. We further develop an automated grading pipeline to evaluate a wide range of models, including open-weight and closed-source language, vision-language, and image-generation models. Our analysis on $\\texttt{blind-spots-bench}$ reveals that closed-source frontier models can substantially outperform open-weight models with even $\\approx10\\%$ gap, even when they attain comparable performance on existing benchmarks. A more fine-grained analysis shows that no single model dominates across all task types, and that some tasks remain challenging for all evaluated models. These results highlight the value of $\\texttt{blind-spots-bench}$ as a diagnostic stress test for identifying concrete weaknesses in current modern models.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02432v1",
+    "title": "Automated grading of Linux/bash examinations using large language models: a four-level cognitive taxonomy approach",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02432v1",
+    "type": "paper",
+    "raw_text": "Scalable and reliable grading of command-line examinations remains a challenge in computing education, where rising enrolments make manual marking difficult and rule-based autograders cannot handle partial credit, equivalent solutions, or syntactic variation. This paper evaluates whether four frontier Large Language Models (GPT, Claude Opus, Gemini, and GLM) can approximate expert judgment when grading short Linux/bash command responses. The study adopts a four-level cognitive taxonomy that combines cognitive complexity and operational impact, ranging from information retrieval (L1) and basic file manipulation (L2) to structural operations (L3) and advanced system management (L4). The models were tested with two prompt variants, a minimal baseline and a rubric-enhanced version, on 1200 real responses from second-year Computer Engineering students independently graded by three expert instructors. Gemini~3.0 Pro with rubric-guided prompting achieved the highest human-AI agreement (ICC(3,1) = 0.888, MAE = 0.10, Bland-Altman bias = -0.014). Agreement declined consistently as taxonomy level increased, with the largest discrepancies at higher levels. Across all models, rubric quality had a larger effect than provider choice, with structured prompts consistently improving agreement. These results show that question complexity is a reliable predictor of the difficulty LLMs face in grading accurately, and they establish a principled, taxonomy-based framework for determining which questions are suitable for AI-assisted grading and which require human review, while also providing a transferable evaluation protocol and prompt templates.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00139v1",
+    "title": "Benchmarking Frontier LLMs on Arabic Cultural and Sociolinguistic Knowledge: A Cross-Evaluation Framework with Human SME Ground Truth",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00139v1",
+    "type": "paper",
+    "raw_text": "The cost of human expert evaluation is a principal bottleneck to deploying language models in specialized, high-stakes domains. This is particularly acute for Arabic sociolinguistic knowledge: credible grading requires not only linguistic fluency but deep cultural familiarity that cannot be approximated by surface-level metrics. We address this with a cross-evaluation framework instantiated on two underrepresented Arabic dialect communities: Egyptian and Iraqi Arabic. We contribute 103 validated prompt-rubric pairs (70 Egyptian, 33 Iraqi; 53 Cultural, 50 Linguistic), authored and graded by native-speaker SMEs using penalty-weighted rubrics distinguishing positive content requirements from answer-specific negative error criteria. Three frontier LLMs serve as target models (graded by human SMEs across 302 unique prompt-response pairs), while five frontier LLMs serve as automated judges enforcing a provider-level self-evaluation guard. A dual-metric scheme combining Mean Absolute Deviation (MAD) with Signed Mean Error separates directional grading bias from symmetric noise. Across 1,307 judge evaluations: GPT-5.4 is the most reliable judge (MADj = 10.21 pp, Signed Error = -1.12%); four of five judges show systematic leniency (+2.01% to +6.56%); Cultural tasks are harder to grade than Linguistic tasks for all judges (MAD gap 1.83-4.78 pp); and models substantially outperform on Egyptian prompts compared to Iraqi prompts. However, given leniency differences between Iraqi and Egyptian SMEs, we cannot solely attribute this gap to model knowledge. We therefore emphasize findings that do not assume identical leniency across human graders. Across all samples, implicit cultural reasoning -- requiring models to simulate native-speaker judgment rather than rely on lexical verification -- emerges as the primary failure mode for automated grading across all judge models.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_10327v1",
+    "title": "The Order Matters: Sequential Fine-Tuning of LLaMA for Coherent Automated Essay Scoring",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10327v1",
+    "type": "paper",
+    "raw_text": "Automated Essay Scoring (AES) systems must judge interdependent discourse elements (e.g., lead, claim, evidence, conclusion), yet most approaches treat these in isolation, harming coherence and generalization. We investigate task-aware fine-tuning of LLaMA-3.1-8B for AES using parameter-efficient LoRA with 4-bit quantization and compare three training curricula: (i) Sequential (progressively fine-tuning on lead, then position, then claim, then evidence, then conclusion), (ii) Independent (task-specific models), and (iii) Randomized (shuffled multi-task). Experiments on the PERSUADE~2.0 corpus show that modeling task dependencies matters: Sequential fine-tuning yields the strongest overall results, including F1 scores of 65% (evidence) and 87% (conclusion) and corresponding accuracies of 63% and 85%, surpassing Independent training and outperforming a general-purpose LLaMA-70B baseline on conclusion despite its far larger capacity. Randomized training improves position scoring (57% F1) but is less consistent elsewhere. These findings indicate that (1) curriculum design aligned with discourse structure can materially improve AES, and (2) small, task-optimized models can be competitive with substantially larger Large Language Models (LLM), offering a practical path to scalable, cost-effective assessment. We release templates and implementation details to facilitate reproduction and future work on curriculum design for educational NLP.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_08855v1",
+    "title": "Hybrid E-Assessment in Higher Education: Semi-Automated Grading of Paper-Based Written Examinations",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.08855v1",
+    "type": "paper",
+    "raw_text": "This paper examines the limitations of fully digital and partially digital e-assessment approaches in summative examinations in higher education. The analysis focuses on the didactic narrowing caused by closed question formats and on organizational, technical, and legal constraints that become particularly relevant in large student cohorts. As an alternative, the paper proposes a hybrid e-assessment approach that retains paper-based, problem-oriented examination tasks while enabling semi-automated grading. Assessment-relevant intermediate results are encoded in a structured answer format, entered by students by hand, and subsequently captured from table fields. The central technical bottleneck is reliable recognition of handwritten characters under realistic examination conditions. Recent vision-capable large language models, combined with a two-pass validation principle and comparison against a solution key, can reduce misclassifications and thereby improve the validity, fairness, and scalability of summative assessment.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_05379v1",
+    "title": "Deep Learning-assisted AMD Staging based on OCT and OCT Angiography",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.05379v1",
+    "type": "paper",
+    "raw_text": "To develop and evaluate deep learning models for automated grading of age-related macular degeneration (AMD) severity using optical coherence tomography (OCT) and OCT angiography (OCTA) data. Two hundred seventy-one participants aged >= 50 years with varying AMD severities. Central macular 6 x 6 mm OCT/OCTA volumes were acquired using a swept-source OCTA system (SOLIX; Visionix/Optovue Inc., CA). AMD severity was graded into four stages (No AMD, Early AMD, Intermediate AMD, and Advanced AMD) according to the AREDS simplified severity scale. Three deep learning models were developed using different input modalities: (1) biomarker maps derived from segmented pathological features, including retinal fluid, drusen, geographic atrophy (GA), and macular neovascularization (MNV); (2) two-dimensional (2D) en face OCT and OCTA projections; and (3) three-dimensional (3D) OCT/OCTA volumes. EfficientNet-based architectures were trained using normalized inputs, data augmentation, and five-fold cross-validation. A total of 2,030 OCT/OCTA volumes from 351 eyes of 271 participants were analyzed. All models demonstrated strong AMD staging performance with substantial agreement with the reference standard (QWK >= 0.83). The biomarker-based model achieved the highest overall performance (QWK = 0.85 +/- 0.03, mean +/- standard deviation) and the best detection of early AMD (F1-score = 0.59 +/- 0.14). The 3D model achieved performance comparable to the 2D OCT/OCTA model (QWK = 0.83 +/- 0.04 vs. 0.83 +/- 0.09), while the 2D OCT/OCTA model showed the highest precision (0.79 +/- 0.06) and most accurately identified eyes without AMD. Deep learning models using OCT/OCTA data can accurately and automatically grade AMD severity. Among the evaluated approaches, the biomarker-based model provided the most balanced performance and showed particular value for early AMD detection.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_03814v1",
+    "title": "Leveraging BART to Assess CS1 C++ Programming Assignments using Rubric-based Criteria",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.03814v1",
+    "type": "paper",
+    "raw_text": "This paper investigates rubric-aware, multitask fine-tuning of transformer models for automated grading of introductory C++ programming assignments, with the goal of producing grade predictions that better reflect instructor grading behavior than general-purpose LLMs. Using multi-semester CS1 data, student submissions are paired with numeric scores, letter-grade buckets, and assignment rubrics, then preprocessed into unified sequences for transformer input. A BART encoder-decoder with LoRA adaptation is trained to jointly predict numeric grades and grade buckets, augmented with a distribution-matching term to align predicted and empirical grade distributions, an evaluation dimension often overlooked in prior work. Experiments compare single-task and multitask training, hard one-hot versus fuzzy and boundary-based soft labels, and rubric versus no-rubric conditions, with additional T5 and pairwise-pretrained variants. Results show that multitask BART with boundary-based soft labels and rubric context achieves lower mean absolute error and stronger grade-distribution alignment than single-task, hard-label, or code-only baselines. Fully fine-tuned T5 further improves distributional fidelity, while pairwise pretraining reduces numeric error at the cost of minority-class sensitivity. Collectively, the findings suggest that calibration-aware, rubric-guided training produces more instructor-like grading behavior than accuracy-optimized alternatives.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_21076v1",
+    "title": "GradeLegal: Automated Grading for German Legal Cases",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.21076v1",
+    "type": "paper",
+    "raw_text": "Grading German legal exam solutions faces growing volumes and a shortage of qualified graders, delaying feedback and creating a bottleneck. At the same time, it is a high-stakes expert task, since state exam grades strongly influence career outcomes in Germany. Despite this practical relevance, literature lacks systematic studies on effective methods for grading legal exams. To address this gap, we investigate whether large language models (LLMs) can support the automated grading of German legal case solutions in criminal and public law, thereby enabling scalable feedback and student self-testing. We present a systematic evaluation of 27 proprietary and open-source LLMs, benchmarking prompting strategies that incrementally add task-related information, such as a sample solution and a grading rubric. Using quadratic weighted kappa (QWK), reasoning-oriented LLMs can approximate expert grading in public law when given a sample solution and a grading rubric (up to 0.91), compared to 0.60 in criminal law, suggesting a harder grading task in criminal law. Beyond single-model grading, ensembling improves agreement by up to 0.15 over its best member and can offer an alternative to stronger closed-source single models. In addition, our findings suggest that effective prompt design and model selection are necessary for reliable LLM-based grading of legal exams.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

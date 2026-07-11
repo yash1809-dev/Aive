@@ -1,0 +1,82 @@
+[
+  {
+    "id": "paper_2607_08137v1",
+    "title": "Securing Autonomous Vehicle Systems via Twin-Aware Federated Reinforcement Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08137v1",
+    "type": "paper",
+    "raw_text": "Federated reinforcement learning (FRL) is crucial for enabling collaborative learning across multiple agents without sharing raw data, thereby enhancing privacy and scalability in the decision-making process within dynamic vehicular environments. However, poisoning attacks pose a significant threat to the security and reliability of FRL-based systems, particularly in safety-critical autonomous driving, where this vulnerability remains largely unexplored. These attacks can compromise the global control model by subtly injecting malicious system parameters, leading to potential hazards. To counter these challenges, we present \\alg (\\underline{Sec}ure \\underline{A}ggregation with \\underline{p}oisoning-\\underline{p}revention and historical reinforcement) as a defensive framework aimed at enhancing the robustness of FRL systems designed for safety-critical driving scenarios. \\alg strategically integrates digital twins for rehearsal-based learning and leverages historical aggregated model parameters along with a selected central gradient to ensure that only benign data is aggregated, effectively mitigating the influence of malicious agents. Theoretical guarantees are provided for the convergence performance of \\alg in the presence of poisoning attacks. We also validate the effectiveness of \\alg using developed digital twins that model realistic highway environments to evaluate the control of autonomous vehicles under adversarial conditions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05805v1",
+    "title": "Onnes: A Physics-Grounded Multi-Agent LLM Simulator for Cryogenic Fault Diagnosis in Quantum Computing Infrastructure",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05805v1",
+    "type": "paper",
+    "raw_text": "Dilution refrigerators are the enabling infrastructure of superconducting quantum computers, yet their fault diagnosis is still dominated by threshold alarms that report that something is wrong, not what. We present Onnes, a physics-grounded digital-twin simulator of a dilution refrigerator (a forward physics model with a learned real-fridge noise fingerprint) that drives a live multi-agent LLM operations layer, and use it for a controlled head-to-head between a zero-shot LLM agent panel and a supervised ML classifier on cryogenic fault diagnosis. The twin couples a real dilution-cooling floor, a noise-and-correlation fingerprint learned from real BlueFors logs, and six physics-grounded fault classes, three engineered to overlap on temperature but separate on flow and pressure. Across a 1000-turn evaluation the zero-shot panel shows no significant difference from the classifier on detection but trails on classification, its errors concentrating on the confusable faults. Curated contrastive few-shot demonstrations and self-consistency voting then raise classification accuracy from 0.685 to 0.990, matching the supervised classifier (0.985) with no parameter updates and six labeled demonstrations; an ablation attributes the gain almost entirely to the demonstrations. Run as a continuous monitor across a nine-run fault-by-seed sweep, the agent catches every developing fault within one poll interval, and a confidence gate suppresses pre-onset false alarms whose rate is backend-dependent. As a first sim-to-real check, a detector trained purely on real BlueFors telemetry posts a real-hardware false-alarm rate of 6.4% and 100% recall on physics faults injected onto real held-out windows. All numbers are drawn verbatim from released run logs.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05758v1",
+    "title": "From Closed-Loop Optimization to Open Decision Making: Coupled Digital Twins for Predictive and Autonomous Microscopy",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05758v1",
+    "type": "paper",
+    "raw_text": "Automated experimentation is moving from closed-loop optimization toward open decision-making, where human or AI planners must forecast the consequences of candidate actions before executing them. Such forecasts require a model of both sides of the experiment: how the sample is likely to respond and what the instrument is likely to detect. We therefore introduce a coupled digital-twin framework that separates these roles and then links them. In this framework, the sample twin encodes material state inferred from prior knowledge and measurements till the moment. The instrument twin captures signal formation, feedback dynamics, and operating constraints based on prior knowledge. When coupled, the two twins estimate expected outcomes, uncertainty, and risk for candidate microscope operations. For amplitude-modulation scanning probe microscopy, we realize this framework with a physics-informed encoder of force-distance curves, a deterministic scanner model of cantilever and feedback dynamics, and sparse learned residual corrections. The encoder first recovers scanner-driving descriptors with sub-nanometer accuracy. The calibrated scanner then reproduces typical traces within a few nanometers and identifies operating-point noise amplification as the main source of mismatch. Supplementary phase analysis localizes residual error to the phase channel, which clarifies where added physics is needed. Together, these results establish coupled sample and instrument twins as a practical foundation for predictive microscope operation and autonomous experimental planning.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_04390v1",
+    "title": "Machine-Learning-Enabled Full-State Reconstruction of Fusion Plasmas from Minimal Sensor Measurements",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04390v1",
+    "type": "paper",
+    "raw_text": "Plasma in nuclear fusion reactors is only partially observable: diagnostics are constrained by limited access, cost, and the harsh plasma environment, while high-fidelity simulations remain prohibitively costly at reactor-relevant scales to address the observability gap. This paper presents an ML model for reconstructing full-domain plasma states from a small number of accessible measurements. The model combines temporal encoding of sparse sensor histories with spatial decoding into complete plasma-field maps. Demonstrations using high-fidelity kinetic simulation data show that multiple coupled plasma quantities can be reconstructed from only a few density sensors, with robustness to sparse and randomly located probes. The approach provides a route toward diagnostic augmentation, real-time state estimation, and data-driven digital twins for fusion-relevant plasmas.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_04299v1",
+    "title": "Cognitive Digital Twins for Self-Aware Channel Estimation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04299v1",
+    "type": "paper",
+    "raw_text": "Artificial intelligence (AI) and machine learning (ML)-based channel estimators silently degrade when propagation conditions drift from their training distributions. This letter proposes a model-agnostic cognitive digital twin (CDT) framework that combines a variational autoencoder (VAE) with latent activation monitoring to detect distribution drift and autonomously execute \\textsc{continue}, \\textsc{update}, or \\textsc{retire} lifecycle actions without requiring ground-truth channel knowledge. The proposed framework is fully compatible with the AI-native lifecycle management envisioned in 3rd Generation Partnership Project (3GPP). Simulations over various channels demonstrate accurate drift detection and robust channel estimation, consistently outperforming conventional offline-trained deep learning estimators under moderate and severe channel drift.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03585v1",
+    "title": "Modular Foundation Models for Time-Series Perception in Digital Twins",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03585v1",
+    "type": "paper",
+    "raw_text": "Engineering Digital Twins and Prognostics and Health Management (PHM) systems rely on robust perception modules to extract actionable information from heterogeneous and non-stationary time-series data. However, most existing approaches remain task-specific, data-hungry, and difficult to integrate into scalable monitoring and decision-making pipelines. Moreover, purely data-driven models often lack robustness and transferability across varying operating conditions. To address these challenges, this paper proposes a modular foundation model for time-series perception based on a collection of pretrained representation encoders. The framework leverages self-supervised learning on heterogeneous datasets to learn transferable and task-agnostic representations, which can be reused across multiple PHM tasks. A gating mechanism is introduced to dynamically select relevant encoders for a given target dataset, enabling conditional computation and adaptive model composition. The selected representations are projected into a shared latent space and aggregated using a Transformer-based self-attention module that explicitly models cross-encoder interactions. The resulting architecture supports multiple downstream tasks, including imputation, long-term forecasting, and few-shot learning, through lightweight task-specific heads, while keeping pretrained encoders frozen during adaptation. Extensive ablation studies demonstrate the complementary roles of self-supervised pretraining, encoder selection, representation alignment, and adaptive aggregation. Experimental results on the ETT benchmark show competitive performance across tasks, while a real-world industrial case study on virtual sensing for hydro-generator rotor temperature highlights the practical relevance of the approach.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00926v1",
+    "title": "Human-Machine Collaboration on Generative Meta-Learning: Model and Algorithm",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00926v1",
+    "type": "paper",
+    "raw_text": "Generalizing machine learning models to environments that differ from their training distribution remains a critical hurdle, particularly when data from the target domain is entirely or partially unavailable. We propose Generative Meta-Learning with Human Feedback (GMHF), a novel framework that bridges this domain gap by leveraging expert intuition to guide data synthesis. Grounded in a theoretical analysis of generalization error, we derive bounds demonstrating that aligning the distribution of generated data with human beliefs regarding the target physics significantly mitigates risk. GMHF operationalizes this insight by employing a Conditional Neural ODE (cNODE) as a generative digital twin, coupled with a Reinforcement Learning (RL) agent. The agent iteratively refines the latent physical parameters of the generated trajectories based on feedback, effectively steering the meta-learner toward the unobserved target distribution. Empirical validation on a nonlinear Duffing oscillator shows that GMHF substantially reduces deployment loss as expert reliability increases, and that the divergence between generated and target data falls under reliable feedback, directly corroborating the divergence-minimisation mechanism predicted by our theory. Further experiments on a non-dynamical probabilistic model confirm that the framework extends beyond ODE-governed systems, establishing human-AI collaboration as a rigorous catalyst for robust generalisation under distribution shift.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00431v1",
+    "title": "Timesynth: A Temporal Fidelity Framework for Health Signal Digital Twins",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00431v1",
+    "type": "paper",
+    "raw_text": "Forecasting models for health-signal digital twins must preserve the oscillatory, frequency, phase, and state-transition dynamics of physiological signals, yet the pointwise metrics used to benchmark them cannot detect when these fundamental properties are lost. We show that this blind spot misranks models: across 11 architectures, models with comparable pointwise error diverge by up to 53\u00b0 in phase accuracy, equivalent to roughly 123 ms for a 1.2 Hz cardiac rhythm and invisible to standard metrics. To enable development of models that escape such failures, we introduce TimeSynth, a controlled benchmarking framework with two reusable components: a physiologically grounded generator producing signals with analytically known ground-truth dynamics from parametric models fitted to real electroencephalography, electrocardiography and photoplethysmogram signals, along with diagnostics quantifying amplitude, frequency, phase, and state-transition fidelity. Linear and full-sequence attention models systematically lose frequency and phase information despite acceptable amplitude error, whereas architectures with localized temporal structure better preserve dynamical fidelity and adapt to observable state transitions; none, however, reliably preserves stochastic switching. Because the dominant determinant of fidelity is architectural, model choice becomes a principled, use-case-driven decision rather than a search for a single winner. TimeSynth thus supplies the controlled preclinical stress test missing before models are coupled to patient data, with a reusable generator and diagnostics for fidelity-aware development.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

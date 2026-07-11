@@ -1,0 +1,82 @@
+[
+  {
+    "id": "paper_2606_22833v1",
+    "title": "The Urban-Rural Divide in the Age of Artificial Intelligence: Assessing the Effects of Technology and Automation on Regional Labor Markets",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.22833v1",
+    "type": "paper",
+    "raw_text": "Automation and artificial intelligence (AI) are reshaping labor demand unevenly across space, creating an urgent imperative for place-sensitive education and workforce policy. This study asks whether regional exposure to automation and to AI relates to local employment and wages in opposite ways, and whether those relationships differ between urban and rural regions -- two questions whose answers carry direct implications for how skills training and digital education should be targeted. Using a region-by-year panel and shift-share measures of technological exposure built from baseline industry and occupation composition, we estimate two-way fixed-effects and instrumental-variable models that interact exposure with an urban indicator. The framework distinguishes automation exposure, concentrated in routine work, from AI exposure, concentrated in cognitive work -- a distinction that maps directly onto the types of skills that education systems need to develop or preserve. Estimates show automation exposure lowering employment and wages, with the employment loss cushioned in cities, while AI exposure raises wages and concentrates in urban regions. Technology therefore reshapes, rather than simply widens, the divide. The findings argue for place-sensitive policy: weighting reallocation and reskilling support toward routine-exposed rural regions, while extending digital infrastructure and AI-complementary skills outward so that rural workers can share AI's wage gains rather than absorb only automation's losses.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_10866v1",
+    "title": "Adressing Separation: A Firth-corrected Joint Model for Longitudinal and Time-to-event Data with an Application on Dropout from Vocational Training",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.10866v1",
+    "type": "paper",
+    "raw_text": "Joint Models for longitudinal and time-to-event data are frequently used to model endogenous longitudinal covariates alongside a time-to-event outcome. However, the model class borrows some limitations of the survival submodels, including the necessity for non-separation for each category of categorical covariates. We therefore incorporate Firth's correction into the frequentist estimation procedure of joint models in order to make the model class applicable in settings with separation cases. We derive the needed quantities for the correction term and implement it in the Expectation-Maximization Algorithm for the parameter estimation in joint models. Our simulation study shows, that in data situations with separation issues, the Firth-corrected estimation procedure yields less biased estimates and the respective coefficients approach the estimated values observed in the non-separation cases. The application on a data set on satisfaction with and dropouts from vocational training demonstrates the advantages of the Firth-corrected joint model in a real world data set with separation. The results add to the literature on dropout from vocational training in Germany by explicitly modeling direct effects of socioeconomic and training-specific factors on the risk of dropout as well as their indirect contribution via satisfaction with the training.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_13317v1",
+    "title": "Lessons from Skill Development Programs -- Livelihood College of Dhamtari",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.13317v1",
+    "type": "paper",
+    "raw_text": "Skill training is crucial for enabling dignified livelihood opportunities. In India, various schemes and initiatives aim to provide skill training in different domains, with ICT and digital technologies playing a vital role. However, there is limited research on understanding on-ground capacities \\& constraints and the use of digital tools in these programs. In this study, we look into the mobilization, counseling, and training stages of the 5-stage skill development process that also includes placement and tracking, adopted in Dhamtari's Livelihood College in Chhattisgarh, India, and other programs nationwide. Through the immersion/crystallization approach and mixed-method analysis including GIS mapping, video analysis of CCTV streams, quantitative analysis, and unstructured conversations with administrators, trainers, mobilizers, counselors, and nearby industry personnel for over a year, we identified three major challenges. A lack of inclusive and gendered access to skilling; a tedious manual counseling process with insufficient support staff; and inconsistent trainee attendance alongside sub-standard utilization of digital assets. Finally, we discuss, ways to improve access to skill training by leveraging Vocational Training Partners(VTPs), ways to improve the utilization of existing digital assets, and considerations for improving the counseling process. We conclude by summarizing that skill development programs currently lack institutional elements that enable effective information exchange between stakeholders, thereby creating information bottlenecks that result in inefficiencies, hindering the service delivery. In sum, our study informs the HCI and ICTD literature on the on-ground challenges and constraints faced by stakeholders and the role of technology in supporting such initiatives.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2602_22077v2",
+    "title": "ViSTAR: Virtual Skill Training with Augmented Reality with 3D Avatars and LLM coaching agent",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2602.22077v2",
+    "type": "paper",
+    "raw_text": "We present ViSTAR, a Virtual Skill Training system in AR that supports self-guided basketball skill practice, with feedback on balance, posture, and timing. From a formative study with basketball players and coaches, the system addresses three challenges: understanding skills, identifying errors, and correcting mistakes. ViSTAR follows the Behavioral Skills Training (BST) framework-instruction, modeling, rehearsal, and feedback. It provides feedback through visual overlays, rhythm and timing cues, and an AI-powered coaching agent using 3D motion reconstruction. We generate verbal feedback by analyzing spatio-temporal joint data and mapping features to natural-language coaching cues via a Large Language Model (LLM). A key novelty is this feedback generation: motion features become concise coaching insights. In two studies (N=16), participants generally preferred our AI-generated feedback to coach feedback and reported that ViSTAR helped them notice posture and balance issues and refine movements beyond self-observation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2601_22175v1",
+    "title": "An innovating approach to teaching applied to database design. Improvement of Action Learning in Lifelong Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2601.22175v1",
+    "type": "paper",
+    "raw_text": "For now 10 years, the Action Learning has allowed employees of University of Angers, private and public Companies to be initiated with the design of database, on projects financed by professional structures. These innovating training periods are carried out within the framework of the University College of Further Education of the University of Angers. Database design is a process initially reserved to the professional data processing specialists, coming from French Level-2 technological courses (2-year degrees) or Engineer Schools (Master). The pedagogical model of technological courses has integrated for more than 20 years transverse semester projects, in order to give the students the opportunity to apply newly acquired knowledge, coordinated by teachers. Action Learning requires teachers to assume the role of supervisors for the project management. The objective of Action Learning is to transmit not only knowledge from teachers, but also the experience of consultants to trainees having no competence in data processing, but who have the knowledge of their business process. The present paper shows that Action Learning puts together the factors for success of French technological courses, the adaptability of pedagogy provided to the vocational training, and finally the competence of service provider, Keeping the best parts of those three complementary approaches makes it possible for this kind of formation to achieve teaching and professional, assessable and long lasting goals. Action Learning belongs to the French policy that aims to improve the volume and the quality of the contracts between Universities and companies.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2601_11533v1",
+    "title": "Artificial Intelligence as a Training Tool in Clinical Psychology: A Comparison of Text-Based and Avatar Simulations",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2601.11533v1",
+    "type": "paper",
+    "raw_text": "Clinical psychology students frequently report feeling underprepared for the interpersonal demands of therapeutic work, highlighting the need for accessible opportunities to practise core counselling skills before seeing real clients. Advances in artificial intelligence (AI) now enable simulated interaction partners that may support early skills development. This study examined postgraduate clinical psychology students' perceptions of two AI-based simulations: a text-based chatbot (ChatGPT) and a voice-based avatar (HeyGen). Twenty-four students completed two brief cognitive-behavioural role-plays (counterbalanced), one with each tool, and provided both quantitative ratings and qualitative feedback on perceived usefulness, skill application, responsiveness and engagement, and perceived skill improvement. Both AI tools were evaluated positively across dimensions. However, the avatar was rated significantly higher than the chatbot for perceived usefulness, skill application, and perceived skill improvement, and qualitative comments highlighted the added value of voice-based interaction for conveying social and emotional cues. These findings suggest that AI-driven simulation may supplement early-stage clinical skills training, with voice-based avatars offering additional benefits. Future work should test whether such simulated interactions translate to objective improvements in real therapeutic performance.",
+    "year": "2025",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2509_16810v1",
+    "title": "Automated Procedural Analysis via Video-Language Models for AI-assisted Nursing Skills Assessment",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2509.16810v1",
+    "type": "paper",
+    "raw_text": "Consistent high-quality nursing care is essential for patient safety, yet current nursing education depends on subjective, time-intensive instructor feedback in training future nurses, which limits scalability and efficiency in their training, and thus hampers nursing competency when they enter the workforce. In this paper, we introduce a video-language model (VLM) based framework to develop the AI capability of automated procedural assessment and feedback for nursing skills training, with the potential of being integrated into existing training programs. Mimicking human skill acquisition, the framework follows a curriculum-inspired progression, advancing from high-level action recognition, fine-grained subaction decomposition, and ultimately to procedural reasoning. This design supports scalable evaluation by reducing instructor workload while preserving assessment quality. The system provides three core capabilities: 1) diagnosing errors by identifying missing or incorrect subactions in nursing skill instruction videos, 2) generating explainable feedback by clarifying why a step is out of order or omitted, and 3) enabling objective, consistent formative evaluation of procedures. Validation on synthesized videos demonstrates reliable error detection and temporal localization, confirming its potential to handle real-world training variability. By addressing workflow bottlenecks and supporting large-scale, standardized evaluation, this work advances AI applications in nursing education, contributing to stronger workforce development and ultimately safer patient care.",
+    "year": "2025",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2509_10576v1",
+    "title": "Aesthetic Experience and Educational Value in Co-creating Art with Generative AI: Evidence from a Survey of Young Learners",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2509.10576v1",
+    "type": "paper",
+    "raw_text": "This study investigates the aesthetic experience and educational value of collaborative artmaking with generative artificial intelligence (AI) among young learners and art students. Based on a survey of 112 participants, we examine how human creators renegotiate their roles, how conventional notions of originality are challenged, how the creative process is transformed, and how aesthetic judgment is formed in human--AI co-creation. Empirically, participants generally view AI as a partner that stimulates ideation and expands creative boundaries rather than a passive tool, while simultaneously voicing concerns about stylistic homogenization and the erosion of traditional authorship. Theoretically, we synthesize Dewey's aesthetics of experience, Ihde's postphenomenology, and actor--network theory (ANT) into a single analytical framework to unpack the dynamics between human creators and AI as a non-human actant. Findings indicate (i) a fluid subjectivity in which creators shift across multiple stances (director, dialogic partner, discoverer); (ii) an iterative, dialogic workflow (intent--generate--select--refine) that centers critical interpretation; and (iii) an educational value shift from technical skill training toward higher-order competencies such as critical judgment, cross-modal ideation, and reflexivity. We argue that arts education should cultivate a \\emph{critical co-creation} stance toward technology, guiding learners to collaborate with AI while preserving human distinctiveness in concept formation, judgment, and meaning-making.",
+    "year": "2025",
+    "extraction_status": "pending"
+  }
+]

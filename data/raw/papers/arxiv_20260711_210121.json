@@ -1,0 +1,122 @@
+[
+  {
+    "id": "paper_2607_06791v1",
+    "title": "Machine Learning-Based Battery State-of-health Prediction for Unmanned Aerial Vehicles Predictive Maintenance",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.06791v1",
+    "type": "paper",
+    "raw_text": "Battery state-of-health (SoH) prediction aims to estimate the remaining capacity by modeling battery degradation through its life cycle. Machine learning (ML)-based SoH models can accurately predict the battery remaining capacity based on voltage, current, and temperature. Battery SoH prediction for unmanned aerial vehicles (UAVs) is a crucial yet overlooked domain with data scarcity and high variability. Accurate battery SoH information contributes to efficient predictive maintenance, enhancing UAV profitability and flight safety. However, UAVs are compatible with a variety of batteries and the available data for each type of battery are scarce. Furthermore, the available input features from UAV batteries are limited to the built-in sensors because of the lightweight requirements. This research aims to develop an ML pipeline for UAV battery SoH prediction while mitigating data scarcity using knowledge transfer. 342 and 289 flight experiments have been conducted to collect operational data from lithium polymer batteries of 2200 mAh and 1100 mAh, respectively. Voltage, current, and throttle are selected as the input features of the ML model according to the existing literature and sensor availability. The remaining capacity is measured at every 10th experiment to label the dataset. To address data scarcity, the time-series data acquired from the experiments are transformed into images to utilize the image feature extraction capability of a pretrained ResNet-50. Finally, accurate SoH prediction models were obtained using transfer learning between two battery types.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01986v1",
+    "title": "Liquid Latent State Dynamics for Interpretable Turbofan Degradation Modeling",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01986v1",
+    "type": "paper",
+    "raw_text": "Multivariate time-series models for prognostics are often evaluated by point prediction accuracy, yet their internal states rarely expose a coherent degradation process. We study liquid neural networks as latent dynamics models for aircraft engine health monitoring on the C-MAPSS benchmark. The proposed model encodes a history window into a latent state, evolves that state with a liquid transition model, and decodes future sensor observations. To separate health evolution from operating-condition variation, the latent state is factorized into degradation and condition components. Remaining useful life, monotonic risk, and latent-consistency losses supervise the degradation component, while condition prediction and decorrelation losses discourage operating-condition leakage. Across FD001--FD004, the full disentangled model improves overall sensor forecasting RMSE from 0.2438 for a GRU baseline to 0.2266, with the largest gains on the multi-condition subsets FD002 and FD004. The learned degradation state also forms a clearer temporal degradation axis, reaching an average state-speed Spearman correlation of 0.5960. Direct remaining-useful-life regression remains stronger for the GRU baseline, indicating that the proposed representation is currently more effective as an interpretable world model for degradation dynamics than as a calibrated lifetime regressor. These results suggest that liquid latent dynamics can bridge predictive maintenance forecasting and inspectable health-state modeling.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_24459v1",
+    "title": "An LLM-based Two-Stage Transformer Framework for Cross-Domain Bearing Fault Diagnosis with Limited Data",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.24459v1",
+    "type": "paper",
+    "raw_text": "Bearing fault diagnosis faces critical challenges when dataset heterogeneity, operating condition variations, and limited labeled data occur simultaneously in industrial environments. Existing approaches address these issues in isolation and rely on implicit feature alignment, limiting effectiveness under concurrent challenges. This paper proposes a knowledge-guided two-stage transfer learning framework that employs a lightweight GPT-2-style Transformer with causal self-attention for hierarchical feature extraction from vibration signals, establishing explicit pathways where pre-trained encoder weights and fault prototype embeddings serve as knowledge carriers from multi-source pre-training to target adaptation. The framework addresses the dual-shift challenge through multi-source learning for generalizable representations, prototype-based knowledge modulation for target adaptation, and taxonomy-adaptive classification for seamless transfer across heterogeneous fault categories. Experimental validation on four real-world datasets demonstrates 92.61% average accuracy with only 10% labeled target data, outperforming state-of-the-art methods by 17.24 percentage points, establishing a practical pathway toward cost-effective predictive maintenance in Industry 4.0 applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_24173v1",
+    "title": "Lightweight Transformer Models for On-Device Fault Detection: A Benchmark Study on Resource-Constrained Deployment",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.24173v1",
+    "type": "paper",
+    "raw_text": "On-device fault detection enables real-time diagnostics without cloud dependency, but deploying machine learning models on resource-constrained hardware demands careful tradeoffs between accuracy, latency, and model size. We present a benchmark comparing traditional ML methods (Random Forest, XGBoost, SVM, Logistic Regression) against lightweight transformer architectures (DistilBERT, TinyBERT-6L, TinyBERT-4L, MobileBERT) for binary fault detection across three public datasets: NASA C-MAPSS turbofan degradation, SECOM semiconductor manufacturing, and UCI AI4I 2020 predictive maintenance. We evaluate classification performance (F1-score, AUC), model size, and CPU inference latency, and further assess INT8 dynamic quantization and a two-stage adaptive inference pipeline. Our results reveal that on well-separated sensor data (C-MAPSS), lightweight transformers match traditional ML at 87.8% F1 but at 100x the model size and 9000x the latency. TinyBERT-4L emerges as the most deployment-friendly transformer at 55 MB and 18 ms CPU latency. INT8 quantization reduces size by 25% while preserving 86.9% F1. Our adaptive pipeline, routing 97.9% of predictions through a quantized triage model and only 2.1% to a larger expert, achieves 87.6% F1 at 19.5 ms average latency. On severely imbalanced datasets (SECOM, UCI-PM), both traditional and transformer methods struggle significantly, highlighting fundamental limitations of current approaches for extreme class imbalance in fault detection. All code is publicly available.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_18503v1",
+    "title": "Quantum Annealing Enhanced Reinforcement Learning for Accurate Remaining Useful Lifetime Prediction",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.18503v1",
+    "type": "paper",
+    "raw_text": "Remaining useful life (RUL) estimation is central to predictive maintenance, where an unplanned failure can cost far more than the asset itself. Statistical degradation models miss the strong nonlinearity of real systems, and data-driven models often converge to suboptimal solutions in high-dimensional, non-convex search spaces. We propose a Quantum Annealing enhanced Q-Learning (QAQL) framework that couples the sampling behaviour of quantum annealing with the sequential decision making of Q-learning. Each Q-value update is encoded as a small quadratic unconstrained binary optimization (QUBO) whose ground state is the greedy action; rather than acting as a deterministic optimizer, the annealer returns a distribution over near-optimal actions across many reads, and this stochastic action selection supplies the exploration that curbs premature convergence on nonlinear degradation trajectories. The QUBO is solved on the D-Wave Advantage system using minor embedding, with the annealer woven into the reinforcement-learning loop rather than bolted on after training. We validate QAQL on two public benchmarks: the NASA C-MAPSS turbofan engine datasets and a device-fleet predictive maintenance dataset. Averaged over many independent runs and across six error metrics, QAQL outperforms the classical and quantum baselines considered in this study, with statistically significant improvements. The results indicate that quantum annealing is a usable, not merely theoretical, optimizer inside a reinforcement-learning loop for industrial predictive-maintenance applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_12967v1",
+    "title": "Simulating Torsional Vibrations of Faulty Bevel Gears Using the Polygonal Contact Method",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.12967v1",
+    "type": "paper",
+    "raw_text": "Gears are an integral component of electromechanical applications, but accurate condition monitoring methods, including data-driven predictive maintenance, are strongly dependent on high-quality data, especially from faulty components. To address the scarcity of data, we proposed a multibody simulation using an advanced polygonal contact method to replicate torsional vibrations from an experimental azimuth thruster test rig. The key novelty is the ability to simulate both healthy and faulty gears with arbitrary fault geometries. The simulated signals closely matched the measurements in both time and frequency domains. In the time domain, average torque levels and periodic fluctuations aligned well, although measured signals exhibited higher peak-to-peak amplitudes and greater noise, particularly in healthy conditions at lower rotational speeds. In the frequency domain, the simulations accurately reproduced expected fault frequencies and corresponding sidebands, with larger faults producing higher amplitudes. While the simulations tended to overestimate peak amplitudes and underestimate external noise, the results were highly comparable to measurements and consistent with the physical expectations. These findings provide a robust foundation for enhancing data-driven condition monitoring methods, particularly those employing machine learning or deep learning.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11990v2",
+    "title": "Time-Series Foundation Model Embeddings for Remaining Useful Life Estimation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11990v2",
+    "type": "paper",
+    "raw_text": "Remaining Useful Life (RUL) prediction is essential for industrial predictive maintenance, yet many learning-based approaches rely on extensive feature engineering or large labeled datasets to train task-specific sequence models. In this work, we introduce a lightweight learning approach, in which we leverage a frozen pretrained time-series foundation model (TSFM) and combine it with a small regression head for RUL estimation from multivariate sensor streams. More specifically, we use Chronos-2 as a frozen backbone to extract context window features and train a lightweight regression neural network for RUL prediction. Experiments on real-world industrial sensor data from two device types show that Chronos-2 features consistently improve over recurrent, convolutional, Transformer-based, and gradient-boosting baselines under the same preprocessing and evaluation protocol. We further analyze the impact of context length and find that performance improves significantly with longer histories, indicating that TSFM representation offer a practical and data-efficient alternative for RUL estimation in industrial settings.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_12486v1",
+    "title": "An Empirical Study on Predictive Maintenance for Component X in Heavy-Duty Scania Trucks",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.12486v1",
+    "type": "paper",
+    "raw_text": "Condition-based Predictive Maintenance (PdM) for truck fleets has gained momentum in recent years. This maintenance strategy aims to minimize unplanned downtimes and reduce costs by monitoring the health status of vehicles and taking proactive action based on their condition. However, the implementation of condition-based PdM systems is challenging due to the large volume of data generated by the trucks, the inherent complexity of detecting failures through sensor data and the difficulties in finding cost-effective trade-offs in the solution's implementation. In this paper, we define and validate a condition-based PdM methodology built on the assumption that the wear-and-tear state of the monitored component can be represented as a monotonically non-decreasing time series. It involves selecting only the most recent observations from the time series and transforming them into a tabular format for classification using machine learning (ML) models designed for tabular data. Our results indicate that the proposed methodology reduces costs on the Scania Component X dataset compared to current state-of-the-art (SOTA) approaches, while also simplifying the modeling process through AutoML.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_20400v1",
+    "title": "Understanding Deterioration Random Effects for Causal Discovery in Infrastructure Management",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.20400v1",
+    "type": "paper",
+    "raw_text": "Infrastructure deterioration poses significant challenges for asset management, yet existing approaches rely on population-averaged models that overlook equipment-specific heterogeneity. We present a novel framework that combines Bayesian hierarchical hazard modeling with causal discovery to identify operational patterns that drive heterogeneous deterioration rates in pump equipment. Our approach first estimates pump-specific random effects $u_i$ using GPU-accelerated No-U-Turn Sampling (NUTS), achieving 3--5$\\times$ speedup over CPU implementations. We then employ DirectLiNGAM to discover causal relationships between 22 engineered time-series features and deterioration rates, stratified by positive ($u_i > 0$, faster deterioration) versus negative ($u_i \\leq 0$, slower deterioration) random effects. Analyzing 112 pumps with 92,861 observations over 650 days, we uncover striking heterogeneity: the negative group exhibits causal effects 400$\\times$ larger than the positive group, with standard deviation (std) showing a strong positive causal effect ($+1.515$) on deterioration rates in low-risk equipment. We validate linearity assumptions through NonlinearLiNGAM comparison and demonstrate practical scalability through GPU acceleration. Our findings enable targeted maintenance strategies by revealing that different operational regimes require fundamentally distinct management approaches, advancing predictive maintenance from population-averaged to heterogeneity-aware decision making.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_16069v1",
+    "title": "ITGPT: Generative Pretraining on Irregular Timeseries",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.16069v1",
+    "type": "paper",
+    "raw_text": "Timeseries regression models often struggle to leverage large volumes of labeled multimodal data, particularly when the data are irregularly sampled or contain missing values. This is common in domains like healthcare and predictive maintenance, where data are collected from unreliable sources, and labeling requires expert knowledge or costly equipments. Transformer-based large language models have proven effective on structured data such as text through self-supervised learning (SSL) and generative pretraining (GPT) frameworks. However, such models lack the flexibility to efficiently process irregularly sampled multimodal timeseries data. In this paper, we introduce ITGPT, an attention-based architecture designed for handling multimodal, irregularly sampled timeseries by allowing training with both SSL losses and GPT-like objectives. We evaluate its performance on a healthcare task with the TIHM dataset, and a predictive maintenance task with the CompX dataset. Our results demonstrate that ITGPT achieves state-of-the-art performance without requiring resampling, feature fusion or explicit data imputation. Furthermore, when labels are scarce, ITGPT effectively leverages unlabeled data through SSL and GPT training, outperforming the purely supervised approach. This represents an important step towards efficiently using large and unstructured timeseries datasets for practical inference tasks.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_14318v1",
+    "title": "Semantic Feature Segmentation for Interpretable Predictive Maintenance in Complex Systems",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.14318v1",
+    "type": "paper",
+    "raw_text": "Predictive maintenance in complex systems is often complicated by the heterogeneity and redundancy of monitored variables,which can obscure fault-relevant information and reduce model interpretability. This work proposes a semantic feature segmentation framework that decomposes the monitored feature space into a canonical component,expected to retain the dominant predictive information, and a residual component containing structurally peripheral signals. The segmentation is defined through domain informed criteria and sets up monitoring variables into functional groups reflecting operational mechanisms such as throughput,latency,pressure,network activity,and structural state. To evaluate the effectiveness of this decomposition, we adopt a predictive perspective in which expected predictive risk is used as an operational proxy for task-relevant information. Experimental results obtained through time-aware cross-validation show that the canonical space consistently achieves lower predictive risk than the residual space across multiple temporal configurations, indicating that the semantic segmentation concentrates the most relevant information for fault anticipation. In addition, the canonical segments exhibit significantly stronger intra-segment coherence than inter-segment dependence, and this structural organization remains stable after redundancy reduction. When compared with the full feature space and with a Principal Component Analysis (PCA) representation, the canonical space carries out comparable predictive performance and furthermore preserves the semantic meaning of the original variables. These findings suggest that semantic feature segmentation provides an interpretable and information-preserving decomposition of monitoring signals, enabling competitive predictive performance without sacrificing the operational interpretability required in predictive maintenance applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_07860v1",
+    "title": "On the Tradeoffs of On-Device Generative Models in Federated Predictive Maintenance Systems",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.07860v1",
+    "type": "paper",
+    "raw_text": "Federated Learning (FL) has emerged as a promising paradigm for preserving client data ownership and control over distributed Internet of Things (IoT) environments. While discriminative models dominate most FL use cases, recent advances in generative models -- such as Variational Autoencoders (VAE), Generative Adversarial Networks (GAN), and Diffusion Models (DM) -- offer new opportunities for unsupervised anomaly detection in time series analysis, with relevant applications in predictive maintenance (PdM) in critical industrial infrastructures. In this work, we present a comprehensive analysis of VAEs, GANs, and DMs in the context of federated PdM. We analyze their performance and communication overhead under both full and partial federation setups, where only subsets of model components are shared. Building on this analysis, the paper proposes a novel taxonomy for federated generative models that formalizes partial component sharing as a principled mechanism for model personalization. Our experiments over a real-world time series dataset reveal distinct trade-offs in model utility, stability, and scalability, especially in heterogeneous and bandwidth-constrained FL settings. For the evaluated GAN-based configurations, full federation improves training stability relative to independent local training, although the model remains less robust than the VAE- and DDPM-based alternatives. For DMs, however, partial federation -- especially decoder sharing -- can outperform full federation in bandwidth-constrained, non-IID settings.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

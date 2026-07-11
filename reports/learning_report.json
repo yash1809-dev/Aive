@@ -1,51 +1,52 @@
 {
   "rejection_analysis": {
-    "total_opportunities": 13,
-    "total_survived": 11,
+    "total_opportunities": 10,
+    "total_survived": 8,
     "total_rejected": 2,
-    "kill_rate_pct": 15.4,
-    "survival_rate_pct": 84.6,
+    "kill_rate_pct": 20.0,
+    "survival_rate_pct": 80.0,
     "top_kill_reasons": [
       [
-        "Mwptutor's attempt to address cold start issue in knowledge",
+        "The idea of efficient large language model training is not n",
         1
       ],
       [
-        "This opportunity is rejected due to the existence of similar",
+        "The idea is too similar to existing solutions and lacks a cl",
         1
       ]
     ],
     "surviving_technologies_sample": [
-      "K-12 Stem Teachers leverage existing knowledge and",
-      "Large Language Models (LLMs) for bias mitigation",
-      "Fine-tuning Llms addresses these alignment problem",
-      "Large Language Models for personalized learning",
-      "Finite State Transducers for cold start mitigation",
-      "Autotutor's AI-powered adaptive learning system ad",
-      "Deploying DPO to regulate language model decisions",
-      "LoRA Fine-Tuning enables efficient adaptation of p",
-      "React is used for interactive decision-making.",
-      "The Llama Large Language Model addresses this inef"
+      "LoRA fine-tuning for LLM-based writing assistance.",
+      "Grammatical error detection addresses this issue b",
+      "Fine-tuned LLMs can detect and correct grammatical",
+      "Llama Large Language Models address this issue.",
+      "Llm-Powered Multi-Agent Framework addresses this i",
+      "Genmentor addresses this by providing personalized",
+      "Professional learners can provide personalized goa",
+      "Finite State Transducers for personalized learning"
     ]
   },
   "graph_health": {
-    "total_nodes": 19,
-    "total_edges": 10,
-    "orphan_nodes": 3,
-    "orphan_rate_pct": 15.8,
-    "edge_density": 0.53,
+    "total_nodes": 17,
+    "total_edges": 8,
+    "orphan_nodes": 4,
+    "orphan_rate_pct": 23.5,
+    "edge_density": 0.47,
     "type_distribution": {
-      "Technology": 11,
-      "Problem": 6,
+      "Technology": 9,
+      "Problem": 4,
+      "Capability": 2,
       "Workflow": 1,
-      "Capability": 1
+      "Organization": 1
     },
     "recommendations": [
+      "HIGH ORPHAN RATE (24%): Run concept_extractor.py to improve connectivity.",
       "TECH BIAS: Too many Technology nodes vs. Buyer/EconomicSignal. Ingest more commercial data.",
       "LOW EDGE DENSITY: Graph is sparse. More items from diverse domains will improve traversal quality."
     ]
   },
   "overall_recommendations": [
+    "HIGH ORPHAN RATE (24%): Run concept_extractor.py to improve connectivity.",
     "TECH BIAS: Too many Technology nodes vs. Buyer/EconomicSignal. Ingest more commercial data.",
     "LOW EDGE DENSITY: Graph is sparse. More items from diverse domains will improve traversal quality."
   ]

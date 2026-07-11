@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_13039v1",
+    "title": "Fault Lines: Navigating Ethics and Responsible AI Where National Policy Meets Local Practice in Public Sector Transformation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.13039v1",
+    "type": "paper",
+    "raw_text": "The UK government has adopted a pro-AI stance to help transform public service delivery in the face of severe financial pressures, but the path to translate this vision into responsible AI practice remains ill-defined. While UK policy is often set at the national level, local authorities are responsible for most public service delivery, and the rapid advance of AI-first narratives in the public sector is exposing fault lines in knowledge and practice at this national-local interface. This paper examines how responsible AI is interpreted and implemented at the interface between the UK's central government and local authorities, taking the high-stakes area of Special Educational Needs and Disabilities (SEND) as a case study. We present a thematic analysis of 17 semi-structured interviews with policymakers, practitioners, and third-sector professionals to identify barriers and enabling conditions for responsible AI where national policy meets local practice. We identify five interconnected challenges facing local authorities: shadow usage of AI and data privacy risks, market-government asymmetry in AI provision, insufficient workforce readiness, a lack of standardised definitions and measurements, and gaps in human accountability. For each, participants proposed actionable steps, from strengthening data protection frameworks and rebalancing the market-government relationship to enhancing workforce capacity. Our examination of SEND brings these challenges into sharper focus, showing how high-stakes decisions affecting vulnerable children and families intensify tensions around accountability, fairness, and human oversight, exposing the limits of a principle-based regulatory approach. We argue that responsible public sector AI requires both national policy adjustments and structural reforms to institutional capacity, values, and governance mechanisms at the local level.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09603v1",
+    "title": "Automated IEP Generation from Traditional Chinese Parent-Teacher Interviews via Corpus-Grounded Feature Diffusion",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09603v1",
+    "type": "paper",
+    "raw_text": "Writing Individualized Education Programs (IEPs) is a high-labor, knowledge-intensive document burden; English-language research has demonstrated that generative AI can significantly reduce drafting time, yet automated IEP generation in Traditional Chinese remains virtually unexplored due to domain data scarcity, strict privacy regulations, and the absence of local evaluation benchmarks. We propose a low-resource fine-tuning pipeline centered on Corpus-Grounded Feature Diffusion (CGFD): (1) 25 dual-expert high-score seed transcripts are selected via a tau threshold with flag-aware score caps; (2) a FeatureProfile (sentence length, structure, quantification templates) is extracted from seeds and injected into LLM prompts alongside Verbalized-Sampling-style diversity control to drive diffusion; (3) 15 expert gold seeds are used as diffusion anchors, targeting 585 samples; 567 valid diffusion samples are obtained, yielding a 582-sample training set used to fine-tune Breeze-7B with QLoRA; (4) schema-constrained inference via Grammar-Constrained Decoding (GCD) enforces a hierarchical SMART Goal Ladder schema at inference time. Ablation results on a 55-sample schema stress set reveal an unexpected finding: GCD is counterproductive under Traditional Chinese token budgets -- the no-GCD path achieves 100% schema pass rate at 34% lower median latency, outperforming GCD on both reliability and speed. On the n=10 formal hold-out, the no-GCD inference path achieves BERTScore F1 = 0.779, exceeding GPT-5.4 (0.726), DeepSeek-V3.2 (0.703), Gemini-3-Flash-Preview (0.703), and Llama-4-Maverick (0.700) zero-shot baselines while maintaining fully local, air-gapped inference. This system addresses a gap in Traditional Chinese special-education NLP and offers a scalable, privacy-preserving local inference solution under an industrial engineering paradigm.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_30151v1",
+    "title": "Temporal Stability and Few-Shot Prompting in Math Task Assessment",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.30151v1",
+    "type": "paper",
+    "raw_text": "As AI tools become increasingly integrated into educational contexts, questions arise about both their stability over time and their responsiveness to prompt engineering techniques. This longitudinal study focused on different AI tools' ability to use the Task Analysis Guide (TAG; Stein \\& Smith, 1998) to classify the cognitive demand of mathematics tasks. In particular, it examined whether this classification ability changed with (1) model version updates over time and (2) few-shot prompting using exemplar tasks. We tested a general-purpose AI tool (Gemini) and an education-specific AI tool (Coteach). The specific tools were selected because of their relatively high performance on relevant published benchmarks and prior task-specific tests. Models were tested at baseline, retested with model version updates, and then tested again using few-shot prompting (two exemplar tasks for each cognitive demand category). Results revealed that newer model versions alone produced mixed effects: Gemini's accuracy remained stable at 58\\%, while Coteach's accuracy decreased from 75\\% to 50\\%. However, few-shot prompting improved both models' performance: Gemini increased to 67\\% and Coteach recovered to 75\\% accuracy. These findings demonstrate that prompt engineering techniques can have larger and more reliable effects than passive model improvements, and that version updates may not always improve performance on specialized educational tasks. The study has important implications for how educators and researchers should approach AI tool selection, evaluation, and implementation in educational contexts.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_14266v1",
+    "title": "Agentic AI Ecosystems in Higher Education: A Perspective on AI Agents to Emerging Inclusive, Agentic Multi-Agent AI Framework for Learning, Teaching and Institutional Intelligence",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.14266v1",
+    "type": "paper",
+    "raw_text": "Integration of artificial intelligent (AI) agents in higher education is transforming teaching, learning and administrative processes. Although existing AI agents effectively support individual tasks, their implementation remains fragmented and inefficient for handling the complexity of educational institutions. This highlights a significant research gap: the lack of integrated eco-system-level agentic multi-agent AI platform capable of coordinated planning, reasoning, and adaptive decision-making across multiple educational functions. This paper presents a forward-looking perspective on agentic multi-agent AI platform in higher education, consisting interconnected autonomous, goal driven agents that support learning, teaching, and institutional operations. It addresses timely and critical questions: Can agentic AI represent the next generation of intelligent systems in tertiary education? Can they collectively support seamless coordinated operations across teaching, learning and administrative support? To what extent can such systems foster inclusive and equitable learning for diverse learners with special educational needs? To ground this perspective, a thematic analysis of existing literature identifies four dominant themes: task-specific fragmented AI tools, the transition from single-agent to multi-agent systems, limited cross-functional integration, and insufficient focus on inclusivity and accessibility. Findings reveal a clear gap between current AI implementations and the needs of holistic, learner-centered educational ecosystem. The paper synthesizes challenges and outlines future research directions for scalable human-aligned, and inclusive agentic AI platform. The significant contribution is the incorporation of inclusive learning perspectives, highlighting how coordinated agentic multi-agent platform can support diverse learners through adaptive, multimodal interventions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_25924v1",
+    "title": "Generative AI-Based Virtual Assistant using Retrieval-Augmented Generation: An evaluation study for bachelor projects",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.25924v1",
+    "type": "paper",
+    "raw_text": "Large Language Models have been increasingly employed in the creation of Virtual Assistants due to their ability to generate human-like text and handle complex inquiries. While these models hold great promise, challenges such as hallucinations, missing information, and the difficulty of providing accurate and context-specific responses persist, particularly when applied to highly specialized content domains. In this paper, we focus on addressing these challenges by developing a virtual assistant designed to support students at Maastricht University in navigating project-specific regulations. We propose a virtual assistant based on a Retrieval-Augmented Generation system that enhances the accuracy and reliability of responses by integrating up-to-date, domain-specific knowledge. Through a robust evaluation framework and real-life testing, we demonstrate that our virtual assistant can effectively meet the needs of students while addressing the inherent challenges of applying Large Language Models to a specialized educational context. This work contributes to the ongoing discourse on improving LLM-based systems for specific applications and highlights areas for further research.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_28370v2",
+    "title": "Tailoring AI-Driven Reading Scaffolds to the Distinct Needs of Neurodiverse Learners",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.28370v2",
+    "type": "paper",
+    "raw_text": "Neurodiverse learners often require reading supports, yet increasing scaffold richness can sometimes overload attention and working memory rather than improve comprehension. Grounded in the Construction-Integration model and a contingent scaffolding perspective, we examine how structural versus semantic scaffolds shape comprehension and reading experience in a supervised inclusive context. Using an adapted reading interface, we compared four modalities: unmodified text, sentence-segmented text, segmented text with pictograms, and segmented text with pictograms plus keyword labels. In a within-subject pilot with 14 primary-school learners with special educational needs and disabilities, we measured reading comprehension using standardized questions and collected brief child- and therapist-reported experience measures alongside open-ended feedback. Results highlight heterogeneous responses as some learners showed patterns consistent with benefits from segmentation and pictograms, while others showed patterns consistent with increased coordination costs when visual scaffolds were introduced. Experience ratings showed limited differences between modalities, with some apparent effects linked to clinical complexity, particularly for perceived ease of understanding. Open-ended feedback of the learners frequently requested simpler wording and additional visual supports. These findings suggest that no single scaffold is universally optimal, reinforcing the need for calibrated, adjustable scaffolding and provide design implications for human-AI co-regulation in supervised inclusive reading contexts.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_24536v2",
+    "title": "Robust Multilingual Text-to-Pictogram Mapping for Scalable Reading Rehabilitation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.24536v2",
+    "type": "paper",
+    "raw_text": "Reading comprehension presents a significant challenge for children with Special Educational Needs and Disabilities (SEND), often requiring intensive one-on-one reading support. To assist therapists in scaling this support, we developed a multilingual, AI-powered interface that automatically enhances text with visual scaffolding. This system dynamically identifies key concepts and maps them to contextually relevant pictograms, supporting learners across languages. We evaluated the system across five typologically diverse languages (English, French, Italian, Spanish, and Arabic), through multilingual coverage analysis, expert clinical review by speech therapists and special education professionals, and latency assessment. Evaluation results indicate high pictogram coverage and visual scaffolding density across the five languages. Expert audits suggested that automatically selected pictograms were semantically appropriate, with combined correct and acceptable ratings exceeding 95% for the four European languages and approximately 90% for Arabic despite reduced pictogram repository coverage. System latency remained within interactive thresholds suitable for real-time educational use. These findings support the technical viability, semantic safety, and acceptability of automated multimodal scaffolding to improve accessibility for neurodiverse learners.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_06179v1",
+    "title": "ARIA: Adaptive Retrieval Intelligence Assistant -- A Multimodal RAG Framework for Domain-Specific Engineering Education",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.06179v1",
+    "type": "paper",
+    "raw_text": "Developing effective, domain-specific educational support systems is central to advancing AI in education. Although large language models (LLMs) demonstrate remarkable capabilities, they face significant limitations in specialized educational applications, including hallucinations, limited knowledge updates, and lack of domain expertise. Fine-tuning requires complete model retraining, creating substantial computational overhead, while general-purpose LLMs often provide inaccurate responses in specialized contexts due to reliance on generalized training data. To address this, we propose ARIA (Adaptive Retrieval Intelligence Assistant), a Retrieval-Augmented Generation (RAG) framework for creating intelligent teaching assistants across university-level courses. ARIA leverages a multimodal content extraction pipeline combining Docling for structured document analysis, Nougat for mathematical formula recognition, and GPT-4 Vision API for diagram interpretation, with the e5-large-v2 embedding model for high semantic performance and low latency. This enables accurate processing of complex educational materials while maintaining pedagogical consistency through engineered prompts and response controls. We evaluate ARIA using lecture material from Statics and Mechanics of Materials, a sophomore-level civil engineering course at Johns Hopkins University, benchmarking against ChatGPT-5. Results demonstrate 97.5% accuracy in domain-specific question filtering and superior pedagogical performance. ARIA correctly answered all 20 relevant course questions while rejecting 58 of 60 non-relevant queries, achieving 90.9% precision, 100% recall, and 4.89/5.0 average response quality. These findings demonstrate that ARIA's course-agnostic architecture represents a scalable framework for domain-specific educational AI deployment.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2602_15034v1",
+    "title": "EduResearchBench: A Hierarchical Atomic Task Decomposition Benchmark for Full-Lifecycle Educational Research",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2602.15034v1",
+    "type": "paper",
+    "raw_text": "While Large Language Models (LLMs) are reshaping the paradigm of AI for Social Science (AI4SS), rigorously evaluating their capabilities in scholarly writing remains a major challenge. Existing benchmarks largely emphasize single-shot, monolithic generation and thus lack the fine-grained assessments required to reflect complex academic research workflows. To fill this gap, we introduce EduResearchBench, the first comprehensive evaluation platform dedicated to educational academic writing. EduResearchBench is built upon our Hierarchical Atomic Task Decomposition (HATD) framework, which decomposes an end-to-end research workflow into six specialized research modules (e.g., Quantitative Analysis, Qualitative Research, and Policy Research) spanning 24 fine-grained atomic tasks. This taxonomy enables an automated evaluation pipeline that mitigates a key limitation of holistic scoring, where aggregate scores often obscure specific capability bottlenecks, and instead provides fine-grained, diagnostic feedback on concrete deficiencies. Moreover, recognizing the high cognitive load inherent in scholarly writing, we propose a curriculum learning strategy that progressively builds competence from foundational skills to complex methodological reasoning and argumentation. Leveraging 55K raw academic samples, we curate 11K high-quality instruction pairs to train EduWrite, a specialized educational scholarly writing model. Experiments show that EduWrite (30B) substantially outperforms larger general-purpose models (72B) on multiple core metrics, demonstrating that in vertical domains, data quality density and hierarchically staged training curricula are more decisive than parameter scale.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2507_14944v2",
+    "title": "LEKIA: Expert-Aligned AI Behavior Design for High-Risk Human-AI Interactions",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2507.14944v2",
+    "type": "paper",
+    "raw_text": "Large language models (LLMs) have demonstrated technical accuracy in high-risk domains, such as mental health support and special education. However, they often fail to meet the nuanced behavioral expectations of domain experts. This gap constrains AI deployment in sensitive settings. To address this challenge, we introduce LEKIA (Layered Expert Knowledge Injection Architecture), a novel framework built upon the principle of expert-owned AI behavior design. LEKIA's core innovation lies in its dual architecture: a three-layer knowledge injection system featuring our \"Supervision Metaphor Cycle\", and a dual-agent safety system ensuring robustness and consistency. We implemented and evaluated LEKIA within psychological support scenarios in special education. Experiments indicate that LEKIA improves performance by 14.8% over baseline, driven by substantive increase in alignment with expert expectations while preserving technical accuracy. Beyond providing a reproducible technical framework, this work demonstrates expert-expectation alignment as a measurable evaluation criterion with implications for AI deployment in high-risk domains.",
+    "year": "2025",
+    "extraction_status": "pending"
+  }
+]

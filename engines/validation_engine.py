@@ -53,6 +53,7 @@ class ValidationEngine(BaseEngine):
     def calculate_metrics(self, opp: Dict[str, Any]) -> Dict[str, Any]:
         """
         Calculate multidimensional validation metrics for an opportunity.
+        V2: Increased score variance through tiered evidence quality and amplified novelty weight.
         """
         import hashlib
         papers = self._parse_json(opp.get("source_papers", "[]"))
@@ -66,55 +67,109 @@ class ValidationEngine(BaseEngine):
         market = float(opp.get("market_score") or 5.0)
         feasibility = float(opp.get("feasibility") or 5.0)
 
-        # 1. Evidence Quality / Volume (EQ)
+        # 1. Evidence Quality / Volume (EQ) — Tiered scoring for better differentiation
         papers_count = len(papers)
         patents_count = len(patents)
         startups_count = len(startups)
-        # Baseline score: papers are worth 1.5, patents and startups are worth 2.0
-        evidence_quality = (papers_count * 1.5 + patents_count * 2.0 + startups_count * 2.0)
-        eq_score = min(1.0, evidence_quality / 5.0)
+        
+        # Use exponential scaling to create tiers:
+        # 0 sources → 0.1, 1-2 → 0.3-0.5, 3-4 → 0.6-0.75, 5+ → 0.85-1.0
+        total_sources = papers_count + patents_count + startups_count
+        if total_sources == 0:
+            eq_score = 0.1
+        elif total_sources <= 2:
+            eq_score = 0.3 + (total_sources * 0.1)
+        elif total_sources <= 4:
+            eq_score = 0.5 + ((total_sources - 2) * 0.125)
+        else:
+            eq_score = min(1.0, 0.75 + ((total_sources - 4) * 0.05))
+        
+        # Bonus for cross-domain evidence (patents + startups signal commercialization)
+        if patents_count > 0 and startups_count > 0:
+            eq_score = min(1.0, eq_score + 0.15)
 
-        # 2. Novelty and Plausibility (N & MP)
+        # 2. Novelty amplification — High novelty (8-10) gets major boost, low (1-4) gets penalty
         novelty_scaled = novelty / 10.0
-        feasibility_scaled = feasibility / 10.0
+        if novelty >= 8.0:
+            novelty_weight = 0.4  # Double weight for breakthrough ideas
+            novelty_scaled = min(1.0, novelty_scaled * 1.2)  # 20% boost
+        elif novelty >= 6.0:
+            novelty_weight = 0.25  # Standard weight
+        else:
+            novelty_weight = 0.15  # Reduced weight for incremental ideas
+            novelty_scaled = novelty_scaled * 0.8  # 20% penalty
 
-        # 3. Cross-Domain Support (CDS)
+        # 3. Feasibility with market validation
+        feasibility_scaled = feasibility / 10.0
+        market_scaled = market / 10.0
+        # High market + high feasibility = multiplier effect
+        if market >= 7.0 and feasibility >= 7.0:
+            feasibility_scaled = min(1.0, feasibility_scaled * 1.15)
+
+        # 4. Cross-Domain Support (CDS) — More granular
         source_types = 0
         if papers: source_types += 1
         if patents: source_types += 1
         if startups: source_types += 1
-        cds_score = source_types / 3.0
+        
+        # Reward true cross-domain evidence
+        if source_types == 3:
+            cds_score = 1.0
+        elif source_types == 2:
+            cds_score = 0.6
+        elif source_types == 1:
+            cds_score = 0.25
+        else:
+            cds_score = 0.1
 
-        # 4. Core Trust Calculation
-        trust_score = (eq_score * 0.3) + (novelty_scaled * 0.2) + (feasibility_scaled * 0.2) + (cds_score * 0.15) + (edge_conf * 0.15)
+        # 5. Core Trust Calculation with dynamic weighting
+        trust_score = (
+            eq_score * 0.25 +
+            novelty_scaled * novelty_weight +
+            feasibility_scaled * 0.2 +
+            cds_score * 0.2 +
+            edge_conf * 0.1 +
+            market_scaled * 0.1
+        )
 
-        # Deductions for contradictions or weak metrics
+        # Significant deductions for weak signals
         if timing < 3.0:
-            trust_score -= 0.08
+            trust_score -= 0.15  # Doubled penalty
         if market < 3.0:
-            trust_score -= 0.08
+            trust_score -= 0.12
+        if feasibility < 3.0:
+            trust_score -= 0.1
 
-        # 5. Deterministic koncept-hash delta to ensure uniqueness
+        # Bonus for timing excellence (urgent + ready)
+        if timing >= 8.0:
+            trust_score += 0.12
+
+        # 6. Deterministic hash delta for uniqueness (widened range)
         opp_id = opp.get("id", "")
         h = int(hashlib.md5(opp_id.encode("utf-8")).hexdigest(), 16)
-        # Deterministic delta between -0.04 and +0.04
-        hash_delta = ((h % 81) - 40) / 1000.0
+        # Deterministic delta between -0.08 and +0.08 (doubled from before)
+        hash_delta = ((h % 161) - 80) / 1000.0
         trust_score += hash_delta
 
-        # Scale trust_score to 1.0 - 10.0
-        final_score = round(max(1.0, min(10.0, trust_score * 10.0)), 1)
+        # 7. Scale to 1.0 - 10.0 with better spread
+        # Use power scaling to amplify differences
+        trust_score = max(0.0, min(1.0, trust_score))
+        final_score = 1.0 + (trust_score ** 0.85) * 9.0  # Power curve creates more spread
+        final_score = round(final_score, 1)
 
-        # 6. Determine Validation Status
+        # 8. Determine Validation Status with finer thresholds
         critic_verdict = opp.get("critic_verdict", "pending")
         if critic_verdict == "rejected":
             status = "Deprecated"
         elif critic_verdict == "survived":
-            if final_score >= 7.0:
+            if final_score >= 8.0:
                 status = "Highly Validated"
-            elif final_score >= 5.0:
+            elif final_score >= 6.0:
                 status = "Validated"
-            else:
+            elif final_score >= 4.0:
                 status = "Partially Validated"
+            else:
+                status = "Needs Review"
         else:
             status = "Candidate"
 

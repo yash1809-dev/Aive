@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2607_02037v1",
+    "title": "Cross-Platform Control for Autonomous Surface Vehicles via Adaptive Reinforcement Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02037v1",
+    "type": "paper",
+    "raw_text": "Autonomous surface vehicles vary widely in hydrodynamic and actuation characteristics, yet most controllers are designed for single-platform deployment. We present an adaptive reinforcement learning approach for trajectory tracking that enables zero-shot cross-platform deployment using a single policy. Since the deployment platform's dynamics are unknown to the policy, we address cross-platform generalization with the standard partial-observability approach of conditioning on interaction history, employing a teacher-student architecture in which a learned module infers a latent representation of the platform dynamics. The policy is trained in simulation under randomized vessel dynamics and is deployed zero-shot to two real-world platforms without any fine-tuning, despite relying on a simple analytical dynamics model rather than a high-fidelity hydrodynamic simulator. In real-world experiments on two different platforms, the adaptive policy outperforms non-adaptive learning-based baselines by up to 58% in position mean absolute error while approaching the tracking accuracy of a platform-specific tuned controller.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00207v1",
+    "title": "Homogenization of $\\ell_2$-Adversarial Training in High-Dimensions: Exact Dynamics under Stochastic Gradient Descent",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00207v1",
+    "type": "paper",
+    "raw_text": "We develop a framework for analyzing the learning dynamics of $\\ell_2$-adversarial training of single-index models on Gaussian mixtures in the high-dimensional limit under streaming stochastic gradient descent (SGD). We derive deterministic equivalents for a broad class of statistics of the SGD iterates, including the adversarial risk and distance to adversarial optimality, in terms of the solution to a system of ODEs. We use them to study two idealized learning rate schedules: the Polyak stepsize and exact line search. In the case of $\\ell_2$-adversarial least squares with a single class, we show that, unlike noiseless standard least squares, no constant learning rate guarantees monotone descent of SGD towards a minimizer of the adversarial risk. We identify anisotropic covariance and a mismatch in ridge parameters as the main sources of suboptimality of exact line search relative to the Polyak stepsize. We also introduce a stochastic differential equation (SDE), called adversarial homogenized SGD, that captures the evolution of statistics of the iterates of SGD. For $\\ell_2$-adversarial least squares, using this SDE, we show the evolution of the risk is equivalent, up to dimension-free constants, to that of SGD on standard least squares with an adaptive learning rate and adaptive $\\ell_2$-regularization. When the dynamics converge, the limiting adversarial risk and SGD iterate are determined by a fixed-point equation, with the limiting iterate being equivalent to the solution of a ridge regression problem whose regularization parameter is the limiting effective regularization of SGD.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_23015v1",
+    "title": "Counterfactual learning of new adaptive instructional policies using logged data",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.23015v1",
+    "type": "paper",
+    "raw_text": "Optimizing instructional policies in Intelligent Tutoring Systems (ITS) typically requires costly online experimentation or student simulators that may fail to capture real-world dynamics. This paper introduces an offline contextual bandit framework that learns new adaptive policies directly from logged interaction data. By mapping student-item interactions onto a continuous latent proficiency-difficulty scale using a Rasch model, we cast the tutoring process as a continuous stochastic bandit problem. We propose a novel reward function designed to optimize ''flow'' by balancing task challenge with student success. Our approach includes a round-specific behavior policy estimation that serves as both a propensity model for off-policy evaluation and a diagnostic tool for ITS adaptivity. We demonstrate the efficacy of this framework across four large-scale real-world datasets, achieving consistent policy improvements over the logged behavior policy. The results show that effective instructional policies can be learned and visualized within seconds of computation, providing a scalable path for improving adaptive learning systems without further data collection.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_20753v1",
+    "title": "Empowering Polymeric Materials Discovery by Artificial Intelligence",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.20753v1",
+    "type": "paper",
+    "raw_text": "Polymeric materials underpin modern technologies spanning energy storage, microelectronics, healthcare and sustainable manufacturing. Yet their rational design remains exceptionally challenging because material performance emerges from complex interactions among molecular composition, chain architecture, processing history and hierarchical structural evolution across multiple length and time scales. Consequently, polymer research has long relied on labor-intensive experimentation and fragmented modeling approaches, limiting both mechanistic understanding and innovation efficiency. Recent advances in data infrastructure, machine learning, large artificial intelligence (AI) models and laboratory automation are beginning to reshape this landscape. Rather than functioning as isolated tools, polymer databases, predictive models, AI agents and automated laboratories are increasingly converging into interconnected discovery ecosystems. As a result, the central challenge is shifting from improving predictive accuracy alone to enabling reliable decision-making, adaptive learning and seamless integration across computation, experimentation and scientific reasoning. We argue that polymer science is entering an era of autonomous discovery, in which data, simulation, reasoning and experimentation operate within self-improving feedback loops that continuously generate hypotheses, design materials, execute experiments and refine predictive models. By unifying molecular design, process optimization, experimental validation and industrial translation, such autonomous ecosystems establish a more predictive, reproducible and scalable paradigm for polymer innovation, fundamentally transforming how polymer research is conducted.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_18650v1",
+    "title": "BLADE: Scalable Bi-level Adaptive Data Selection for LLM Training",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.18650v1",
+    "type": "paper",
+    "raw_text": "As Large Language Model (LLM) datasets scale to trillions of tokens, data selection has emerged as a critical frontier to filter out uninformative noise and construct adaptive learning trajectories. Beyond static heuristic filtering, advanced data selection methods for LLM training largely follow two paradigms, each with fundamental limitations. Influence-based methods provide principled bi-level objectives but require intractable inverse-Hessian computations, while excess-loss methods are computationally efficient but rely on a static reference model that becomes misaligned with the evolving proxy model during training. We propose BLADE (Bi-Level Adaptive Data sElection), a Hessian-free framework for data selection. BLADE reformulates the bi-level optimization problem underlying influence-based methods as a penalized single-level objective via Lagrange multipliers, avoiding inverse-Hessian computation while revealing a principled connection to excess-loss based data selection. The resulting objective recovers an excess-loss form but replaces the static reference model with a dynamic one that stays synchronized with training. Theoretically, we prove that this penalized formulation guarantees first-order convergence. For efficient online batch selection, we instantiate BLADE as a memoryless randomized block-coordinate Frank-Wolfe algorithm. Extensive experiments show that BLADE consistently outperforms state-of-the-art data selection baselines, providing a practical recipe for LLM training.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_16160v1",
+    "title": "A comparative and critical study of EEGNet for fNIRS-driven cognitive load classification",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.16160v1",
+    "type": "paper",
+    "raw_text": "Accurately classifying cognitive load from functional near-infrared spectroscopy (fNIRS) signals remains a significant challenge due to temporal variability, inter-subject differences, and sensitivity to preprocessing choices. This study provides a comprehensive evaluation of EEGNet for fNIRS-based cognitive load classification by systematically examining the effects of temporal segmentation strategies (overlapping vs. non-overlapping), window lengths (10s, 20s, 30s), feature extraction methods (Analysis of Variance (ANOVA), Principal Component Analysis (PCA), Fast Independent Component Analysis (FastICA)), learning rate configurations (fixed and adaptive), and evaluation protocols (random split vs. subject-independent (SI)). Results from random-split experiments show that overlapping segmentation, combined with smaller fixed learning rates (0.01-0.001), yields the highest accuracies, due to temporal redundancy and dense sampling of hemodynamic transitions. However, SI evaluation reveals a substantial drop in accuracy, demonstrating limited generalization to unseen participants. Under SI evaluation, non-overlapping segmentation outperformed overlapping windows, with the best accuracy of 56.11% achieved using PCA features with a 20-second window and a 0.1 learning rate. These findings indicate that eliminating temporal redundancy helps the model learn more robust and generalizable representations of cognitive load across individuals. Although adaptive learning rate strategy improved training stability, it did not surpass the performance of optimally selected fixed learning rates. The study highlights the critical role of segmentation strategy and learning rate selection in improving model generalization and identifies methodological considerations essential for developing reliable, real-time, and SI cognitive load classification systems using fNIRS.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_16050v1",
+    "title": "ALCL: An Adaptive Log-Correntropy Loss for Robust Learning under Non-Gaussian Noise",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.16050v1",
+    "type": "paper",
+    "raw_text": "Robust deep learning under heavy-tailed and impulsive noise remains challenging because conventional losses such as mean squared error (MSE) exhibit unbounded sensitivity to outliers. Although correntropy-based objectives improve robustness, existing formulations rely on fixed kernel parameters that must be empirically tuned and remain static during training. To address these limitations, we propose an Adaptive Log-Correntropy Loss (ALCL), a heavy-tailed loss formulation that adaptively learns its robustness geometry during optimization. ALCL introduces a logarithmic residual model whose shape and scale parameters are learned jointly with network weights through differentiable reparameterization. This yields a principled maximum likelihood formulation whose influence function is formally bounded and redescending, allowing the loss geometry to adapt dynamically to evolving residual statistics while suppressing extreme outliers. Comparative experiments on four widely used benchmark datasets spanning grayscale and red-green-blue (RGB) image data under mixed heavy-tailed and impulsive noise demonstrate that ALCL consistently outperforms MSE and optimally tuned generalized correntropy losses in both reconstruction fidelity and downstream classification accuracy. While performance differences remain small under low-noise conditions, under high-noise regimes ALCL improves median accuracy by up to 4.75% on grayscale benchmarks and 4.51% on RGB datasets, with reduced variance across runs. These results demonstrate that adaptive robustness through joint learning of loss parameters provides a computationally efficient alternative to static correntropy-based losses for deep learning in non-Gaussian environments.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_14222v1",
+    "title": "Learning the Context of Errors: Black-Box Online Adaptation of Time Series Foundation Models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.14222v1",
+    "type": "paper",
+    "raw_text": "The rapid evolution of Time Series Foundation Models (TSFMs) has advanced zero-shot forecasting across diverse domains. Inspired by the current form of Large Language Models, future TSFMs may be offered as commercialized, closed-source API services. However, many existing online adaptation methods still rely on white-box access for parameter fine-tuning or gradient backpropagation. This paradigm mismatch raises a question: In black-box online adaptation for TSFMs, what should we learn? We answer this with an insight: the predictive errors of the base model are conditioned on both the input and output of the base model (i.e., the context of errors). To validate this insight, we propose ORCA (Online Residual Contextual Adaptation). We conduct extensive experiments across 5 state-of-the-art TSFMs and 8 datasets to demonstrate the effectiveness of our approach. Furthermore, through ablation studies, we quantitatively analyze the impact of different adapter learning hypotheses on the final adaptation performance in black-box online adaptation. Code available at https://github.com/Fifthky/ORCA.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_11614v1",
+    "title": "Information-Theoretic Decomposition for Multimodal Interaction Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.11614v1",
+    "type": "paper",
+    "raw_text": "Multimodal learning hinges on capturing redundant, unique, and synergistic information across modalities, which collectively constitute multimodal interactions. A critical yet underexplored challenge is that these implicit interactions vary dynamically across samples. In this work, we present the first systematic, information-theoretic analysis highlighting why learning these dynamic, sample-specific interactions is critical for effective multimodal learning. Our analysis further reveals deficits in conventional paradigms at learning these distinct interaction types: modality ensemble approaches struggle to capture synergy, while joint learning paradigms often under-utilize redundant information. This highlights the need for an approach that can adaptively learn from different interaction types on a per-sample basis. To this end, we propose Decomposition-based Multimodal Interaction Learning (DMIL), a novel paradigm that explicitly models and learns from sample-specific interactions. First, we design a variational decomposition architecture to isolate the constituent interaction components. Second, we employ a new learning strategy that leverages these explicit interaction components in a fine-tuning process to achieve comprehensive interaction learning. Extensive experiments across diverse tasks and architectures demonstrate that DMIL consistently achieves superior performance by adapting to holistic sample-specific interactions. Our framework is flexible and broadly applicable, establishing an interaction-centric paradigm for multimodal learning. The code is available at https://github.com/GeWu-Lab/DMIL.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_09175v1",
+    "title": "CANS: Accelerating Multiuser Collaborative Edge Inference via Cooperative Autodidactic NeuroSurgeon",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.09175v1",
+    "type": "paper",
+    "raw_text": "Recently, mobile edge computing (MEC)-enabled collaborative deep neural network (DNN) inference has emerged as a promising approach for delivering intelligent services to resource-constrained mobile devices. A representative scenario is multi-user collaborative edge inference, where distinct devices independently partition their DNN models and offload backend computation to a common edge server over wireless networks. However, determining the optimal DNN partition for each device is challenging due to unknown and time-varying system conditions, including fluctuating wireless links and diverse device capabilities. To address this problem, we propose Cooperative Autodidactic NeuroSurgeon (CANS), a collaborative edge inference framework that enables devices to adaptively learn optimal DNN partitions by sharing informative feedback during online inference. To handle the challenge of device heterogeneity and better leverage offline inference experience, we integrate a novel FedLinUCB-DW algorithm that groups devices of the same type and warm-starts online exploration using local offline early-exit inference experience. Furthermore, we provide theoretical guarantees for FedLinUCB-DW by deriving the regret upper bound. We also validate our method on both a simulated environment and a hardware prototype system. Empirical evaluations demonstrate that CANS achieves lower inference latency compared to state-of-the-art baselines. Especially, in prototype experiments on two edge devices, the proposed CANS reduced average inference latency by up to 50% compared to the non-cooperative baseline.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

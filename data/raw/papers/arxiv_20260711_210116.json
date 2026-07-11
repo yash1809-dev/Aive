@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_14118v1",
+    "title": "Probing Structure and Ionic Transport in Molten Lithium Carbonate",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.14118v1",
+    "type": "paper",
+    "raw_text": "Li$_2$CO$_3$ (LC) is a cornerstone material for clean energy technologies, including high-temperature molten carbonate fuel cells, electrochemical carbon capture, and lithium-based batteries. However, capturing the complex, many-body interactions governing the structure and transport in LC in its molten state has remained a challenge, constrained by the computational cost of \\textit{ab initio} methods and the accuracy limitations of classical force fields. To address this gap, we deploy equivariant graph-based machine learned interatomic potentials, specifically, the multi atomic cluster expansion (MACE) and neural equivariant interatomic potential (NequIP) architectures that are trained on melt-quench \\textit{ab initio} molecular dynamics data. Our benchmarking demonstrates that MACE provides superior transferability and precision in predicting energies and forces compared to NequIP. Subsequently, we use the optimized MACE model to perform large-scale molecular dynamics simulations to probe the properties of molten LC. Besides describing the structural features, such as the dominant presence of C-O pair correlations under molten conditions, our MACE model reproduces experimentally-measured static structure factors and shear viscosity values. Further, our simulations indicate that Li transport in LC is fundamentally dominated by concerted motion, as evidenced by Haven's ratios being significantly below unity (0.20-0.40). Notably, we identify a temperature-driven transition from anisotropic (and highly concerted) Li transport, supported by persistent oxygen-centered Voronoi cages at 1000~K, to isotropic (and less concerted) diffusion at 1400~K. Thus, we provide fundamental insights into the structural and transport properties of molten LC and also demonstrate a robust and scalable framework for the accelerated design of molten salt electrolytes and ionic liquids.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_02409v2",
+    "title": "Inducing Permutation Invariant Priors in Bayesian Optimization for Carbon Capture and Storage Applications",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.02409v2",
+    "type": "paper",
+    "raw_text": "Bayesian Optimization is an iterative method, tailored to optimizing expensive black box objective functions. Surrogate models like Gaussian Processes, which are the gold standard in Bayesian Optimization, can be inefficient for inputs with permutation symmetries, as the most common kernels employed are better suited for vector inputs rather than unordered sets of items. Motivated by this issue, we turn to permutation invariant Bayesian Optimization for well placement in Carbon Capture and Storage projects. The high fidelity black box simulator is instructed to operate wells under group control, giving rise to permutation symmetries within injector and producer groups that cannot be exploited with standard GP kernels. In this work, our main contribution is a novel Gaussian Process kernel (GP-Perm) that encodes permutation invariance by comparing sets through a stable divergence between their induced empirical representations, and can be combined with standard kernels for additional vector-valued inputs. As a learned invariant baseline, we also consider a Deep Kernel Learning model (DKL-DS) using the Deep Sets architecture to learn a permutation-invariant embedding. We evaluate the proposed methodology across 8 use cases, comprising seven synthetic benchmarks and one realistic CCS case study (Johansen formation)",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2604_13520v1",
+    "title": "LEGO-MOF: Equivariant Latent Manipulation for Editable, Generative, and Optimizable MOF Design",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2604.13520v1",
+    "type": "paper",
+    "raw_text": "Metal-organic frameworks (MOFs) are highly promising for carbon capture, yet navigating their vast design space remains challenging. Recent deep generative models enable de novo MOF design but primarily act as feed-forward structure generators. By heavily relying on predefined building block libraries and non-differentiable post-optimization, they fundamentally sever the information flow required for continuous structural editing. Here, we propose a target-driven generative framework focused on continuous structural manipulation. At its core is LinkerVAE, which maps discrete 3D chemical graphs into a continuous, SE(3)-equivariant latent space. This smooth manifold unlocks geometry-aware manipulations, including implicit chemical style transfer and zero-shot isoreticular expansion. Building upon this, we introduce a test-time optimization (TTO) strategy, utilizing an accurate surrogate model to continuously optimize the latent graphs of existing MOFs toward desired properties. This approach systematically enhances carbon capture performance, achieving a striking average relative boost of 147.5% in pure CO2 uptake while strictly preserving structural validity. Integrated with a latent diffusion model and rigid-body assembly for full MOF construction, our framework establishes a scalable, fully differentiable pathway for both the automated discovery, targeted optimization and editing of functional materials.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_11250v2",
+    "title": "A Machine Learning-Enhanced Hopf-Cole Formulation for Nonlinear Gas Flow in Porous Media",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.11250v2",
+    "type": "paper",
+    "raw_text": "Accurate modeling of gas flow through porous media is critical for many technological applications, including reservoir performance prediction, carbon capture and sequestration, and fuel cells and batteries. However, such modeling remains challenging due to strong nonlinear behavior and uncertainty in model parameters. In particular, gas slippage effects described by the Klinkenberg model introduce pressure-dependent permeability, which complicates numerical simulation and obscures deviations from classical Darcy flow behavior. To address these challenges, we present an integrated modeling framework for gas transport in porous media that combines a Klinkenberg-enhanced constitutive relation, Hopf-Cole-transformed mixed-form linear governing equations, a shared-trunk neural network architecture, and a Deep Least-Squares (DeepLS) solver. The Hopf-Cole transformation reformulates the original nonlinear flow equations into an equivalent linear system closely related to the Darcy model, while the mixed formulation, together with a shared-trunk neural architecture, enables simultaneous and accurate prediction of both pressure and velocity fields. A rigorous convergence analysis is performed both theoretically and numerically, establishing the stability and convergence properties of the proposed solver. Importantly, the proposed framework also naturally facilitates inverse modeling of pressure-dependent permeability and slippage parameters from limited or indirect observations, enabling efficient estimation of flow properties that are difficult to measure experimentally. Numerical results demonstrate accurate recovery of flow dynamics and parameters across a wide range of pressure regimes, highlighting the framework's robustness, accuracy, and computational efficiency for gas transport modeling and inversion in tight formations.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_09651v1",
+    "title": "Well Log-Guided Synthesis of Subsurface Images from Sparse Petrography Data Using cGANs",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.09651v1",
+    "type": "paper",
+    "raw_text": "Pore-scale imaging of subsurface formations is costly and limited to discrete depths, creating significant gaps in reservoir characterization. To address this, we present a conditional Generative Adversarial Network (cGAN) framework for synthesizing realistic thin section images of carbonate rock formations, conditioned on porosity values derived from well logs. The model is trained on 5,000 sub-images extracted from 15 petrography samples over a depth interval of 1992-2000m, the model generates geologically consistent images across a wide porosity range (0.004-0.745), achieving 81% accuracy within a 10\\% margin of target porosity values. The successful integration of well log data with the trained generator enables continuous pore-scale visualization along the wellbore, bridging gaps between discrete core sampling points and providing valuable insights for reservoir characterization and energy transition applications such as carbon capture and underground hydrogen storage.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2603_06800v1",
+    "title": "From Accurate Quantum Chemistry to Converged Thermodynamics for Ion Pairing in Solution",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2603.06800v1",
+    "type": "paper",
+    "raw_text": "Quantitative prediction of thermodynamic properties in solution is essential for translating atomistic simulations into reliable chemical insight. As an exemplar system, the behaviour of CaCO$_3$ in water has been widely studied to understand its mineralization in seawater, with potential implications for carbon-capture strategies. However, making accurate computational predictions has been a long-standing challenge, requiring both highly accurate electronic structure methods and extensive statistical sampling. Here, we combine advances in machine learning and electronic structure theory to fully resolve the ion pairing free energy of CaCO$_3$ with explicit solvation. We show that achieving quantitative agreement with experiment requires going beyond the standard density functional theory up to the \"gold-standard\" coupled cluster theory with single, double, and perturbative triple excitations [CCSD(T)]. We generate a set of systematically improvable models, enabling reliable insights into the initial association mechanism of Ca and CO$_3$ ions prior to nucleation while fully quantifying enthalpic and entropic effects. Our results demonstrate that CCSD(T)-level thermodynamic predictions of complex aqueous systems can now be routinely achieved.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2602_12274v2",
+    "title": "Function-Space Decoupled Diffusion for Forward and Inverse Modeling in Carbon Capture and Storage",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2602.12274v2",
+    "type": "paper",
+    "raw_text": "Accurate characterization of subsurface flow is critical for Carbon Capture and Storage (CCS) but remains challenged by the ill-posed nature of inverse problems with sparse observations. We present Function-space Decoupled Diffusion Posterior Sampling (Fun-DDPS), a generative framework that combines function-space diffusion models with differentiable neural operator surrogates for both forward and inverse modeling. Our approach learns a prior distribution over geological parameters (geomodel) using a single-channel diffusion model, then leverages a Local Neural Operator (LNO) surrogate to provide physics-consistent guidance for cross-field conditioning on the dynamics field. This decoupling allows the diffusion prior to robustly recover missing information in parameter space, while the surrogate provides efficient gradient-based guidance for data assimilation. We demonstrate Fun-DDPS on synthetic CCS modeling datasets, achieving two key results: (1) For forward modeling with only 25% observations, Fun-DDPS achieves 7.7% relative error compared to 86.9% for standard surrogates (an 11x improvement), proving its capability to handle extreme data sparsity where deterministic methods fail. (2) We provide the first rigorous validation of diffusion-based inverse solvers against asymptotically exact Rejection Sampling (RS) posteriors. Both Fun-DDPS and the joint-state baseline (Fun-DPS) achieve Jensen-Shannon divergence less than 0.06 against the ground truth. Crucially, Fun-DDPS produces physically consistent realizations free from the high-frequency artifacts observed in joint-state baselines, achieving this with 4x improved sample efficiency compared to rejection sampling.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2601_09285v2",
+    "title": "Enhancing Spatial Reasoning in Large Language Models for Metal-Organic Frameworks Structure Prediction",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2601.09285v2",
+    "type": "paper",
+    "raw_text": "Metal-organic frameworks (MOFs) are porous crystalline materials with broad applications such as carbon capture and drug delivery, yet accurately predicting their 3D structures remains a significant challenge. While Large Language Models (LLMs) have shown promise in generating crystal structures, their application to MOFs is hindered by MOFs' high structural complexity arising from the large number of atoms in unit cell. Inspired by the success of block-wise paradigms in deep generative models for MOFs, we pioneer the application of LLMs in this domain by introducing MOF-LLM, the first LLM framework specifically adapted for block-level MOF structure prediction. To effectively harness LLMs for this 3D modular assembly task, our training paradigm integrates spatial-aware continual pre-training (CPT), structural supervised fine-tuning (SFT), and matching-driven reinforcement learning (RL). By incorporating explicit spatial priors and optimizing structural stability via Soft Adaptive Policy Optimization (SAPO), our approach substantially enhances the spatial reasoning in a Qwen-3 8B model for MOF structure prediction. Comprehensive experiments demonstrate that MOF-LLM achieves state-of-the-art performance with a match rate of 35.78% while exhibiting superior sampling efficiency of 0.04 seconds per structure.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2510_26198v1",
+    "title": "Machine learning-based upscaling of rock permeability from pore scale to core scale: effect of training dataset size and sub-core volumes",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2510.26198v1",
+    "type": "paper",
+    "raw_text": "Permeability characterizes the capacity of porous formations to conduct fluids, thereby governing the performance of carbon capture, utilization, and storage (CCUS), hydrocarbon extraction, and subsurface energy storage. A reliable assessment of rock permeability is therefore essential for these applications. Direct estimation of permeability from low-resolution CT images of large rock samples offers a rapid approach to obtain permeability data. However, the limited resolution fails to capture detailed pore-scale structural features, resulting in low prediction accuracy. To address this limitation, we propose a convolutional neural network (CNN)-based upscaling method that integrates high-precision pore-scale permeability information into core-scale, low-resolution CT images. In our workflow, the large core sample is partitioned into sub-core volumes, whose permeabilities are predicted using CNNs. The upscaled permeability at the core scale is then determined through a Darcy flow solver based on the predicted sub-core permeability map. Additionally, we examine the optimal sub-core volume size that balances computational efficiency and prediction accuracy. This framework effectively incorporates small-scale heterogeneity, enabling accurate permeability upscaling from micrometer-scale pores to centimeter-scale cores.",
+    "year": "2025",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2510_24063v2",
+    "title": "Benchmarking foundation potentials against quantum chemistry methods for predicting molecular redox potentials",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2510.24063v2",
+    "type": "paper",
+    "raw_text": "Computational high-throughput virtual screening is essential for identifying redox-active molecules for sustainable applications such as electrochemical carbon capture. A primary challenge in this approach is the high computational cost associated with accurate quantum chemistry calculations. Machine learning foundation potentials (FPs) trained on extensive density functional theory (DFT) calculations offer a computationally efficient alternative. Here, we benchmark the MACE-OMol-0 and UMA FPs against a hierarchy of DFT functionals for predicting experimental molecular redox potentials for both electron transfer (ET) and proton-coupled electron transfer (PCET) reactions. We find that these FPs achieve exceptional accuracy for PCET processes, rivaling their target DFT method. However, the performance is diminished for ET reactions, particularly for multi-electron transfers involving reactive ions that are underrepresented in the OMol25 training data, revealing a key out-of-distribution limitation. To overcome this, we propose an optimal hybrid workflow that uses the FPs for efficient geometry optimization and thermochemical analysis, followed by a crucial single-point DFT energy refinement and an implicit solvation correction. This pragmatic approach provides a robust and scalable strategy for accelerating high-throughput virtual screening in sustainable chemistry.",
+    "year": "2025",
+    "extraction_status": "pending"
+  }
+]

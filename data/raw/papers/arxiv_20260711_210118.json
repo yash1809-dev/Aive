@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper_2606_28546v1",
+    "title": "NIVA: A Multimodal Foundation Model for Actionable Earth System Intelligence",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.28546v1",
+    "type": "paper",
+    "raw_text": "Recent advances in AI-driven weather and climate modeling have improved forecast skill while reducing computational cost. However, existing data-driven approaches are limited in their ability to model coupled Earth system dynamics, which is required for extending predictability beyond the ~2-week horizon. To address this, we introduce NIVA, a multimodal foundation model designed to learn unified representations across Earth system components. While the full framework targets atmosphere, ocean, ice, and land interactions, we focus here on a two-modality setting (ocean and atmosphere) as a controlled proof of concept to evaluate whether foundation models can learn coupled dynamics. Trained on large-scale Earth system simulations, NIVA learns physically meaningful cross-modal structure, providing a foundation for subseasonal-to-seasonal prediction. As initial validation, we show that NIVA captures key modes of climate variability through accurate prediction of major climate indices.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_28519v1",
+    "title": "A Trainable-by-Parts Operator Learning Framework: Bridging DeepONet and Karhunen-Loeve Expansions for Large-Scale Applications",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.28519v1",
+    "type": "paper",
+    "raw_text": "Training operator-learning models for large-scale problems governed by partial differential equations (PDEs) is challenging due to the curse of dimensionality, memory constraints, and limited training data. These challenges arise in many scientific and engineering applications, including subsurface flow, climate modeling, and geological carbon storage (GCS). In this work, we propose a scalable operator-learning framework based on the Karhunen-Loeve Deep Neural Network (KL-DNN) and demonstrate its performance for modeling GCS. The model is trained on a dataset comprising 100 samples of large-scale simulations in a three-dimensional domain with 1.7 million cells and 50 time steps. The KL-DNN method constructs latent spaces using low-rank singular value decomposition of static properties and a nested Karhunen-Loeve expansion for dynamic pressure fields, enabling full-resolution predictions without subsampling or spatial coarsening. The KL-DNN model achieves an average root mean square error (RMSE) of 1.1 psi for pressure (0.04% relative error with respect to the average pressure in the domain) and RMSE of 0.0146 for CO2 saturation (5% relative error with respect to the average saturation inside the plume). The model requires 20 minutes of training on a single GPU, representing a 19% reduction in the pressure errors, 7% reduction in the saturation error, and a two-order-of-magnitude speedup compared to DeepONet trained on the same dataset. These results, along with inference time of less than one minute, establish the proposed model as a practical and accurate solution for large-scale PDE problems, enabling rapid uncertainty quantification, history matching, and real-time decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_27202v1",
+    "title": "Graph Neural Networks Applications Across Domains: All Insights You Need",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.27202v1",
+    "type": "paper",
+    "raw_text": "Graph neural networks have moved from a niche representation-learning technique to the default model class wherever data carry relational structure. The interesting question is no longer whether message passing helps on a given dataset, but where graph structure earns its computational cost and where it does not. This survey organises the field around a single design space, derives the spectral and spatial formulations from shared first principles, and connects expressive power to the Weisfeiler-Leman hierarchy with explicit statements of what current architectures can and cannot separate. Against that methodological backbone we examine twelve application domains, among them recommendation and social networks, knowledge graphs and language-model integration, drug discovery and molecular property learning, healthcare and neuroscience, computer vision, traffic and urban computing, power and renewable-energy systems, wireless and sixth-generation networks, fraud and cybersecurity, industrial prognostics, materials science, and climate modelling. For each domain we specify the graph-construction choices and their costs, identify which architecture families dominate and why, and separate reported gains from artefacts of weak baselines or favourable splits. A cross-domain comparison exposes recurring patterns: heterophily and scale undercut the same models almost everywhere, temporal graphs remain harder than their static counterparts, and the architectures that top public leaderboards are seldom the ones that reach deployment. We treat over-smoothing, over-squashing, robustness, distribution shift, fairness, and explainability not as a closing checklist but as the constraints that decide adoption.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_29976v2",
+    "title": "Evaluating Skill and Stability of ArchesWeather and ArchesWeatherGen under Multi-Decadal Climate Simulations",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.29976v2",
+    "type": "paper",
+    "raw_text": "We evaluate the climate simulation capabilities of ArchesWeather and ArchesWeatherGen, two machine learning models originally trained for weather forecasting and evaluated up to a 10-day lead time. ArchesWeather is a deterministic model, while ArchesWeatherGen is a probabilistic flow-matching model leveraging ArchesWeather's forecasts, enabling ensemble-based uncertainty quantification. In this work, we adapt these models to act as forced atmospheric models by using additional conditioning on the monthly mean sea surface temperature (SST) and sea ice cover (SIC) as boundary conditions. In particular, we follow the AI Model Intercomparison Project (AIMIP) Phase 1 protocol, which, analogous to the Atmospheric Model Intercomparison Project (AMIP), proposes a standardized experimental setup to evaluate the climate skill of ML-based forced atmospheric models. We present a comprehensive evaluation of both models under these conditions, including comparison against numerical climate models, ablation studies that examine key design choices in the extension, and an analysis of forced versus unforced configurations. Despite being originally developed for weather forecasting, we demonstrate that forced configurations of ArchesWeather and ArchesWeatherGen produce stable long-term climate simulations, have a stable annual cycle, and capture the drift of many climate variables. The models faithfully reproduce ERA5's climatology, large-scale circulations and interannual variability, and they capture the tails of the distributions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_09036v1",
+    "title": "PACT: Peak-Aware Cross-Attention Graph Transformers for Efficient Storm-Surge Emulation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.09036v1",
+    "type": "paper",
+    "raw_text": "Accurate and efficient storm-surge emulation is essential for coastal hazard assessment, yet high-fidelity hydrodynamic models remain too expensive for large scenario ensembles and rapid evaluation under heterogeneous climate forcings. We present PACT, a peak-aware cross-attention graph transformer for efficient station-level storm-surge prediction from atmospheric forcing fields. PACT represents each forcing patch as a graph, encodes spatial structure with GraphSAGE, and uses a learned station query to aggregate node information through cross-attention rather than uniform pooling. A Transformer encoder models temporal dependence across the forcing history, and a horizon-query decoder generates lead-specific forecasts from a shared temporal memory. To better capture extreme events, we introduce a peak-aware learning strategy that couples a lightweight auxiliary peak-aware head with a tailored training objective, including a tail-focused loss on peak-dominated samples and a horizon-wise slope regularizer to encourage coherent multi-step evolution. Across multiple tide-gauge stations along the US Northeast coast, PACT outperforms a strong spatio-temporal graph neural network baseline in both RMSE and MAE. Diagnostics show improved peak fidelity and tail preservation for reanalysis and most CMIP6 datasets. PACT is also computationally efficient, requiring about 3.5~s to generate a full winter-season surge trajectory for one year after training. Under distribution shift across five CMIP6 forcings, PACT transfers well within the CMIP6 family but degrades markedly when transferring from reanalysis to climate-model forcings, highlighting a persistent reanalysis--GCM gap.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_07954v1",
+    "title": "Stencil Computations on Cerebras Wafer-Scale Engine",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.07954v1",
+    "type": "paper",
+    "raw_text": "Stencil computations are a fundamental kernel in scientific computing, critical for simulations in domains such as fluid dynamics and climate modeling. However, these computations are often memory-bound on traditional High-Performance Computing architectures like GPUs, struggling against the \"Memory Wall\". Simultaneously, the rise of AI-oriented hardware, such as the Cerebras Wafer-Scale Engine, offers massive core parallelism and high-bandwidth on-chip memory, though typically optimized for lower-precision workloads. This work investigates the viability of bridging this divergence by mapping stencil algorithms onto the Cerebras WSE-3. The study introduces CStencil, a novel framework designed to implement two-dimensional stencil computations on the WSE-3. To ensure a rigorous and fair performance evaluation, the research also adapts ConvStencil, a state-of-the-art GPU stencil solver, porting it from its original double-precision design to single-precision for execution on an NVIDIA A100 GPU. Experimental results show that the WSE-3's distributed SRAM and mesh interconnect effectively eliminate the off-chip memory bottlenecks common in GPU implementations. CStencil achieves speedups of up to 342x over the adapted ConvStencil version. A roofline model analysis further confirms that CStencil saturates the available compute and memory resources, demonstrating that the WSE dataflow architecture can be successfully repurposed for traditional scientific algorithms. These findings highlight the potential of the WSE-3 to deliver hardware utilization levels unattainable on conventional systems, offering a promising path toward overcoming the memory limitations of current HPC architectures.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_06944v2",
+    "title": "AIMIP Phase 1: systematic evaluations of AI weather and climate models",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.06944v2",
+    "type": "paper",
+    "raw_text": "We present the AI weather and climate model intercomparison project (AIMIP), phase 1. Drawing from the rich tradition of intercomparisons in climate model development, we specify a common experiment, output data format, and training constraints (namely, training against historical reanalysis data) for AIMIP Phase 1 models. We aim to identify differences in modeling frameworks and AI architectural choices that influence model behavior, and build trust in AI weather and climate models through open data and evaluation. AIMIP Phase 1 models must simulate the atmosphere given specified historical sea surface temperatures over 1979-2024. We evaluate the models' performance using five major evaluation criteria: biases, trends, response to El Ni\u00f1o-related sea surface temperature anomalies, temporal variability, and out-of-sample generalization tests. We find that the AI models are able to simulate the historical climate and response to forcing as well as a conventional physically-based model, but some AI models underestimate historical warming trends, and their predictions diverge in the out-of-sample generalization tests. We describe the AIMIP Phase 1 dataset that is publicly available for additional evaluations.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_05133v3",
+    "title": "Transformed Latent Variable Multi-Output Gaussian Processes",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.05133v3",
+    "type": "paper",
+    "raw_text": "Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces. To maintain tractability, existing methods typically resort to restrictive assumptions, such as employing low-rank or sum-of-separable kernels, which can limit expressiveness. We propose the Transformed Latent Variable MOGP (T-LVMOGP), a novel framework that scales MOGPs to a massive number of outputs while preserving the capacity to capture meaningful inter-output dependencies. T-LVMOGP constructs a flexible multi-output deep kernel by mapping inputs and output-specific latent variables into an embedding space using a Lipschitz-regularised neural network. Combined with stochastic variational inference, our model effectively scales to high-dimensional output settings. Across diverse benchmarks, including climate modelling with over 10,000 outputs and zero-inflated spatial transcriptomics data, T-LVMOGP outperforms baselines in both predictive accuracy and computational efficiency.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_05052v1",
+    "title": "Interpretable Neural Networks to Predict Momentum Fluxes of Orographic Gravity Waves",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.05052v1",
+    "type": "paper",
+    "raw_text": "State-of-the-art Earth system models (ESMs) cannot explicitly resolve many small-scale atmospheric processes such as atmospheric gravity waves, and thus must represent, or parameterise, their effects on the resolved state. Machine learning (ML) has the potential to improve these parameterisations. In our study, we train neural networks (NNs) on ERA5 reanalysis data to predict momentum fluxes of orographic gravity waves as a function of the state variables at the resolution of a coarse ESM. Employing a full year of data, we extract inertia-gravity waves using the software MODES, which applies linear theory for wave filtering, and train ML models on data coarse-grained to the ESM's target resolution. We consider four different cases: the full spectrum of inertia-gravity waves resolved in ERA5, or just the part of the spectrum that is subgrid-scale in the target ESM, both over all land or just over mountainous terrain. Our NNs successfully predict momentum fluxes, with a global coefficient of determination ($R^2$) ranging from 0.72 to 0.56, depending on the case, when evaluated offline with data from another year. An analysis of our models using SHAP values, an explainable AI technique, suggests that the networks learned physically meaningful relationships. In addition, we give a comparison with the physics-based parameterisation scheme by Lott and Miller. This work forms the basis for the development of operational ML-based parameterisations to improve the representation of gravity waves and their effects in climate models.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2605_02825v1",
+    "title": "The Bayesian Reflex: Online Learning as the Autonomic Nervous System of Modern and Future AI",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2605.02825v1",
+    "type": "paper",
+    "raw_text": "This chapter introduces the Bayesian reflex -- an analogy with the autonomic nervous system -- as a unifying framework for online learning in AI. Bayesian online algorithms automatically maintain equilibrium in dynamic environments via three mechanisms: belief maintenance through probabilistic representations, sequential updating via Bayes' theorem, and uncertainty-driven action balancing exploration and exploitation. We survey online Bayesian methods, highlighting two computational principles: the look-up table principle for sequential inference in function space, and the ellipsoidal decomposition framework for nearly exact i.i.d. sampling from arbitrary posteriors. These principles are generalized across dynamic emulation, nonparametric state-space models, circular time series, inverse regression for climate model evaluation, and deep architectures via Recursive Gaussian Processes. Decision-making is explored via Thompson sampling and restless bandits. We extend the framework to assess infinite series convergence (applied to climate dynamics and the Riemann Hypothesis), model prime number distributions leading to the discovery of 184 strong Mersenne prime candidates, detect stationarity, and characterize point processes. The Bayesian reflex provides a foundational infrastructure for adaptive AI that continuously learns in a complex world.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

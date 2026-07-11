@@ -1,28 +1,32 @@
 CREATE TABLE IF NOT EXISTS items (
-    id                TEXT PRIMARY KEY,
-    title             TEXT NOT NULL,
-    source            TEXT,
-    source_url        TEXT,
-    type              TEXT NOT NULL,
-    raw_text          TEXT,
-    summary           TEXT,
-    problem           TEXT,
-    solution          TEXT,
-    technology        TEXT,
-    keywords          TEXT,
-    industry          TEXT,
-    impact            TEXT,
-    beneficiaries     TEXT,
-    year              TEXT,
-    extracted_at      TEXT,
-    extraction_status TEXT DEFAULT 'pending',
-    ko_type           TEXT DEFAULT 'document',
-    confidence        REAL DEFAULT 0.5,
-    version           INTEGER DEFAULT 1,
-    provenance        TEXT,  -- JSON object
-    validation_state  TEXT DEFAULT 'unvalidated',
-    reasoning_refs    TEXT,  -- JSON array
-    discovery_refs    TEXT   -- JSON array
+    id                       TEXT PRIMARY KEY,
+    title                    TEXT NOT NULL,
+    source                   TEXT,
+    source_url               TEXT,
+    type                     TEXT NOT NULL,
+    raw_text                 TEXT,
+    summary                  TEXT,
+    problem                  TEXT,
+    solution                 TEXT,
+    technology               TEXT,
+    keywords                 TEXT,
+    industry                 TEXT,
+    impact                   TEXT,
+    beneficiaries            TEXT,
+    year                     TEXT,
+    extracted_at             TEXT,
+    extraction_status        TEXT DEFAULT 'pending',
+    ko_type                  TEXT DEFAULT 'document',
+    confidence               REAL DEFAULT 0.5,
+    version                  INTEGER DEFAULT 1,
+    provenance               TEXT,  -- JSON object
+    validation_state         TEXT DEFAULT 'unvalidated',
+    reasoning_refs           TEXT,  -- JSON array
+    discovery_refs           TEXT,  -- JSON array
+    -- V2 columns
+    evidence_classification  TEXT,  -- JSON: {field: fact|inference|hypothesis|unknown}
+    doc_type                 TEXT,  -- auto-detected: paper|patent|startup|report|technical_doc|news|dataset|other
+    domain                   TEXT   -- auto-detected domain string
 );
 
 CREATE TABLE IF NOT EXISTS nodes (
@@ -82,7 +86,9 @@ CREATE TABLE IF NOT EXISTS opportunities (
     source_startups      TEXT,
     critic_verdict       TEXT DEFAULT 'pending',
     critic_notes         TEXT,
-    created_at           TEXT
+    created_at           TEXT,
+    -- V2 column
+    reasoning_chain      TEXT   -- JSON: traceable inference path
 );
 
 CREATE TABLE IF NOT EXISTS opportunity_feedback (
@@ -103,4 +109,30 @@ CREATE TABLE IF NOT EXISTS rejected_ideas (
     opportunity_id TEXT REFERENCES opportunities(id),
     reason         TEXT,
     rejected_at    TEXT
+);
+
+-- V2: Typed discovery objects (research gaps, method transfers, contradictions)
+CREATE TABLE IF NOT EXISTS discoveries (
+    id           TEXT PRIMARY KEY,
+    type         TEXT NOT NULL,   -- research_gap | contradiction | method_transfer | technology_transfer
+    title        TEXT,
+    description  TEXT,
+    evidence     TEXT,            -- JSON array of supporting item IDs
+    source_nodes TEXT,            -- JSON array of relevant node IDs
+    confidence   REAL DEFAULT 0.5,
+    reasoning    TEXT,
+    created_at   TEXT
+);
+
+-- V2: Conflicting evidence pairs
+CREATE TABLE IF NOT EXISTS contradictions (
+    id           TEXT PRIMARY KEY,
+    concept      TEXT,            -- The concept they disagree about
+    claim_a      TEXT,
+    claim_b      TEXT,
+    source_a     TEXT,            -- item_id of first source
+    source_b     TEXT,            -- item_id of second source
+    explanation  TEXT,
+    confidence   REAL DEFAULT 0.5,
+    created_at   TEXT
 );
