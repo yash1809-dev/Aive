@@ -12,8 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, List
 
-ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+from db.init_db import DB_PATH
 
 EVENT_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS events (

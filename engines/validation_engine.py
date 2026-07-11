@@ -11,8 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 from engines.base_engine import BaseEngine
 
-ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+from db.init_db import DB_PATH
 
 
 class ValidationEngine(BaseEngine):
@@ -60,6 +59,15 @@ class ValidationEngine(BaseEngine):
         startups = self._parse_json(opp.get("source_startups", "[]"))
         edge_conf = float(opp.get("edge_confidence", 0.5))
 
+        # Retrieve core multidimensional scores
+        novelty = float(opp.get("novelty_score") or 5)
+        timing = float(opp.get("timing_score") or 5)
+        market = float(opp.get("market_score") or 5)
+        feasibility = float(opp.get("feasibility") or 5)
+
+        # Average of the core dimensions (1.0 to 10.0)
+        core_avg = (novelty + timing + market + feasibility) / 4.0
+
         # 1. Source diversity score (0.0 to 1.0)
         source_types = 0
         if papers: source_types += 1
@@ -71,17 +79,17 @@ class ValidationEngine(BaseEngine):
         total_sources = len(papers) + len(patents) + len(startups)
         volume_score = min(1.0, total_sources / 10.0)  # capped at 10 sources
 
-        # 3. Trust score (combining edge weight + diversity + volume)
-        trust_score = (edge_conf * 0.4) + (diversity_score * 0.4) + (volume_score * 0.2)
+        # 3. Trust score (combining core metrics + edge weight + diversity + volume)
+        trust_score = ((core_avg / 10.0) * 0.5) + (edge_conf * 0.2) + (diversity_score * 0.2) + (volume_score * 0.1)
 
         # 4. Determine Validation Status
         critic_verdict = opp.get("critic_verdict", "pending")
         if critic_verdict == "rejected":
             status = "Deprecated"
         elif critic_verdict == "survived":
-            if trust_score > 0.8:
+            if trust_score > 0.7:
                 status = "Highly Validated"
-            elif trust_score > 0.6:
+            elif trust_score > 0.5:
                 status = "Validated"
             else:
                 status = "Partially Validated"
@@ -93,7 +101,7 @@ class ValidationEngine(BaseEngine):
             "volume_score": round(volume_score, 2),
             "trust_score": round(trust_score, 2),
             "validation_status": status,
-            "confidence_score": int(trust_score * 10)
+            "confidence_score": max(1, min(10, round(trust_score * 10)))
         }
 
     def run(self, inputs: Dict[str, Any]) -> Dict[str, Any]:

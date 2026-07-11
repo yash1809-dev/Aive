@@ -17,8 +17,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 from engines.base_engine import BaseEngine
 
-ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+from db.init_db import DB_PATH
 
 
 class KnowledgeEngine(BaseEngine):

@@ -36,8 +36,8 @@ from validation.models import EdgeAuditResult, GraphAuditReport
 # Path helpers
 # ---------------------------------------------------------------------------
 
-ROOT = Path(__file__).resolve().parent.parent.parent
-_DEFAULT_DB = ROOT / "data" / "aive.db"
+from db.init_db import DB_PATH
+_DEFAULT_DB = DB_PATH
 
 # ---------------------------------------------------------------------------
 # Prompts

@@ -11,8 +11,8 @@ from pathlib import Path
 from typing import Any, Dict, List
 from engines.base_engine import BaseEngine
 
+from db.init_db import DB_PATH
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
 REPORTS_DIR = ROOT / "reports"
 
 

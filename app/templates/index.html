@@ -578,7 +578,7 @@
             <div class="logo">AIVE CANVAS OS</div>
             <div class="logo-tag">PRO</div>
             <div class="project-meta">
-                Workspace: <span id="active-ws-name">Solid-State Battery — Next-Gen Electrolyte</span>
+                Workspace: <span id="active-ws-name">Default Workspace</span>
             </div>
         </div>
         <div class="topbar-center">
@@ -698,9 +698,20 @@
                     <button class="btn-pipeline" onclick="generateUnifiedReport()">Generate Unified Report</button>
                     <div id="report-gen-status" style="font-size: 0.82rem; color: var(--neon-green);"></div>
                 </div>
-                <div class="section-title">Saved Opportunity Reports</div>
-                <div id="reports-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <p style="color: var(--text-secondary);">No reports generated yet. Click above to compile all surviving evidence into a publication-ready portfolio.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem;">
+                    <div>
+                        <div class="section-title">Saved Opportunity Reports</div>
+                        <div id="reports-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <p style="color: var(--text-secondary);">No reports generated yet. Click above to compile all surviving evidence into a publication-ready portfolio.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="section-title" id="report-preview-title">Report Preview</div>
+                        <div id="report-preview-content" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; min-height: 450px; max-height: 650px; overflow-y: auto; color: var(--text-primary); font-family: 'Outfit', sans-serif; line-height: 1.6; font-size: 0.9rem;">
+                            Select a report from the list to preview its contents.
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1190,10 +1201,22 @@
                         researchBankCache[item.id] = item;
                     });
                     bank.innerHTML = data.map(item => `
-                        <div class="bank-item" onclick="selectNodeById('${item.id}', 'paper')">
-                            📄 ${item.title}
+                        <div class="bank-item" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;" onclick="selectNodeById('${item.id}', 'paper')">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📄 ${item.title}</span>
+                            <button onclick="event.stopPropagation(); deleteIngestedSource('${item.id}', '${item.title.replace(/'/g, "\\'")}')" style="background: none; border: none; color: var(--neon-red); font-size: 1rem; cursor: pointer; padding: 2px 6px;">×</button>
                         </div>
                     `).join('');
+                });
+        }
+
+        function deleteIngestedSource(id, title) {
+            if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
+            fetch(`/api/ingest/delete/${id}`, { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    loadResearchBank();
+                    loadGraphData();
+                    if (typeof loadStats === 'function') loadStats();
                 });
         }
 
@@ -1252,7 +1275,11 @@
 
                             if (s.stage === 'done' && s.last_result) {
                                 showPipelineStatus(`✅ Done — Discovered: ${s.last_result.discovered}, Survived: ${s.last_result.survived}, Rejected: ${s.last_result.rejected}`, 'success');
-                                loadGraphData(); loadResearchBank();
+                                setTimeout(() => {
+                                    alert("Pipeline execution completed successfully!");
+                                    loadGraphData();
+                                    loadResearchBank();
+                                }, 100);
                             } else if (s.stage === 'error') {
                                 showPipelineStatus('❌ Pipeline error: ' + (s.last_error || 'unknown'), 'error');
                             } else {
@@ -1351,23 +1378,66 @@
 
         // Workspaces & checkpoints
         function loadWorkspaces() {
-            fetch('/api/workspaces')
+            // Fetch active workspace first
+            fetch('/api/workspaces/active')
                 .then(res => res.json())
-                .then(data => {
-                    const list = document.getElementById('workspaces-list');
-                    list.innerHTML = data.map(w => `
-                        <div class="concept-item" style="cursor: pointer; padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px;" onclick="selectWorkspace('${w.id}', '${w.name}')">
-                            <strong>${w.name}</strong> (${w.status})
-                        </div>
-                    `).join('');
+                .then(activeData => {
+                    activeWorkspaceId = activeData.active_workspace_id;
+                    
+                    // Fetch all workspaces
+                    fetch('/api/workspaces')
+                        .then(res => res.json())
+                        .then(data => {
+                            const list = document.getElementById('workspaces-list');
+                            const allWS = [{id: 'default', name: 'Default Workspace', status: 'active'}].concat(data.filter(w => w.id !== 'default'));
+                            
+                            list.innerHTML = allWS.map(w => {
+                                const isActive = w.id === activeWorkspaceId;
+                                const borderStyle = isActive ? 'border: 1px solid var(--neon-purple); background: rgba(147, 51, 234, 0.15);' : '';
+                                return `
+                                    <div class="concept-item" style="cursor: pointer; padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px; ${borderStyle}" onclick="selectWorkspace('${w.id}', '${w.name.replace(/'/g, "\\'")}')">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <strong>${w.name}</strong>
+                                            ${isActive ? '<span style="font-size: 0.75rem; color: var(--neon-purple); font-weight: 600;">ACTIVE</span>' : `<span style="font-size: 0.75rem; color: var(--text-secondary);">${w.status}</span>`}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('');
+                            
+                            const activeWS = allWS.find(w => w.id === activeWorkspaceId);
+                            if (activeWS) {
+                                document.getElementById('active-ws-name').innerText = activeWS.name;
+                            }
+                        });
                 });
         }
 
         function selectWorkspace(id, name) {
             activeWorkspaceId = id;
-            document.getElementById('active-ws-name').innerText = name;
-            document.getElementById('btn-save-checkpoint').style.display = 'block';
-            loadWorkspaceHistory(id);
+            fetch('/api/workspaces/active', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id })
+            })
+            .then(res => res.json())
+            .then(() => {
+                document.getElementById('active-ws-name').innerText = name;
+                if (id === 'default') {
+                    document.getElementById('btn-save-checkpoint').style.display = 'none';
+                    document.getElementById('workspace-history-list').innerHTML = `<div style="color: var(--text-secondary);">Default workspace runs directly in live environment. Snapshotting not applicable.</div>`;
+                } else {
+                    document.getElementById('btn-save-checkpoint').style.display = 'block';
+                    loadWorkspaceHistory(id);
+                }
+                loadWorkspaces();
+                loadResearchBank();
+                loadGraphData();
+                if (typeof loadStats === 'function') loadStats();
+                // Also reset detail pane
+                document.getElementById('editor-node-title').innerText = 'Select Node';
+                document.getElementById('editor-node-type').innerText = 'DETAILS';
+                document.getElementById('editor-node-content').innerHTML = '<p style="color: var(--text-secondary);">Click on any paper or opportunity in the sidebar or any graph node on the Canvas to inspect details and trace citations.</p>';
+            });
         }
 
         function loadWorkspaceHistory(id) {
@@ -1529,22 +1599,21 @@
             fetch(`/api/reports/view/${filename}`)
                 .then(res => res.json())
                 .then(data => {
-                    // Display it inside the bottom preview editor pane
-                    document.getElementById('editor-node-title').innerText = filename;
-                    document.getElementById('editor-node-type').innerText = 'REPORT PORTFOLIO';
-                    // Convert markdown breaks to html breaks simple parsing
+                    document.getElementById('report-preview-title').innerText = "Report: " + filename;
+                    // Format markdown into readable HTML
                     const parsed = data.content
-                        .replace(/#+ (.*)/g, '<h3>$1</h3>')
+                        .replace(/^# (.*$)/gim, '<h1 style="color:var(--neon-blue); font-size:1.5rem; margin-top:1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3rem;">$1</h1>')
+                        .replace(/^## (.*$)/gim, '<h2 style="color:var(--neon-purple); font-size:1.2rem; margin-top:1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.2rem;">$1</h2>')
+                        .replace(/^### (.*$)/gim, '<h3 style="color:var(--text-primary); font-size:1.05rem; margin-top:1rem;">$1</h3>')
                         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-                        .replace(/`([^`]+)`/g, '<code>$1</code>')
+                        .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.06); padding:2px 4px; border-radius:4px;">$1</code>')
+                        .replace(/^> (.*$)/gim, '<blockquote style="border-left: 3px solid var(--neon-purple); padding-left: 10px; color: var(--text-secondary); margin: 10px 0; font-style: italic;">$1</blockquote>')
                         .replace(/\n/g, '<br>');
-                    document.getElementById('editor-node-content').innerHTML = `
-                        <div style="font-family: 'Outfit', sans-serif; line-height: 1.6; color: var(--text-primary); max-height: 400px; overflow-y: auto;">
+                    document.getElementById('report-preview-content').innerHTML = `
+                        <div style="font-family: 'Outfit', sans-serif; line-height: 1.6; color: var(--text-primary);">
                             ${parsed}
                         </div>
                     `;
-                    // Highlight tab to Canvas to view bottom pane details
-                    switchMainTab('canvas');
                 });
         }
 
@@ -1572,6 +1641,7 @@
         }
 
         // Initialization
+        loadWorkspaces();   // Syncs active workspace name to header on load
         loadResearchBank();
         loadGraphData();
     </script>

@@ -1,8 +1,16 @@
+import os
 import sqlite3
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+
+# Determine active workspace
+ACTIVE_WS = os.getenv("AIVE_ACTIVE_WORKSPACE", "default")
+if ACTIVE_WS == "default" or not ACTIVE_WS:
+    DB_PATH = ROOT / "data" / "aive.db"
+else:
+    DB_PATH = ROOT / "data" / f"aive_{ACTIVE_WS}.db"
+
 SCHEMA_PATH = Path(__file__).resolve().parent / "schema.sql"
 
 
@@ -15,5 +23,7 @@ def init_db(db_path: Path = DB_PATH) -> Path:
     return db_path
 
 
-if __name__ == "__main__":
-    init_db()
+# Auto-initialize if it doesn't exist yet
+if not DB_PATH.exists():
+    init_db(DB_PATH)
+

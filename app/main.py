@@ -16,10 +16,22 @@ from pathlib import Path
 from flask import Flask, render_template, jsonify, request
 
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+MASTER_DB_PATH = ROOT / "data" / "aive.db"
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 64 * 1024 * 1024  # 64 MB max upload
+
+# Ensure the master database (aive.db) is always initialized
+def _ensure_master_db():
+    from db.init_db import init_db, SCHEMA_PATH
+    MASTER_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if not MASTER_DB_PATH.exists():
+        import sqlite3
+        schema = SCHEMA_PATH.read_text(encoding="utf-8")
+        with sqlite3.connect(MASTER_DB_PATH) as conn:
+            conn.executescript(schema)
+
+_ensure_master_db()
 
 
 def slugify(text: str) -> str:
@@ -51,11 +63,14 @@ def fetch_url_text(url: str) -> tuple[str, str]:
     return page_title, clean[:50000]  # cap at 50k chars
 
 
+ACTIVE_WORKSPACE_ID = "default"
+
+
 def save_item(title, raw_text, source_url, item_type, year=None):
     """Save a new source item to the database and return item_id."""
     year = year or str(datetime.now(timezone.utc).year)
     item_id = f"{item_type}_{slugify(title[:20])}_{uuid.uuid4().hex[:4]}"
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_db_connection()
     try:
         conn.execute(
             """INSERT OR IGNORE INTO items
@@ -71,16 +86,26 @@ def save_item(title, raw_text, source_url, item_type, year=None):
 
 def trigger_extraction_background():
     """Non-blocking single-paper extraction + incremental graph build."""
+    import os
+    env = dict(os.environ, AIVE_ACTIVE_WORKSPACE=ACTIVE_WORKSPACE_ID)
     subprocess.Popen(
         [sys.executable, "-u", "agents/research_analyst.py", "5"],
         cwd=str(ROOT),
         stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL
+        stderr=subprocess.DEVNULL,
+        env=env
     )
 
 
 def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
+    global ACTIVE_WORKSPACE_ID
+    import os
+    import importlib
+    os.environ["AIVE_ACTIVE_WORKSPACE"] = ACTIVE_WORKSPACE_ID
+    import db.init_db
+    importlib.reload(db.init_db)
+    
+    conn = sqlite3.connect(db.init_db.DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -279,6 +304,52 @@ def workspace_restore(ws_id, version):
     return jsonify(res)
 
 
+@app.route("/api/workspaces/active", methods=["GET", "POST"])
+def active_workspace():
+    global ACTIVE_WORKSPACE_ID
+    if request.method == "POST":
+        data = request.json or {}
+        ACTIVE_WORKSPACE_ID = data.get("id", "default")
+        return jsonify({"status": "success", "active_workspace_id": ACTIVE_WORKSPACE_ID})
+    else:
+        return jsonify({"active_workspace_id": ACTIVE_WORKSPACE_ID})
+
+
+@app.route("/api/ingest/delete/<item_id>", methods=["POST", "DELETE"])
+def delete_ingested_item(item_id):
+    """
+    Deletes an ingested paper/source from the active database.
+    Wipes the item and deletes nodes/edges that have no other evidence.
+    """
+    conn = get_db_connection()
+    try:
+        conn.execute("DELETE FROM items WHERE id=?", (item_id,))
+        # Also clean up nodes that only reference this item as source
+        # source_items is stored as a JSON array in nodes
+        rows = conn.execute("SELECT id, source_items FROM nodes").fetchall()
+        for r in rows:
+            try:
+                srcs = json.loads(r["source_items"]) if r["source_items"] else []
+                if item_id in srcs:
+                    srcs.remove(item_id)
+                    if not srcs:
+                        conn.execute("DELETE FROM nodes WHERE id=?", (r["id"],))
+                    else:
+                        conn.execute("UPDATE nodes SET source_items=? WHERE id=?", (json.dumps(srcs), r["id"]))
+            except Exception:
+                pass
+                
+        # Also clean up edges referencing deleted nodes or whose evidence matches this item
+        conn.execute("DELETE FROM edges WHERE from_node NOT IN (SELECT id FROM nodes) OR to_node NOT IN (SELECT id FROM nodes)")
+        
+        conn.commit()
+        return jsonify({"status": "success", "message": f"Item {item_id} deleted."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
+
+
 @app.route("/api/ingest/url", methods=["POST"])
 def ingest_url():
     """
@@ -391,28 +462,53 @@ def _run_pipeline_thread():
         _pipeline_state["started_at"] = datetime.now(timezone.utc).isoformat()
 
     try:
+        import os
+        env = dict(os.environ, AIVE_ACTIVE_WORKSPACE=ACTIVE_WORKSPACE_ID)
         # Stage 1: Extract knowledge from pending items
         _pipeline_state["stage"] = "extraction"
-        subprocess.run(
+        proc1 = subprocess.run(
             [sys.executable, "-u", "agents/research_analyst.py", "10"],
-            cwd=str(ROOT), timeout=600
+            cwd=str(ROOT), timeout=600, env=env,
+            capture_output=True, text=True
         )
+        if proc1.returncode != 0:
+            raise RuntimeError(f"research_analyst failed (exit {proc1.returncode}):\n{proc1.stderr}")
+
         # Stage 2: Rebuild knowledge graph
         _pipeline_state["stage"] = "graph_build"
-        subprocess.run(
+        proc2 = subprocess.run(
             [sys.executable, "agents/graph_builder.py"],
-            cwd=str(ROOT), timeout=1200
+            cwd=str(ROOT), timeout=1200, env=env,
+            capture_output=True, text=True
         )
-        # Stage 3: Opportunity discovery + novelty + critic
+        if proc2.returncode != 0:
+            raise RuntimeError(f"graph_builder failed (exit {proc2.returncode}):\n{proc2.stderr}")
+        # Stage 3: Opportunity discovery + novelty + critic + report
+        # Run as subprocess so AIVE_ACTIVE_WORKSPACE is set BEFORE any
+        # module-level DB_PATH constants are evaluated in the engine files.
         _pipeline_state["stage"] = "discovery"
-        from engines.orchestrator import Orchestrator
-        orc = Orchestrator()
-        pipeline_res = orc.run_full_pipeline(count=15)
-        _pipeline_state["last_result"] = {
-            "discovered": pipeline_res["discovery"]["count"],
-            "survived": pipeline_res["critique"]["survived"],
-            "rejected": pipeline_res["critique"]["rejected"],
-        }
+        proc = subprocess.run(
+            [sys.executable, "scripts/run_orchestrator.py", "15"],
+            cwd=str(ROOT), timeout=600, env=env,
+            capture_output=True, text=True
+        )
+        if proc.returncode == 0 and proc.stdout.strip():
+            import json as _json
+            # Last non-empty line is the JSON summary
+            last_line = [l for l in proc.stdout.strip().splitlines() if l.strip()][-1]
+            try:
+                summary = _json.loads(last_line)
+                _pipeline_state["last_result"] = {
+                    "discovered": summary.get("discovered", 0),
+                    "survived":   summary.get("survived", 0),
+                    "rejected":   summary.get("rejected", 0),
+                }
+            except Exception:
+                _pipeline_state["last_result"] = {"discovered": 0, "survived": 0, "rejected": 0}
+        else:
+            _pipeline_state["last_result"] = {"discovered": 0, "survived": 0, "rejected": 0}
+            if proc.stderr:
+                _pipeline_state["last_error"] = proc.stderr[-500:]
         _pipeline_state["stage"] = "done"
     except Exception as e:
         _pipeline_state["last_error"] = str(e)

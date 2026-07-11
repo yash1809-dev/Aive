@@ -30,8 +30,7 @@ from agents.base import call_llm
 from validation.base_test import TestBase
 from validation.models import TestResult
 
-ROOT = Path(__file__).resolve().parent.parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+from db.init_db import DB_PATH
 
 _SYSTEM = (
     "You are a commercial intelligence analyst. "

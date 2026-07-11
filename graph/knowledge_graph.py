@@ -21,8 +21,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
 sys.path.insert(0, str(ROOT))
+from db.init_db import DB_PATH
 
 # ── Canonical merge map ───────────────────────────────────────────────────────
 # Maps common variant phrases → canonical short concept label

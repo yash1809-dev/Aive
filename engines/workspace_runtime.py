@@ -14,7 +14,7 @@ from typing import Any, Dict, List, Optional
 from engines.base_engine import BaseEngine
 
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "aive.db"
+MASTER_DB_PATH = ROOT / "data" / "aive.db"
 
 
 class WorkspaceRuntime(BaseEngine):
@@ -23,7 +23,7 @@ class WorkspaceRuntime(BaseEngine):
     Ensures each workspace behaves like a living research environment.
     """
 
-    def __init__(self, db_path: Path = DB_PATH):
+    def __init__(self, db_path: Path = MASTER_DB_PATH):
         super().__init__("WorkspaceRuntime")
         self.db_path = db_path
 
@@ -59,6 +59,13 @@ class WorkspaceRuntime(BaseEngine):
                 "INSERT INTO workspaces (id, name, status, created_at, updated_at) VALUES (?, ?, 'active', ?, ?)",
                 (workspace_id, name, created_at, created_at)
             )
+        # Initialize the workspace-specific DB file
+        try:
+            from db.init_db import init_db
+            ws_db_path = ROOT / "data" / f"aive_{workspace_id}.db"
+            init_db(ws_db_path)
+        except Exception as e:
+            self.logger.error(f"Failed to initialize workspace DB: {e}")
         self.logger.info(f"Workspace '{name}' ({workspace_id}) initialized.")
         return {"id": workspace_id, "name": name, "status": "active", "created_at": created_at}
 
