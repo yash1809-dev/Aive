@@ -37,6 +37,13 @@ _ensure_master_db()
 def slugify(text: str) -> str:
     slug = re.sub(r"[^a-zA-Z0-9]+", "_", text.lower()).strip("_")
     return slug[:60] or "untitled"
+def _robust_json_extract(text):
+    start = text.find("{")
+    end = text.rfind("}")
+    if start != -1 and end != -1:
+        return text[start:end+1]
+    return text
+
 
 
 def fetch_url_text(url: str) -> tuple[str, str]:
@@ -503,7 +510,7 @@ def _run_pipeline_thread():
         _pipeline_state["stage"] = "discovery"
         write_progress("discovery", "Critic check & scoring candidates", 0, 1)
         proc = subprocess.run(
-            [sys.executable, "scripts/run_orchestrator.py", "15"],
+            [sys.executable, "scripts/run_orchestrator.py", "5"],
             cwd=str(ROOT), timeout=600, env=env,
             capture_output=True, text=True
         )
@@ -705,63 +712,201 @@ def list_packs():
         return jsonify({"error": str(e)}), 500
 
 
+def _call_llm_internal(system_prompt, user_prompt):
+    import os
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+    provider = os.getenv("LLM_PROVIDER", "ollama").lower()
+    
+    if provider == "openai":
+        api_key = os.getenv("OPENAI_API_KEY", "")
+        from openai import OpenAI
+        client = OpenAI(api_key=api_key)
+        response = client.chat.completions.create(
+            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.4,
+            max_tokens=800
+        )
+        return response.choices[0].message.content.strip()
+    else:
+        import urllib.request as urlreq
+        host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+        model = os.getenv("OLLAMA_MODEL_REASONER", os.getenv("OLLAMA_MODEL_EXTRACTOR", "llama3:8b"))
+        payload = json.dumps({
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system_prompt + " /no_think"},
+                {"role": "user", "content": user_prompt}
+            ],
+            "stream": False,
+            "options": {"temperature": 0.4}
+        }).encode("utf-8")
+        req = urlreq.Request(
+            f"{host}/api/chat",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+        with urlreq.urlopen(req, timeout=120) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+        return body["message"]["content"].strip()
+
+
 @app.route("/api/copilot", methods=["POST"])
 def copilot():
     """
     AIVE Copilot — answers research questions using the local knowledge graph
-    as grounding context, then calls the configured LLM (Ollama or OpenAI).
+    as grounding context. If the user describes a new opportunity concept,
+    it automatically formulates, critiques, validates, and stores it in the active workspace database.
     """
     data = request.json or {}
     user_message = data.get("message", "").strip()
     if not user_message:
         return jsonify({"error": "Message is required"}), 400
 
-    # Build context from live knowledge graph
     conn = get_db_connection()
     try:
-        # Top survived opportunities as context
+        # Check if user message proposes a new opportunity/concept
+        detection_system = "You are a classification assistant. Reply only 'YES' or 'NO'."
+        detection_user = f"Does the following message propose, outline, or describe a new business, scientific, or commercial opportunity, idea, or startup concept? Reply YES or NO only.\n\nMessage: {user_message}"
+        
+        is_opp = False
+        try:
+            reply = _call_llm_internal(detection_system, detection_user)
+            if "YES" in reply.upper():
+                is_opp = True
+        except Exception:
+            pass
+
+        if is_opp:
+            # Step 1: Formulate opportunity from user message
+            formulate_system = "You are AIVE Opportunity Formulator. Extract opportunity details. Return valid JSON only."
+            formulate_user = f"Formulate this concept into a structured opportunity:\n{user_message}\n\nReturn JSON in this exact format:\n{{\n  \"title\": \"opportunity title (5-8 words)\",\n  \"problem\": \"specific problem solved\",\n  \"technology\": \"specific technology used\",\n  \"market\": \"market segment and buyer\",\n  \"timing_signal\": \"timing signal/why now\",\n  \"reasoning\": \"reasons connecting technology and problem\",\n  \"novelty_score\": 5,\n  \"timing_score\": 5,\n  \"market_score\": 5,\n  \"feasibility\": 5\n}}"
+            
+            opp_data = {}
+            try:
+                form_reply = _call_llm_internal(formulate_system, formulate_user)
+                form_reply_clean = _robust_json_extract(form_reply)
+                opp_data = json.loads(form_reply_clean)
+            except Exception as e:
+                return jsonify({"status": "success", "reply": f"I detected you proposed a new opportunity, but I had trouble formulating it: {e}\n\nRaw output: {form_reply[:200]}"})
+
+            # Step 2: Critique opportunity
+            critic_system = "You are AIVE Critic. Evaluate this opportunity. Return valid JSON only."
+            critic_user = f"Evaluate this opportunity concept:\n{json.dumps(opp_data, indent=2)}\n\nAnswer all categories. Target 70%+ rejection. Return JSON in this exact format:\n{{\n  \"verdict\": \"survived\" or \"rejected\",\n  \"summary\": \"one sentence reason for survival or rejection\",\n  \"kill_reasons\": []\n}}"
+            
+            critic_verdict = "rejected"
+            critic_summary = "Failed critic review."
+            try:
+                crit_reply = _call_llm_internal(critic_system, critic_user)
+                crit_reply_clean = _robust_json_extract(crit_reply)
+                crit_parsed = json.loads(crit_reply_clean)
+                critic_verdict = crit_parsed.get("verdict", "rejected")
+                critic_summary = crit_parsed.get("summary", "Rejected by critic.")
+            except Exception:
+                pass
+
+            # Step 3: Insert Opportunity + run validation
+            opp_id = f"opp_usr_{uuid.uuid4().hex[:8]}"
+            now = datetime.now(timezone.utc).isoformat()
+            
+            conn.execute(
+                """INSERT INTO opportunities (
+                    id, title, problem, technology, market, timing_signal, reasoning,
+                    novelty_score, timing_score, market_score, feasibility, edge_confidence,
+                    source_papers, source_patents, source_startups, critic_verdict, critic_notes, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0.8, '[]', '[]', '[]', ?, ?, ?)""",
+                (
+                    opp_id, opp_data.get("title", "User Concept"), opp_data.get("problem", ""),
+                    opp_data.get("technology", ""), opp_data.get("market", ""),
+                    opp_data.get("timing_signal", ""), opp_data.get("reasoning", ""),
+                    opp_data.get("novelty_score", 5), opp_data.get("timing_score", 5),
+                    opp_data.get("market_score", 5), opp_data.get("feasibility", 5),
+                    critic_verdict, json.dumps({"summary": critic_summary}), now
+                )
+            )
+
+            if critic_verdict == "rejected":
+                conn.execute(
+                    "INSERT INTO rejected_ideas (id, opportunity_id, reason, rejected_at) VALUES (?, ?, ?, ?)",
+                    (f"rej_{uuid.uuid4().hex[:8]}", opp_id, critic_summary, now)
+                )
+
+            # Recalculate validation score
+            from engines.validation_engine import ValidationEngine
+            # Pass connection directly using a custom validation method or instantiating with db_path
+            from db.init_db import DB_PATH
+            ve = ValidationEngine(db_path=DB_PATH)
+            metrics = ve.calculate_metrics({
+                "id": opp_id,
+                "novelty_score": opp_data.get("novelty_score", 5),
+                "timing_score": opp_data.get("timing_score", 5),
+                "market_score": opp_data.get("market_score", 5),
+                "feasibility": opp_data.get("feasibility", 5),
+                "edge_confidence": 0.8,
+                "critic_verdict": critic_verdict
+            })
+            
+            conn.execute(
+                "UPDATE opportunities SET confidence_score = ? WHERE id = ?",
+                (metrics["confidence_score"], opp_id)
+            )
+            conn.commit()
+
+            status_text = "🎉 **Survived Critic Check!**" if critic_verdict == "survived" else "❌ **Rejected by Critic.**"
+            reply_text = (
+                f"{status_text}\n\n"
+                f"I processed your concept **\"{opp_data.get('title')}\"** and added it to the workspace.\n\n"
+                f"- **Verdict:** {critic_verdict.capitalize()}\n"
+                f"- **Critic Summary:** {critic_summary}\n"
+                f"- **Confidence Score:** {metrics['confidence_score']}/10 ({metrics['validation_status']})\n\n"
+                f"It is now visible in the **{ 'Opportunities' if critic_verdict == 'survived' else 'Rejected Ideas' }** section on the Canvas."
+            )
+            return jsonify({"status": "success", "reply": reply_text})
+
+        # Regular Chat Mode
         opps = conn.execute(
             """SELECT title, problem, technology, market, timing_signal
                FROM opportunities WHERE critic_verdict='survived'
                ORDER BY confidence_score DESC LIMIT 5"""
         ).fetchall()
 
-        # Top graph nodes for subject context
         top_nodes = conn.execute(
             """SELECT label, node_type FROM nodes
                ORDER BY ROWID DESC LIMIT 20"""
         ).fetchall()
 
-        # Recent extractions for recency
         recent = conn.execute(
             """SELECT title, problem, technology FROM items
                WHERE extraction_status='done'
                ORDER BY extracted_at DESC LIMIT 5"""
         ).fetchall()
-    finally:
-        conn.close()
 
-    opp_ctx = "\n".join(
-        f"- [{o['title']}] Problem: {o['problem']} | Tech: {o['technology']}"
-        for o in opps
-    ) or "No survived opportunities yet."
+        opp_ctx = "\n".join(
+            f"- [{o['title']}] Problem: {o['problem']} | Tech: {o['technology']}"
+            for o in opps
+        ) or "No survived opportunities yet."
 
-    node_ctx = ", ".join(f"{n['label']} ({n['node_type']})" for n in top_nodes) or "Graph is empty."
+        node_ctx = ", ".join(f"{n['label']} ({n['node_type']})" for n in top_nodes) or "Graph is empty."
 
-    recent_ctx = "\n".join(
-        f"- {r['title']}: {r['problem']}" for r in recent
-    ) or "No recent extractions."
+        recent_ctx = "\n".join(
+            f"- {r['title']}: {r['problem']}" for r in recent
+        ) or "No recent extractions."
 
-    system_prompt = (
-        "You are the AIVE Research Copilot. "
-        "You help researchers synthesize knowledge, discover opportunities, and understand contradictions "
-        "from a live scientific knowledge graph. "
-        "Answer based on the provided context from the graph. Be specific and actionable. "
-        "If the graph has insufficient data, say so honestly and suggest what data to add. "
-        "Do NOT make up citations or papers that are not in the context."
-    )
+        system_prompt = (
+            "You are the AIVE Research Copilot. "
+            "You help researchers synthesize knowledge, discover opportunities, and understand contradictions "
+            "from a live scientific knowledge graph. "
+            "Answer based on the provided context from the graph. Be specific and actionable. "
+            "If the graph has insufficient data, say so honestly and suggest what data to add. "
+            "Do NOT make up citations or papers that are not in the context."
+        )
 
-    user_prompt = f"""
+        user_prompt = f"""
 LIVE KNOWLEDGE GRAPH CONTEXT:
 
 TOP SURVIVED OPPORTUNITIES:
@@ -778,58 +923,13 @@ USER QUESTION:
 
 Answer concisely in 2-4 paragraphs. Reference the graph context where relevant.
 """
-
-    try:
-        import os
-        from dotenv import load_dotenv
-        load_dotenv(ROOT / ".env")
-
-        provider = os.getenv("LLM_PROVIDER", "ollama").lower()
-
-        if provider == "openai":
-            api_key = os.getenv("OPENAI_API_KEY", "")
-            if not api_key or api_key == "sk-your-key-here":
-                return jsonify({"error": "OpenAI API key not configured in .env"}), 400
-            from openai import OpenAI
-            client = OpenAI(api_key=api_key)
-            response = client.chat.completions.create(
-                model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                temperature=0.4,
-                max_tokens=800
-            )
-            reply = response.choices[0].message.content.strip()
-        else:
-            # Ollama
-            import urllib.request as urlreq
-            host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-            model = os.getenv("OLLAMA_MODEL_REASONER", os.getenv("OLLAMA_MODEL_EXTRACTOR", "qwen3:8b"))
-            payload = json.dumps({
-                "model": model,
-                "messages": [
-                    {"role": "system", "content": system_prompt + " /no_think"},
-                    {"role": "user", "content": user_prompt}
-                ],
-                "stream": False,
-                "options": {"temperature": 0.4}
-            }).encode("utf-8")
-            req = urlreq.Request(
-                f"{host}/api/chat",
-                data=payload,
-                headers={"Content-Type": "application/json"},
-                method="POST"
-            )
-            with urlreq.urlopen(req, timeout=120) as resp:
-                body = json.loads(resp.read().decode("utf-8"))
-            reply = body["message"]["content"].strip()
-
+        reply = _call_llm_internal(system_prompt, user_prompt)
         return jsonify({"status": "success", "reply": reply})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
 
 
 if __name__ == "__main__":

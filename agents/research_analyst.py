@@ -102,34 +102,39 @@ def save_extraction(paper_id: str, data: dict, db_path: Path = DB_PATH) -> None:
 
 def run(limit: int = 1) -> list[dict]:
     from utils.progress import write_progress
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    
     papers = get_pending_papers(limit=limit)
     results = []
-    failed = 0
     total = len(papers)
-    for i, paper in enumerate(papers):
-        title = paper['title']
-        print(f"[{i+1}/{total}] Extracting: {title[:70]}...")
-        write_progress("extraction", title, i, total)
-        try:
-            extracted = extract_paper(paper)
-            save_extraction(paper["id"], extracted)
-            results.append({"id": paper["id"], "title": paper["title"], **extracted})
-            failed = 0  # reset consecutive failure count on success
-        except Exception as exc:
-            failed += 1
-            print(f"  [ERROR] {exc}")
-            # Mark as failed in DB so it doesn't block future runs
-            with sqlite3.connect(DB_PATH) as conn:
-                conn.execute(
-                    "UPDATE items SET extraction_status='failed' WHERE id=?",
-                    (paper["id"],),
-                )
-            # If 3 consecutive failures, Ollama is likely down — stop gracefully
-            if failed >= 3:
-                print(f"\n[ABORT] 3 consecutive failures — Ollama may be down.")
-                print(f"Completed: {len(results)}/{total}")
-                print(f"Resume with: python agents/research_analyst.py {limit - len(results)}")
-                break
+    if total == 0:
+        write_progress("extraction", "Done", 0, 0)
+        return results
+
+    print(f"Starting parallel extraction for {total} papers...")
+    
+    # Process up to 3 papers concurrently
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        futures = {executor.submit(extract_paper, paper): paper for paper in papers}
+        processed_count = 0
+        for future in as_completed(futures):
+            paper = futures[future]
+            title = paper['title']
+            processed_count += 1
+            write_progress("extraction", title, processed_count, total)
+            try:
+                extracted = future.result()
+                save_extraction(paper["id"], extracted)
+                results.append({"id": paper["id"], "title": paper["title"], **extracted})
+                print(f"[{processed_count}/{total}] Successfully extracted: {title[:50]}...")
+            except Exception as exc:
+                print(f"[{processed_count}/{total}] [ERROR] Failed to extract {title[:50]}: {exc}")
+                with sqlite3.connect(DB_PATH) as conn:
+                    conn.execute(
+                        "UPDATE items SET extraction_status='failed' WHERE id=?",
+                        (paper["id"],),
+                    )
+
     write_progress("extraction", "Done", total, total)
     return results
 
