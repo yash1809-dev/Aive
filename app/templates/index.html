@@ -1275,10 +1275,22 @@
 
                             if (s.stage === 'done' && s.last_result) {
                                 showPipelineStatus(`✅ Done — Discovered: ${s.last_result.discovered}, Survived: ${s.last_result.survived}, Rejected: ${s.last_result.rejected}`, 'success');
-                                setTimeout(() => {
-                                    alert("Pipeline execution completed successfully!");
+                                setTimeout(async () => {
+                                    const r = s.last_result;
+                                    alert(`🎉 Pipeline completed!\n\nDiscovered: ${r.discovered}  |  Survived: ${r.survived}  |  Rejected: ${r.rejected}\n\nClick OK to view opportunities and generate a new report.`);
+                                    // Refresh canvas (opportunities tab)
                                     loadGraphData();
                                     loadResearchBank();
+                                    // Auto-generate and save a new report
+                                    try {
+                                        const resp = await fetch('/api/reports/generate', { method: 'POST' });
+                                        const data = await resp.json();
+                                        if (data.status !== 'failed') {
+                                            showPipelineStatus(`✅ Report saved: ${data.report_path || 'aive_portfolio.md'}`, 'success');
+                                        }
+                                        // Refresh reports list if reports tab is visible
+                                        if (typeof loadReportsList === 'function') loadReportsList();
+                                    } catch(e) { /* silent */ }
                                 }, 100);
                             } else if (s.stage === 'error') {
                                 showPipelineStatus('❌ Pipeline error: ' + (s.last_error || 'unknown'), 'error');

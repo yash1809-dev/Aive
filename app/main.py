@@ -259,12 +259,23 @@ def view_report_content(filename):
 
 @app.route("/api/reports/generate", methods=["POST"])
 def generate_report():
-    """Runs AIVE Report Engine to build a new portfolio based on all survived opportunities."""
-    from engines.report_engine import ReportEngine
-    rep = ReportEngine()
+    """Runs AIVE Report Engine as subprocess so it uses the active workspace DB."""
+    import os, json as _json
     now_str = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    res = rep.run({"output_filename": f"aive_portfolio_{now_str}.md"})
-    return jsonify(res)
+    filename = f"aive_portfolio_{now_str}.md"
+    env = dict(os.environ, AIVE_ACTIVE_WORKSPACE=ACTIVE_WORKSPACE_ID)
+    proc = subprocess.run(
+        [sys.executable, "scripts/run_report.py", filename],
+        cwd=str(ROOT), capture_output=True, text=True, timeout=60, env=env
+    )
+    if proc.returncode == 0:
+        try:
+            result = _json.loads(proc.stdout.strip().splitlines()[-1])
+        except Exception:
+            result = {"report_path": filename, "status": "done"}
+    else:
+        result = {"error": proc.stderr[-400:], "status": "failed"}
+    return jsonify(result)
 
 
 @app.route("/api/workspaces", methods=["GET", "POST"])
