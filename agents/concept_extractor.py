@@ -76,8 +76,8 @@ NODE TYPE RULES — pick the most specific type:
 - Technology: A named technique/model/system (e.g. "LoRA Fine-Tuning", "Bayesian Knowledge Tracing")
 - Capability: A functional ability (e.g. "Offline Inference", "Real-Time Feedback")
 - Workflow: A named task people perform (e.g. "Essay Grading", "IEP Generation", "Lesson Planning")
-- User: Who uses it day-to-day (e.g. "Students", "Teachers")
-- Buyer: Who writes the cheque (e.g. "School District", "University IT Department")
+- User: Who uses it day-to-day (e.g. "Students", "Teachers", "NLP Researchers", "Translators")
+- Buyer: Who writes the cheque (e.g. "School District", "University IT Department", "Enterprise CTO")
 - Organization: Institution type (e.g. "K-12 School", "EdTech Vendor", "Community College")
 - Competitor: An existing named product (e.g. "Khanmigo", "MagicSchool", "Duolingo")
 - Constraint: A technical/resource limit (e.g. "Limited Internet Access", "GPU Memory Cost")
@@ -85,6 +85,11 @@ NODE TYPE RULES — pick the most specific type:
 - EconomicSignal: A market force driving timing (e.g. "Teacher Shortage", "LLM Cost Drop")
 - Outcome: A measurable result (e.g. "50% Grading Time Saved", "Improved Test Scores")
 - Resource: What the opportunity requires (e.g. "GPU Compute", "Training Data", "Teacher Time")
+
+CRITICAL CLASSIFICATION RULE — DO NOT make these mistakes:
+- People/roles (researchers, doctors, editors, translators) = User or Buyer. NEVER Technology.
+- Organizations (companies, schools, labs) = Organization or Buyer. NEVER Technology.
+- A Technology must be a method, model, algorithm, or system (e.g. GPT-3, RAG, Transformer).
 
 IMPORTANT BALANCE RULE: For every 2 Technology nodes, extract at least 1 Buyer/User AND 1 Constraint/Regulation/EconomicSignal.
 If you cannot identify these, the technology may not yet be commercially relevant — note that honestly.
@@ -235,9 +240,12 @@ def run() -> list[dict]:
         items_to_process = items
         print(f"Extracting concepts from {len(items_to_process)} items...")
 
-    for item in items_to_process:
-        title = item.get("title", "")[:60]
-        print(f"  {title}...")
+    from utils.progress import write_progress
+    total = len(items_to_process)
+    for idx, item in enumerate(items_to_process):
+        title = item.get("title", "")
+        print(f"  {title[:60]}...")
+        write_progress("graph_build", title, idx, total)
         try:
             result = extract_concepts(item)
             result["item_id"] = item["id"]
@@ -249,6 +257,7 @@ def run() -> list[dict]:
     # Save cache
     import json as _json
     cache_path.write_text(_json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
+    write_progress("graph_build", "Done", total, total)
     return results
 
 

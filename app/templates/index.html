@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIVE Canvas OS — Advanced Discovery Workspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-secondary: #0f131c;
+            --bg-tertiary: #141924;
+            --bg-card: rgba(20, 25, 36, 0.8);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            
+            --neon-blue: #00d9ff;
+            --neon-purple: #bd00ff;
+            --neon-green: #39ff14;
+            --neon-red: #ff3860;
+            --neon-yellow: #ffb703;
+            
+            --accent-glow: rgba(0, 217, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Navigation Bar */
+        .topbar {
+            height: 56px;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            z-index: 10;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-blue);
+            background: rgba(0, 217, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .project-meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-meta span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .topbar-center {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .topbar-tab {
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .topbar-tab.active, .topbar-tab:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-tertiary);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-pipeline {
+            background: linear-gradient(135deg, #00d9ff, #bd00ff);
+            border: none;
+            color: white;
+            padding: 0.45rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-pipeline:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Workspace Main Layout */
+        .workspace-body {
+            display: flex;
+            flex-grow: 1;
+            height: calc(100vh - 56px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Sidebar Left */
+        .sidebar-left {
+            width: 260px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 1rem;
+            gap: 1.25rem;
+            overflow-y: auto;
+        }
+
+        .sidebar-left::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-left::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            opacity: 0.6;
+        }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.4rem;
+        }
+
+        .element-btn {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 0.45rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .element-btn:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .element-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Sidebar navigation links */
+        .side-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .side-nav-link {
+            padding: 0.5rem 0.6rem;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.15s;
+        }
+
+        .side-nav-link:hover, .side-nav-link.active {
+            background-color: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+        }
+
+        /* Research Bank List */
+        .research-bank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .research-bank-list::-webkit-scrollbar {
+            width: 3px;
+        }
+        .research-bank-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1.5px;
+        }
+
+        .bank-item {
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            background-color: transparent;
+            border: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text-secondary);
+            transition: background-color 0.15s, color 0.15s;
+            text-align: left;
+            width: 100%;
+        }
+
+        .bank-item:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+        }
+
+        /* Middle Area: Canvas & Bottom Panels */
+        .middle-pane {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--bg-primary);
+        }
+
+        /* Infinite Canvas styling */
+        .canvas-container {
+            flex-grow: 1;
+            overflow: auto;
+            position: relative;
+            background-size: 24px 24px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            min-height: 500px;
+        }
+
+        /* Figma Floating Toolbar */
+        .floating-toolbar {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            border-radius: 10px;
+            display: flex;
+            gap: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 5;
+        }
+
+        .toolbar-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .toolbar-btn:hover, .toolbar-btn.active {
+            background-color: var(--bg-tertiary);
+            color: var(--neon-blue);
+        }
+
+        /* Draggable Node element on canvas */
+        .canvas-node {
+            position: absolute;
+            width: 240px;
+            background-color: var(--bg-card);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            cursor: move;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            z-index: 2;
+        }
+
+        .canvas-node:hover {
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .node-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .node-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .node-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Node Types color codings */
+        .node-paper { border-color: var(--neon-blue); }
+        .node-paper .node-header { color: var(--neon-blue); }
+        .node-patent { border-color: var(--neon-yellow); }
+        .node-patent .node-header { color: var(--neon-yellow); }
+        .node-problem { border-color: var(--neon-red); }
+        .node-problem .node-header { color: var(--neon-red); }
+        .node-opportunity { border-color: var(--neon-purple); }
+        .node-opportunity .node-header { color: var(--neon-purple); }
+        .node-competitor { border-color: var(--neon-purple); }
+        .node-competitor .node-header { color: var(--neon-purple); }
+
+        /* SVG Connections Overlay */
+        .canvas-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2000px;
+            height: 2000px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Bottom Pane: Rich Document Editor */
+        .bottom-pane {
+            height: 240px;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            overflow: hidden;
+        }
+
+        .editor-header {
+            width: 260px;
+            border-right: 1px solid var(--border-color);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .editor-content {
+            flex-grow: 1;
+            padding: 1.25rem;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Right Panel: Copilot, Simulation & Time Machine */
+        .right-pane {
+            width: 320px;
+            background-color: var(--bg-secondary);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .pane-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pane-tab {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .pane-tab.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--neon-blue);
+        }
+
+        .pane-content {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .copilot-card {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .copilot-input-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .copilot-input {
+            flex-grow: 1;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.5rem;
+            color: #fff;
+            font-size: 0.8rem;
+        }
+
+        /* Ingestion Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            width: 500px;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Outfit';
+            font-size: 1.2rem;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .btn-modal {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+        }
+
+        .ingest-tab {
+            padding: 0.6rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .ingest-tab.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--neon-blue);
+        }
+        .ingest-tab:hover {
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar Navigation -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="logo">AIVE CANVAS OS</div>
+            <div class="logo-tag">PRO</div>
+            <div class="project-meta">
+                Workspace: <span id="active-ws-name">Solid-State Battery — Next-Gen Electrolyte</span>
+            </div>
+        </div>
+        <div class="topbar-center">
+            <div class="topbar-tab active" onclick="switchMainTab('canvas')">Canvas</div>
+            <div class="topbar-tab" onclick="switchMainTab('simulator')">Simulator</div>
+            <div class="topbar-tab" onclick="switchMainTab('workspaces')">Time Machine</div>
+            <div class="topbar-tab" onclick="switchMainTab('reports')">Reports</div>
+        </div>
+        <div class="topbar-right">
+            <span id="health-badge" style="font-size:0.72rem; color: var(--text-secondary); margin-right: 1rem; cursor: help;">● Checking…</span>
+            <button id="btn-pipeline-run" class="btn-pipeline" onclick="triggerPipelineRun()">Run Pipeline</button>
+        </div>
+    </div>
+    <!-- Pipeline Status Bar -->
+    <div id="pipeline-status-bar" style="display:none; padding: 0.35rem 1.2rem; font-size: 0.78rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); transition: all 0.3s;"></div>
+
+    <!-- Main Workspace Area -->
+    <div class="workspace-body">
+        
+        <!-- Left Sidebar -->
+        <div class="sidebar-left">
+            <div>
+                <div class="section-title">Elements</div>
+                <div class="elements-grid">
+                    <div class="element-btn" onclick="openIngestModal('paper')">
+                        <span class="element-dot" style="background: var(--neon-blue);"></span>
+                        Paper
+                    </div>
+                    <div class="element-btn" onclick="openIngestModal('patent')">
+                        <span class="element-dot" style="background: var(--neon-yellow);"></span>
+                        Patent
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-title">Navigation</div>
+                <ul class="side-nav">
+                    <li class="side-nav-link active" onclick="switchNav('opportunities')">💡 Opportunities</li>
+                    <li class="side-nav-link" onclick="switchNav('rejected')">❌ Rejected Ideas</li>
+                    <li class="side-nav-link" onclick="switchNav('papers')">📄 Ingested Library</li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Research Bank</span>
+                    <button class="btn-pipeline" style="padding: 0.15rem 0.4rem; font-size: 0.65rem;" onclick="syncArxivPacks()">Sync Packs</button>
+                </div>
+                <div class="research-bank-list" id="research-bank-container">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Area (Canvas / Simulator / Workspaces) -->
+        <div class="middle-pane">
+            
+            <!-- Canvas Mode -->
+            <div id="view-canvas" style="display: block; width: 100%; height: 100%; position: relative;">
+                <div class="floating-toolbar">
+                    <button class="toolbar-btn active">🖐️</button>
+                    <button class="toolbar-btn">⚡</button>
+                    <button class="toolbar-btn">🔗</button>
+                    <button class="toolbar-btn">📝</button>
+                </div>
+                
+                <div class="canvas-container" id="canvas-workspace">
+                    <svg class="canvas-svg" id="canvas-connections-svg"></svg>
+                    <!-- Nodes loaded dynamically -->
+                </div>
+
+                <!-- Bottom Document Editor Pane -->
+                <div class="bottom-pane">
+                    <div class="editor-header">
+                        <div style="font-family: 'Outfit'; font-size: 1.1rem;" id="editor-node-title">Select Canvas Node</div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary);" id="editor-node-type">-</div>
+                    </div>
+                    <div class="editor-content" id="editor-node-content">
+                        Click on any node in the canvas or item in the Research Bank to preview full abstract/details.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulator Mode -->
+            <div id="view-simulator" style="display: none; padding: 2rem; overflow-y: auto; width: 100%; height: 100%;">
+                <h2 style="font-family: 'Outfit'; margin-bottom: 1.5rem;">Simulation Lab</h2>
+                <div style="max-width: 600px; background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px;">
+                    <canvas id="simulationChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Workspaces Mode -->
+            <div id="view-workspaces" style="display: none; padding: 2rem; overflow-y: auto; width: 100%; height: 100%;">
+                <h2 style="font-family: 'Outfit'; margin-bottom: 1rem;">Workspaces & Time Machine Checkpoints</h2>
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                    <input type="text" id="new-ws-name" placeholder="New Workspace Name..." style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #fff; padding: 0.5rem; border-radius: 6px;">
+                    <button class="btn-pipeline" onclick="createWorkspace()">Create Workspace</button>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <div class="section-title">Active Workspaces</div>
+                        <div id="workspaces-list"></div>
+                    </div>
+                    <div>
+                        <div class="section-title">Historical Checkpoints</div>
+                        <button class="btn-pipeline" id="btn-save-checkpoint" style="width: 100%; margin-bottom: 1rem; display: none;" onclick="saveCheckpoint()">Create Snapshot Checkpoint</button>
+                        <div id="workspace-history-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Mode -->
+            <div id="view-reports" style="display: none; padding: 2rem; overflow-y: auto; width: 100%; height: 100%;">
+                <h2 style="font-family: 'Outfit'; margin-bottom: 1rem;">AIVE Opportunity Reports & Portfolios</h2>
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem; align-items: center;">
+                    <button class="btn-pipeline" onclick="generateUnifiedReport()">Generate Unified Report</button>
+                    <div id="report-gen-status" style="font-size: 0.82rem; color: var(--neon-green);"></div>
+                </div>
+                <div class="section-title">Saved Opportunity Reports</div>
+                <div id="reports-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <p style="color: var(--text-secondary);">No reports generated yet. Click above to compile all surviving evidence into a publication-ready portfolio.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Sidebar (Copilot / Chat) -->
+        <div class="right-pane">
+            <div class="pane-tabs">
+                <div class="pane-tab active">AIVE Copilot</div>
+            </div>
+            <div class="pane-content">
+                <div class="copilot-card">
+                    <strong>Current Synthesis Insights:</strong>
+                    <p style="margin-top: 0.5rem;" id="copilot-status">Loading active discovery signals...</p>
+                </div>
+                <div class="copilot-card" style="background-color: rgba(0, 217, 255, 0.05); border-color: rgba(0, 217, 255, 0.2);">
+                    <strong>Contradictions Alert</strong>
+                    <p style="margin-top: 0.5rem;">None detected currently. All graph edges are semantically verified.</p>
+                </div>
+
+                <!-- Chat history area -->
+                <div id="copilot-chat-history" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; padding-right: 0.25rem; font-size: 0.82rem; max-height: 380px;">
+                    <div style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);">
+                        <span style="color: var(--neon-blue); font-weight: 600;">Copilot:</span> Hello! Ask me anything about the ingested research, opportunities, or concepts in the graph.
+                    </div>
+                </div>
+
+                <div class="copilot-input-container">
+                    <input type="text" id="copilot-text-input" class="copilot-input" placeholder="Ask Copilot about research..." onkeydown="if(event.key === 'Enter') sendCopilotMessage()">
+                    <button class="btn-pipeline" style="padding: 0.5rem;" onclick="sendCopilotMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Source Ingestion Panel (NotebookLM-style) -->
+    <div class="modal" id="ingest-modal">
+        <div class="modal-content" style="width: 640px; max-height: 85vh; overflow-y: auto;">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <div style="font-family: 'Outfit'; font-size: 1.1rem; font-weight: 600;">Add Sources to AIVE</div>
+                <div style="cursor: pointer; font-size: 1.3rem; color: var(--text-secondary);" onclick="closeIngestModal()">&times;</div>
+            </div>
+
+            <!-- Source tabs -->
+            <div style="display: flex; gap: 0; border-bottom: 1px solid var(--border-color); margin-bottom: 1.25rem;">
+                <div class="ingest-tab active" id="itab-url" onclick="switchIngestTab('url')">🔗 URL</div>
+                <div class="ingest-tab" id="itab-pdf" onclick="switchIngestTab('pdf')">📄 PDF / File</div>
+                <div class="ingest-tab" id="itab-text" onclick="switchIngestTab('text')">✏️ Paste Text</div>
+            </div>
+
+            <!-- URL Tab -->
+            <div id="ingest-panel-url">
+                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Paste any URL — AIVE automatically fetches and extracts the full page content.</p>
+                <div id="url-list" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;"></div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="url-input" class="modal-input" style="flex-grow: 1;" placeholder="https://arxiv.org/abs/... or any article URL">
+                    <button class="btn-modal btn-submit" onclick="addUrlToQueue()" style="white-space: nowrap;">Add URL</button>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">You can add multiple URLs.</p>
+            </div>
+
+            <!-- PDF Tab -->
+            <div id="ingest-panel-pdf" style="display: none;">
+                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Upload one or more PDF or TXT files. AIVE extracts text automatically.</p>
+                <div id="pdf-drop-zone" style="border: 2px dashed var(--border-color); border-radius: 10px; padding: 2.5rem; text-align: center; cursor: pointer; transition: border-color 0.2s;" onclick="document.getElementById('pdf-file-input').click()" ondragover="event.preventDefault(); this.style.borderColor='var(--neon-blue)'" ondragleave="this.style.borderColor='var(--border-color)'" ondrop="handleFileDrop(event)">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📂</div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">Drop files here or click to browse</div>
+                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Supports PDF and TXT — up to 64MB total</div>
+                    <input type="file" id="pdf-file-input" multiple accept=".pdf,.txt" style="display: none;" onchange="handleFileSelect(this.files)">
+                </div>
+                <div id="pdf-file-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.4rem;"></div>
+            </div>
+
+            <!-- Text Tab -->
+            <div id="ingest-panel-text" style="display: none;">
+                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Paste any abstract, paper excerpt, or research notes directly.</p>
+                <input type="text" id="ingest-title" class="modal-input" placeholder="Title (e.g. 'RASC+ Clinical Value Set Authoring')" style="margin-bottom: 0.6rem;">
+                <textarea id="ingest-text" class="modal-input" rows="9" placeholder="Paste the full abstract, methodology, results or any text here..."></textarea>
+            </div>
+
+            <!-- Status message -->
+            <div id="ingest-status" style="margin-top: 0.75rem; font-size: 0.82rem; min-height: 1.2rem;"></div>
+
+            <!-- Actions -->
+            <div style="display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1rem;">
+                <button class="btn-modal" onclick="closeIngestModal()" style="background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);">Cancel</button>
+                <button class="btn-modal btn-submit" id="btn-ingest-submit" onclick="submitAllSources()">Ingest &amp; Sync</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'opportunities';
+        let activeWorkspaceId = null;
+        let selectedIngestType = 'paper';
+
+        function switchMainTab(tab) {
+            document.querySelectorAll('.topbar-tab').forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            document.getElementById('view-canvas').style.display = tab === 'canvas' ? 'block' : 'none';
+            document.getElementById('view-simulator').style.display = tab === 'simulator' ? 'block' : 'none';
+            document.getElementById('view-workspaces').style.display = tab === 'workspaces' ? 'block' : 'none';
+            document.getElementById('view-reports').style.display = tab === 'reports' ? 'block' : 'none';
+
+            if (tab === 'workspaces') loadWorkspaces();
+            if (tab === 'simulator') loadSimulationChart();
+            if (tab === 'reports') loadReportsList();
+        }
+
+        function switchNav(nav) {
+            document.querySelectorAll('.side-nav-link').forEach(l => l.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            currentTab = nav;
+            loadGraphData();
+        }
+
+        // Draggable Nodes implementation
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            element.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                // Only drag if not clicking text/buttons inside
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+                drawConnections();
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // SVG connection lines
+        function drawConnections() {
+            const svg = document.getElementById('canvas-connections-svg');
+            svg.innerHTML = '';
+            
+            // Loop through all nodes and draw lines based on data relations
+            const nodes = document.querySelectorAll('.canvas-node');
+            const nodePositions = {};
+            
+            nodes.forEach(node => {
+                nodePositions[node.id] = {
+                    x: node.offsetLeft + (node.offsetWidth / 2),
+                    y: node.offsetTop + (node.offsetHeight / 2)
+                };
+            });
+
+            // We will dynamically connect nodes that represent related concepts
+            // Example connections: connect technology to problem or opportunities
+            const oppNodes = document.querySelectorAll('.node-opportunity');
+            oppNodes.forEach(opp => {
+                const targetId = opp.id;
+                // Find paper or patent nodes to connect
+                const related = document.querySelectorAll('.node-paper, .node-patent');
+                related.forEach(rel => {
+                    if (nodePositions[targetId] && nodePositions[rel.id]) {
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        const start = nodePositions[rel.id];
+                        const end = nodePositions[targetId];
+                        
+                        // Control points for smooth bezier curve
+                        const dx = Math.abs(end.x - start.x) * 0.5;
+                        const d = `M ${start.x} ${start.y} C ${start.x + dx} ${start.y}, ${end.x - dx} ${end.y}, ${end.x} ${end.y}`;
+                        
+                        path.setAttribute('d', d);
+                        path.setAttribute('stroke', 'rgba(189, 0, 255, 0.4)');
+                        path.setAttribute('stroke-width', '1.5');
+                        path.setAttribute('fill', 'none');
+                        svg.appendChild(path);
+                    }
+                });
+            });
+        }
+
+        // Load graph data and populate nodes
+        function loadGraphData() {
+            const workspace = document.getElementById('canvas-workspace');
+            
+            // Keep background SVG
+            const svg = document.getElementById('canvas-connections-svg');
+            workspace.innerHTML = '';
+            workspace.appendChild(svg);
+
+            let url = '/api/opportunities';
+            if (currentTab === 'rejected') url = '/api/rejected';
+            if (currentTab === 'papers') url = '/api/papers';
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        workspace.innerHTML += `<div style="padding: 3rem; text-align: center; color: var(--text-secondary);">No nodes in this view. Run pipeline to generate.</div>`;
+                        return;
+                    }
+
+                    // Dynamically position nodes in a clean Figma-like flow layout
+                    data.forEach((item, index) => {
+                        const node = document.createElement('div');
+                        node.className = `canvas-node`;
+                        node.id = `node-${item.id || index}`;
+                        
+                        let type = 'paper';
+                        let title = item.title || 'Untitled Node';
+                        let desc = item.problem || item.solution || '';
+
+                        if (currentTab === 'opportunities') {
+                            type = 'opportunity';
+                            node.classList.add('node-opportunity');
+                            desc = `Confidence Score: ${item.confidence_score}/10`;
+                        } else if (currentTab === 'rejected') {
+                            type = 'problem';
+                            node.classList.add('node-problem');
+                            desc = `Rejected: ${item.reason}`;
+                        } else {
+                            type = item.type || 'paper';
+                            node.classList.add(`node-${type}`);
+                        }
+
+                        node.innerHTML = `
+                            <div class="node-header">${type}</div>
+                            <div class="node-title">${title}</div>
+                            <div class="node-desc">${desc}</div>
+                        `;
+
+                        // Arrange nodes neatly
+                        const col = index % 3;
+                        const row = Math.floor(index / 3);
+                        node.style.left = `${100 + col * 320}px`;
+                        node.style.top = `${100 + row * 220}px`;
+
+                        node.addEventListener('click', () => selectNode(item, type));
+                        workspace.appendChild(node);
+                        makeDraggable(node);
+                    });
+
+                    drawConnections();
+                    updateCopilotInsights(data);
+                });
+        }
+
+        // Selected Node updates preview editor
+        function selectNode(item, type) {
+            document.getElementById('editor-node-title').innerText = item.title || 'Selected Node';
+            document.getElementById('editor-node-type').innerText = type.toUpperCase();
+            
+            let content = '';
+            if (type === 'opportunity') {
+                content = `
+                    <strong>Problem Identified:</strong> ${item.problem}<br><br>
+                    <strong>Technology Solution:</strong> ${item.technology}<br><br>
+                    <strong>Market Applicability:</strong> ${item.market}<br><br>
+                    <strong>Timing Signal:</strong> ${item.timing_signal}<br><br>
+                    <strong>Detailed Reasoning:</strong> ${item.reasoning}
+                `;
+            } else if (type === 'problem') {
+                content = `
+                    <strong>Identified Problem:</strong> ${item.problem}<br><br>
+                    <strong>Technology Proposed:</strong> ${item.technology}<br><br>
+                    <strong>Market Segment:</strong> ${item.market}<br><br>
+                    <strong>Critic Rejection Reason:</strong> <span style="color: var(--neon-red);">${item.reason}</span>
+                `;
+            } else {
+                content = `
+                    <strong>Raw Text Summary:</strong> ${item.raw_text || 'No text summary extracted.'}<br><br>
+                    <strong>Extracted Problem Noun Phrase:</strong> ${item.problem || 'Pending...'}<br><br>
+                    <strong>Extracted Technology Noun Phrase:</strong> ${item.technology || 'Pending...'}<br><br>
+                    <strong>Extracted Solution:</strong> ${item.solution || 'Pending...'}
+                `;
+            }
+            document.getElementById('editor-node-content').innerHTML = content;
+        }
+
+        function openIngestModal(type) {
+            selectedIngestType = type || 'paper';
+            urlQueue = []; fileQueue = [];
+            renderUrlList(); renderFileList();
+            setIngestStatus('');
+            switchIngestTab('url');
+            document.getElementById('ingest-modal').style.display = 'flex';
+        }
+
+        function closeIngestModal() {
+            document.getElementById('ingest-modal').style.display = 'none';
+        }
+
+        // ── Ingestion Panel ───────────────────────────────────────────────
+        let activeIngestTab = 'url';
+        let urlQueue = [];   // URLs waiting to be ingested
+        let fileQueue = [];  // Files waiting to be ingested
+
+        function switchIngestTab(tab) {
+            activeIngestTab = tab;
+            ['url', 'pdf', 'text'].forEach(t => {
+                document.getElementById(`itab-${t}`).classList.toggle('active', t === tab);
+                document.getElementById(`ingest-panel-${t}`).style.display = t === tab ? 'block' : 'none';
+            });
+        }
+
+        function addUrlToQueue() {
+            const inp = document.getElementById('url-input');
+            const url = inp.value.trim();
+            if (!url) return;
+            urlQueue.push(url);
+            inp.value = '';
+            renderUrlList();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('url-input')?.addEventListener('keydown', e => {
+                if (e.key === 'Enter') addUrlToQueue();
+            });
+
+            // Check system health on startup
+            checkSystemHealth();
+
+            // If a pipeline was already running (e.g., server restarted mid-run), resume polling
+            fetch('/api/pipeline/status')
+                .then(r => r.json())
+                .then(s => { if (s.running) startPipelinePoller(); })
+                .catch(() => {});
+        });
+
+
+        function renderUrlList() {
+            const el = document.getElementById('url-list');
+            el.innerHTML = urlQueue.map((u, i) => `
+                <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-tertiary); border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.8rem;">
+                    <span style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--neon-blue);">${u}</span>
+                    <span style="cursor: pointer; color: var(--text-secondary);" onclick="removeUrlFromQueue(${i})">✕</span>
+                </div>
+            `).join('');
+        }
+
+        function removeUrlFromQueue(i) {
+            urlQueue.splice(i, 1);
+            renderUrlList();
+        }
+
+        function handleFileSelect(files) {
+            Array.from(files).forEach(f => fileQueue.push(f));
+            renderFileList();
+        }
+
+        function handleFileDrop(e) {
+            e.preventDefault();
+            document.getElementById('pdf-drop-zone').style.borderColor = 'var(--border-color)';
+            handleFileSelect(e.dataTransfer.files);
+        }
+
+        function renderFileList() {
+            const el = document.getElementById('pdf-file-list');
+            el.innerHTML = fileQueue.map((f, i) => `
+                <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-tertiary); border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.8rem;">
+                    <span>📄</span>
+                    <span style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${f.name}</span>
+                    <span style="font-size: 0.72rem; color: var(--text-secondary);">${(f.size/1024).toFixed(0)} KB</span>
+                    <span style="cursor: pointer; color: var(--text-secondary);" onclick="removeFileFromQueue(${i})">✕</span>
+                </div>
+            `).join('');
+        }
+
+        function removeFileFromQueue(i) {
+            fileQueue.splice(i, 1);
+            renderFileList();
+        }
+
+        function setIngestStatus(msg, color = 'var(--text-secondary)') {
+            const el = document.getElementById('ingest-status');
+            if (el) { el.style.color = color; el.innerText = msg; }
+        }
+
+        async function submitAllSources() {
+            const btn = document.getElementById('btn-ingest-submit');
+            btn.disabled = true;
+            btn.innerText = 'Ingesting...';
+            let totalSaved = 0;
+
+            try {
+                // --- URLs ---
+                for (const url of urlQueue) {
+                    setIngestStatus(`Fetching: ${url}`);
+                    const res = await fetch('/api/ingest/url', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url, type: selectedIngestType })
+                    });
+                    const data = await res.json();
+                    if (data.status === 'success') {
+                        totalSaved++;
+                        setIngestStatus(`✓ Added: ${data.title}`, 'var(--neon-green)');
+                    } else {
+                        setIngestStatus(`✗ ${url}: ${data.error}`, 'var(--neon-red)');
+                    }
+                    await new Promise(r => setTimeout(r, 300));
+                }
+
+                // --- Files ---
+                if (fileQueue.length > 0) {
+                    setIngestStatus(`Uploading ${fileQueue.length} file(s)...`);
+                    const form = new FormData();
+                    fileQueue.forEach(f => form.append('files', f));
+                    form.append('type', selectedIngestType);
+                    const res = await fetch('/api/ingest/file', { method: 'POST', body: form });
+                    const data = await res.json();
+                    totalSaved += (data.saved || []).length;
+                    if (data.errors?.length) {
+                        setIngestStatus(`⚠ ${data.errors.length} file(s) had errors.`, 'var(--neon-yellow)');
+                    } else {
+                        setIngestStatus(`✓ ${totalSaved} file(s) uploaded.`, 'var(--neon-green)');
+                    }
+                }
+
+                // --- Text paste ---
+                const titleVal = document.getElementById('ingest-title')?.value.trim();
+                const textVal = document.getElementById('ingest-text')?.value.trim();
+                if (textVal) {
+                    if (!titleVal) { setIngestStatus('Title is required for text paste.', 'var(--neon-red)'); btn.disabled = false; btn.innerText = 'Ingest & Sync'; return; }
+                    setIngestStatus('Saving text...');
+                    const res = await fetch('/api/ingest/manual', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ title: titleVal, raw_text: textVal, type: selectedIngestType })
+                    });
+                    const data = await res.json();
+                    if (data.status === 'success') totalSaved++;
+                }
+
+                if (totalSaved > 0) {
+                    setIngestStatus(`✓ ${totalSaved} source(s) added to Research Bank. Extraction running...`, 'var(--neon-green)');
+                    urlQueue = []; fileQueue = [];
+                    renderUrlList(); renderFileList();
+                    if (document.getElementById('ingest-title')) document.getElementById('ingest-title').value = '';
+                    if (document.getElementById('ingest-text')) document.getElementById('ingest-text').value = '';
+                    setTimeout(() => { closeIngestModal(); loadResearchBank(); loadGraphData(); }, 1500);
+                } else {
+                    setIngestStatus('Nothing was ingested. Add at least one source.', 'var(--neon-yellow)');
+                }
+            } catch (err) {
+                setIngestStatus(`Error: ${err.message}`, 'var(--neon-red)');
+            }
+
+            btn.disabled = false;
+            btn.innerText = 'Ingest & Sync';
+        }
+
+        // Memory cache to prevent JSON.stringify from breaking HTML parsing when text contains quotes
+        let researchBankCache = {};
+
+        function selectNodeById(id, type) {
+            const item = researchBankCache[id];
+            if (item) {
+                selectNode(item, type);
+            }
+        }
+
+        // Ingest library checklist
+        function loadResearchBank() {
+            fetch('/api/papers')
+                .then(res => res.json())
+                .then(data => {
+                    const bank = document.getElementById('research-bank-container');
+                    researchBankCache = {}; // Reset cache
+                    data.forEach(item => {
+                        researchBankCache[item.id] = item;
+                    });
+                    bank.innerHTML = data.map(item => `
+                        <div class="bank-item" onclick="selectNodeById('${item.id}', 'paper')">
+                            📄 ${item.title}
+                        </div>
+                    `).join('');
+                });
+        }
+
+        // ── Pipeline execution — non-blocking with live status polling ──────────
+        let _pipelinePoller = null;
+
+        function triggerPipelineRun() {
+            const btn = document.getElementById('btn-pipeline-run');
+            if (!btn) return;
+            btn.innerText = '⏳ Starting...';
+            btn.disabled = true;
+
+            fetch('/api/pipeline/run', { method: 'POST' })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.status === 'already_running') {
+                        showPipelineStatus('Already running — stage: ' + res.stage, 'info');
+                    } else {
+                        showPipelineStatus('Pipeline started in background…', 'info');
+                    }
+                    startPipelinePoller();
+                })
+                .catch(err => {
+                    btn.innerText = 'Run Pipeline';
+                    btn.disabled = false;
+                    showPipelineStatus('Could not reach backend: ' + err, 'error');
+                });
+        }
+
+        function startPipelinePoller() {
+            if (_pipelinePoller) clearInterval(_pipelinePoller);
+            _pipelinePoller = setInterval(() => {
+                fetch('/api/pipeline/status')
+                    .then(r => r.json())
+                    .then(s => {
+                        const stageLabels = {
+                            idle: 'Idle',
+                            extraction: '⚙️ Step 1/3: Extracting papers...',
+                            graph_build: '🕸️ Step 2/3: Rebuilding knowledge graph concepts...',
+                            discovery: '🔍 Step 3/3: Running Critic & discovering opportunities...',
+                            done: '✅ Done!',
+                            error: '❌ Error'
+                        };
+                        let label = stageLabels[s.stage] || s.stage;
+
+                        if (s.progress) {
+                            const p = s.progress;
+                            label += ` | Current: "${p.current_item}" [${p.processed + 1}/${p.total}] (${p.percent}%)`;
+                        }
+
+                        if (!s.running) {
+                            clearInterval(_pipelinePoller);
+                            _pipelinePoller = null;
+                            const btn = document.getElementById('btn-pipeline-run');
+                            if (btn) { btn.innerText = 'Run Pipeline'; btn.disabled = false; }
+
+                            if (s.stage === 'done' && s.last_result) {
+                                showPipelineStatus(`✅ Done — Discovered: ${s.last_result.discovered}, Survived: ${s.last_result.survived}, Rejected: ${s.last_result.rejected}`, 'success');
+                                loadGraphData(); loadResearchBank();
+                            } else if (s.stage === 'error') {
+                                showPipelineStatus('❌ Pipeline error: ' + (s.last_error || 'unknown'), 'error');
+                            } else {
+                                showPipelineStatus(label, 'info');
+                            }
+                        } else {
+                            showPipelineStatus(label, 'info');
+                        }
+
+                        // Update DB stats in sidebar
+                        if (s.db) {
+                            const el = document.getElementById('stat-pending');
+                            if (el) el.innerText = s.db.pending_extractions;
+                            const el2 = document.getElementById('stat-extracted');
+                            if (el2) el2.innerText = s.db.extracted;
+                        }
+                    });
+            }, 3000);
+        }
+
+        function showPipelineStatus(msg, type) {
+            let el = document.getElementById('pipeline-status-bar');
+            if (!el) return;
+            const colors = { info: 'rgba(0,217,255,0.15)', success: 'rgba(0,255,128,0.15)', error: 'rgba(255,50,50,0.15)' };
+            el.style.background = colors[type] || colors.info;
+            el.style.display = 'block';
+            el.innerText = msg;
+        }
+
+        // ── System Health Check ───────────────────────────────────────────────
+        function checkSystemHealth() {
+            fetch('/api/system/health')
+                .then(r => r.json())
+                .then(h => {
+                    const badge = document.getElementById('health-badge');
+                    if (!badge) return;
+                    if (h.status === 'healthy') {
+                        badge.innerHTML = `<span style="color:#00ff80;">● System Ready</span> — LLM: ${h.llm.provider}/${h.llm.model}`;
+                    } else {
+                        badge.innerHTML = `<span style="color:#ff6060;">● Degraded</span> — ${h.recommendation}`;
+                    }
+                    // Show Ollama models if available
+                    if (h.llm.ollama_models_available && h.llm.ollama_models_available.length) {
+                        badge.title = 'Available models: ' + h.llm.ollama_models_available.join(', ');
+                    }
+                })
+                .catch(() => {
+                    const badge = document.getElementById('health-badge');
+                    if (badge) badge.innerHTML = '<span style="color:#ff6060;">● Backend offline</span>';
+                });
+        }
+
+        // Update copilot panel text based on loaded opportunities
+        function updateCopilotInsights(data) {
+            const status = document.getElementById('copilot-status');
+            if (currentTab === 'opportunities') {
+                status.innerHTML = `Based on your library, AIVE synthesized <strong>${data.length} validated opportunities</strong> that survived novelty filtering and critique.`;
+            } else if (currentTab === 'rejected') {
+                status.innerHTML = `Critic successfully filtered out <strong>${data.length} concepts</strong> containing duplicate models or saturated market approaches.`;
+            }
+        }
+
+        // Simulation parameters Chart.js
+        function loadSimulationChart() {
+            const ctx = document.getElementById('simulationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Baseline', 'Optimized', 'Frontier'],
+                    datasets: [{
+                        label: 'Novelty Score',
+                        data: [4, 7.5, 9.2],
+                        borderColor: '#00d9ff',
+                        backgroundColor: 'rgba(0, 217, 255, 0.1)',
+                        fill: true
+                    }, {
+                        label: 'Timing Suitability',
+                        data: [5, 6.8, 8.5],
+                        borderColor: '#bd00ff',
+                        backgroundColor: 'rgba(189, 0, 255, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: '#f3f4f6' } }
+                    },
+                    scales: {
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } },
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }
+                    }
+                }
+            });
+        }
+
+        // Workspaces & checkpoints
+        function loadWorkspaces() {
+            fetch('/api/workspaces')
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById('workspaces-list');
+                    list.innerHTML = data.map(w => `
+                        <div class="concept-item" style="cursor: pointer; padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px;" onclick="selectWorkspace('${w.id}', '${w.name}')">
+                            <strong>${w.name}</strong> (${w.status})
+                        </div>
+                    `).join('');
+                });
+        }
+
+        function selectWorkspace(id, name) {
+            activeWorkspaceId = id;
+            document.getElementById('active-ws-name').innerText = name;
+            document.getElementById('btn-save-checkpoint').style.display = 'block';
+            loadWorkspaceHistory(id);
+        }
+
+        function loadWorkspaceHistory(id) {
+            fetch(`/api/workspaces/${id}/history`)
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById('workspace-history-list');
+                    if (data.length === 0) {
+                        list.innerHTML = `<div style="color: var(--text-secondary);">No checkpoints saved for this workspace. Create one above!</div>`;
+                        return;
+                    }
+                    list.innerHTML = data.map(hist => `
+                        <div class="concept-item" style="padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Version ${hist.version} (Saved by ${hist.created_by})</span>
+                            <button onclick="restoreWorkspace('${id}', ${hist.version})" style="background: var(--neon-purple); border: none; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Restore</button>
+                        </div>
+                    `).join('');
+                });
+        }
+
+        function createWorkspace() {
+            const nameInput = document.getElementById('new-ws-name');
+            const name = nameInput.value.trim();
+            if (!name) return;
+            fetch('/api/workspaces', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name })
+            })
+            .then(res => res.json())
+            .then(ws => {
+                nameInput.value = '';
+                loadWorkspaces();
+            });
+        }
+
+        function saveCheckpoint() {
+            if (!activeWorkspaceId) return;
+            fetch(`/api/workspaces/${activeWorkspaceId}/checkpoint`, { method: 'POST' })
+            .then(res => res.json())
+            .then(() => loadWorkspaceHistory(activeWorkspaceId));
+        }
+
+        function restoreWorkspace(id, version) {
+            fetch(`/api/workspaces/${id}/restore/${version}`, { method: 'POST' })
+            .then(res => res.json())
+            .then(() => {
+                alert(`Restored successfully to version ${version}`);
+                loadGraphData();
+            });
+        }
+
+        function sendCopilotMessage() {
+            const inputEl = document.getElementById('copilot-text-input');
+            const message = inputEl.value.trim();
+            if (!message) return;
+
+            const chatHistory = document.getElementById('copilot-chat-history');
+            
+            // Append User message
+            const userMsgEl = document.createElement('div');
+            userMsgEl.style.cssText = 'background: rgba(0, 217, 255, 0.05); border-radius: 6px; padding: 0.6rem; border: 1px solid rgba(0,217,255,0.15); align-self: flex-end; width: 90%;';
+            userMsgEl.innerHTML = `<span style="color: var(--neon-blue); font-weight: 600;">You:</span> ${message}`;
+            chatHistory.appendChild(userMsgEl);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            inputEl.value = '';
+
+            // Loading indicator
+            const loadingEl = document.createElement('div');
+            loadingEl.style.cssText = 'background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);';
+            loadingEl.innerHTML = `<span style="color: var(--text-secondary); font-style: italic;">Copilot is thinking...</span>`;
+            chatHistory.appendChild(loadingEl);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            fetch('/api/copilot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            })
+            .then(res => res.json())
+            .then(res => {
+                loadingEl.remove();
+                const replyEl = document.createElement('div');
+                replyEl.style.cssText = 'background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);';
+                if (res.error) {
+                    replyEl.innerHTML = `<span style="color: var(--neon-red); font-weight: 600;">Copilot Error:</span> ${res.error}`;
+                } else {
+                    replyEl.innerHTML = `<span style="color: var(--neon-purple); font-weight: 600;">Copilot:</span> ${res.reply}`;
+                }
+                chatHistory.appendChild(replyEl);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            })
+            .catch(err => {
+                loadingEl.remove();
+                const errorEl = document.createElement('div');
+                errorEl.style.cssText = 'background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem; border: 1px solid var(--border-color);';
+                errorEl.innerHTML = `<span style="color: var(--neon-red); font-weight: 600;">System Error:</span> Could not connect to backend.`;
+                chatHistory.appendChild(errorEl);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            });
+        }
+
+        function syncArxivPacks() {
+            const btn = event.currentTarget;
+            const originalText = btn.innerText;
+            btn.innerText = 'Syncing...';
+            btn.disabled = true;
+
+            fetch('/api/ingest/arxiv', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message || 'arXiv pack ingestion triggered in background.');
+                btn.innerText = originalText;
+                btn.disabled = false;
+                // Poll research bank periodically to update UI as ingestion runs
+                let count = 0;
+                const interval = setInterval(() => {
+                    loadResearchBank();
+                    count++;
+                    if (count > 5) clearInterval(interval);
+                }, 3000);
+            })
+            .catch(err => {
+                alert('Failed to trigger arXiv sync: ' + err.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
+        }
+
+        function loadReportsList() {
+            const list = document.getElementById('reports-list');
+            fetch('/api/reports')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        list.innerHTML = `<p style="color: var(--text-secondary);">No reports generated yet. Click above to compile all surviving evidence into a publication-ready portfolio.</p>`;
+                        return;
+                    }
+                    list.innerHTML = data.map(r => `
+                        <div class="concept-item" style="padding: 0.75rem; background: var(--bg-tertiary); margin-bottom: 0.5rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="color: var(--neon-blue);">${r.filename}</strong>
+                                <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                                    Size: ${(r.size_bytes/1024).toFixed(1)} KB | Generated: ${new Date(r.created_at).toLocaleString()}
+                                </div>
+                            </div>
+                            <button onclick="viewReportContent('${r.filename}')" style="background: var(--neon-purple); border: none; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Open</button>
+                        </div>
+                    `).join('');
+                });
+        }
+
+        function viewReportContent(filename) {
+            fetch(`/api/reports/view/${filename}`)
+                .then(res => res.json())
+                .then(data => {
+                    // Display it inside the bottom preview editor pane
+                    document.getElementById('editor-node-title').innerText = filename;
+                    document.getElementById('editor-node-type').innerText = 'REPORT PORTFOLIO';
+                    // Convert markdown breaks to html breaks simple parsing
+                    const parsed = data.content
+                        .replace(/#+ (.*)/g, '<h3>$1</h3>')
+                        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                        .replace(/`([^`]+)`/g, '<code>$1</code>')
+                        .replace(/\n/g, '<br>');
+                    document.getElementById('editor-node-content').innerHTML = `
+                        <div style="font-family: 'Outfit', sans-serif; line-height: 1.6; color: var(--text-primary); max-height: 400px; overflow-y: auto;">
+                            ${parsed}
+                        </div>
+                    `;
+                    // Highlight tab to Canvas to view bottom pane details
+                    switchMainTab('canvas');
+                });
+        }
+
+        function generateUnifiedReport() {
+            const status = document.getElementById('report-gen-status');
+            status.innerText = 'Compiling surviving evidence and generating portfolio report...';
+            status.style.color = 'var(--neon-blue)';
+
+            fetch('/api/reports/generate', { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.report_path) {
+                        status.innerText = `✓ Portfolio report generated successfully! Saved ${data.opportunity_count} opportunities.`;
+                        status.style.color = 'var(--neon-green)';
+                        loadReportsList();
+                    } else {
+                        status.innerText = 'No surviving opportunities in the database to report.';
+                        status.style.color = 'var(--neon-yellow)';
+                    }
+                })
+                .catch(err => {
+                    status.innerText = 'Failed to generate report: ' + err.message;
+                    status.style.color = 'var(--neon-red)';
+                });
+        }
+
+        // Initialization
+        loadResearchBank();
+        loadGraphData();
+    </script>
+</body>
+</html>

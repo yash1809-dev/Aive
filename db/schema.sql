@@ -15,7 +15,14 @@ CREATE TABLE IF NOT EXISTS items (
     beneficiaries     TEXT,
     year              TEXT,
     extracted_at      TEXT,
-    extraction_status TEXT DEFAULT 'pending'
+    extraction_status TEXT DEFAULT 'pending',
+    ko_type           TEXT DEFAULT 'document',
+    confidence        REAL DEFAULT 0.5,
+    version           INTEGER DEFAULT 1,
+    provenance        TEXT,  -- JSON object
+    validation_state  TEXT DEFAULT 'unvalidated',
+    reasoning_refs    TEXT,  -- JSON array
+    discovery_refs    TEXT   -- JSON array
 );
 
 CREATE TABLE IF NOT EXISTS nodes (
@@ -29,9 +36,26 @@ CREATE TABLE IF NOT EXISTS edges (
     id           TEXT PRIMARY KEY,
     from_node    TEXT REFERENCES nodes(id),
     to_node      TEXT REFERENCES nodes(id),
-    relationship TEXT,
-    weight       REAL DEFAULT 0.5,
-    evidence     TEXT
+    relationship TEXT NOT NULL,
+    weight       REAL DEFAULT 0.7,
+    evidence     TEXT  -- JSON array of source item IDs
+);
+
+CREATE TABLE IF NOT EXISTS workspaces (
+    id             TEXT PRIMARY KEY,
+    name           TEXT NOT NULL,
+    status         TEXT DEFAULT 'active', -- active, archived
+    created_at     TEXT NOT NULL,
+    updated_at     TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS workspace_history (
+    id             TEXT PRIMARY KEY,
+    workspace_id   TEXT REFERENCES workspaces(id),
+    version        INTEGER NOT NULL,
+    snapshot_data  TEXT, -- JSON snapshot of graph/items state
+    created_at     TEXT NOT NULL,
+    created_by     TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS opportunities (

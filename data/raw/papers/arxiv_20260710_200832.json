@@ -1,0 +1,122 @@
+[
+  {
+    "id": "paper_2607_05740v1",
+    "title": "Network amplification of dengue declines as endemicity rises: climate-adjusted directional spread across Costa Rican cantons, 1993-2012",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05740v1",
+    "type": "paper",
+    "raw_text": "\\textbf{Background:} In Costa Rica, dengue is reported and controlled at the canton level, and outbreaks in one canton are often followed by outbreaks in others. Climate models describe where conditions favor transmission but not how dengue moves \\emph{between} places, the directional, between-place spread that shapes where an outbreak travels next.\n  \\noindent \\textbf{Methods:} From weekly case counts for all 81 cantons (1993--2012; \\num{246524} cases) we reconstructed a canton-to-canton spread map using the roughly three-week dengue generation interval, removed the shared seasonal and climatic signal so that only direction-specific spread remained, and summarized it by the receiving and source cantons, an amplification factor, and a directionality index, tracked over five-year windows.\n  \\noindent \\textbf{Results:} Climate-adjusted spread is strongly directional and concentrates in the lowland Caribbean and Pacific cantons (Lim\u00f3n, Matina, Gu\u00e1cimo, Garabito, Orotina). A local outbreak is amplified about three- to fourfold across the network even though overall transmission is not growing. This amplification was greatest during the emergence phase of the 1990s and declined markedly as annual reported cases increased, while the \\emph{direction} of spread remained fixed; the decline persists after controlling for the broadening of surveillance coverage.\n  \\noindent \\textbf{Conclusions:} Routine surveillance alone can map which cantons tend to experience dengue and the pathways through which it appears to spread, providing a potential input for prioritizing surveillance and vector control, particularly when a serotype or the disease itself is newly establishing. As a historical description of average behavior over multi-year windows, it is a planning input whose prospective value remains to be tested.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02161v1",
+    "title": "Mathematical Exploration of Earth Gravitational Field Impact on Seasonal Wind Flux in a Tropical Region",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02161v1",
+    "type": "paper",
+    "raw_text": "The Earth's gravitational field exerts a significant influence on atmospheric dynamics, including the behavior of seasonal wind flux, defined by periodic variations in wind speed and direction. While temperature gradients and Earth's rotation are established drivers of wind patterns, the role of gravitational forces in modulating these processes remains poorly understood. This study investigates the mathematical relationship between gravitational variations and seasonal wind flux in Nigeria, a region of pronounced climatic variability and varied wind patterns. Utilizing Navier-Stokes equations for atmospheric dynamics, Fourier decomposition for seasonal wind flux analysis, and Pearson correlation coefficients for gravitational-wind interactions, we analyze 2010-2020 meteorological data, alongside gravitational field measurements from the GRACE (Gravity Recovery and Climate Experiment) satellite. Results show significant annual fluctuations in average wind speed (5.1-5.6 m/s) and gravitational variations (9.60-9.95 mGal), with an inverse relationship observed in certain years, suggesting a coupling between atmospheric dynamics and gravitational forces. Seasonal wind flux exhibits a distinct sinusoidal pattern, peaking mid-year and declining toward year-end, consistent with Nigeria's monsoon climate. Correlation coefficients between gravitational variations and wind flux range from 0.79 to 0.87, indicating a strong positive relationship. These findings underscore the importance of gravitational forces in modulating wind patterns and highlight the potential for integrating gravitational data into climate models, thereby enhancing accuracy of weather forecasting and renewable energy planning. This study provides a foundational framework for further exploration of gravitational influences on atmospheric processes, with implications for global climate science and sustainable energy strategies.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01835v1",
+    "title": "Subsoil acidity causes long delays in inorganic carbon sequestration by Enhanced Weathering",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01835v1",
+    "type": "paper",
+    "raw_text": "While a looming atmospheric CO$_2$ overshoot calls for immediate carbon sequestration, delays associated to Enhanced Weathering (EW) carbon dioxide removal are being investigated. Topsoil acidity is already known to delay EW carbon sequestration, but subsoil acidity remains underexplored. Using century-long agricultural liming of formerly acidic heathland as a proxy for EW, this study provides empirical evidence of subsoil-imposed delays. Below such limed terrain, we observed a downward-progressing front of topsoil-produced alkalinity that still requires 30-100 years to penetrate the approximately 5 m thick acidic sandy unsaturated zone and reach the groundwater table. Subsoil acidity thus may cause beyond-reasonable delays, prohibiting EW as a viable short-term carbon capture strategy even on topsoils made non-acidic by preceding liming. When planning EW schemes, the amounts of stored acidic cations in top- and subsoil, as well as the rate and composition of infiltrating water, controlling the duration of the delay, require careful assessment.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00386v1",
+    "title": "Resonance structure of a periodically forced delay differential equation model for the El Ni\u00f1o--Southern Oscillation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00386v1",
+    "type": "paper",
+    "raw_text": "We study resonance phenomena in the periodically forced Suarez--Schopf delay differential equation, which is a conceptual climate model for the El Ni\u00f1o--Southern Oscillation (ENSO). The system serves as a prototypical forced delayed-action oscillator whose self-sustained oscillations, when subjected to periodic forcing, give rise to attracting invariant tori. We provide a comprehensive bifurcation analysis of both the unforced and the forced model; for the latter, we propose a method to compute the rotation number of normally hyperbolic attracting invariant tori. With it we show that resonance tongues in parameter space are organized by critical points of the graph of the rotation number, both along torus bifurcation curves and within the region of invariant tori. We also show that the resonance structure repeats for large delays, which constitutes a reappearance mechanism not previously reported in the literature. Furthermore, depending on the feedback strength, we find bistability between period-one orbits and invariant tori. This regime involves non-classical bifurcation sequences, including `saddle-node' and `gluing' bifurcations of tori.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_30821v1",
+    "title": "Mind the Residual Gap: Probabilistic Downscaling under Real-World Bias",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.30821v1",
+    "type": "paper",
+    "raw_text": "Probabilistic downscaling is the task of modeling the conditional distribution of high-resolution fields given coarse inputs, and is a central challenge to atmospheric science, climate modeling, and other multiscale physical systems. A widely used paradigm decomposes the problem into a deterministic mean predictor followed by a stochastic residual generator. While effective in idealized settings, this mean--residual approach frequently produces biased and under-dispersive ensembles in real-world applications. Is this merely generic predictive uncertainty miscalibration? We show that the root cause is more fundamental: residual target misspecification, the residual distribution induced during training differs systematically from the one required at test time due to downscaling bias. To close this gap, we introduce ReMatch (Residual Distribution Matching). ReMatch aligns the training residual distribution toward the test-time regime via optimal transport in a low-dimensional PCA space. This preserves the statistical benefits of the mean--residual framework while reducing the train--test mismatch in the residual targets seen by the stochastic generator. On a controlled synthetic benchmark with varying bias levels and a real-world HRRR--ERA5 wind field downscaling task, ReMatch substantially reduces under-dispersion, improves calibration (SSR and CRPS), and outperforms strong baselines, including the standard mean--residual model and its variants, as well as state-of-the-art super-resolution models. Our code is available at https://github.com/sdean-group/ReMatch.git.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_28546v1",
+    "title": "NIVA: A Multimodal Foundation Model for Actionable Earth System Intelligence",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.28546v1",
+    "type": "paper",
+    "raw_text": "Recent advances in AI-driven weather and climate modeling have improved forecast skill while reducing computational cost. However, existing data-driven approaches are limited in their ability to model coupled Earth system dynamics, which is required for extending predictability beyond the ~2-week horizon. To address this, we introduce NIVA, a multimodal foundation model designed to learn unified representations across Earth system components. While the full framework targets atmosphere, ocean, ice, and land interactions, we focus here on a two-modality setting (ocean and atmosphere) as a controlled proof of concept to evaluate whether foundation models can learn coupled dynamics. Trained on large-scale Earth system simulations, NIVA learns physically meaningful cross-modal structure, providing a foundation for subseasonal-to-seasonal prediction. As initial validation, we show that NIVA captures key modes of climate variability through accurate prediction of major climate indices.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_28519v1",
+    "title": "A Trainable-by-Parts Operator Learning Framework: Bridging DeepONet and Karhunen-Loeve Expansions for Large-Scale Applications",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.28519v1",
+    "type": "paper",
+    "raw_text": "Training operator-learning models for large-scale problems governed by partial differential equations (PDEs) is challenging due to the curse of dimensionality, memory constraints, and limited training data. These challenges arise in many scientific and engineering applications, including subsurface flow, climate modeling, and geological carbon storage (GCS). In this work, we propose a scalable operator-learning framework based on the Karhunen-Loeve Deep Neural Network (KL-DNN) and demonstrate its performance for modeling GCS. The model is trained on a dataset comprising 100 samples of large-scale simulations in a three-dimensional domain with 1.7 million cells and 50 time steps. The KL-DNN method constructs latent spaces using low-rank singular value decomposition of static properties and a nested Karhunen-Loeve expansion for dynamic pressure fields, enabling full-resolution predictions without subsampling or spatial coarsening. The KL-DNN model achieves an average root mean square error (RMSE) of 1.1 psi for pressure (0.04% relative error with respect to the average pressure in the domain) and RMSE of 0.0146 for CO2 saturation (5% relative error with respect to the average saturation inside the plume). The model requires 20 minutes of training on a single GPU, representing a 19% reduction in the pressure errors, 7% reduction in the saturation error, and a two-order-of-magnitude speedup compared to DeepONet trained on the same dataset. These results, along with inference time of less than one minute, establish the proposed model as a practical and accurate solution for large-scale PDE problems, enabling rapid uncertainty quantification, history matching, and real-time decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_28075v1",
+    "title": "Active diffusion enhances plankton carbon capture and phycosphere radius",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.28075v1",
+    "type": "paper",
+    "raw_text": "Plankton fix about 40 gigatons of carbon annually, using photosynthesis to convert $\\text{CO}_2$ into $\\text{O}_2$ and carbohydrates. These solutes are exchanged with the ocean in a diffusive boundary layer around the organism called the phycosphere. Here, we study how organisms can increase their carbon influx and outflux by actively mixing the surrounding fluid. By developing exact analytical expressions validated by stochastic simulations, we determine the enhanced diffusivity of phycosphere particles as a function of mixing activity, and their resulting fluxes and concentration fields. Hence, we find that plankton can significantly increase their uptake and photosynthetic turnover. Moreover, we find that the phycosphere radius is enlarged both by increased metabolism and by increased diffusive transport further from the organism. These results provide new biophysical insights into marine microbial ecology, with important implications for global carbon capture and climate change.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_27202v1",
+    "title": "Graph Neural Networks Applications Across Domains: All Insights You Need",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.27202v1",
+    "type": "paper",
+    "raw_text": "Graph neural networks have moved from a niche representation-learning technique to the default model class wherever data carry relational structure. The interesting question is no longer whether message passing helps on a given dataset, but where graph structure earns its computational cost and where it does not. This survey organises the field around a single design space, derives the spectral and spatial formulations from shared first principles, and connects expressive power to the Weisfeiler-Leman hierarchy with explicit statements of what current architectures can and cannot separate. Against that methodological backbone we examine twelve application domains, among them recommendation and social networks, knowledge graphs and language-model integration, drug discovery and molecular property learning, healthcare and neuroscience, computer vision, traffic and urban computing, power and renewable-energy systems, wireless and sixth-generation networks, fraud and cybersecurity, industrial prognostics, materials science, and climate modelling. For each domain we specify the graph-construction choices and their costs, identify which architecture families dominate and why, and separate reported gains from artefacts of weak baselines or favourable splits. A cross-domain comparison exposes recurring patterns: heterophily and scale undercut the same models almost everywhere, temporal graphs remain harder than their static counterparts, and the architectures that top public leaderboards are seldom the ones that reach deployment. We treat over-smoothing, over-squashing, robustness, distribution shift, fairness, and explainability not as a closing checklist but as the constraints that decide adoption.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_23012v1",
+    "title": "Optimisation of tipping pathways in a spatially heterogeneous world",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.23012v1",
+    "type": "paper",
+    "raw_text": "In spatially extended systems, tipping does not necessarily lead to a uniform, abrupt transition typical of low-dimensional conceptual climate models. Instead, spatially structured forms of tipping can emerge, for example, through front propagation and pinning, coexistence between alternative states, and pattern formation. Tipping can therefore remain partial or spatially heterogeneous rather than affecting the entire system. Existing work on spatial tipping in conceptual models remains mostly descriptive, and a general framework to influence tipping dynamics through spatial interventions is still lacking. Here, we introduce a constrained optimisation framework that systematically identifies spatial interventions designed to maximise resilience or promote recovery of a desirable state, subject to dynamical and resource constraints. The framework is general and applicable to a broad class of spatially extended systems. We illustrate it using the one-dimensional Allen-Cahn equation with spatial heterogeneity, a minimal bistable model in which the key spatial tipping processes in gradient systems can be analysed explicitly. In this setting, optimisation acts by shifting local tipping thresholds and controlling front dynamics. Our results show that small-scale local, targeted modifications can determine large-scale system outcomes: optimal interventions can prevent tipping, induce recovery of the desirable state, or confine collapse to limited regions of the domain.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_21523v1",
+    "title": "Accelerating Simulation and Optimisation of Cyclic Adsorption Processes with Differentiable Programming",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.21523v1",
+    "type": "paper",
+    "raw_text": "The design of cyclic adsorption processes is computationally demanding, requiring repeated convergence to cyclic steady state within an iterative optimisation loop. Conventional workflows treat the process simulator as a black box and rely on derivative-free optimisation, resulting in design campaigns that can require hundreds to thousands of CPU hours. This work presents an end-to-end differentiable model of a pressure vacuum swing adsorption process, developed using the JAX differentiable programming framework and applied here to a benchmark post-combustion carbon capture problem. Automatic differentiation provides exact gradients throughout the entire computational workflow. The differentiation of a single process cycle provides the Jacobian for a Newton iteration to decrease both the number of iterations and the simulation time required to reach cyclic steady state by a factor of 20 relative to a representative MATLAB implementation. Exact gradients of the performance metrics with respect to the design variables further enable gradient-based multi-objective optimisation using the IPOPT algorithm. Applied to a six-variable design problem, the latter produces a superior Pareto front with improved coverage of the trade-off space and closer convergence to the optimal front than the genetic algorithm NSGA-II. Notably, the full front is obtained over two orders of magnitude faster than the conventional approach. By retaining the full mechanistic model while making it differentiable, this framework transforms cyclic adsorption process design from slow black-box simulation with derivative-free optimisation to efficient gradient-enhanced modelling and optimisation, enabling rapid and systematic exploration of complex design spaces.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_21046v1",
+    "title": "On the large-scale vertical velocity intermittency of turbulent wall flows",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.21046v1",
+    "type": "paper",
+    "raw_text": "Large-scale intermittency in the vertical velocity (LSI) has received significant attention in studies of coherent structures and their detection using data-driven approaches. However, a theory that predicts the origin of LSI from the Navier-Stokes equations or some approximated version of them at very high Reynolds numbers is yet to be achieved. This letter proposes such a theory for a neutrally stratified wall-bounded turbulent flow based on a dominant balance between inertial and pressure forces. Using multiple flume and wind tunnel experiments, it is shown that the flatness factor ($FF_w$) measuring LSI collapses to a universal trend for all flow configurations within the inertial sublayer (ISL) before reaching a common minimum value above the ISL. A theory that predicts $FF_w$ using second-order statistics and explicitly accommodates large-scale energy anisotropy is tested against a wide range of Reynolds numbers from laboratory to field settings with varied surface roughness conditions. The theory also demonstrates why $FF_w$ cannot be described using down-gradient closure approximations routinely employed in large-scale meteorological and climate models.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

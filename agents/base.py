@@ -45,27 +45,42 @@ def call_ollama(
     # This cuts response time from ~90s to ~15s for structured JSON tasks without
     # meaningful quality loss on extraction and enrichment prompts.
     system_with_hint = system + " /no_think"
-    payload = json.dumps(
-        {
+
+    def _make_payload(force_json: bool) -> bytes:
+        body = {
             "model": model,
             "messages": [
                 {"role": "system", "content": system_with_hint},
                 {"role": "user", "content": prompt},
             ],
-            "format": "json",
             "stream": False,
             "options": {"temperature": 0.2},
         }
-    ).encode("utf-8")
-    req = urllib.request.Request(
-        f"{host}/api/chat",
-        data=payload,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=300) as response:
-        body = json.loads(response.read().decode("utf-8"))
-    return extract_json(body["message"]["content"])
+        if force_json:
+            body["format"] = "json"
+        return json.dumps(body).encode("utf-8")
+
+    def _call(force_json: bool) -> dict:
+        payload = _make_payload(force_json)
+        req = urllib.request.Request(
+            f"{host}/api/chat",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=300) as response:
+            body = json.loads(response.read().decode("utf-8"))
+        return extract_json(body["message"]["content"])
+
+    try:
+        # First attempt: with forced JSON mode (fastest, most reliable)
+        return _call(force_json=True)
+    except urllib.error.HTTPError as e:
+        if e.code == 500:
+            # qwen3's thinking mode conflicts with format="json" for some inputs.
+            # Retry without forced JSON mode and extract JSON via regex.
+            return _call(force_json=False)
+        raise
 
 
 def call_openai(prompt: str, system: str = SYSTEM_PROMPT) -> dict:

@@ -38,8 +38,8 @@ Rules:
 - REJECT if already_exists AND too_crowded
 - REJECT if no_customer
 - REJECT if technically_hard AND too_early
-- REJECT if generic "AI in education" with no specific intersection
-- REJECT duplicates of obvious products (Khanmigo clone, another LMS)
+- REJECT if generic "AI in [Sector]" with no specific intersection
+- REJECT duplicates of obvious products (Khanmigo clone, generic CRM wrapper, basic PDF search)
 - SURVIVE only if: non-obvious cross-domain connection + evidence + clear timing + feasible in 12 months
 - Target: reject 70%+ of opportunities. When in doubt, reject.
 """

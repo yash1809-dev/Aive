@@ -1,0 +1,82 @@
+[
+  {
+    "id": "paper_2607_06585v1",
+    "title": "Pixel-Precise Explainable Stress Indexing: A Semantic Segmentation Framework for Disease Severity Quantification in Field Crops",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.06585v1",
+    "type": "paper",
+    "raw_text": "Plant diseases, resulting from both biotic and abiotic stresses, cause an estimated 20-40% loss in global agricultural yield annually, resulting in economic damages exceeding USD 220 billion. Accurate and scalable stress quantification is essential for precision agriculture, yet traditional manual assessments are labour-intensive and subjective. This paper proposes a unified deep learning pipeline integrating semantic segmentation, regression-based severity estimation, and disease classification. Stress severity is categorised into four levels (Low to Very High) based on the proportion of infected leaf area. Experiments on the Apple Tree Leaf Disease Segmentation dataset (1,641 samples, six classes) evaluate four models: U-Net (MobileNetV2), SegFormer, FCN, and PSPNet. U-Net with MobileNetV2 achieves the best performance with 98.20% pixel accuracy, 0.70 mIoU, and 99.41% detection accuracy at 14.7 ms per image, making it suitable for real-time use. SegFormer performs competitively (mIoU 0.66), while FCN and PSPNet show lower spatial accuracy (approximately 0.49 mIoU). The computed severity index strongly correlates with expert annotations (r = 0.968, R^2 = 0.937), demonstrating the system's reliability for automated crop monitoring and decision support.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02055v1",
+    "title": "Beyond the Performance Illusion: Structure-Aware Stratified Partitioning and Curriculum Distributionally Robust Optimization for Spatially Correlated Domains",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02055v1",
+    "type": "paper",
+    "raw_text": "Performance evaluation in AI systems commonly assumes that random dataset splits produce independent and identically distributed (i.i.d.) subsets. We show that this assumption often breaks down in spatiotemporally correlated domains such as aerial surveillance, precision agriculture, and medical imaging, leading to two systematic failures: data leakage, where correlated samples span training and validation splits and inflate performance estimates, and hidden stratification, where errors on minority subpopulations are obscured by aggregate metrics. To address these issues, we propose a unified evaluation and training framework for spatially correlated data. We introduce Structure-Aware Stratified Partitioning (SASP), which constructs validation splits that reduce spatiotemporal leakage while preserving meaningful class balance, and Curriculum Distributionally Robust Optimization (CDRO), a curriculum-based relaxation of distributionally robust training that stabilizes optimization under these stricter splits. Across multiple benchmarks, this combination yields consistently improved generalization, more reliable confidence calibration, and exposes failure modes that remain hidden under conventional random-split evaluation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00549v1",
+    "title": "Robust Base Station Placement in Agricultural IoT via Bayesian Optimization",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00549v1",
+    "type": "paper",
+    "raw_text": "Precision-agriculture networks based on private 5G NR should ensure reliable connectivity for IoT sensor nodes throughout the crop growing season, yet the propagation environment changes dramatically as vegetation grows and matures. We formulate $K$-base-station~(BS) placement as a \\textit{maximin seasonal coverage} problem that maximizes the worst-case coverage fraction across all crop growth stages. Since each objective evaluation requires expensive ray-tracing simulations across all stages, we adopt a Gaussian-process Bayesian optimization~(GPBO) framework that builds a probabilistic surrogate of the robust objective using ray tracing. On a $1\\,\\text{km}^2$ multi-crop farm with three distinct crop zones at $3.5\\,\\text{GHz}$, the proposed scheme achieves $72.8\\%$ worst-case coverage with $K{=}3$ BSs in fewer than fifty ray-tracing evaluations, outperforming budget-matched state-of-the-art approaches by at least $4.6\\,\\text{pp}$ across all four seasonal stages.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_31889v1",
+    "title": "Improving path-tracking performance of an articulated tractor-trailer system using a non-linear kinematic model",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.31889v1",
+    "type": "paper",
+    "raw_text": "This paper presents a novel non-linear mathematical model of an articulated tractor-trailer system that can be used, in combination with receding horizon techniques, to improve the performance of path tracking tasks of articulated systems. Due to its dual steering mechanisms, this type of vehicle can be very useful in precision agriculture, particularly for seeding, spraying and harvesting in small fields. The articulated tractor-trailer system model was embedded within a non-linear model predictive controller and the trailer position was monitored. When the kinematic of the trailer was considered, the deviation of trailer's position was reduced substantially alongside not only straight paths but also in headland turns. Using the proposed mathematical model, we were able to control the trailer's position itself rather than the tractor's position. The Robot Operating System (ROS) framework and Gazebo simulator were used to perform realistic simulations examples.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_31661v1",
+    "title": "Near-Optimal Nitrogen Recommendations for Precision Agriculture via Sequential Screening and Hierarchical Refinement",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.31661v1",
+    "type": "paper",
+    "raw_text": "Nitrogen fertilizer management plays a central role in balancing agricultural productivity and environmental sustainability, yet identifying optimal application strategies remains difficult because treatment responses vary substantially across locations and many fertilizer choices are statistically indistinguishable near the optimum. This paper develops a hierarchical refinement procedure, built on sequential screening, for fertilizer recommendation in multi-site experiments that explicitly accounts for spatial heterogeneity while prioritizing parsimonious, decision-oriented selection. Rather than targeting a single estimated best treatment, the proposed method first conducts sequential screening at a higher aggregation level to eliminate clearly inferior fertilizer choices and then refines recommendations locally among the surviving candidates. We study the asymptotic properties of the proposed estimators and show that it provides screening-safety guaranteed recommendations. The efficacy of the new approach is investigated through a multi-state, multi-year corn nitrogen trial. The results show that no single fertilizer regime is uniformly optimal within a state; instead, each state is associated with multiple recommended choices, and the most common recommendation typically covers only about one-third to one-half of decision units, underscoring substantial within-state heterogeneity. Representative site-level comparisons further demonstrate that the proposed method often yields lower total nitrogen recommendations than state-level or hindsight benchmarks while maintaining competitive agronomic performance.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05421v1",
+    "title": "Procedural Volumetric Modeling of Plant Branching Structures for Finite Element Analysis",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05421v1",
+    "type": "paper",
+    "raw_text": "Precision agriculture, smart breeding, and agricultural robotics require accurate and automated plant modeling. These models provide high-fidelity three-dimensional (3D) representations of plant architecture. They provide the geometric foundation for simulations of water and nutrient transport, light interception, structural loading, and crop lodging. Unlike static plant modeling pipelines, procedural modeling frameworks not only generate accurate 3D plant geometries but also support the generative modeling of crop diversity and the dynamic modeling of plant growth. While terrestrial laser scanning, LiDAR, photogrammetry, and neural reconstruction-based approaches have made 3D plant reconstruction possible, the resulting data are typically in the form of point clouds, which cannot be directly utilized for high-fidelity simulations. We present an automated volumetric procedural modeling framework for plant branching structures that generates analysis-suitable hexahedral meshes from input skeletons or 3D point clouds. The input skeleton is first converted into a rooted graph representation that captures the plant branching topology. Each graph edge is then represented by a smooth centerline B-spline curve, around which a cylindrical tensor-product B-spline volume is constructed. At each junction, incident B-spline volume control lattices are joined using blending operations. The resulting volumetric parameterization is evaluated to generate a smooth and conforming hexahedral mesh of the whole plant. We demonstrate the framework on three diverse plant datasets, namely mung bean, tomato, and walnut trees, generating meshes with both uniform and spatially varying branch radii. The framework also supports dynamic mesh generation suitable for modeling plant growth by locally updating newly added branches without reconstructing the full plant geometry.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_27649v1",
+    "title": "LightFARM: Model Predictive Lighting Control with Battery-Free IoT for Energy-Efficient Indoor Farming",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.27649v1",
+    "type": "paper",
+    "raw_text": "Lighting is the dominant energy load in indoor farming, yet most deployed systems still rely on fixed rule-based or schedule-based control. We present LightFARM, a predictive lighting control framework that couples crop illumination with battery-free sensing for more energy-efficient indoor farming. LightFARM combines finite-horizon predictive control with compact models of photosynthesis, thermal dynamics, and sensor energy state. The controller adjusts lighting intensity to balance photosynthetic benefit, electrical power consumption, thermal safety, and sensing-energy feasibility. A key design feature is that the same light-emitting diode (LED) fixtures serve both as the photosynthetic light source for crops and as a controllable energy source for self-powered sensor nodes. We implement LightFARM in a real indoor basil cultivation system and evaluate it through two independent 12-day cultivation trials. Compared with a conventional rule-based baseline, LightFARM reduces lighting energy consumption by approximately 41% and improves energy productivity from 36.1 to 52.9 $\\mathrm{g\\,kWh^{-1}}$ and from 41.1 to 60.2 $\\mathrm{g\\,kWh^{-1}}$ ($\\approx 46.5\\%$ on average). These results suggest that energy-cooperative predictive lighting control is a promising approach to improving indoor farming efficiency under practical resource constraints, while explicitly accounting for the trade-off between energy savings and crop yield.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_26828v1",
+    "title": "Learning Adversarial Augmentation Policies for Robust Garlic Seedling Detection",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.26828v1",
+    "type": "paper",
+    "raw_text": "Accurate seedling detection during early growth stages is essential for timely replanting and effective crop management in precision agriculture. However, existing studies are mostly evaluated under relatively stable imaging conditions, such as UAV imagery or greenhouse environments, leaving robust detection under severe and spatially heterogeneous illumination in ground-based outdoor monitoring insufficiently explored. In addition, many illumination-robust detection methods rely on additional enhancement or feature-extraction modules, which increase inference-time overhead and are not tailored to seedling detection and downstream missing seedling localization. To address these gaps, we construct a new garlic seedling dataset captured using a ground-based monitoring platform under real outdoor field conditions with highly variable illumination. We further propose an illumination-robust seedling detection framework based on adversarial augmentation policy learning. The proposed method jointly optimizes a stochastic augmentation policy agent and an object detector, enabling the detector to learn robust representations under challenging visual conditions. A structural penalty is introduced to prevent unrealistic distortions while encouraging challenging augmentations during training. Extensive experiments show that the proposed approach achieves an AP$_{50}$ of 91.6%, improving the baseline by 0.9 percentage points and outperforming the previous best-performing method by 0.2 percentage points. For downstream missing seedling localization, it achieves 75.0% precision and a 67.0% F1-score, improving the baseline by 4.8 and 2.0 percentage points, respectively. These results demonstrate the effectiveness of the proposed framework for practical ground-based agricultural monitoring under complex outdoor lighting conditions without additional inference-time computational overhead.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "paper_2607_08361v1",
+    "title": "Polycrystalline ferroelectric croconic acid for multisource environmental energy harvesting",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08361v1",
+    "type": "paper",
+    "raw_text": "The development of organic ferroelectric materials through scalable and simplified fabrication routes remains a major challenge for next-generation energy-harvesting technologies. Here, polycrystalline croconic acid (CA) thin films are fabricated by vacuum sublimation onto Ar plasma-treated flexible substrates and stabilized by in situ encapsulation with an adamantane-based remote plasma polymer. This solvent-free strategy effectively suppresses surface degradation under ambient conditions, providing long-term stability. Piezoresponse force microscopy confirms robust ferroelectricity with an oblique polarization orientation, well-defined domains, and low nanoscale coercive fields. The films were integrated into multilayer piezoelectric and pyroelectric devices. The piezoelectric performance strongly depends on film thickness, while embedding the CA layer between dielectric polymeric films significantly improves the macroscopic response, reaching power densities of up to 37 microW m-2 for ca. 2 micrometer CA films. Despite the common assumption that high crystallinity is required to sustain ferro-, piezo-, and pyroelectricity, these polycrystalline CA films exhibit remarkable RT pyroelectricity, a property not previously demonstrated in CA-based devices. A pyroelectric coefficient of ca. 10 microC m-2 K-1 highlights a functional response comparable to that of well-established organic and inorganic pyroelectric materials, demonstrating the potential of CA thin films for thermal energy harvesting. Beyond their functional performance, the proposed low-T fabrication route combines deposition and encapsulation in a single in situ process, simplifying device fabrication. Its compatibility with scalable vacuum technologies, flexible substrates, and further process optimization makes this approach highly promising for developing low-cost, lead-free, multisource energy-harvesting systems.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_06791v1",
+    "title": "Machine Learning-Based Battery State-of-health Prediction for Unmanned Aerial Vehicles Predictive Maintenance",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.06791v1",
+    "type": "paper",
+    "raw_text": "Battery state-of-health (SoH) prediction aims to estimate the remaining capacity by modeling battery degradation through its life cycle. Machine learning (ML)-based SoH models can accurately predict the battery remaining capacity based on voltage, current, and temperature. Battery SoH prediction for unmanned aerial vehicles (UAVs) is a crucial yet overlooked domain with data scarcity and high variability. Accurate battery SoH information contributes to efficient predictive maintenance, enhancing UAV profitability and flight safety. However, UAVs are compatible with a variety of batteries and the available data for each type of battery are scarce. Furthermore, the available input features from UAV batteries are limited to the built-in sensors because of the lightweight requirements. This research aims to develop an ML pipeline for UAV battery SoH prediction while mitigating data scarcity using knowledge transfer. 342 and 289 flight experiments have been conducted to collect operational data from lithium polymer batteries of 2200 mAh and 1100 mAh, respectively. Voltage, current, and throttle are selected as the input features of the ML model according to the existing literature and sensor availability. The remaining capacity is measured at every 10th experiment to label the dataset. To address data scarcity, the time-series data acquired from the experiments are transformed into images to utilize the image feature extraction capability of a pretrained ResNet-50. Finally, accurate SoH prediction models were obtained using transfer learning between two battery types.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_04219v1",
+    "title": "Agentic IoT: Architectures, Applications, and Challenges Toward the Internet of Agents",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04219v1",
+    "type": "paper",
+    "raw_text": "The integration of AI into Internet of Things (AIoT) systems has gradually transformed them from passive data collection infrastructures into intelligent systems capable of anomaly detection, predictive maintenance, classification, forecasting, and optimization. However, most existing solutions still rely on task-specific models that infer from sensor data; thus, system-wide capabilities such as real-time reasoning, adaptive planning, autonomous coordination, learning, tool use, and contextual decision-making remain limited. This paper examines Agentic IoT as a next-generation cognitive IoT paradigm that integrates the perception, reasoning, planning, learning, and action capabilities of autonomous AI agents with cyber-physical systems. Agentic IoT aims to transform IoT from data-centric sensing and inference infrastructures into distributed cognitive agent ecosystems operating across the device/edge-fog-cloud continuum. The paper first grounds this transition as a paradigm shift and positions Agentic IoT in relation to AIoT, edge intelligence, multi-agent systems, and the Internet of Agents. It then systematically reviews current studies, presents a holistic architectural framework, discusses domain-specific application potential, and identifies key technical, operational, and research challenges together with future research directions.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01986v1",
+    "title": "Liquid Latent State Dynamics for Interpretable Turbofan Degradation Modeling",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01986v1",
+    "type": "paper",
+    "raw_text": "Multivariate time-series models for prognostics are often evaluated by point prediction accuracy, yet their internal states rarely expose a coherent degradation process. We study liquid neural networks as latent dynamics models for aircraft engine health monitoring on the C-MAPSS benchmark. The proposed model encodes a history window into a latent state, evolves that state with a liquid transition model, and decodes future sensor observations. To separate health evolution from operating-condition variation, the latent state is factorized into degradation and condition components. Remaining useful life, monotonic risk, and latent-consistency losses supervise the degradation component, while condition prediction and decorrelation losses discourage operating-condition leakage. Across FD001--FD004, the full disentangled model improves overall sensor forecasting RMSE from 0.2438 for a GRU baseline to 0.2266, with the largest gains on the multi-condition subsets FD002 and FD004. The learned degradation state also forms a clearer temporal degradation axis, reaching an average state-speed Spearman correlation of 0.5960. Direct remaining-useful-life regression remains stronger for the GRU baseline, indicating that the proposed representation is currently more effective as an interpretable world model for degradation dynamics than as a calibrated lifetime regressor. These results suggest that liquid latent dynamics can bridge predictive maintenance forecasting and inspectable health-state modeling.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01903v1",
+    "title": "Rethinking Complexity Metrics for LLM-Integrated Applications: Beyond Source Code",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01903v1",
+    "type": "paper",
+    "raw_text": "LLM-integrated applications blend natural language prompts with program code, and much of their runtime behavior originates in the prompt layer rather than in the code itself. Existing complexity metrics, however, operate solely at the code level and therefore overlook this behavioral logic entirely. We present HECATE, the first tool designed to assess complexity in both the prompt and code layers of such applications. Central to HECATE is Prompt-as-Specification, a Hoare-logic-inspired formalism that interprets every prompt as a specification of intended behavior. Grounded in 25 complexity dimensions identified across published taxonomies, the tool generates 52 candidate metrics. We assess each metric against 118 components collected from 18 open-source repositories, relying on maintenance activity derived from version history as an empirical proxy for complexity, and discard any metric that loses significance once code size is accounted for. Only ten metrics withstand this test. Seven belong to our newly introduced set; rather than measuring sheer volume, each tallies structurally distinct elements, such as LLM call sites, memory attributes, and prompt templates, an attribute we call structural breadth. Of the three surviving conventional metrics, RFC exhibits a similar breadth-oriented character, while Halstead N and V survive only as a residual effect of size; our top-performing metrics exceed all three. Crucially, the prompt-layer metrics retain significance even when the strongest code-level metric is added as a covariate, establishing prompt complexity as a dimension in its own right. A final validation on 20 components spanning six held-out repositories shows that the two best-performing metrics continue to predict maintenance effort, supporting their generalizability beyond the training set.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_00720v1",
+    "title": "Detecting the Undetectable: Enhancing Unsupervised time series Anomaly Detection via Active Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.00720v1",
+    "type": "paper",
+    "raw_text": "Despite the increasing sophistication of industrial AI systems, the ability to reliably detect subtle and noisy anomalies in complex time series data remains a critical yet unresolved challenge. In large-scale industrial applications, labeling time series data is often prohibitively expensive and time-consuming, making unsupervised learning a practical and widely adopted approach. However, existing unsupervised methods frequently struggle to distinguish near-normal anomalies from normal patterns and are vulnerable to noise contamination within normal samples. To address these limitations, we propose a novel framework that leverages active learning to iteratively enhance the performance of unsupervised models. Our framework's core contributions are (1) a masked time-series reconstruction feedback strategy that forces the model to learn robust temporal dependencies, and (2) a minimax learning strategy that promotes robustness by differentially treating normal and abnormal samples. This process encourages the model to better capture the dynamics of subtle and noisy patterns. The proposed framework is evaluated across 28 test cases involving four multivariate time-series datasets and seven unsupervised backbone models. Experimental results demonstrate a 12.39% improvement in AUC compared to the original models, confirming that our method can be readily integrated into existing unsupervised reconstruction-based anomaly detection systems to significantly enhance their performance.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_26317v1",
+    "title": "Parametric Generalized Adaptive Moment Features (PG-AMF) for Bearing Fault Diagnosis and Machine Health Monitoring",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.26317v1",
+    "type": "paper",
+    "raw_text": "Accurate fault diagnosis of rolling element bearings in rotating machinery is considered essential for ensuring industrial safety and enabling predictive maintenance. Conventional statistical feature-based methods rely on predefined descriptors, whose diagnostic sensitivity is constrained by fixed configurations and limited adaptability across varying fault conditions. Although deep learning approaches offer strong representational capacity, their effectiveness is often restricted by high data requirements and reduced interpretability. In this work, a parametric adaptive feature extraction framework is proposed, in which feature characteristics are learned directly from data rather than being manually specified. Multiple complementary representations are extracted from vibration signals, including absolute features capturing signal energy distribution, signed moment features reflecting waveform asymmetry, and AC-coupled moment features emphasizing dynamic fluctuations, while interactions between multiple sensor channels are modeled through a structured fusion mechanism to enhance fault representation. The proposed approach is evaluated on a benchmark gearbox bearing dataset comprising five health conditions, including normal operation and multiple fault types. Improved classification performance is observed compared to conventional methods, with consistent results under cross-validation, indicating strong generalization capability. Additionally, enhanced feature separability is demonstrated through clearer clustering patterns in low-dimensional projections. The learned representations effectively capture a wide range of signal characteristics, supporting both improved diagnostic performance and practical applicability in industrial monitoring systems.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_24459v1",
+    "title": "An LLM-based Two-Stage Transformer Framework for Cross-Domain Bearing Fault Diagnosis with Limited Data",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.24459v1",
+    "type": "paper",
+    "raw_text": "Bearing fault diagnosis faces critical challenges when dataset heterogeneity, operating condition variations, and limited labeled data occur simultaneously in industrial environments. Existing approaches address these issues in isolation and rely on implicit feature alignment, limiting effectiveness under concurrent challenges. This paper proposes a knowledge-guided two-stage transfer learning framework that employs a lightweight GPT-2-style Transformer with causal self-attention for hierarchical feature extraction from vibration signals, establishing explicit pathways where pre-trained encoder weights and fault prototype embeddings serve as knowledge carriers from multi-source pre-training to target adaptation. The framework addresses the dual-shift challenge through multi-source learning for generalizable representations, prototype-based knowledge modulation for target adaptation, and taxonomy-adaptive classification for seamless transfer across heterogeneous fault categories. Experimental validation on four real-world datasets demonstrates 92.61% average accuracy with only 10% labeled target data, outperforming state-of-the-art methods by 17.24 percentage points, establishing a practical pathway toward cost-effective predictive maintenance in Industry 4.0 applications.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_24173v1",
+    "title": "Lightweight Transformer Models for On-Device Fault Detection: A Benchmark Study on Resource-Constrained Deployment",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.24173v1",
+    "type": "paper",
+    "raw_text": "On-device fault detection enables real-time diagnostics without cloud dependency, but deploying machine learning models on resource-constrained hardware demands careful tradeoffs between accuracy, latency, and model size. We present a benchmark comparing traditional ML methods (Random Forest, XGBoost, SVM, Logistic Regression) against lightweight transformer architectures (DistilBERT, TinyBERT-6L, TinyBERT-4L, MobileBERT) for binary fault detection across three public datasets: NASA C-MAPSS turbofan degradation, SECOM semiconductor manufacturing, and UCI AI4I 2020 predictive maintenance. We evaluate classification performance (F1-score, AUC), model size, and CPU inference latency, and further assess INT8 dynamic quantization and a two-stage adaptive inference pipeline. Our results reveal that on well-separated sensor data (C-MAPSS), lightweight transformers match traditional ML at 87.8% F1 but at 100x the model size and 9000x the latency. TinyBERT-4L emerges as the most deployment-friendly transformer at 55 MB and 18 ms CPU latency. INT8 quantization reduces size by 25% while preserving 86.9% F1. Our adaptive pipeline, routing 97.9% of predictions through a quantized triage model and only 2.1% to a larger expert, achieves 87.6% F1 at 19.5 ms average latency. On severely imbalanced datasets (SECOM, UCI-PM), both traditional and transformer methods struggle significantly, highlighting fundamental limitations of current approaches for extreme class imbalance in fault detection. All code is publicly available.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_21220v1",
+    "title": "A UAV-Mounted Sensor Network for Close-Range Inspection of Wind Turbine Rotor Blades",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.21220v1",
+    "type": "paper",
+    "raw_text": "Inspection of offshore wind turbine rotor blades is critical for predictive maintenance to maximise efficiency and extend operational lifetime. However, it remains a challenging task due to remote locations, large structural dimensions, and the limitations of current UAV-compatible sensor systems. While existing approaches can detect certain types of surface anomalies, reliable classification of defect types often remains a manual and error-prone process.\n  This paper presents the design of a UAV-mounted multimodal sensor network combining an industrial RGB camera, a passive thermal infrared camera, and an in-house developed 3D scanner. All sensors are co-calibrated into a common coordinate frame, enabling spatial superimposition of geometric, colour, and thermal data. The system is designed to operate at close range, addressing three fundamental sensing challenges: platform motion, large field of view, and millimetre-level measurement accuracy. Preliminary laboratory results demonstrate synchronised multi-sensor acquisition and initial point cloud reconstructions, forming the basis for future airborne inspection trials.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_21092v1",
+    "title": "BASIL: Bayesian Application for Scientific Iteration and Learning",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.21092v1",
+    "type": "paper",
+    "raw_text": "We introduce BASIL, a user-friendly desktop application for process optimization. BASIL employs a Bayesian approach, incorporating special acquisition functions that can be used to solve both single and multi-objective optimization problems. It provides a graphical interface that enables users to input their experimental parameters, optimization objectives, and legacy data. This is then used to build surrogate models, which are coupled with acquisition functions to guide and optimize a process towards a desired objective. To facilitate model building, BASIL provides a variety of predefined surrogate model templates. BASIL can be used to optimize any arbitrary experiment or process with known, user-defined input variables, optimization objectives, and defined output.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2606_20412v2",
+    "title": "Plasma Etch Process Optimization for Photonic-Grade Diamond-on-Insulator Substrates and Thickness Evaluation using Colorimetry",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2606.20412v2",
+    "type": "paper",
+    "raw_text": "Diamond color-center qubits integrated with photonic circuits can be initialized, manipulated, entangled, and read individually with high fidelity, making them attractive for large-scale modular quantum computers, quantum networks, and distributed quantum sensing. However, the limited size of heteroepitaxially grown single-crystal diamond (SCD) and photonic-grade diamond-on-insulator (DOI) substrates remains a challenge for integration with existing manufacturing processes. Here, we develop a plasma etch recipe to thin direct-bonded (100) SCD membranes (<50 $\u03bc$m) into large-area, thin-film DOI substrates, and demonstrate free-standing photonic chiplets fabricated from the resulting DOI. The ICP-RIE recipe preserves diamond bonding, provides sufficient micromasking and surface-quality control, and enables thin-film DOI manufacture. We thin a 10 $\u03bc$m diamond plate bonded to SiO$_2$/Si and obtain a photonic-grade DOI substrate with diamond thickness $\\leq$300 nm. The DOI film is around 300 nm thick over 0.5 $\\times$ 0.5 mm$^2$, with surface roughness < 0.5 nm, while the bonding interface remains intact. Diamond photonic chiplets are fabricated on this DOI substrate using a standard two-step lithography process, without complex thin-film transfer, under-etching, or pedestal formation. We also present a colorimetric study of diamond visibility on SiO$_2$ and quantify color differences across thicknesses in common colorimetric spaces. This analysis enables automatic diamond-thickness extrapolation from standard optical microscope images with 5 nm resolution, in good agreement with white-light interferometry (WLI) measurements. The DOI substrate and colorimetric thickness-evaluation method provide an effective fabrication platform and reliable validation route for scalable manufacturing of diamond nanophotonic devices, opening a path toward large-scale integrated quantum systems.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

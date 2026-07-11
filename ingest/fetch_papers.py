@@ -1,6 +1,7 @@
 import json
 import re
 import sqlite3
+import ssl
 import sys
 import urllib.parse
 import urllib.request
@@ -15,6 +16,23 @@ from db.init_db import DB_PATH, init_db
 
 QUERY = "all:education AND (all:AI OR all:machine learning)"
 ATOM_NS = {"atom": "http://www.w3.org/2005/Atom"}
+
+
+def _ssl_context() -> ssl.SSLContext:
+    """Return an SSL context using certifi's CA bundle.
+
+    macOS Python 3.14 ships without system CA certs configured in the
+    Python framework. arXiv HTTP redirects to HTTPS, so requests fail
+    with SSL_CERTIFICATE_VERIFY_FAILED. Using certifi's bundled CAs
+    fixes this without disabling certificate verification.
+    """
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        # Fall back to default context if certifi not installed
+        ctx = ssl.create_default_context()
+    return ctx
 
 
 def slugify(text: str) -> str:
@@ -33,7 +51,7 @@ def fetch_arxiv(query: str, start: int, max_results: int) -> bytes:
         }
     )
     url = f"http://export.arxiv.org/api/query?{params}"
-    with urllib.request.urlopen(url, timeout=30) as response:
+    with urllib.request.urlopen(url, timeout=30, context=_ssl_context()) as response:
         return response.read()
 
 

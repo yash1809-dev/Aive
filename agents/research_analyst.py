@@ -101,11 +101,15 @@ def save_extraction(paper_id: str, data: dict, db_path: Path = DB_PATH) -> None:
 
 
 def run(limit: int = 1) -> list[dict]:
+    from utils.progress import write_progress
     papers = get_pending_papers(limit=limit)
     results = []
     failed = 0
+    total = len(papers)
     for i, paper in enumerate(papers):
-        print(f"[{i+1}/{len(papers)}] Extracting: {paper['title'][:70]}...")
+        title = paper['title']
+        print(f"[{i+1}/{total}] Extracting: {title[:70]}...")
+        write_progress("extraction", title, i, total)
         try:
             extracted = extract_paper(paper)
             save_extraction(paper["id"], extracted)
@@ -123,9 +127,10 @@ def run(limit: int = 1) -> list[dict]:
             # If 3 consecutive failures, Ollama is likely down — stop gracefully
             if failed >= 3:
                 print(f"\n[ABORT] 3 consecutive failures — Ollama may be down.")
-                print(f"Completed: {len(results)}/{len(papers)}")
+                print(f"Completed: {len(results)}/{total}")
                 print(f"Resume with: python agents/research_analyst.py {limit - len(results)}")
                 break
+    write_progress("extraction", "Done", total, total)
     return results
 
 

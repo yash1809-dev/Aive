@@ -1,0 +1,202 @@
+[
+  {
+    "id": "paper_2607_08748v1",
+    "title": "Using AI-based Learning Assistants in Higher Education: A Large-Scale Descriptive Analysis",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08748v1",
+    "type": "paper",
+    "raw_text": "In this study, we present a large-scale descriptive analysis of the use of an AI-based learning assistant (Syntea) in higher education. Based on objective log data from 77,543 students enrolled in distance studies, we examine usage patterns across gender, age group, study cluster, degree, and study mode. To date, existing research on educational chatbots has largely relied on comparatively small samples and self-reported survey data, while large-scale evidence on actual usage behavior remains limited. Our findings show that Syntea is already embedded in the study routines of many learners, but that usage differs across demographic and structural contexts. By identifying these patterns, our study provides an empirical basis for the further development of AI-based learning support and contributes a large-scale analysis of educational chatbot usage in higher education.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_08698v1",
+    "title": "How YouTube Frames ChatGPT Use in Education: An Epistemic Network Analysis with Supporting Multimodal Metadata",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08698v1",
+    "type": "paper",
+    "raw_text": "We examine educational YouTube videos through multimodal metadata, such as transcripts, titles, thumbnails, and viewer comments, to investigate how ChatGPT is framed across creator groups and how those framings relate to audience response and platform reach. Little is known about how large language models are presented to learners in informal, creator-driven public discourse. Following PRISMA, we selected 52 videos for analysis. We identified three structurally distinct discourse groups: (G1) videos that positioned ChatGPT as a conceptual scaffold for thinking, (G2) videos oriented toward retrieval practice and skill-building, and (G3) videos that framed ChatGPT as a tool for output generation. Epistemic Network Analysis revealed statistically significant group differences with large effect sizes. Multimodal metadata consistently reflected these distinctions across transcript discourse, titles, and thumbnails. Viewers of learning-oriented content described ChatGPT as a thinking partner or tutor, whereas viewers of output-oriented content raised concerns about over-reliance, surface-level learning, and cognitive offloading. G3 achieved comparable platform reach to G2, yet with substantially weaker learning-oriented framing. This may suggest that output-oriented content competes for visibility despite lower pedagogical depth. These findings reveal a structural tension in self-directed AI learning: content that prioritizes quick outputs reaches far more learners than content that promotes deep engagement. This gap raises critical questions about whose vision of AI literacy scales and what learners are actually left with.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_08331v1",
+    "title": "ArtMine: Discovering and Formalizing Artistic Processes",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08331v1",
+    "type": "paper",
+    "raw_text": "Understanding how artworks are created requires reasoning about the iterative decisions, material operations, and contextual influences that shape artistic production. While recent generative AI systems can synthesize artworks with high fidelity, they primarily model distributions over finished artifacts rather than the creative processes underlying their creation. In practice, artistic workflows are only partially documented through fragmented sources such as archival records, preparatory studies, correspondence, etc., making process-level understanding difficult to formalize computationally. In this work, we introduce ArtMine, a framework for discovering and formalizing artistic processes from heterogeneous historical evidence. Our approach synthesizes heterogeneous artwork evidence into a structured repository, from which a Peircean abductive agent infers evidence-grounded production steps. These steps are converted into a compositional graph and rendering prompt, then optimized through self-reflection over deviations between the generated and reference artworks. We provide a preliminary proof-of-concept case study using open-domain historical sources across multiple artists and artistic movements, demonstrating that fragmented documentary evidence can support coherent, interpretable, and auditable representations of artistic workflows. By modeling creative processes rather than only final artifacts, our work moves toward process-centred human-AI co-creativity systems that can support artistic interpretation, creative education, reflective collaboration, and computational studies of cultural production.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_08009v1",
+    "title": "From Execution to Education: A Bloom-Aligned Framework for Measuring Educational Control in LLMs",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.08009v1",
+    "type": "paper",
+    "raw_text": "We introduce a Bloom-aligned framework for measuring educational control in Large Language Models (LLMs): the ability to preserve a task's instructional intent while shifting its cognitive demand toward specified learning objectives. We apply this framework to programming tasks in computer science education to study the gap between solving tasks and adapting them for learners. Using revised Bloom's Taxonomy as an operational scale of cognitive demand, we evaluate two intervention settings: general difficulty control, where models are asked to make tasks harder or easier, and Bloom's control, where models are asked to target higher or lower Bloom's levels. We evaluate a matched Qwen3-Next model pair, comparing Qwen3-Next-80B-A3B-Instruct with Qwen3-Coder-Next across 2,520 tasks from three benchmarks. The framework reveals a robust directional asymmetry: both models reliably increase cognitive demand, but struggle to lower it. We further characterize these outcomes with semantic-delta clustering and layer-wise Fisher's Discriminant Ratio probing. Within this controlled comparison, the general model shows clearer middle-layer separability for both general difficulty and Bloom-control contrasts, whereas the coder model shows weaker separability for general difficulty and a deeper peak for Bloom-control contrasts. These results show that strong execution performance does not automatically entail Bloom-aligned educational control.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_07606v1",
+    "title": "MLIP Studio: An Open Platform for Interactive Benchmarking and Atomistic Simulations Using Machine Learning Interatomic Potentials",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.07606v1",
+    "type": "paper",
+    "raw_text": "Universal machine learning interatomic potentials (MLIPs) are foundation AI models transforming atomistic simulations, but their practical use remains hindered by fragmented software ecosystems, dependency conflicts, and the lack of accessible benchmarking tools. These models approach first-principles density functional theory (DFT) accuracy at a fraction of the computational cost. We introduce MLIP Studio (available at https://mlipstudio.iisc.ac.in), an open and free platform that brings more than 60 universal MLIPs into a unified interactive interface for molecules and materials. The platform enables end-to-end MLIP-driven workflows, including property prediction, geometry optimization, vibrational and equation-of-state analysis, spin-state determination, custom model deployment, and high-throughput benchmarking against reference data. Automated parity plots and sortable error tables facilitate rapid identification of element-wise outliers and problematic data points. We demonstrate that MLIP-based pre-optimization can reduce subsequent DFT optimization effort by ~33$\\times$. Additionally, the application enables benchmarking of computational performance. Through a comprehensive case study involving the 2D magnetic material CrCl$_3$ on a sapphire substrate, we show how cross-model comparisons of various properties and potential-energy landscapes can guide task-specific MLIP selection. Overall, MLIP Studio lowers the barrier to the reliable use of foundation models in end-to-end research workflows, benchmarking, and education in computational chemistry and materials science.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_07015v1",
+    "title": "EscFOA: Enhancing Spatial Learning for Visually Impaired Learners via Generative Spatial Audio in 360-Degree Educational Environments",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.07015v1",
+    "type": "paper",
+    "raw_text": "Immersive 360-degree educational environments often lack accessible spatial structure, limiting visually impaired learners' ability to orient, explore, and construct mental representations. This paper proposes EscFOA, a geometry-aware spatial audio generation framework designed as an \\emph{acoustic scaffolding} to support spatial cognition. By integrating 3D Gaussian Splatting (3DGS) with conditional diffusion models, EscFOA reconstructs scene geometry from 360-degree videos to synthesize high-fidelity spatial audio consistent with the environmental structure. Explicitly targeting learning outcomes like independent spatial orientation and reduced cognitive load, EscFOA significantly outperforms conventional monaural and stereo audio in supporting spatial learning behaviors among blindfolded sighted participants (simulating visually impaired learners). These findings demonstrate that geometry-consistent generative audio can effectively enable inclusive access to complex spatial learning materials.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_06721v1",
+    "title": "Flowcode: An AI-Powered Programming Environment for Scaffolding Iteration in Creative Computing Education",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.06721v1",
+    "type": "paper",
+    "raw_text": "Building upon found examples is a popular way people learn to code, especially in creative coding communities where sharing projects and remixing are common practices. But effectively doing so requires being able to 1) understand how existing code works, and 2) extend it by writing code that implements your own ideas, practices that can be challenging for new creative coders. We explored how to support these two processes through the design of Flowcode, a creative coding programming environment that integrates a flowchart for visualizing code structure and a chat interface tailored to support learning to code over vibe coding. We share how we iterated on the design of Flowcode over two studies with new creative coders, reflecting on the roles visualization and friction may play in enabling productive AI-use in computing education.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05571v1",
+    "title": "CSTutorBench: Benchmarking Small Language Models as Tutors for Block-Based Programming",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05571v1",
+    "type": "paper",
+    "raw_text": "Large language models are increasingly explored as AI tutors, yet deploying them in K-12 settings raises concerns around privacy, cost, and reliance on proprietary models. Small language models (SLMs) offer a promising alternative, but selecting the right model for a specific educational context remains difficult, particularly when the target domain, such as block-based programming, is largely absent from model training data. We introduce CSTutorBench, a benchmark for evaluating language models as CS tutors in VEX VR, a block-based robotics environment. The benchmark comprises 17 scenario-based questions scored against a pedagogical rubric grounded in established tutoring and feedback research, with a human-in-the-loop LLM-as-judge pipeline for evaluation. Preliminary findings across 11 models (4B-120B parameters) reveal that models perform well on surface-level criteria such as vocabulary and tone but struggle with deeper pedagogical behaviors, particularly avoiding answer leakage and engaging with student debugging histories. In our sample, model family and instruction-tuning approach appear to be better predictors of tutoring quality than parameter count alone, though the small number of models limits the strength of this conclusion. A targeted prompt revision grounded in recent educational prompt engineering research improved scores for 10 of 11 models. These results underscore the value of context-specific, pedagogically grounded benchmarks for SLM selection in educational deployment.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05557v1",
+    "title": "AIED's Unfinished Mission: Centering Agency and Motivation in the Age of Effortless Bypass",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05557v1",
+    "type": "paper",
+    "raw_text": "The widespread availability of general-purpose AI that can perform complex cognitive tasks threatens to undermine education at scale. This effortless bypass dilemma sharpens a challenge AIED has long engaged with but must now confront directly: ensuring learners choose effortful engagement when easier alternatives are available to complete learning tasks. In this paper, I argue that AIED's longstanding agenda of building more effective intelligent educational tools should continue, but with a renewed emphasis on the urgency of ensuring learners choose to engage authentically. Drawing on established motivational and learning theories, I outline five directions in which AIED can build on its existing strengths: supporting autonomy and agency, building learner resilience to metacognitive threats, designing for interest and relevance, amplifying process-based assessment, and empowering teachers. I then share four envisioned technologies that embody key features of this future and conclude by outlining how AIED must now evolve.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_05068v1",
+    "title": "When AI Is Wrong on Purpose: How Students Respond to Buggy GenAI Code",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.05068v1",
+    "type": "paper",
+    "raw_text": "As Generative AI (GenAI) becomes increasingly central to software development, CS education is integrating prompt-centered workflows where students describe intended program behavior in natural language to elicit code. However, professional practice requires careful review and verification of GenAI-generated code that may appear correct while containing subtle faults. This creates a challenge for CS1-level activities, where current models often solve tasks correctly and reduce students' incentive to closely inspect generated outputs. We investigate how prompt-centered programming activities can be adapted to better foster these practices. Specifically, we explore an approach where realistic, runnable bugs are injected into otherwise correct solutions, thus requiring students to read and repair generated outputs. We analyzed 2,636 sessions from 917 students, and examined behavior across instances of naturally occurring prompt-related failures and deliberately injected bugs within each session. Our findings show that students responded differently across bug sources. Deliberately injected bugs more often led to direct code edits and higher next-attempt success, suggesting localized repair of near-miss solutions. Prompt-related failures instead more often led students to refine prompts by clarifying constraints, updating function signatures, adding edge cases, or reframing the task. Student reflections reinforce the emphasis on review and repair, describing useful practice in code understanding, code review, and debugging, as well as a more careful verification mindset and greater awareness of GenAI limitations. Ultimately, prompt-related failures and injected bugs together support a pedagogically useful GenAI workflow, where students practice both specification refinement through prompts and debugging through code editing.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_04572v1",
+    "title": "Detecting Answer-Driven Reasoning in LLM-Based Educational Tutors via Truncated Chain-of-Thought Auditing",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04572v1",
+    "type": "paper",
+    "raw_text": "Large language model (LLM) tutors often produce fluent step-by-step explanations, but a correct and pedagogically formatted response does not guarantee that the answer was derived from the student-facing problem. In realistic tutoring systems, the model may also have access to teacher notes, answer keys, rubrics, or retrieved solution artifacts. We study whether such private answer information can make tutor explanations answer-driven: the final answer is behaviorally available before the written explanation has justified it. Using Truncated Reasoning AUC Evaluation (TRACE), which probes how early a chain-of-thought prefix can pass a verifier, we evaluate 1000 GSM8K test problems under three paired tutoring contexts: question-only, correct answer-key, and wrong answer-key. At fixed fractions of each generated explanation, we force the model to answer immediately and verify the response against the gold numeric answer. With Qwen2.5-3B-Instruct, answer-key access raises median TRACE AUC from 0.375 to 0.900 and makes the gold answer available at the first 10% prefix in 997 of 1000 cases. The effect remains strong on the 746 examples where both question-only and answer-key explanations end with the correct answer. These results support truncated CoT auditing as a lightweight process-level diagnostic for answer-driven reasoning in math tutoring explanations.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_04321v1",
+    "title": "LogicProof: An Interactive Web-Based Educational Theorem Prover for Natural Deduction and Sequent Calculus across Classical and Constructive Logics",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.04321v1",
+    "type": "paper",
+    "raw_text": "We present LogicProof, an interactive web-based theorem prover designed for educational use. The system supports natural deduction and sequent calculus for propositional and first-order logic in both classical and constructive variants. It emphasizes a modern user experience through real-time feedback and interactive visualization of proof trees. We evaluated LogicProof in a study involving 35 students. The results suggest that the system improves understanding of formal proof construction and supports student engagement with logical concepts. Compared to traditional pen-and-paper approaches, students reported faster iteration, easier error correction, and greater confidence in the correctness of their solutions. These findings indicate that LogicProof can serve as a practical supplement to existing teaching methods, particularly in supporting the learning process and reducing barriers associated with formal proof construction.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03896v1",
+    "title": "Post-Lecture Interactive Environments for Conceptual Learning: A Randomized Comparison of Mixed Reality and Tangible Instruction in Undergraduate STEM Education",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03896v1",
+    "type": "paper",
+    "raw_text": "Developing conceptual understanding in engineering requires learners to connect spatial reasoning with abstract representations, yet lecture-based instruction often provides limited support for this process. Interactive learning environments, including mixed reality (MR) and tangible tools, may help students revisit difficult concepts through action, feedback, and visible system response. This pilot randomized study compared two post-lecture interventions, an immersive MR application and a tangible Engineering Toolkit, with lecture-only instruction in undergraduate solid mechanics. Twenty-four participants completed a baseline assessment, a common lecture, and a post-instruction knowledge test; participants in the interactive conditions also completed usability and learner-experience measures. Learning outcomes were analyzed using ANCOVA with baseline knowledge as a covariate and were supported by normalized learning gains. Instructional modality had a significant effect on post-test performance, $F(2, 20) = 3.60$, $p = .048$, partial $\u03b7^2 = .263$. Both interactive conditions outperformed lecture-only instruction in planned contrasts. MR showed the highest normalized learning gain ($g = .57$), whereas the tangible toolkit showed higher usability and learner confidence. In the MR condition, virtual reality sickness symptoms measured via the Virtual Reality Sickness Questionnaire remained low before and after the intervention, suggesting that the MR application was well-tolerated by participants. These results suggest that post-lecture interactive environments may support immediate conceptual learning while offering different modality-specific strengths that require larger, time-matched follow-up studies.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03700v1",
+    "title": "Content Hidden Behind Execution: Analyzing Public Scratch Projects at Runtime",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03700v1",
+    "type": "paper",
+    "raw_text": "Public Scratch projects are reused in computing education as classroom examples, remix sources, open-exploration materials, and research data. Curation often begins with titles, thumbnails, descriptions, tags, and remix links, but Scratch projects are executable learning artifacts. Content affecting age appropriateness can appear only after execution, gameplay progression, a failure state, user interaction, costume switching, audio playback, or a hidden event trigger.\n  We study \"runtime-revealed sensitive content\" as a computing education curation challenge: educators and researchers need runtime evidence about what students may encounter when Scratch projects are used in these settings. We introduce a runtime-aware annotation scheme that separates content category, risk level, evidence channel, reveal mechanism, and annotation confidence. Using this scheme, we conducted an audit of 500 public Scratch projects sampled from curated candidates, taxonomy-guided keyword search, and follow-up exploration of project clusters surfaced during review.\n  In this audit, 467 of 500 projects (93%) required runtime exploration beyond static metadata to surface the safety-relevant signal; 387 (77%) required interaction, gameplay progression, failure states, or hidden-asset and code inspection. As a targeted classroom and research curation audit, the study characterizes reveal mechanisms in a selected corpus rather than estimating platform-wide prevalence or making platform-level safety claims. The results show metadata-only screening leaves key evidence unresolved in executable youth media. By separating content type, severity, evidence location, and reveal pathway, this work supports classroom project selection, student exploration practices, dataset construction, and educator-facing screening tools for block-based programming communities.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_03303v1",
+    "title": "Reflective Dialogue or Prompt Refinement? Effects of Tutor Scaffolding on Students' Independent LLM Use for Programming",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.03303v1",
+    "type": "paper",
+    "raw_text": "While Large Language Models (LLMs) can provide personalized support in learning, several studies have raised concerns regarding their use in education. Importantly, learning depends on how students engage with LLMs. This study examined how two types of LLM-based tutors shape students' prompting practices, learning, and subsequent LLM-use: a Socratic-Guidance (SG) tutor, which structures interaction through dialogic questioning, and a Prompt-Refinement (PR) tutor that guides the formulation of effective prompts. We conducted a two-phase study in a graduate-level mobile robotics course: 66 students used either the SG or PR tutor during a 6-week intervention, followed by 52 students using an unconstrained LLM during a 3-week course project. Results show that while the SG- and PR tutors led to similar task performance and prompting patterns during guided use, they differ in learning outcomes and later LLM-use. SG-students, relative to PR-student, achieved higher learning gains in later sessions, and were more likely to adopt understanding-driven prompting strategies, which are predictive of higher understanding, when using an unconstrained LLM. Although learners perceived the SG tutor as less efficient, the findings suggest that Socratic guidance supports the development of students' capacity to learn with LLMs over time, highlighting its importance for LLM tutor design.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02724v1",
+    "title": "Signal from Space: Detecting Schools and Towers to Bridge the Digital Divide",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02724v1",
+    "type": "paper",
+    "raw_text": "Reliable internet access is essential for modern education, yet millions of school-aged children especially in developing regions remain offline due to unconnected schools. The Giga Initiative aims to connect every school to the internet, but doing so at scale requires efficient methods to map schools and assess surrounding connectivity infrastructure without relying on sparse or noisy third-party datasets. In this work, we propose a scalable, vision-only framework that uses high-resolution satellite imagery and transfer learning to address both tasks simultaneously. By adapting pre-trained object detection models to new geographical regions with minimal labeled data, we detect schools and cell towers directly from space. We then analyze the spatial relationship between detected schools and nearby towers as a proxy for connectivity availability. This purely imagery-driven pipeline enables large-scale infrastructure mapping, reduces dependency on auxiliary data, and supports data-driven prioritization of connectivity investments in underserved areas. Our approach is demonstrated on real satellite imagery from Lesotho, showing strong performance across this region.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02432v1",
+    "title": "Automated grading of Linux/bash examinations using large language models: a four-level cognitive taxonomy approach",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02432v1",
+    "type": "paper",
+    "raw_text": "Scalable and reliable grading of command-line examinations remains a challenge in computing education, where rising enrolments make manual marking difficult and rule-based autograders cannot handle partial credit, equivalent solutions, or syntactic variation. This paper evaluates whether four frontier Large Language Models (GPT, Claude Opus, Gemini, and GLM) can approximate expert judgment when grading short Linux/bash command responses. The study adopts a four-level cognitive taxonomy that combines cognitive complexity and operational impact, ranging from information retrieval (L1) and basic file manipulation (L2) to structural operations (L3) and advanced system management (L4). The models were tested with two prompt variants, a minimal baseline and a rubric-enhanced version, on 1200 real responses from second-year Computer Engineering students independently graded by three expert instructors. Gemini~3.0 Pro with rubric-guided prompting achieved the highest human-AI agreement (ICC(3,1) = 0.888, MAE = 0.10, Bland-Altman bias = -0.014). Agreement declined consistently as taxonomy level increased, with the largest discrepancies at higher levels. Across all models, rubric quality had a larger effect than provider choice, with structured prompts consistently improving agreement. These results show that question complexity is a reliable predictor of the difficulty LLMs face in grading accurately, and they establish a principled, taxonomy-based framework for determining which questions are suitable for AI-assisted grading and which require human review, while also providing a transferable evaluation protocol and prompt templates.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_02361v1",
+    "title": "Data Comics for Education: Evaluating Effectiveness, Benefits, and the Ethics of AI-Assisted Creation",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.02361v1",
+    "type": "paper",
+    "raw_text": "In today's data-driven world, students often struggle with interpreting visualisations due to limited visualisation literacy. Data comics have emerged as a promising medium to enhance engagement and understanding, but their educational value has seen little empirical examination, partly due to the effort required to create them. Recent advances in Generative AI (GenAI) offer a scalable solution to this challenge. We conducted a within-subjects study with 60 university students, comparing conventional visualisations with data comics, created with assistance from GenAI tools, across information retrieval and comprehension tasks. Students consistently performed better with data comics, particularly in insight comprehension tasks, independent of prior visualisation literacy. Students also commented data comics as more engaging and easier to understand, though concerns were raised about GenAI-driven misinformation and ownership. Our findings highlight the potential of data comics as a potentially effective tool for data communication in education, while underscoring the need to address ethical concerns related to AI-assisted creation.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01934v1",
+    "title": "AIriskEval-edu: New Dataset for Risk Assessment in AI-mediated K-12 Educational Explanations",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01934v1",
+    "type": "paper",
+    "raw_text": "This work introduces AIriskEval-edu-db2, a new dataset designed to train and evaluate auditors based on LLMs for an explainable pedagogical risk assessment in instructional content for grades K-12. The dataset comprises 1,639 explanations from 170 curated ScienceQA questions, covering science, language arts, and social sciences. For each question, the dataset includes an explanation written by a human teacher alongside 11 explanations generated by LLM-simulated teacher profiles associated with distinct pedagogical risks. We propose a comprehensive risk rubric aligned with established educational standards that covers five complementary dimensions: factual precision, depth and completeness, focus and relevance, student-level appropriateness, and ideological bias. A key contribution is the addition of 785 explanations with structured explainability annotations, including risk localization and risk description. The annotations are produced through a semi-automatic process with expert teacher validation. Finally, we present validation experiments comparing state-of-the-art proprietary models with a lightweight local Llama 3.1 8B model in both the pedagogical risk detection and the explainability assessment. These experiments evaluate whether supervised fine-tuning on AIriskEval-edu-db2 enables a locally deployable model to approach or outperform stronger frontier models while preserving privacy in educational auditing and assessment tasks.",
+    "year": "2026",
+    "extraction_status": "pending"
+  },
+  {
+    "id": "paper_2607_01795v1",
+    "title": "Single-Channel EEG-Based Cognitive Load Assessment in Online Learning: A Hybrid Deep Learning Approach",
+    "source": "arxiv",
+    "source_url": "https://arxiv.org/abs/2607.01795v1",
+    "type": "paper",
+    "raw_text": "Monitoring cognitive load during online learning could help instructors identify content that learners find difficult, but remote settings remove the visual cues that support this judgement in a classroom. We study whether a single-channel, consumer-grade EEG device (the NeuroSky MindWave Mobile 2) can distinguish easy from difficult educational-video content, using the publicly available dataset of Wang et al. [24] (ten learners, one excluded for excessive noise, leaving nine). We implement a hybrid CNN+LSTM+Attention model that combines the raw waveform with band-power features. In a within-subject setting, the model reaches up to 78.5% accuracy, compared with 55% for conventional feature-based classifiers; regularization (dropout and L2) closes the large gap between training and validation accuracy that we observe without it, keeping validation accuracy stable at roughly 68-73%. We are deliberately cautious about these numbers: with only nine subjects, within-subject evaluation is optimistic, and we argue that subject-independent evaluation -- in which no learner appears in both training and test data -- should be the standard for this task. To that end we release a reproducible evaluation pipeline. We frame the work as a feasibility study rather than a deployable system, and pair it with an open, notebook-based tool that records EEG, runs inference, and visualizes estimated cognitive load as a heatmap over the video timeline to help educators locate potentially challenging segments.",
+    "year": "2026",
+    "extraction_status": "pending"
+  }
+]

@@ -6,6 +6,13 @@ DB_PATH = Path(__file__).resolve().parent.parent / "data" / "aive.db"
 ITEM_MIGRATIONS = [
     "ALTER TABLE items ADD COLUMN impact TEXT",
     "ALTER TABLE items ADD COLUMN beneficiaries TEXT",
+    "ALTER TABLE items ADD COLUMN ko_type TEXT DEFAULT 'document'",
+    "ALTER TABLE items ADD COLUMN confidence REAL DEFAULT 0.5",
+    "ALTER TABLE items ADD COLUMN version INTEGER DEFAULT 1",
+    "ALTER TABLE items ADD COLUMN provenance TEXT",
+    "ALTER TABLE items ADD COLUMN validation_state TEXT DEFAULT 'unvalidated'",
+    "ALTER TABLE items ADD COLUMN reasoning_refs TEXT",
+    "ALTER TABLE items ADD COLUMN discovery_refs TEXT",
 ]
 
 OPPORTUNITY_COLUMNS = [
@@ -61,6 +68,27 @@ def migrate(db_path: Path = DB_PATH) -> None:
 
         conn.executescript(FEEDBACK_TABLE)
         print("Applied: opportunity_feedback table")
+
+        # Workspace Tables
+        WORKSPACE_TABLES = """
+        CREATE TABLE IF NOT EXISTS workspaces (
+            id             TEXT PRIMARY KEY,
+            name           TEXT NOT NULL,
+            status         TEXT DEFAULT 'active',
+            created_at     TEXT NOT NULL,
+            updated_at     TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS workspace_history (
+            id             TEXT PRIMARY KEY,
+            workspace_id   TEXT REFERENCES workspaces(id),
+            version        INTEGER NOT NULL,
+            snapshot_data  TEXT,
+            created_at     TEXT NOT NULL,
+            created_by     TEXT NOT NULL
+        );
+        """
+        conn.executescript(WORKSPACE_TABLES)
+        print("Applied: workspaces & workspace_history tables")
 
 
 if __name__ == "__main__":
