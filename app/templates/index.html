@@ -2813,17 +2813,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ── Bootstrap ──────────────────────────────────────────────── */
-checkSystemHealth();
-loadStats();
-loadResearchBank();
-loadGraphData();
-loadWorkspaces();
+// Wait for DOM to be fully loaded before initializing
+document.addEventListener('DOMContentLoaded', () => {
+  checkSystemHealth();
+  loadStats();
+  loadResearchBank();
+  loadGraphData();
+  loadWorkspaces();
 
-// Resume pipeline poller if already running
-fetch('/api/pipeline/status')
-  .then(r => r.json())
-  .then(s => { if (s.running) { startPipelinePoller(); showProgressModal(); } })
-  .catch(() => {});
+  // Resume pipeline poller if already running
+  fetch('/api/pipeline/status')
+    .then(r => r.json())
+    .then(s => { if (s.running) { startPipelinePoller(); showProgressModal(); } })
+    .catch(() => {});
+});
 
 /* ── Paper Builder Functions ────────────────────────────────── */
 let linkedNodes = [];
